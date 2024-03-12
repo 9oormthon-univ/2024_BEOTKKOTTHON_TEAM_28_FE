@@ -2,14 +2,19 @@
 🍀 Startup Valley ⭐
 
 ## Period
+- 2024.03.13 ~ 2024.03.24
 
 ## Stacks
 
 ## Convetion
-### 🌸 Merge & Branch
+### 📢 Branch
+- github 전략
+- 브랜치명 feature/*
+
+### 🌸 Merge
 - 최소 1명의 approve 통과
 - husky 및 build ci 통과
-- squash merge
+- rebase 및 squash merge 후 브랜치 삭제
 
 ### 🌈 Commit
 - feat: 새로운 기능 추가, 마크업
