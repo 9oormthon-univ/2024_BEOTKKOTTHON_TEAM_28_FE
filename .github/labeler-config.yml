@@ -1,0 +1,10 @@
+filters:
+  - label: bug
+    regexs:
+      - /\bfix\b|bug/
+    events: [issues, pull_request]
+    targets: [title, comment]
+  - label: documentation
+    regexs:
+      - /docs/i
+      - /documentation/
