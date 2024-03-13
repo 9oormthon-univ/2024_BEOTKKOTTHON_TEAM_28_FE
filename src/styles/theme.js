@@ -1,15 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
-import localFont from 'next/font/local';
-
-const pretendard = localFont({
-  src: '../assets/fonts/PretendardVariable.woff2',
-});
 
 const theme = extendTheme({
-  fonts: {
-    body: pretendard.style.fontFamily,
-    heading: pretendard.style.fontFamily,
-  },
   colors: {
     black: '#242529',
     white: '#ffffff',

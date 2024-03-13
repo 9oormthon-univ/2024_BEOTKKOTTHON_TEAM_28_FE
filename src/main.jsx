@@ -1,4 +1,4 @@
-import './index.css';
+import './styles/global.css';
 
 import App from './App.jsx';
 import React from 'react';
