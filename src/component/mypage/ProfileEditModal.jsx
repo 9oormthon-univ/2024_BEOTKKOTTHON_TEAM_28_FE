@@ -23,7 +23,9 @@ const ProfileEditModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>프로필 수정하기</Button>
+      <Button variant='greenGreen' onClick={onOpen}>
+        프로필 수정하기
+      </Button>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

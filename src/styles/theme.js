@@ -15,6 +15,14 @@ const theme = extendTheme({
     successBold: '#115E59',
     warning: '#F59E0B',
     warningBold: '#B45309',
+    background: '#36e7bd',
+  },
+  components: {
+    Button: {
+      variants: {
+        greenGreen: { bg: '#F0FDFA', color: '#047857' },
+      },
+    },
   },
 });
 
