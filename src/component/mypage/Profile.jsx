@@ -4,8 +4,8 @@ import tomato from '../../assets/tomato.png';
 
 const Profile = () => {
   return (
-    <Box>
-      <img src={tomato} alt={tomato} />
+    <Box w='292px'>
+      <img src={tomato} alt={tomato} width={120} height={120} />
       <div>유저 이름</div>
       <ProfileEditModal />
     </Box>
