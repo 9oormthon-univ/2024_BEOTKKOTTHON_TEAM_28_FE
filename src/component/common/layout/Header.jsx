@@ -1,29 +1,32 @@
-import { Flex, Spacer } from '@chakra-ui/react';
+import { Flex, Link } from '@chakra-ui/react';
 
 const Header = () => {
   return (
     <header>
-      <Flex>
-        <a style={{ marginRight: '10px' }}>로고</a>
-        <a style={{ marginRight: '10px' }}>스타트업밸리</a>
-        <Spacer />
-        <nav>
-          <a href='/home' style={{ marginRight: '10px' }}>
+      <Flex alignItems="center" p="4" bg="#F0F2F4">
+        <Link href="/" mr="4">
+          로고
+        </Link>
+        <Link href="/" mr="4">
+          스타트업밸리
+        </Link>
+        <Flex as="nav" gap="20px">
+          <Link href="/home">
             팀 작업 기록
-          </a>
-          <a href='/question-list' style={{ marginRight: '10px' }}>
+          </Link>
+          <Link href="/question-list">
             질문 목록
-          </a>
-          <a href='/task-history' style={{ marginRight: '10px' }}>
+          </Link>
+          <Link href="/task-history">
             작업 기록
-          </a>
-          <a href='/dashboard' style={{ marginRight: '10px' }}>
+          </Link>
+          <Link href="/dashboard">
             나의 대시보드
-          </a>
-          <a href='/mypage' style={{ marginRight: '10px' }}>
+          </Link>
+          <Link href="/mypage">
             마이페이지
-          </a>
-        </nav>
+          </Link>
+        </Flex>
       </Flex>
     </header>
   );
