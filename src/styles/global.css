@@ -91,3 +91,20 @@ body {
 main {
   margin: auto;
 }
+
+.react-calendar-heatmap .color-empty,
+.react-calendar-heatmap .color-scale-0 {
+  fill: #ccd6e3;
+}
+.react-calendar-heatmap .color-scale-1 {
+  fill: #fdddb8;
+}
+.react-calendar-heatmap .color-scale-2 {
+  fill: #ffc07f;
+}
+.react-calendar-heatmap .color-scale-3 {
+  fill: #ff7a35;
+}
+.react-calendar-heatmap .color-scale-4 {
+  fill: #ff5500;
+}

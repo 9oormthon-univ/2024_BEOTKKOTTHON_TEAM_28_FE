@@ -1,9 +1,16 @@
 import { Box, Flex } from '@chakra-ui/react';
 
+import CalendarHeatmap from 'react-calendar-heatmap';
+import { MONTHS } from '../../constants/calendarData';
 import clock from '../../assets/clock.png';
+import { heatMapData } from '../../mocks/heatMapData';
 import loader from '../../assets/loader.png';
 
 const GardenPlot = () => {
+  const startDate = new Date();
+  startDate.setFullYear(startDate.getFullYear() - 1);
+  const endDate = new Date();
+
   return (
     <Flex
       direction='column'
@@ -13,8 +20,19 @@ const GardenPlot = () => {
       padding='30px'
     >
       <Box className='Display-sm'>정아현님의 작업 척도</Box>
-      <Box height='111px' background='pink'>
-        라이브러리
+      <Box height='111px'>
+        <CalendarHeatmap
+          startDate={startDate}
+          endDate={endDate}
+          values={heatMapData}
+          monthLabels={MONTHS}
+          classForValue={(value) => {
+            if (!value) {
+              return 'color-empty';
+            }
+            return `color-scale-${Math.floor(value.count / 2)}`;
+          }}
+        />
       </Box>
       <Flex gap='20px' color='tertiary'>
         <Box>
