@@ -1,15 +1,21 @@
 import { Tab, TabList, Tabs } from '@chakra-ui/react';
 
-const TabBar = () => {
+import PropTypes from 'prop-types';
+
+const TabBar = ({ tabs }) => {
   return (
-    <Tabs>
+    <Tabs colorScheme='successBold'>
       <TabList>
-        <Tab>기획</Tab>
-        <Tab>백엔드</Tab>
-        <Tab>프론트엔드</Tab>
+        {tabs.map((tab) => (
+          <Tab key={tab}>{tab}</Tab>
+        ))}
       </TabList>
     </Tabs>
   );
+};
+
+TabBar.propTypes = {
+  tabs: PropTypes.array,
 };
 
 export default TabBar;
