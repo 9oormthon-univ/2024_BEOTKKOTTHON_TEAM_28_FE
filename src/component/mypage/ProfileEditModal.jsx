@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -28,24 +29,41 @@ const ProfileEditModal = () => {
       </Button>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            <label>프로필 수정</label>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              저장하기
-            </Button>
+        <ModalContent borderRadius='16px'>
+          <ModalHeader background='gray.100'>
+            <Flex justifyContent='space-between'>
+              <label>프로필 수정</label>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                저장하기
+              </Button>
+            </Flex>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Box>
+            <Flex direction='column'>
+              <label className='Haedline-lg'>프로필 변경</label>
               <Flex>
-                <label>프로필 변경</label>
-                <img src={blueberry} alt='프로필 이미지' />
-                <img src={cabbage} alt='프로필 이미지' />
-                <img src={carrot} alt='프로필 이미지' />
-                <img src={cucumber} alt='프로필 이미지' />
-                <img src={strawberry} alt='프로필 이미지' />
-                <img src={tomato} alt='프로필 이미지' />
+                <img src={blueberry} alt='프로필 이미지' width='120px' />
+                <img src={cabbage} alt='프로필 이미지' width='120px' />
+                <img src={carrot} alt='프로필 이미지' width='120px' />
+                <img src={cucumber} alt='프로필 이미지' width='120px' />
+                <img src={strawberry} alt='프로필 이미지' width='120px' />
+                <img src={tomato} alt='프로필 이미지' width='120px' />
+              </Flex>
+            </Flex>
+            <Box>
+              <Flex direction='column'>
+                <label className='Haedline-lg'>이름 수정</label>
+                <Input />
+              </Flex>
+            </Box>
+            <Box>
+              <Flex direction='column'>
+                <label className='Haedline-lg'>권한 변경</label>
+                <div>유저</div>
+                <div>유저</div>
+                <div>유저</div>
+                <div>유저</div>
               </Flex>
             </Box>
           </ModalBody>
