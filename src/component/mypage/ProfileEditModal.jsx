@@ -1,7 +1,9 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
+  Grid,
   Input,
   Modal,
   ModalBody,
@@ -13,6 +15,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
+import ProfileEditModalUserItem from './ProfileEditModalUserItem';
 import blueberry from '../../assets/blueberry.png';
 import cabbage from '../../assets/cabbage.png';
 import carrot from '../../assets/carrot.png';
@@ -29,43 +32,51 @@ const ProfileEditModal = () => {
       </Button>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent borderRadius='16px'>
-          <ModalHeader background='gray.100'>
-            <Flex justifyContent='space-between'>
+        <ModalContent borderRadius='16px' minWidth='fit-content'>
+          <ModalCloseButton />
+          <ModalHeader>
+            <Flex justifyContent='space-between' paddingY='40px' background='gray.100'>
               <label>프로필 수정</label>
               <Button colorScheme='blue' mr={3} onClick={onClose}>
                 저장하기
               </Button>
             </Flex>
           </ModalHeader>
-          <ModalCloseButton />
           <ModalBody>
-            <Flex direction='column'>
-              <label className='Haedline-lg'>프로필 변경</label>
-              <Flex>
-                <img src={blueberry} alt='프로필 이미지' width='120px' />
-                <img src={cabbage} alt='프로필 이미지' width='120px' />
-                <img src={carrot} alt='프로필 이미지' width='120px' />
-                <img src={cucumber} alt='프로필 이미지' width='120px' />
-                <img src={strawberry} alt='프로필 이미지' width='120px' />
-                <img src={tomato} alt='프로필 이미지' width='120px' />
+            <Flex direction='column' paddingX='64px' gap='32px'>
+              <Flex direction='column'>
+                <label className='Haedline-lg'>프로필 변경</label>
+                <Flex gap='8px'>
+                  <img src={blueberry} alt='프로필 이미지' width='120px' />
+                  <img src={cabbage} alt='프로필 이미지' width='120px' />
+                  <img src={carrot} alt='프로필 이미지' width='120px' />
+                  <img src={cucumber} alt='프로필 이미지' width='120px' />
+                  <img src={strawberry} alt='프로필 이미지' width='120px' />
+                  <img src={tomato} alt='프로필 이미지' width='120px' />
+                </Flex>
               </Flex>
+              <Divider />
+              <Box>
+                <Flex direction='column'>
+                  <label className='Haedline-lg'>이름 수정</label>
+                  <Input width='342px' />
+                </Flex>
+              </Box>
+              <Divider />
+              <Box>
+                <Flex direction='column'>
+                  <label className='Haedline-lg'>권한 변경</label>
+                  <Grid templateColumns='repeat(4, 1fr)' gap='40px'>
+                    <ProfileEditModalUserItem />
+                    <ProfileEditModalUserItem />
+                    <ProfileEditModalUserItem />
+                    <ProfileEditModalUserItem />
+                    <ProfileEditModalUserItem />
+                    <ProfileEditModalUserItem />
+                  </Grid>
+                </Flex>
+              </Box>
             </Flex>
-            <Box>
-              <Flex direction='column'>
-                <label className='Haedline-lg'>이름 수정</label>
-                <Input />
-              </Flex>
-            </Box>
-            <Box>
-              <Flex direction='column'>
-                <label className='Haedline-lg'>권한 변경</label>
-                <div>유저</div>
-                <div>유저</div>
-                <div>유저</div>
-                <div>유저</div>
-              </Flex>
-            </Box>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme='blue' mr={3} onClick={onClose}>
