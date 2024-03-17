@@ -1,11 +1,12 @@
 import { Box, Divider, Flex } from '@chakra-ui/react';
 
+import { ContributionModal } from '../questionlist';
 import { TitleProfile } from '../common/mocules';
 
 const TaskItem = () => {
   return (
     <Flex direction='column' gap='20px'>
-      <TitleProfile />
+      <TitleProfile right={<ContributionModal />} />
       <Flex
         direction='column'
         gap='24px'
