@@ -1,10 +1,14 @@
 import { Box, Button, Flex } from '@chakra-ui/react';
 
 import { useState } from 'react';
+import useToastStore from '../../stores/toastStore';
 
 const TaskItem = () => {
   const [isToggled, setIsToggled] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+
+  const { handleShowToastMessage } = useToastStore();
+  console.log(handleShowToastMessage);
 
   return (
     <Flex
@@ -39,6 +43,7 @@ const TaskItem = () => {
               _hover='brand'
               onClick={(event) => {
                 event.stopPropagation();
+                handleShowToastMessage('업무 시간 수정완료!');
                 setIsEditing(false);
               }}
             >
@@ -61,10 +66,6 @@ const TaskItem = () => {
       )}
     </Flex>
   );
-};
-
-TaskItem.propTypes = {
-  isToggled: Boolean,
 };
 
 export default TaskItem;
