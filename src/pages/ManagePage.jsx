@@ -18,8 +18,8 @@ const ManagePage = () => {
             <Box className='Display-sm'>팀원들의 업무 시간을 확인해 주세요!</Box>
           </Flex>
           <Flex direction='column' gap='26px'>
-            <TaskItem isToggled />
-            <TaskItem isToggled />
+            <TaskItem />
+            <TaskItem />
             <TaskItem />
             <TaskItem />
             <TaskItem />
