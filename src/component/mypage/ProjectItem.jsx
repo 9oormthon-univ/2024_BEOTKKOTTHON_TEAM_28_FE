@@ -1,5 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 
+import RnRModal from './RnRModal';
+
 const ProjectItem = () => {
   return (
     <Flex direction='column' gap='12px'>
@@ -19,7 +21,7 @@ const ProjectItem = () => {
         </Flex>
         <div>
           <div>진행중</div>
-          <div>나의 R&R 작성</div>
+          <RnRModal />
         </div>
       </Flex>
     </Flex>
