@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {
+  DashboardPage,
   HomePage,
   LoginPage,
+  ManagePage,
   MyPage,
   QuestionListPage,
   TaskHistoryPage,
-  DashboardPage,
 } from './pages';
 
 const Router = () => {
@@ -19,6 +20,7 @@ const Router = () => {
         <Route path='/question-list' element={<QuestionListPage />} />
         <Route path='/task-history' element={<TaskHistoryPage />} />
         <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path='/:id/manage' element={<ManagePage />} />
       </Routes>
     </BrowserRouter>
   );
