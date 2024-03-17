@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { HomePage, LoginPage, MyPage, QuestionListPage } from './pages';
+import { HomePage, LoginPage, MyPage, QuestionListPage, TaskHistoryPage } from './pages';
 
 const Router = () => {
   return (
@@ -10,6 +10,7 @@ const Router = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/mypage' element={<MyPage />} />
         <Route path='/question-list' element={<QuestionListPage />} />
+        <Route path='/task-history' element={<TaskHistoryPage />} />
       </Routes>
     </BrowserRouter>
   );
