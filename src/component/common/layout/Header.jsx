@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Flex, Link, Spacer } from '@chakra-ui/react';
+import { Flex, Link, Spacer, Box } from '@chakra-ui/react';
+import tomato from '../../../assets/tomato.png';
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState('');
@@ -11,13 +12,13 @@ const Header = () => {
 
   return (
     <header>
-      <Flex alignItems='center' p='15px 182px'>
+      <Flex align='center' p='15px 182px'>
         <Link href='/' mr='9px'>
           로고
         </Link>
         <Link href='/'>스타트업 밸리</Link>
         <Spacer />
-        <Flex gap='20px'>
+        <Flex gap='20px' align='center'>
           <Link
             href='/home'
             color={activeLink === '/home' ? '#047857' : 'black'}
@@ -46,13 +47,9 @@ const Header = () => {
           >
             나의 대시보드
           </Link>
-          <Link
-            href='/mypage'
-            color={activeLink === '/mypage' ? '#047857' : 'black'}
-            _hover={{ textDecoration: 'none' }}
-          >
-            마이페이지
-          </Link>
+          <Box width='48px' height='48px' borderRadius='100%' overflow='hidden' ml='28px'>
+            <img src={tomato} alt='프로필' width='48px' />
+          </Box>
         </Flex>
       </Flex>
     </header>
