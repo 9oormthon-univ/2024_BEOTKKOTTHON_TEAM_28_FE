@@ -1,70 +1,77 @@
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Flex,
-} from '@chakra-ui/react';
+import { Box, Flex, Image } from '@chakra-ui/react';
+
+import { ToggleIcon } from '../common/atoms';
+import cucumber from '../../assets/cucumber.png';
+import { useState } from 'react';
 
 const ProjectList = () => {
+  const [isToggledInProgressList, setIsToggledInProgressList] = useState(false);
+  const [isToggledCompletedList, setIsToggledCompletedList] = useState(false);
   return (
-    <Accordion position='fixed'>
-      <AccordionItem background='gray.100' width='250px'>
-        <Box as='span' flex='1' textAlign='left'>
-          전체 프로젝트
-        </Box>
-        <h2>
-          <AccordionButton>
-            <AccordionIcon />
-            <Box as='span' flex='1' textAlign='left'>
-              전체 프로젝트
-            </Box>
-          </AccordionButton>
-        </h2>
-        <AccordionPanel pb={4}>
-          <Flex direction='column' gap='20px'>
-            <Flex>
-              <div>이미지</div>
+    <Flex
+      direction='column'
+      position='fixed'
+      border='1px solid #CCD6E3'
+      width='280px'
+      padding='12px'
+      borderRadius='12px'
+      className='SubHead-xl'
+      gap='12px'
+    >
+      <Box>전체프로젝트</Box>
+      <Flex direction='column' gap='12px'>
+        <Flex
+          gap='2px'
+          onClick={() => {
+            setIsToggledInProgressList((prev) => !prev);
+          }}
+        >
+          <ToggleIcon isToggled={isToggledInProgressList} />
+          <Box>진행중</Box>
+        </Flex>
+        {isToggledInProgressList && (
+          <Flex direction='column' gap='12px'>
+            <Flex gap='8px' alignItems='center'>
+              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
               <Box>프로젝트 A</Box>
             </Flex>
-            <Flex>
-              <div>이미지</div>
-              <Box>프로젝트 B</Box>
-            </Flex>
-            <Flex>
-              <div>이미지</div>
-              <Box>프로젝트 C</Box>
-            </Flex>
-          </Flex>
-        </AccordionPanel>
-        <h2>
-          <AccordionButton>
-            <AccordionIcon />
-            <Box as='span' flex='1' textAlign='left'>
-              지난 프로젝트
-            </Box>
-          </AccordionButton>
-        </h2>
-        <AccordionPanel pb={4}>
-          <Flex direction='column' gap='20px'>
-            <Flex>
-              <div>이미지</div>
+            <Flex gap='8px' alignItems='center'>
+              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
               <Box>프로젝트 A</Box>
             </Flex>
-            <Flex>
-              <div>이미지</div>
-              <Box>프로젝트 B</Box>
-            </Flex>
-            <Flex>
-              <div>이미지</div>
-              <Box>프로젝트 C</Box>
+            <Flex gap='8px' alignItems='center'>
+              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+              <Box>프로젝트 A</Box>
             </Flex>
           </Flex>
-        </AccordionPanel>
-      </AccordionItem>
-    </Accordion>
+        )}
+        <Flex
+          gap='2px'
+          onClick={() => {
+            setIsToggledCompletedList((prev) => !prev);
+          }}
+        >
+          <ToggleIcon isToggled={isToggledCompletedList} />
+          <Box>완료</Box>
+        </Flex>
+        {isToggledCompletedList && (
+          <Flex direction='column' gap='12px'>
+            <Flex gap='8px' alignItems='center'>
+              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+              <Box>프로젝트 A</Box>
+            </Flex>
+            <Flex gap='8px' alignItems='center'>
+              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+              <Box>프로젝트 A</Box>
+            </Flex>
+            <Flex gap='8px' alignItems='center'>
+              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+              <Box>프로젝트 A</Box>
+            </Flex>
+          </Flex>
+        )}
+      </Flex>
+    </Flex>
   );
 };
 

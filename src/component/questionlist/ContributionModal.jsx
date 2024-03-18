@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  Image,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -25,7 +26,7 @@ const ContributionModal = () => {
           <ModalCloseButton />
           <ModalBody padding='64px'>
             <Flex alignItems='center' gap='16px'>
-              <img src={cucumber} alt='팀 프로필' width='120px' />
+              <Image src={cucumber} alt='팀 프로필' width='120px' />
               <Flex direction='column' width='383px'>
                 <Box className='Display-sm'>프로젝트 A</Box>
                 <Box className='Body-xl'>2024.03.07 - 24.03.24</Box>
