@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation, Pagination } from 'swiper/modules';
-import { Box } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 
 import blueberry from '../../assets/blueberry.png';
 import cabbage from '../../assets/cabbage.png';
@@ -14,9 +15,17 @@ import tomato from '../../assets/tomato.png';
 import arrowPrev from '../../assets/prev.png';
 import arrowNext from '../../assets/next.png';
 
+import checkIcon from '../../assets/check.png';
+
 const images = [tomato, cucumber, carrot, strawberry, blueberry, cabbage];
 
 const ProfileSwiper = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleClick = (index) => {
+    setSelectedImage(index);
+  };
+
   return (
     <Box w='100%' maxW='360px' pos='relative'>
       <Swiper
@@ -33,12 +42,31 @@ const ProfileSwiper = () => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <img
-              src={image}
-              alt={`image-${index}`}
-              className='swiper-image'
-              style={{ width: '120px', height: 'auto' }}
-            />
+            <Box
+              pos='relative'
+              w='120px'
+              h='120px'
+              cursor='pointer'
+              boxSizing='border-box'
+              overflow='hidden'
+              border={selectedImage === index ? '3px solid #059669' : '3px solid transparent'}
+              borderRadius={selectedImage === index ? '4px' : '0'}
+              onClick={() => handleClick(index)}
+            >
+              <Image src={image} alt={`image-${index}`} w='100%' h='100%' objectFit='cover' />
+              {selectedImage === index && (
+                <Image
+                  src={checkIcon}
+                  alt='Selected'
+                  pos='absolute'
+                  top='14%'
+                  left='86%'
+                  transform='translate(-50%, -50%)'
+                  w='30px'
+                  h='30px'
+                />
+              )}
+            </Box>
           </SwiperSlide>
         ))}
       </Swiper>
