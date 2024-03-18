@@ -17,8 +17,10 @@ const QuestionListPage = () => {
         <Flex direction='column' marginLeft='327px' w='922px' gap='32px'>
           <FormBox />
           <Box className='Display-md'>스타트업 밸리 | 정아현님의 작업요청</Box>
-          <TabBar tabs={Tabs} />
-          <SortTooltipList sorts={SortType} />
+          <Flex direction='column' gap='24px'>
+            <TabBar tabs={Tabs} />
+            <SortTooltipList sorts={SortType} />
+          </Flex>
           <Box className='Display-md'>다른 팀원은 어떤 일을 했을까요?</Box>
           <Flex direction='column'>
             <WorkItem />

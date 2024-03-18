@@ -16,7 +16,7 @@ const ContributionModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button variant='greenGreen' onClick={onOpen}>
+      <Button color='brandBold' background='transparent' onClick={onOpen}>
         더보기
       </Button>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>

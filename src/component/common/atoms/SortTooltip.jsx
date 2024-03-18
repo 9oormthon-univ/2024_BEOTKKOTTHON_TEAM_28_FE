@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 const SortTooltip = ({ sort }) => {
   return (
-    <Box border='1px solid gray' borderRadius='999px' p='11px' paddingX='16px' colorScheme='blue'>
+    <Box
+      border='1px solid gray'
+      borderRadius='999px'
+      paddingY='6px'
+      paddingX='16px'
+      colorScheme='blue'
+    >
       {sort}
     </Box>
   );

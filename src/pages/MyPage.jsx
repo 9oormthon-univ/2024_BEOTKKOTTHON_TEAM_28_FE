@@ -14,11 +14,13 @@ const MyPage = () => {
     <main>
       <Flex gap='27px'>
         <Profile />
-        <Flex direction='column' marginLeft='327px' w='922px' gap='100px'>
+        <Flex direction='column' marginLeft='327px' w='922px' gap='86px'>
           <GardenPlot />
           <Box>
             <TabBar tabs={Tabs} />
-            <SortTooltipList sorts={SortType} />
+            <Box direction='column' marginY='20px'>
+              <SortTooltipList sorts={SortType} />
+            </Box>
             <GardenList />
           </Box>
         </Flex>

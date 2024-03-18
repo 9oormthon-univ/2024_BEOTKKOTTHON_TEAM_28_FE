@@ -12,9 +12,9 @@ const TaskHistoryPage = () => {
       <Flex gap='27px'>
         <Flex direction='column' position='fixed' gap='92px'>
           <TeamProfile />
-          <MemberList />
+          <MemberList isWhite={true} />
         </Flex>
-        <Flex direction='column' marginLeft='327px' w='922px' gap='100px'>
+        <Flex direction='column' marginLeft='327px' w='922px' gap='86px'>
           <GardenPlot />
           <Flex direction='column' gap='32px'>
             <TabBar tabs={Tabs} />

@@ -21,6 +21,7 @@ const chakraTheme = extendTheme({
     Button: {
       variants: {
         greenGreen: { bg: '#F0FDFA', color: '#047857' },
+        grayWhite: { bg: '#475569', color: '#FFFFFF' },
       },
     },
   },
