@@ -9,15 +9,15 @@ const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드', '스크
 
 const HomePage = () => {
   return (
-    <main style={{ margin: '60px auto' }}>
+    <main style={{ margin: '55px auto' }}>
       <Flex direction='column' gap='64px'>
         <Banner />
         <Flex margin='auto'>
-          <Flex direction='column' position='fixed' top='400px' gap='64px'>
+          <Flex direction='column' gap='64px'>
             <QuestionBox />
             <MemberList />
           </Flex>
-          <Flex direction='column' marginLeft='327px' w='922px' gap='36px'>
+          <Flex direction='column' marginLeft='48px' w='922px' gap='36px'>
             <Note />
             <Box>
               <TabBar tabs={Tabs} />
