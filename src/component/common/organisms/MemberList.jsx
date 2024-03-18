@@ -3,17 +3,25 @@ import { Box, Button, Flex } from '@chakra-ui/react';
 import { MemberItem } from '../mocules';
 import { useNavigate } from 'react-router-dom';
 
-const MemberList = ({ isSticky }) => {
+const MemberList = ({ isWhite }) => {
   const navigate = useNavigate();
   return (
-    <Flex direction='column' gap='16px' position={isSticky ? 'sticky' : 'static'} top='450px'>
-      <Box className='SubHead-xl'>스타트업 밸리의 멤버</Box>
+    <Flex direction='column' gap='12px'>
+      {isWhite ? (
+        <Flex direction='column'>
+          <Box>스타트업 밸리팀</Box>
+          <Box>멤버들의 스크럼을 확인해보세요!</Box>
+        </Flex>
+      ) : (
+        <Box className='SubHead-xl'>스타트업 밸리의 멤버</Box>
+      )}
       <Flex
         direction='column'
         gap='12px'
         width='276px'
         marginBottom='12px'
-        background='#F0F2F4'
+        background={isWhite ? 'transparent' : '#F0F2F4'}
+        border={isWhite && '1px solid #CCD6E3'}
         padding='12px'
         borderRadius='12px'
       >
@@ -37,6 +45,6 @@ const MemberList = ({ isSticky }) => {
   );
 };
 
-MemberList.propTypes = { isSticky: Boolean };
+MemberList.propTypes = { isWhite: Boolean };
 
 export default MemberList;

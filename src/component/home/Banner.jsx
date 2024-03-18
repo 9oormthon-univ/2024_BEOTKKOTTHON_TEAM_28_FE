@@ -5,7 +5,7 @@ import BannerRankItem from './BannerRankItem';
 const Banner = () => {
   return (
     <Flex
-      width='100vw'
+      width='99vw'
       gap='40px'
       background='#ECFDF5'
       justifyContent='center'

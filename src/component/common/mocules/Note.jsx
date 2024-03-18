@@ -16,7 +16,7 @@ const Note = () => {
       >
         스타트업 밸리에서 오늘은 어떤 작업을 진행하셨나요?
       </Flex>
-      <Button className='SubHead-xl' color='white' background='#059669'>
+      <Button className='SubHead-xl' height='full' color='white' background='#059669'>
         작성
       </Button>
     </Flex>

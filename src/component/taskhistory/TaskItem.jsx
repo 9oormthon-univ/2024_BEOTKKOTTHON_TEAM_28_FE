@@ -6,18 +6,28 @@ import { TitleProfile } from '../common/mocules';
 const TaskItem = () => {
   return (
     <Flex direction='column' gap='20px'>
-      <TitleProfile right={<ContributionModal />} />
+      <TitleProfile isNoTime={true} right={<ContributionModal />} />
       <Flex
         direction='column'
         gap='24px'
         paddingX='32px'
-        paddingY='16px'
+        paddingY='24px'
         background='gray.100'
         borderRadius='12px'
       >
         <Flex gap='16px' alignItems='center'>
-          <Box className='Headline-md'>2024. 03. 13 - 2024. 03. 17</Box>
-          <Box>NN 시간</Box>
+          <Box className='Headline-md' color='brandBold'>
+            2024. 03. 13 - 2024. 03. 17
+          </Box>
+          <Box
+            background='#ECFDF5'
+            color='successBold'
+            paddingX='8px'
+            paddingY='4px'
+            borderRadius='14px'
+          >
+            NN 시간
+          </Box>
         </Flex>
         <Flex direction='column' gap='24px' className='Body-lg'>
           <Box>

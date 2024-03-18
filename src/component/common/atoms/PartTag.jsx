@@ -6,7 +6,7 @@ const PartTag = ({ part, active }) => {
     <Badge
       className='SubHead-sm'
       color={active ? '#059669' : 'tertiary'}
-      background='transparent'
+      background={active ? 'transparent' : '#F0F2F4'}
       border={`1px solid ${active ? '#059669' : '#64748B'}`}
       borderRadius='14px'
       paddingY='4px'

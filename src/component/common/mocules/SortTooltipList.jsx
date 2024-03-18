@@ -4,7 +4,7 @@ import { SortTooltip } from '../atoms';
 
 const SortTooltipList = ({ sorts }) => {
   return (
-    <Flex gap='12px' marginY='20px'>
+    <Flex gap='12px'>
       {sorts.map((sort) => (
         <SortTooltip key={sort} sort={sort} />
       ))}

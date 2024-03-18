@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  Image,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,7 +17,7 @@ const ContributionModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button variant='greenGreen' onClick={onOpen}>
+      <Button color='brandBold' background='transparent' onClick={onOpen}>
         더보기
       </Button>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
@@ -25,7 +26,7 @@ const ContributionModal = () => {
           <ModalCloseButton />
           <ModalBody padding='64px'>
             <Flex alignItems='center' gap='16px'>
-              <img src={cucumber} alt='팀 프로필' width='120px' />
+              <Image src={cucumber} alt='팀 프로필' width='120px' />
               <Flex direction='column' width='383px'>
                 <Box className='Display-sm'>프로젝트 A</Box>
                 <Box className='Body-xl'>2024.03.07 - 24.03.24</Box>

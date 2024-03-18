@@ -1,11 +1,14 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 import RnRModal from './RnRModal';
+import { StatusTag } from '../common/atoms';
 
 const ProjectItem = () => {
   return (
     <Flex direction='column' gap='12px'>
-      <Box className='SubHead-xl'>2024.03.07 - 24.03.24.</Box>
+      <Box className='SubHead-xl' color='brandBold'>
+        2024.03.07 - 24.03.24.
+      </Box>
       <Flex
         w='100%'
         background='gray.100'
@@ -19,10 +22,10 @@ const ProjectItem = () => {
           <Text className='Headline-lg'>프로젝트A</Text>
           <div>저는 이런 역할을 맡아서 했어요!</div>
         </Flex>
-        <div>
-          <div>진행중</div>
+        <Flex direction='column' gap='6px'>
+          <StatusTag />
           <RnRModal />
-        </div>
+        </Flex>
       </Flex>
     </Flex>
   );

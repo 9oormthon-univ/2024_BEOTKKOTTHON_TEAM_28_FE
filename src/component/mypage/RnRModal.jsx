@@ -17,7 +17,9 @@ const RnRModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box onClick={onOpen}>나의 R&R 작성</Box>
+      <Box onClick={onOpen} borderBottom='1px solid #334155'>
+        나의 R&R 작성
+      </Box>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent borderRadius='16px' minWidth='fit-content'>
