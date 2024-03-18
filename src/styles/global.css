@@ -14,10 +14,22 @@ body {
 }
 
 @layer components {
+  .Body-lg {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+  }
   .Body-md {
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
+    letter-spacing: 0.2px;
+  }
+  .Body-xl {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
     letter-spacing: 0.2px;
   }
   .Display-xl {
@@ -89,7 +101,10 @@ body {
 }
 
 main {
+  position: relative;
   margin: 100px auto;
+  padding-bottom: 100px;
+  min-height: 120vh;
 }
 
 .react-calendar-heatmap .color-empty,

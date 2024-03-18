@@ -1,31 +1,44 @@
-import { Box, Button, Flex, List } from '@chakra-ui/react';
+import { Box, Button, Flex, Image } from '@chakra-ui/react';
 
-import { LeftContainer } from '../common/atoms';
 import tomato from '../../assets/tomato.png';
+
+const data = [
+  { title: '질문 제목', part: '요청 직군' },
+  { title: '질문 제목', part: '요청 직군' },
+  { title: '질문 제목', part: '요청 직군' },
+];
 
 const QuestionBox = () => {
   return (
-    <LeftContainer title='답변을 기다리는 요청사항'>
-      <List>
-        <Flex direction='column' gap='12px' marginBottom='12px'>
-          <Flex gap='8px'>
-            <img src={tomato} alt='안재윤의 작업' width='48px' />
-            <Flex direction='column'>
-              <Box className='SubHead-lg'>질문 제목</Box>
-              <Box className='SubHead-md'>요청 직군</Box>
+    <Flex direction='column' gap='16px'>
+      <Box className='SubHead-xl'>답변을 기다리는 요청</Box>
+      <Flex
+        direction='column'
+        gap='12px'
+        width='276px'
+        marginBottom='12px'
+        background='#F0F2F4'
+        padding='12px'
+        borderRadius='12px'
+      >
+        {data.map((el) => {
+          return (
+            <Flex gap='8px' key={el.title}>
+              <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
+              <Flex direction='column'>
+                <Box className='SubHead-lg'>질문 제목</Box>
+                <Box className='SubHead-md' color='brandBold'>
+                  요청 직군
+                </Box>
+              </Flex>
             </Flex>
-          </Flex>
-          <Flex gap='8px'>
-            <img src={tomato} alt='안재윤의 작업' width='48px' />
-            <Flex direction='column'>
-              <Box className='SubHead-lg'>질문 제목</Box>
-              <Box className='SubHead-md'>요청 직군</Box>
-            </Flex>
-          </Flex>
-        </Flex>
-        <Button width='100%'>더보기</Button>
-      </List>
-    </LeftContainer>
+          );
+        })}
+        <Button variant='greenGreen' width='100%'>
+          더보기
+        </Button>
+      </Flex>
+    </Flex>
   );
 };
 

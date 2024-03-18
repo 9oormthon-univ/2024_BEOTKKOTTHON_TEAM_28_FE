@@ -7,23 +7,32 @@ const Banner = () => {
     <Flex
       width='100vw'
       gap='40px'
-      background='green.100'
+      background='#ECFDF5'
       justifyContent='center'
       alignItems='center'
-      padding='15px'
+      padding='50px'
     >
       <Flex direction='column' gap='50px' width='300px'>
         <Flex direction='column'>
-          <Box className='Display-sm'>2024.03.14</Box>
-          <Box className='Display-sm'>스타트업 밸리팀의</Box>
-          <Box className='Display-sm'>1등 농부는</Box>
-          <Box className='Display-md'>정아현님</Box>
+          <Box className='Display-sm' color='brandBold'>
+            2024.03.14
+          </Box>
+          <Box className='Display-sm' color='primary'>
+            스타트업 밸리팀의
+            <br />
+            1등 농부는
+          </Box>
+          <Box className='Display-md' color='secondary'>
+            정아현님
+          </Box>
         </Flex>
-        <Button>프로젝트 팀 변경하기</Button>
+        <Button background='#475569' color='white'>
+          프로젝트 팀 변경하기
+        </Button>
       </Flex>
       <List width='922px'>
         <Flex direction='column' gap='6px'>
-          <BannerRankItem />
+          <BannerRankItem isWin={true} />
           <BannerRankItem />
           <BannerRankItem />
           <BannerRankItem />
