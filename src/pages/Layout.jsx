@@ -1,10 +1,13 @@
-import { Footer, Header } from '../component/common/layout';
+import { Footer, Header, Toast } from '../component/common/layout';
 
 import PropTypes from 'prop-types';
+import useToastStore from '../stores/toastStore';
 
 const Layout = ({ children }) => {
+  const { isShowToast } = useToastStore();
   return (
     <body>
+      {isShowToast && <Toast />}
       <Header />
       {children}
       <Footer />

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import { Flex, Link, Spacer } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState('');
@@ -11,7 +11,14 @@ const Header = () => {
 
   return (
     <header>
-      <Flex alignItems='center' p='15px 182px'>
+      <Flex
+        position='fixed'
+        background='white'
+        zIndex='999'
+        width='100%'
+        alignItems='center'
+        p='15px 182px'
+      >
         <Link href='/' mr='9px'>
           로고
         </Link>

@@ -89,7 +89,7 @@ body {
 }
 
 main {
-  margin: auto;
+  margin: 100px auto;
 }
 
 .react-calendar-heatmap .color-empty,

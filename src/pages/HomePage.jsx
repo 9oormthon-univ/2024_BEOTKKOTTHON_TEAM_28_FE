@@ -8,11 +8,11 @@ import WorkItem from '../component/home/WorkItem';
 const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드', '스크럼'];
 const HomePage = () => {
   return (
-    <main>
+    <main style={{ margin: '60px auto' }}>
       <Flex direction='column' gap='64px'>
         <Banner />
         <Flex margin='auto'>
-          <Flex direction='column' position='fixed' top='300px' gap='64px'>
+          <Flex direction='column' position='fixed' top='400px' gap='64px'>
             <QuestionBox />
             <MemberList />
           </Flex>

@@ -4,3 +4,4 @@ export { default as GardenPlot } from './GardenPlot';
 export { default as ProjectItem } from './ProjectItem';
 export { default as ProjectList } from './ProjectList';
 export { default as ProfileEditModalUserItem } from './ProfileEditModalUserItem';
+export { default as RnRModal } from './RnRModal';
