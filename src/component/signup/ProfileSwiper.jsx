@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 
 import blueberry from '../../assets/blueberry.png';
 import cabbage from '../../assets/cabbage.png';
@@ -20,7 +20,8 @@ const ProfileSwiper = () => {
         centeredSlides={false}
         spaceBetween={8}
         navigation={true}
-        modules={[Navigation]}
+        pagination={{ clickable: true }}
+        modules={[Navigation, Pagination]}
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
