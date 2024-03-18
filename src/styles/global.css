@@ -26,6 +26,12 @@ body {
     line-height: 22px;
     letter-spacing: 0.2px;
   }
+  .Body-xl {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.2px;
+  }
   .Display-xl {
     font-weight: bold;
     font-size: 48px;

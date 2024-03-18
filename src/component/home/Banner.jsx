@@ -10,7 +10,7 @@ const Banner = () => {
       background='#ECFDF5'
       justifyContent='center'
       alignItems='center'
-      padding='15px'
+      padding='50px'
     >
       <Flex direction='column' gap='50px' width='300px'>
         <Flex direction='column'>
