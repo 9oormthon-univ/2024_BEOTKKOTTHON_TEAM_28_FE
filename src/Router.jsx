@@ -6,6 +6,7 @@ import {
   QuestionListPage,
   TaskHistoryPage,
   DashboardPage,
+  SignupPage,
 } from './pages';
 
 const Router = () => {
@@ -19,6 +20,7 @@ const Router = () => {
         <Route path='/question-list' element={<QuestionListPage />} />
         <Route path='/task-history' element={<TaskHistoryPage />} />
         <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path='/signup' element={<SignupPage />} />
       </Routes>
     </BrowserRouter>
   );
