@@ -6,6 +6,7 @@ import {
   MyPage,
   QuestionListPage,
   TaskHistoryPage,
+  SignupPage,
 } from './pages';
 
 const Router = () => {
@@ -18,7 +19,9 @@ const Router = () => {
         <Route path='/dashboard' element={<MyPage />} />
         <Route path='/question-list' element={<QuestionListPage />} />
         <Route path='/task-history' element={<TaskHistoryPage />} />
+        <Route path='/signup' element={<SignupPage />} />
         <Route path='/:id/manage' element={<ManagePage />} />
+
       </Routes>
     </BrowserRouter>
   );

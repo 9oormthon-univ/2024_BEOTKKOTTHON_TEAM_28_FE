@@ -35,6 +35,15 @@ dependencies:
   react-router-dom:
     specifier: ^6.22.3
     version: 6.22.3(react-dom@18.2.0)(react@18.2.0)
+  swiper:
+    specifier: ^11.0.7
+    version: 11.0.7
+  swiper-bundle:
+    specifier: 0.0.1-security
+    version: 0.0.1-security
+  swiper-react:
+    specifier: ^1.0.0
+    version: 1.0.0
   zustand:
     specifier: ^4.5.2
     version: 4.5.2(@types/react@18.2.65)(react@18.2.0)
@@ -4169,6 +4178,19 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /swiper-bundle@0.0.1-security:
+    resolution: {integrity: sha512-CMdvTKdU0o7VUOImY+ej2Wh/7QCWqRCTPqjrJkkS5MfsfhIBjGFdPne9TwvpIChtlumLHixsjduAjPSNNYGGbg==}
+    dev: false
+
+  /swiper-react@1.0.0:
+    resolution: {integrity: sha512-IWd9GH8iqvjSzBYq5NuMPgSmVKuRRi5HIS6RUpXYYzbCFU2lfbdmRksk9Dh7VHC1HUh+gdITmI3HQ2IjSzq6bA==}
+    dev: false
+
+  /swiper@11.0.7:
+    resolution: {integrity: sha512-cDfglW1B6uSmB6eB6pNmzDTNLmZtu5bWWa1vak0RU7fOI9qHjMzl7gVBvYSl34b0RU2N11HxxETJqQ5LeqI1cA==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}

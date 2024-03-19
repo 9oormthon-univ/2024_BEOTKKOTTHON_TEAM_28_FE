@@ -23,6 +23,9 @@
     "react-calendar-heatmap": "^1.9.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
+    "swiper": "^11.0.7",
+    "swiper-bundle": "0.0.1-security",
+    "swiper-react": "^1.0.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

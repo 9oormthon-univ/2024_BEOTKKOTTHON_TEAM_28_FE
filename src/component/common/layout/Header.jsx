@@ -1,8 +1,9 @@
+
 import { Box, Flex, Image, Link, Spacer } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-
 import text_logo from '../../../assets/text_logo.png';
 import tomato from '../../../assets/cucumber.png';
+
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState('');
@@ -32,7 +33,8 @@ const Header = () => {
         </Link>
 
         <Spacer />
-        <Flex gap='20px' alignItems='center'>
+        <Flex gap='20px' align='center'>
+
           <Link
             className='Body-xl'
             href='/home'
@@ -65,7 +67,9 @@ const Header = () => {
           >
             나의 대시보드
           </Link>
+
           <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
+
         </Flex>
       </Flex>
     </header>
