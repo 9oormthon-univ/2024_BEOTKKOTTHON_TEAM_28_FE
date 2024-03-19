@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 
 const TabBar = ({ tabs }) => {
   return (
-    <Tabs colorScheme='successBold'>
+    <Tabs>
       <TabList>
         {tabs.map((tab) => (
-          <Tab key={tab}>{tab}</Tab>
+          <Tab key={tab} _selected={{ color: 'successBold', borderColor: 'successBold' }}>
+            {tab}
+          </Tab>
         ))}
       </TabList>
     </Tabs>

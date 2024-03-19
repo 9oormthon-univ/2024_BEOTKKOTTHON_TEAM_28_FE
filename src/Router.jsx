@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {
   HomePage,
   LoginPage,
+  ManagePage,
   MyPage,
   QuestionListPage,
   TaskHistoryPage,
@@ -19,6 +20,8 @@ const Router = () => {
         <Route path='/question-list' element={<QuestionListPage />} />
         <Route path='/task-history' element={<TaskHistoryPage />} />
         <Route path='/signup' element={<SignupPage />} />
+        <Route path='/:id/manage' element={<ManagePage />} />
+
       </Routes>
     </BrowserRouter>
   );

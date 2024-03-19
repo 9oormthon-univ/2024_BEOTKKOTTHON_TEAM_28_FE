@@ -1,10 +1,11 @@
-import { Flex } from '@chakra-ui/react';
+import { Button, Flex, Image } from '@chakra-ui/react';
+
 import tomato from '../../../assets/tomato.png';
 
 const Note = () => {
   return (
     <Flex gap='16px'>
-      <img src={tomato} alt='안재윤의 작업' width='64px' />
+      <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
       <Flex
         paddingY='12px'
         paddingX='16px'
@@ -15,6 +16,9 @@ const Note = () => {
       >
         스타트업 밸리에서 오늘은 어떤 작업을 진행하셨나요?
       </Flex>
+      <Button className='SubHead-xl' height='full' color='white' background='#059669'>
+        작성
+      </Button>
     </Flex>
   );
 };

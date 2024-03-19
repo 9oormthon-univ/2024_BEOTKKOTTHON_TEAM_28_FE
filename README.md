@@ -10,6 +10,7 @@
 ### 📢 Branch
 - github 전략
 - feature/*: 새로운 기능 추가, 마크업
+- style/*: 컴포넌트 스타일 작업
 - hotfit/*: 긴급 에러 수정
 
 ### 🌸 Merge

@@ -9,8 +9,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
@@ -34,18 +32,32 @@ const ProfileEditModal = () => {
         <ModalOverlay />
         <ModalContent borderRadius='16px' minWidth='fit-content'>
           <ModalCloseButton />
-          <ModalHeader>
-            <Flex justifyContent='space-between' paddingY='40px' background='gray.100'>
-              <label>프로필 수정</label>
-              <Button colorScheme='blue' mr={3} onClick={onClose}>
+          <ModalBody position='relative'>
+            <Flex
+              top='0'
+              right='0'
+              left='0'
+              position='absolute'
+              justifyContent='space-between'
+              borderTopRadius='16px'
+              background='#F0F2F4'
+              paddingX='40px'
+              paddingY='32px'
+            >
+              <label className='Display-md'>프로필 수정</label>
+              <Button width='200px' background='#059669' color='white' mr={3} onClick={onClose}>
                 저장하기
               </Button>
             </Flex>
-          </ModalHeader>
-          <ModalBody>
-            <Flex direction='column' paddingX='64px' gap='32px'>
-              <Flex direction='column'>
-                <label className='Haedline-lg'>프로필 변경</label>
+            <Flex
+              direction='column'
+              marginTop='127px'
+              paddingX='64px'
+              paddingBottom='64px'
+              gap='32px'
+            >
+              <Flex direction='column' gap='20px'>
+                <label className='Headline-lg'>프로필 변경</label>
                 <Flex gap='8px'>
                   <img src={blueberry} alt='프로필 이미지' width='120px' />
                   <img src={cabbage} alt='프로필 이미지' width='120px' />
@@ -57,15 +69,15 @@ const ProfileEditModal = () => {
               </Flex>
               <Divider />
               <Box>
-                <Flex direction='column'>
-                  <label className='Haedline-lg'>이름 수정</label>
+                <Flex direction='column' gap='20px'>
+                  <label className='Headline-lg'>이름 수정</label>
                   <Input width='342px' />
                 </Flex>
               </Box>
               <Divider />
               <Box>
-                <Flex direction='column'>
-                  <label className='Haedline-lg'>권한 변경</label>
+                <Flex direction='column' gap='20px'>
+                  <label className='Headline-lg'>권한 변경</label>
                   <Grid templateColumns='repeat(4, 1fr)' gap='40px'>
                     <ProfileEditModalUserItem />
                     <ProfileEditModalUserItem />
@@ -76,13 +88,12 @@ const ProfileEditModal = () => {
                   </Grid>
                 </Flex>
               </Box>
+              <Divider />
+              <Button width='200px' background='#475569' color='white' mr={3} onClick={onClose}>
+                서비스 탈퇴
+              </Button>
             </Flex>
           </ModalBody>
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              서비스 탈퇴
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

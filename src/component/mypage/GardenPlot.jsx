@@ -19,8 +19,10 @@ const GardenPlot = () => {
       borderRadius='12px'
       padding='30px'
     >
-      <Box className='Display-sm'>정아현님의 작업 척도</Box>
-      <Box height='111px'>
+      <Flex className='Display-md'>
+        <Box color='brandBold'>정아현</Box>님의 작업 척도
+      </Flex>
+      <Box>
         <CalendarHeatmap
           startDate={startDate}
           endDate={endDate}

@@ -6,3 +6,4 @@ export { default as QuestionListPage } from './QuestionListPage';
 export { default as TaskHistoryPage } from './TaskHistoryPage';
 export { default as DashboardPage } from './DashboardPage';
 export { default as SignupPage } from './SignupPage';
+export { default as ManagePage } from './ManagePage';
