@@ -1,6 +1,7 @@
 import { Button, Divider, Flex, Textarea } from '@chakra-ui/react';
 
 import MemberItem from '../common/mocules/MemberItem';
+import RnRStatusTag from './RnRStatusTag';
 import { ToggleIcon } from '../common/atoms';
 import { useState } from 'react';
 
@@ -19,9 +20,12 @@ const RnRContentItem = () => {
         setIsToggled((prev) => !prev);
       }}
     >
-      <Flex alignItems='center' gap='10px'>
-        <ToggleIcon isToggled={isToggled} />
-        <MemberItem active={true} />
+      <Flex justifyContent='space-between' alignItems='center'>
+        <Flex alignItems='center' gap='10px'>
+          <ToggleIcon isToggled={isToggled} />
+          <MemberItem active={true} />
+        </Flex>
+        <RnRStatusTag />
       </Flex>
       {isToggled && (
         <Flex direction='column' alignItems='flex-end' gap='12px'>
