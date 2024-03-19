@@ -22,7 +22,7 @@ const LoginPage = () => {
 
   return (
     <main>
-      <Flex>
+      <Flex h='100vh' justify='center' align='center'>
         <AuthBox>
           <InputContent label='디스코드 아이디' placeholder='discord id' mt='36px' />
           <InputContent label='비밀번호 입력' placeholder='PW' mt='36px' />
