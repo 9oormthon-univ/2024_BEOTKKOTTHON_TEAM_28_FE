@@ -16,7 +16,15 @@ const Toast = () => {
   }, [handleHideToast]);
 
   return (
-    <Flex position='fixed' top='100' right='200' left='200' bottom='200' justifyContent='center'>
+    <Flex
+      position='fixed'
+      zIndex='999'
+      top='100'
+      right='200'
+      left='200'
+      bottom='200'
+      justifyContent='center'
+    >
       <Flex
         padding='20px'
         height='52px'

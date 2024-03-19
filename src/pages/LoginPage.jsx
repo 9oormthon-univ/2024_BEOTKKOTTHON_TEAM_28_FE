@@ -1,8 +1,9 @@
-import { InputContent, AuthBox } from '../component/common/mocules';
-import { Button, Text, Flex } from '@chakra-ui/react';
+import { AuthBox, InputContent } from '../component/common/mocules';
+import { Button, Flex, Text } from '@chakra-ui/react';
+
+import PartModal from '../component/login/PartModal';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import PartModal from '../component/login/PartModal';
 
 const LoginPage = () => {
   const navigate = useNavigate();
