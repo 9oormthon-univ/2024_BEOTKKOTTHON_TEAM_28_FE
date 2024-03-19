@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const InputContent = ({ label, placeholder, mt }) => {
   return (
     <Flex direction='column' mt={mt}>
-      <Text>{label}</Text>
+      <Text className='Subtitle-xl'>{label}</Text>
       <Input
         w='360px'
         mt='12px'
