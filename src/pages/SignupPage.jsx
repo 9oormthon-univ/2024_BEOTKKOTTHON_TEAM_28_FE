@@ -1,5 +1,6 @@
 import { AuthBox, InputContent } from '../component/common/mocules';
-import { Flex, Text, Checkbox, Button } from '@chakra-ui/react';
+import { Button, Checkbox, Flex, Text } from '@chakra-ui/react';
+
 import ProfileSwiper from '../component/signup/ProfileSwiper';
 
 const SignupPage = () => {
