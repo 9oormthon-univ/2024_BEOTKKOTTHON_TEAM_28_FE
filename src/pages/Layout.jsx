@@ -5,12 +5,12 @@ import useToastStore from '../stores/toastStore';
 const Layout = ({ children }) => {
   const { isShowToast } = useToastStore();
   return (
-    <body>
+    <div>
       {isShowToast && <Toast />}
       <Header />
       {children}
       <Footer />
-    </body>
+    </div>
   );
 };
 

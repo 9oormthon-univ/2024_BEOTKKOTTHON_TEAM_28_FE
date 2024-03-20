@@ -9,7 +9,7 @@ const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드', '스크
 
 const HomePage = () => {
   return (
-    <main style={{ margin: '0px auto' }}>
+    <main>
       <Flex direction='column' gap='64px'>
         <Banner />
         <Flex margin='auto'>

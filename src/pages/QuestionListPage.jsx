@@ -12,7 +12,7 @@ const SortType = ['전체', '나를 멘션', '직무 관련 질문', '완료된 
 const QuestionListPage = () => {
   return (
     <main>
-      <Flex gap='27px'>
+      <Flex gap='27px' mt='68px'>
         <ProjectList />
         <Flex direction='column' marginLeft='327px' w='922px' gap='32px'>
           <FormBox />

@@ -7,7 +7,7 @@ import landing5 from '../assets/landing5.png';
 
 const LandingPage = () => {
   return (
-    <main style={{ margin: '55px auto' }}>
+    <main>
       <Flex w='100%' justify='center' align='center' direction='column'>
         <Flex
           bg='#ECFDF5'
@@ -16,7 +16,7 @@ const LandingPage = () => {
           pb='101px'
           justify='center'
           align='center'
-          width='99vw'
+          width='100%'
           gap='28px'
         >
           <Text className='Headline-lg'>START UP VALLEY</Text>
@@ -67,7 +67,7 @@ const LandingPage = () => {
           <Flex direction='row' align='end' justify='center'>
             <Img w='302.942px' h='301.732px' mr='32.27px' src={landing2} />
             <Img w='329.016px' h='335.412px' src={landing3} />
-            <Img w='349.112px' h='301.732px' ml='-12px' src={landing4} />
+            <Img w='349.112px' h='316.072px' ml='-12px' mb='-14.34px' src={landing4} />
             <Img w='307.113px' h='301.732px' src={landing5} />
           </Flex>
         </Flex>

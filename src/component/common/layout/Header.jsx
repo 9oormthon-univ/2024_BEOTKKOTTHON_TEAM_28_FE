@@ -13,7 +13,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header>
+    <header style={{ paddingBottom: '70px' }}>
       <Flex
         borderBottom='1px solid #B5C1D1'
         position='fixed'
