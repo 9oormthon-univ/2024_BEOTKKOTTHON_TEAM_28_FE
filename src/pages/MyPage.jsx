@@ -12,17 +12,19 @@ const SortType = ['전체', '완료한 프로젝트'];
 const MyPage = () => {
   return (
     <main>
-      <Flex gap='27px' mt='68px'>
-        <Profile />
-        <Flex direction='column' marginLeft='327px' w='922px' gap='86px'>
-          <GardenPlot />
-          <Box>
-            <TabBar tabs={Tabs} />
-            <Box direction='column' marginY='20px'>
-              <SortTooltipList sorts={SortType} />
+      <Flex justify='center'>
+        <Flex gap='27px' mt='68px'>
+          <Profile />
+          <Flex direction='column' marginLeft='327px' w='922px' gap='86px'>
+            <GardenPlot />
+            <Box>
+              <TabBar tabs={Tabs} />
+              <Box direction='column' marginY='20px'>
+                <SortTooltipList sorts={SortType} />
+              </Box>
+              <GardenList />
             </Box>
-            <GardenList />
-          </Box>
+          </Flex>
         </Flex>
       </Flex>
     </main>
