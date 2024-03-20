@@ -1,6 +1,7 @@
 import { Box, Button, Flex } from '@chakra-ui/react';
 
 import { MemberItem } from '../mocules';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
 const MemberList = ({ isWhite }) => {
@@ -45,6 +46,6 @@ const MemberList = ({ isWhite }) => {
   );
 };
 
-MemberList.propTypes = { isWhite: Boolean };
+MemberList.propTypes = { isWhite: PropTypes.bool };
 
 export default MemberList;

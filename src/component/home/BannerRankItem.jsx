@@ -1,5 +1,6 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
 
+import PropTypes from 'prop-types';
 import tomato from '../../assets/tomato.png';
 
 const BannerRankItem = ({ isWin }) => {
@@ -39,7 +40,7 @@ const BannerRankItem = ({ isWin }) => {
 };
 
 BannerRankItem.propTypes = {
-  isWin: Boolean,
+  isWin: PropTypes.bool,
 };
 
 export default BannerRankItem;

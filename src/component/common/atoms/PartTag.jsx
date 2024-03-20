@@ -1,7 +1,7 @@
 import { Badge } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-const PartTag = ({ part, active }) => {
+const PartTag = ({ part, active = false }) => {
   return (
     <Badge
       className='SubHead-sm'
@@ -19,7 +19,7 @@ const PartTag = ({ part, active }) => {
 
 PartTag.propTypes = {
   part: PropTypes.string,
-  active: Boolean,
+  active: PropTypes.bool.isRequired,
 };
 
 export default PartTag;

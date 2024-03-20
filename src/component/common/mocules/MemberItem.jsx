@@ -1,6 +1,7 @@
 import { Flex, Image } from '@chakra-ui/react';
 
 import { PartTag } from '../atoms';
+import PropTypes from 'prop-types';
 import tomato from '../../../assets/tomato.png';
 
 const MemberItem = ({ active }) => {
@@ -14,7 +15,7 @@ const MemberItem = ({ active }) => {
 };
 
 MemberItem.propTypes = {
-  active: Boolean,
+  active: PropTypes.bool,
 };
 
 export default MemberItem;
