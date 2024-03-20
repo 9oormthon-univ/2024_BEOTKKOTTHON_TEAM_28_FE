@@ -1,0 +1,50 @@
+/* sm - 모바일 크기일 때 */
+
+@media (max-width: 770px) {
+  .sm {
+    display: block;
+  }
+  .smNone {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+/* md - 폴드 크기일 때 */
+@media (min-width: 771px) and (max-width: 900px) {
+  .sm {
+    display: none;
+  }
+  .md {
+    display: block;
+  }
+  .sm,
+  .lg,
+  .xl {
+    display: none;
+  }
+}
+
+/* lg - 태블릿 크기일 때 */
+@media (min-width: 901px) and (max-width: 992px) {
+  .lg {
+    display: block;
+  }
+  .sm,
+  .md,
+  .xl {
+    display: none;
+  }
+}
+
+/* xl - 데스크탑 크기일 때 */
+@media (min-width: 993px) {
+  .xl {
+    display: block;
+  }
+  .sm,
+  .md,
+  .lg {
+    display: none;
+  }
+}

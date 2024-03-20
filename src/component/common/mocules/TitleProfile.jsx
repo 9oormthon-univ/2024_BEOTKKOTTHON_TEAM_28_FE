@@ -4,7 +4,7 @@ import { PartTag } from '../atoms';
 import PropTypes from 'prop-types';
 import tomato from '../../../assets/tomato.png';
 
-const TitleProfile = ({ isNoTime, right }) => {
+const TitleProfile = ({ isNoTime = false, right }) => {
   return (
     <Flex justifyContent='space-between' alignItems='center'>
       <Flex gap='8px' alignItems='center'>
@@ -23,7 +23,7 @@ const TitleProfile = ({ isNoTime, right }) => {
 };
 
 TitleProfile.propTypes = {
-  right: PropTypes.node.isRequired,
-  isNoTime: Boolean,
+  right: PropTypes.node,
+  isNoTime: PropTypes.bool,
 };
 export default TitleProfile;

@@ -1,4 +1,5 @@
-import { Flex, Text, Button, Img } from '@chakra-ui/react';
+import { Button, Flex, Img, Text, useBreakpointValue } from '@chakra-ui/react';
+
 import landing1 from '../assets/landing1.png';
 import landing2 from '../assets/landing2.png';
 import landing3 from '../assets/landing3.png';
@@ -6,6 +7,11 @@ import landing4 from '../assets/landing4.png';
 import landing5 from '../assets/landing5.png';
 
 const LandingPage = () => {
+  const mainImgWidth = useBreakpointValue({ base: '500vw', md: '776px' });
+  const flexDirection = useBreakpointValue({ base: 'column', md: 'row' });
+  const align = useBreakpointValue({ base: 'center', md: 'end' });
+  const padding = useBreakpointValue({ base: '50px', md: '0' });
+
   return (
     <main>
       <Flex w='100%' justify='center' align='center' direction='column'>
@@ -37,10 +43,9 @@ const LandingPage = () => {
             디스코드 봇 추가하기
           </Button>
         </Flex>
-
         <Flex mt='120px' mb='158.59px'>
-          <Flex>
-            <Flex direction='column' w='472px' gap='28px' justify='center'>
+          <Flex direction={flexDirection}>
+            <Flex direction='column' padding={padding} w='472px' gap='28px' justify='center'>
               <Text className='Display-lg'>
                 <Text as='span' color='#648B7B'>
                   매번, 팀원의 작업을 <br />
@@ -54,7 +59,7 @@ const LandingPage = () => {
                 AI를 통해 요약해 줄거에요!
               </Text>
             </Flex>
-            <Img w='776px' src={landing1} />
+            <Img w={mainImgWidth} src={landing1} />
           </Flex>
         </Flex>
         <Flex direction='column' gap='48px'>
@@ -64,7 +69,7 @@ const LandingPage = () => {
             </Text>
             메인 업무에만 집중하실 수 있도록 이런 기능을 제공해요!
           </Text>
-          <Flex direction='row' align='end' justify='center'>
+          <Flex direction={flexDirection} align={align} justify='center'>
             <Img w='302.942px' h='301.732px' mr='32.27px' src={landing2} />
             <Img w='329.016px' h='335.412px' src={landing3} />
             <Img w='349.112px' h='316.072px' ml='-12px' mb='-14.34px' src={landing4} />
