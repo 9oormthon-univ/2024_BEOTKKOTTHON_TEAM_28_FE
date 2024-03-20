@@ -7,13 +7,14 @@ import {
   QuestionListPage,
   TaskHistoryPage,
   SignupPage,
+  LandingPage,
 } from './pages';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<div>🍀 Startup Valley ⭐</div>} />
+        <Route path='/' element={<LandingPage />} />
         <Route path='/home' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/dashboard' element={<MyPage />} />
@@ -21,7 +22,6 @@ const Router = () => {
         <Route path='/task-history' element={<TaskHistoryPage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/:id/manage' element={<ManagePage />} />
-
       </Routes>
     </BrowserRouter>
   );
