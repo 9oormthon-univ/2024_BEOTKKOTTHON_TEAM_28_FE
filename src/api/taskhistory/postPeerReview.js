@@ -3,7 +3,8 @@ import axiosInstance from '..';
 
 const postPeerReview = async ({ teamId, body }) => {
   try {
-    return await axiosInstance.post(`/teams/${teamId}/works`, body);
+    const response = await axiosInstance.post(`/teams/${teamId}/works`, body);
+    return response.data;
   } catch (err) {
     if (err === AxiosError) {
       console.error(err);

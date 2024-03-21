@@ -3,7 +3,8 @@ import axiosInstance from '..';
 
 const getMemberTasks = async ({ teamId }) => {
   try {
-    return await axiosInstance.get(`/teams/${teamId}/works`);
+    const response = await axiosInstance.get(`/teams/${teamId}/works`);
+    return response.data;
   } catch (err) {
     if (err === AxiosError) {
       console.error(err);
