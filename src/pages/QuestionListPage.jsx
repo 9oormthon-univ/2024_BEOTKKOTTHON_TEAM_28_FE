@@ -4,12 +4,26 @@ import { FormBox, ProjectList } from '../component/questionlist';
 import { SortTooltipList } from '../component/common/mocules';
 import { TabBar } from '../component/common/organisms';
 import WorkItem from '../component/questionlist/WorkItem';
+import getReceivedQuestion from '../api/questionlist/getReceivedQuestion';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Tabs = ['받은 요청', '전달한 요청'];
 
 const SortType = ['전체', '나를 멘션', '직무 관련 질문', '완료된 요청'];
 
 const QuestionListPage = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getReceivedQuestion();
+      setData(response);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <main>
       <Flex justify='center'>
@@ -24,10 +38,9 @@ const QuestionListPage = () => {
             </Flex>
             <Box className='Display-md'>다른 팀원은 어떤 일을 했을까요?</Box>
             <Flex direction='column'>
-              <WorkItem />
-              <WorkItem />
-              <WorkItem />
-              <WorkItem />
+              {data?.map((el) => (
+                <WorkItem key={el.id} />
+              ))}
               <WorkItem />
             </Flex>
           </Flex>

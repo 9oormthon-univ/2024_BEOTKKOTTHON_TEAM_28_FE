@@ -1,11 +1,11 @@
-import { Flex, Link } from '@chakra-ui/react';
+import { Box, Flex, Link } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 import { getProjectList } from '../../../api/common';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const ProjectListModal = () => {
+const ProjectListModal = ({ isTaskHistory }) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -20,25 +20,34 @@ const ProjectListModal = () => {
   return (
     <Flex
       position='fixed'
+      direction='column'
       zIndex='997'
       top='59px'
-      right='550px'
-      width='150px'
-      minHeight='100px'
-      background='pink'
+      right={isTaskHistory ? '150px' : '370px'}
+      width='300px'
+      background='white'
+      padding='12px'
+      gap='8px'
+      boxShadow='0px 4px 16px 0px rgba(0, 0, 0, 0.25), 0px 0px 32px 0px rgba(0, 0, 0, 0.04)'
     >
       {projects.map((project) => (
-        <Link key={project.name} href={`/${project.id}/team-task-history`}>
-          {project.name}
+        <Link
+          key={project.name}
+          href={isTaskHistory ? `/${project.id}/task-history` : `/${project.id}/team-task-history`}
+        >
+          <Flex gap='6px' alignItems='center'>
+            <img src='/tomato.png' alt={project.name} width='40px' height='40px' />
+            <Box className='Body-md'>{project.name}</Box>
+          </Flex>
         </Link>
       ))}
+      {projects.length === 0 && <Box className='Body-md'>연결된 프로젝트가 없어요!</Box>}
     </Flex>
   );
 };
 
 ProjectListModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+  isTaskHistory: PropTypes.bool,
 };
 
 export default ProjectListModal;
