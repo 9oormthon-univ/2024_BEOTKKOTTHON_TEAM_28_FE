@@ -1,12 +1,13 @@
 import { Box, Image } from '@chakra-ui/react';
 
 import ProfileEditModal from './ProfileEditModal';
+import PropTypes from 'prop-types';
 import getUserInfo from '../../api/dashboard/getUserInfo';
 import { returnProfileImg } from '../../lips/returnProfile';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const Profile = () => {
+const Profile = ({ isOther }) => {
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -24,9 +25,13 @@ const Profile = () => {
       <Box className='SubHead-xl' marginTop='19px' marginBottom='13px'>
         {data?.nickname}
       </Box>
-      <ProfileEditModal />
+      {!isOther && <ProfileEditModal />}
     </Box>
   );
+};
+
+Profile.propTypes = {
+  isOther: PropTypes.bool,
 };
 
 export default Profile;
