@@ -1,14 +1,36 @@
 import { Box, Button, Flex } from '@chakra-ui/react';
 
-const StatusTag = () => {
+import PropTypes from 'prop-types';
+
+const switchStatus = (status) => {
+  switch (status) {
+    case 'IN_PROGRESS':
+      return { string: '진행중', color: '#059669' };
+    case 'PEER_REVIEW':
+      return { string: '리뷰 작성', color: '#991B1B' };
+    default:
+      return { string: '완료', color: '2563EB' };
+  }
+};
+const StatusTag = ({ status }) => {
+  const switchedStatus = switchStatus(status);
+
   return (
-    <Button border='2px solid #059669' color='brandBold' paddingX='16px' paddingY='8px'>
+    <Button
+      border={`2px solid ${switchedStatus.color}`}
+      color={switchedStatus.color}
+      paddingX='16px'
+      paddingY='8px'
+    >
       <Flex gap='8px' alignItems='center'>
-        <Box>진행 중</Box>
-        <Box background='success' width='8px' height='8px' borderRadius='50%' />
+        <Box>{switchedStatus.string}</Box>
+        <Box background={switchedStatus.color} width='8px' height='8px' borderRadius='50%' />
       </Flex>
     </Button>
   );
 };
 
+StatusTag.propTypes = {
+  status: PropTypes.string,
+};
 export default StatusTag;

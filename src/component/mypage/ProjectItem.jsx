@@ -1,13 +1,14 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 
+import PropTypes from 'prop-types';
 import RnRModal from './RnRModal';
 import { StatusTag } from '../common/atoms';
 
-const ProjectItem = () => {
+const ProjectItem = ({ name, summary, profileImage, startAt, endAt, status }) => {
   return (
     <Flex direction='column' gap='12px'>
       <Box className='SubHead-xl' color='brandBold'>
-        2024.03.07 - 24.03.24.
+        {startAt} - {endAt}
       </Box>
       <Flex
         w='100%'
@@ -17,18 +18,32 @@ const ProjectItem = () => {
         gap='20px'
         borderRadius='12px'
       >
-        <div>이미지</div>
+        <img
+          src={profileImage ?? '/tomato.png'}
+          alt={`${name}의 팀프로필`}
+          width='80px'
+          height='80px'
+        />
         <Flex flex='1' direction='column' gap='18px'>
-          <Text className='Headline-lg'>프로젝트A</Text>
-          <div>저는 이런 역할을 맡아서 했어요!</div>
+          <Text className='Headline-lg'>{name}</Text>
+          <div>{summary ?? '아직 요약이 없어요!'}</div>
         </Flex>
         <Flex direction='column' gap='6px'>
-          <StatusTag />
+          <StatusTag status={status} />
           <RnRModal />
         </Flex>
       </Flex>
     </Flex>
   );
+};
+
+ProjectItem.propTypes = {
+  name: PropTypes.string,
+  summary: PropTypes.string,
+  profileImage: PropTypes.string,
+  startAt: PropTypes.string,
+  endAt: PropTypes.string,
+  status: PropTypes.string,
 };
 
 export default ProjectItem;

@@ -1,10 +1,10 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getUserGardenData = async ({ teamId }) => {
+const getProjectList = async () => {
   try {
-    const response = await axiosInstance.get(`/teams/${teamId}/questions`);
-    return response.data;
+    const response = await axiosInstance.get(`/teams/retrieve-list`);
+    return response.data.data.projectList;
   } catch (err) {
     if (err === AxiosError) {
       console.error(err);
@@ -13,4 +13,4 @@ const getUserGardenData = async ({ teamId }) => {
   }
 };
 
-export default getUserGardenData;
+export default getProjectList;
