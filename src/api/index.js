@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config) => {
   config.headers['Content-Type'] = 'application/json';
-  config.headers.Authorization = `Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1dWlkIjo5LCJyb2xlIjoiVVNFUiIsImlhdCI6MTcxMTAzMTAzMiwiZXhwIjoxNzExMTE3NDMyfQ.wxwCNvl1h3DwswUjTYHJzfEhDKVlSpMt6GVjJAVifr2RsKnfoZ-suxZbYnRIquS1ArKLtSOLPfA4Kjg1B_W_Mw`;
+  config.headers.Authorization = `Bearer`;
   return config;
 });
 
