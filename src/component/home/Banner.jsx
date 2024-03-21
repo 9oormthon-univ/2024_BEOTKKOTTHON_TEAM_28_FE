@@ -1,7 +1,8 @@
-import { Box, Button, Flex, List } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, List } from '@chakra-ui/react';
 
 import BannerRankItem from './BannerRankItem';
 import { getMemberRanking } from '../../api/teamhistory';
+import guy from '../../assets/guy.svg';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -29,6 +30,8 @@ const Banner = () => {
       justifyContent='center'
       alignItems='center'
       padding='50px'
+      position='relative'
+      overflow='hidden'
     >
       <Flex direction='column' gap='50px' width='300px'>
         <Flex direction='column'>
@@ -62,6 +65,7 @@ const Banner = () => {
           ))}
         </Flex>
       </List>
+      <Image src={guy} alt='그래픽요소' position='absolute' right='300px' top='150px' />
     </Flex>
   );
 };
