@@ -2,9 +2,10 @@ import { AuthBox, InputContent } from '../component/common/mocules';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
 import PartModal from '../component/login/PartModal';
+import getUserLogin from '../api/temporarily/getUserLogin';
+import postCredentials from '../api/login/postCredentials';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import postCredentials from '../api/login/postCredentials';
 
 const LoginPage = () => {
   const navigate = useNavigate();

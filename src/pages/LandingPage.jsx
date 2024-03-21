@@ -40,7 +40,17 @@ const LandingPage = () => {
             </Text>
             로 확인하세요!
           </Text>
-          <Button bg='#059669' color='white' w='252px'>
+          <Button
+            bg='#059669'
+            color='white'
+            w='252px'
+            onClick={() => {
+              window.open(
+                'https://discord.com/api/oauth2/authorize?client_id=1214574551820800040&permissions=8&scope=bot',
+                '_blank',
+              );
+            }}
+          >
             디스코드 봇 추가하기
           </Button>
         </Flex>
