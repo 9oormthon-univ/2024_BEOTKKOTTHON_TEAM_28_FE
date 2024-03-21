@@ -1,8 +1,26 @@
 import { Box, Button, Flex, List } from '@chakra-ui/react';
 
 import BannerRankItem from './BannerRankItem';
+import { getMemberRanking } from '../../api/teamhistory';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const Banner = () => {
+  const { id } = useParams();
+  const [data, setDatas] = useState([]);
+  const [projectName, setProjectName] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getMemberRanking(id);
+      console.log(response);
+      setDatas(response.rankList);
+      setProjectName(response.projectName);
+    };
+
+    fetchData();
+  }, [id]);
   return (
     <Flex
       width='99vw'
@@ -18,12 +36,12 @@ const Banner = () => {
             2024.03.14
           </Box>
           <Box className='Display-sm' color='primary'>
-            스타트업 밸리팀의
+            {projectName}팀의
             <br />
             1등 농부는
           </Box>
           <Box className='Display-md' color='secondary'>
-            정아현님
+            {data[0]?.nickname ?? ''}님
           </Box>
         </Flex>
         <Button background='#475569' color='white'>
@@ -32,10 +50,16 @@ const Banner = () => {
       </Flex>
       <List width='922px'>
         <Flex direction='column' gap='6px'>
-          <BannerRankItem isWin={true} />
-          <BannerRankItem />
-          <BannerRankItem />
-          <BannerRankItem />
+          {data.map((el, index) => (
+            <BannerRankItem
+              rank={index + 1}
+              key={el.memberId}
+              nickname={el.nickname}
+              profileImage={el.profileImage}
+              totalTime={el.totalTime}
+              isWin={el.nickname === data[0].nickname}
+            />
+          ))}
         </Flex>
       </List>
     </Flex>
