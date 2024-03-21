@@ -1,14 +1,27 @@
 import { Box, Button, Flex, Image } from '@chakra-ui/react';
 
+import { getReceivedQuestion } from '../../api/questionlist';
 import tomato from '../../assets/tomato.png';
-
-const data = [
-  { title: '질문 제목', part: '요청 직군' },
-  { title: '질문 제목', part: '요청 직군' },
-  { title: '질문 제목', part: '요청 직군' },
-];
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const QuestionBox = () => {
+  const [data, setData] = useState([]);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getReceivedQuestion(id);
+
+      setData(response);
+    };
+
+    fetchData();
+  }, [id]);
+
   return (
     <Flex direction='column' gap='16px'>
       <Box className='SubHead-xl'>답변을 기다리는 요청</Box>
@@ -26,15 +39,21 @@ const QuestionBox = () => {
             <Flex gap='8px' key={el.title}>
               <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
               <Flex direction='column'>
-                <Box className='SubHead-lg'>질문 제목</Box>
+                <Box className='SubHead-lg'>{el.content}</Box>
                 <Box className='SubHead-md' color='brandBold'>
-                  요청 직군
+                  {el?.sender?.part}
                 </Box>
               </Flex>
             </Flex>
           );
         })}
-        <Button variant='greenGreen' width='100%'>
+        <Button
+          variant='greenGreen'
+          width='100%'
+          onClick={() => {
+            navigate(`/${id}/task-history`);
+          }}
+        >
           더보기
         </Button>
       </Flex>

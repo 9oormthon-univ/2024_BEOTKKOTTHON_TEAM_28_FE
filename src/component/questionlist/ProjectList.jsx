@@ -2,11 +2,24 @@ import { Box, Flex, Image } from '@chakra-ui/react';
 
 import { ToggleIcon } from '../common/atoms';
 import cucumber from '../../assets/cucumber.png';
+import getProjectList from '../../api/common/getProjectList';
+import { useEffect } from 'react';
 import { useState } from 'react';
 
 const ProjectList = () => {
   const [isToggledInProgressList, setIsToggledInProgressList] = useState(false);
   const [isToggledCompletedList, setIsToggledCompletedList] = useState(false);
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getProjectList();
+      setData(response);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Flex
       direction='column'
@@ -31,18 +44,15 @@ const ProjectList = () => {
         </Flex>
         {isToggledInProgressList && (
           <Flex direction='column' gap='12px'>
-            <Flex gap='8px' alignItems='center'>
-              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
-              <Box>프로젝트 A</Box>
-            </Flex>
-            <Flex gap='8px' alignItems='center'>
-              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
-              <Box>프로젝트 A</Box>
-            </Flex>
-            <Flex gap='8px' alignItems='center'>
-              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
-              <Box>프로젝트 A</Box>
-            </Flex>
+            {data.map((el) => {
+              if (el.status === 'IN_PROGRESS')
+                return (
+                  <Flex key='el.id' gap='8px' alignItems='center'>
+                    <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+                    <Box>{el.name}</Box>
+                  </Flex>
+                );
+            })}
           </Flex>
         )}
         <Flex
@@ -56,18 +66,15 @@ const ProjectList = () => {
         </Flex>
         {isToggledCompletedList && (
           <Flex direction='column' gap='12px'>
-            <Flex gap='8px' alignItems='center'>
-              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
-              <Box>프로젝트 A</Box>
-            </Flex>
-            <Flex gap='8px' alignItems='center'>
-              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
-              <Box>프로젝트 A</Box>
-            </Flex>
-            <Flex gap='8px' alignItems='center'>
-              <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
-              <Box>프로젝트 A</Box>
-            </Flex>
+            {data.map((el) => {
+              if (el.status === 'FINISH')
+                return (
+                  <Flex key='el.id' gap='8px' alignItems='center'>
+                    <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+                    <Box>프로젝트 A</Box>
+                  </Flex>
+                );
+            })}
           </Flex>
         )}
       </Flex>
