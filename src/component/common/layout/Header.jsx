@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <>
-      <header style={{ paddingBottom: '70px' }}>
+      <header style={{ paddingBottom: '60px' }}>
         <Flex
           borderBottom='1px solid #B5C1D1'
           position='fixed'
@@ -27,7 +27,7 @@ const Header = () => {
           background='white'
           zIndex='999'
           width='100%'
-          height='70px'
+          height='60px'
           alignItems='center'
           p={`15px ${paddingX}`}
         >

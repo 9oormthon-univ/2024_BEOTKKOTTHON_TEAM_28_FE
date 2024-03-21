@@ -44,7 +44,7 @@ const ProfileEditModal = () => {
               paddingX='40px'
               paddingY='32px'
             >
-              <label className='Display-md'>프로필 수정</label>
+              <label className='Display-sm'>프로필 수정</label>
               <Button width='200px' background='#059669' color='white' mr={3} onClick={onClose}>
                 저장하기
               </Button>

@@ -19,7 +19,7 @@ const GardenPlot = () => {
       borderRadius='12px'
       padding='30px'
     >
-      <Flex className='Display-md'>
+      <Flex className='Display-sm'>
         <Box color='brandBold'>정아현</Box>님의 작업 척도
       </Flex>
       <Box>

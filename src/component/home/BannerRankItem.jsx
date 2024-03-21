@@ -8,13 +8,15 @@ const BannerRankItem = ({ isWin }) => {
     <Flex gap='20px' alignItems='center'>
       <Flex gap='8px' alignItems='center'>
         <Flex
+          className='Body-lg'
           borderRadius='50%'
-          width='50px'
-          height='48px'
+          width='30px'
+          height='30px'
           justifyContent='center'
           alignItems='center'
+          color='white'
           background='
-#FFF2CA'
+brandBold'
         >
           1
         </Flex>

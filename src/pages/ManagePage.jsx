@@ -7,8 +7,8 @@ import { TeamProfile } from '../component/taskhistory';
 const ManagePage = () => {
   return (
     <main>
-      <Flex gap='27px'>
-        <Flex direction='column' position='fixed' gap='92px'>
+      <Flex gap='27px' mt='68px' justifyContent='center'>
+        <Flex direction='column' left='325px' position='fixed' gap='92px'>
           <TeamProfile />
           <MemberList />
         </Flex>
