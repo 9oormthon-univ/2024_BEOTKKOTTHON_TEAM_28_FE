@@ -1,11 +1,21 @@
-import { Flex, Image, Link, Spacer, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Button,
+  Flex,
+  Image,
+  Link,
+  Spacer,
+  useBreakpointValue,
+  useDisclosure,
+} from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import { MenuIcon } from '../atoms';
+import ProjectListModal from './ProjectListModal';
 import text_logo from '../../../assets/text_logo.png';
 import tomato from '../../../assets/cucumber.png';
 
 const Header = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [onMenuToggled, setMenuToggled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
 
@@ -47,14 +57,15 @@ const Header = () => {
             >
               <MenuIcon />
             </div>
-            <Link
+            <Button
+              onClick={onOpen}
               className='Body-xl smNone'
               href='/home'
               color={activeLink === '/home' ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
             >
               팀 작업 기록
-            </Link>
+            </Button>
             <Link
               className='Body-xl smNone'
               href='/question-list'
@@ -143,6 +154,7 @@ const Header = () => {
           </Flex>
         </Flex>
       )}
+      {<ProjectListModal isOpen={isOpen} onClose={onClose} />}
     </>
   );
 };
