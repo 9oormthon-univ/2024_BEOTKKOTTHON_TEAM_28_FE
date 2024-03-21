@@ -11,10 +11,11 @@ const LandingPage = () => {
   const flexDirection = useBreakpointValue({ base: 'column', md: 'row' });
   const align = useBreakpointValue({ base: 'center', md: 'end' });
   const padding = useBreakpointValue({ base: '50px', md: '0' });
+  const gap = useBreakpointValue({ base: '50px', md: '0' });
 
   return (
     <main>
-      <Flex w='100%' justify='center' align='center' direction='column'>
+      <Flex w='100%' justify='center' align='center' direction='column' width='100%'>
         <Flex
           bg='#ECFDF5'
           direction='column'
@@ -26,7 +27,7 @@ const LandingPage = () => {
           gap='28px'
         >
           <Text className='Headline-lg'>START UP VALLEY</Text>
-          <Text className='Display-lg' textAlign='center'>
+          <Text clafssName='Display-lg' textAlign='center'>
             팀원들이{' '}
             <Text as='span' color='#648B7B'>
               별 일
@@ -69,7 +70,7 @@ const LandingPage = () => {
             </Text>
             메인 업무에만 집중하실 수 있도록 이런 기능을 제공해요!
           </Text>
-          <Flex direction={flexDirection} align={align} justify='center'>
+          <Flex direction={flexDirection} align={align} justify='center' gap={gap}>
             <Img w='302.942px' h='301.732px' mr='32.27px' src={landing2} />
             <Img w='329.016px' h='335.412px' src={landing3} />
             <Img w='349.112px' h='316.072px' ml='-12px' mb='-14.34px' src={landing4} />

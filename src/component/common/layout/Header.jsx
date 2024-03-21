@@ -23,6 +23,7 @@ const Header = () => {
         <Flex
           borderBottom='1px solid #B5C1D1'
           position='fixed'
+          top='0'
           background='white'
           zIndex='999'
           width='100%'

@@ -6,7 +6,7 @@ const Footer = () => {
   const paddingX = useBreakpointValue({ base: '10px', md: '188px' });
   const flexDirection = useBreakpointValue({ base: 'column', md: 'row' });
   const gap = useBreakpointValue({ base: '10px', md: '0' });
-  const textAlign = useBreakpointValue({ base: 'left', md: 'right' });
+  const width = useBreakpointValue({ base: '450px', md: '700px' });
 
   return (
     <footer>
@@ -16,27 +16,29 @@ const Footer = () => {
         alignItems='center'
         p={`16px ${paddingX}`}
         bg='#F0F2F4'
+        width='100%'
         gap={gap}
       >
-        <Flex direction='column' width='full' p='8px'>
+        <Flex direction='column' width='full'>
           <Text>Check our Notion</Text>
           <Text>저희의 협업 이야기를 알고 싶으신가요? 저희의 노션을 방문해보세요</Text>
           <Text mt='8px'>@2024 startupvally.all rights reserved</Text>
         </Flex>
-        <Flex direction='column' justifyContent='center' gap='10px'>
-          <Grid templateColumns='repeat(5, 1fr)' gap='15px' width='510px'>
-            <Text fontSize='sm' textAlign={textAlign}>
-              Team 28
+        <Grid templateColumns='repeat(6, 1fr)' gap='15px' w={width}>
+          <Text fontSize='sm' textAlign='left'>
+            Team 28
+          </Text>
+          <Text fontSize='sm' textAlign='center'></Text>
+          <Text fontSize='sm' textAlign='center'></Text>
+          <Text fontSize='sm' textAlign='center'></Text>
+          <Text fontSize='sm' textAlign='center'></Text>
+          <Text fontSize='sm' textAlign='center'></Text>
+          {Members.map((member, index) => (
+            <Text key={index} textAlign='left' fontSize='sm'>
+              {member}
             </Text>
-          </Grid>
-          <Grid templateColumns='repeat(6, 1fr)' gap='15px' width='500px'>
-            {Members.map((member) => (
-              <Text key={member} textAlign={textAlign} fontSize='sm'>
-                {member}
-              </Text>
-            ))}
-          </Grid>
-        </Flex>
+          ))}
+        </Grid>
       </Flex>
     </footer>
   );
