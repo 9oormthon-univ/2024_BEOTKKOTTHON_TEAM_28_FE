@@ -4,8 +4,8 @@ import axiosInstance from '..';
 const getProjectList = async () => {
   try {
     const response = await axiosInstance.get(`/teams/retrieve-list`);
-    console.log(response);
-    return response.data;
+
+    return response.data.data.projectList;
   } catch (err) {
     if (err === AxiosError) {
       console.error(err);

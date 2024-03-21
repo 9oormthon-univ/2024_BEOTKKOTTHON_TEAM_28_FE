@@ -1,32 +1,38 @@
-import { Flex, Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react';
+import { Flex, Link } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 import { getProjectList } from '../../../api/common';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
-// import { useState } from 'react';
-
-const ProjectListModal = ({ isOpen, onClose }) => {
-  // const [projects, setProjects] = useState([]);
-  // const [selectedItemIndex, setSelectedItemIndex] = useState(null);
-
-  // const handleItemClick = (index) => {
-  //   setSelectedItemIndex(index);
-  // };
+const ProjectListModal = () => {
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    getProjectList();
+    const fetchProjectList = async () => {
+      const projectListData = await getProjectList();
+      setProjects(projectListData);
+    };
+
+    fetchProjectList();
   }, []);
 
   return (
-    <Modal size='3xl' isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay bg='rgba(10, 10, 13, 0.7)' />
-      <ModalContent m='auto'>
-        <ModalBody p='48px 40px' w='100%'>
-          <Flex></Flex>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+    <Flex
+      position='fixed'
+      zIndex='997'
+      top='59px'
+      right='550px'
+      width='150px'
+      minHeight='100px'
+      background='pink'
+    >
+      {projects.map((project) => (
+        <Link key={project.name} href={`/${project.id}/team-task-history`}>
+          {project.name}
+        </Link>
+      ))}
+    </Flex>
   );
 };
 
