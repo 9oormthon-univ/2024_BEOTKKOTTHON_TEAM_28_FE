@@ -18,7 +18,7 @@ const GardenPlot = ({ id }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // TODO
+      if (!id) return;
       const response = await getGardenData(id);
       setData(response);
     };
@@ -72,6 +72,6 @@ const GardenPlot = ({ id }) => {
   );
 };
 
-GardenPlot.propTypes = { id: PropTypes.number };
+GardenPlot.propTypes = { id: PropTypes.string };
 
 export default GardenPlot;

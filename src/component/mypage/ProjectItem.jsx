@@ -1,8 +1,9 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
-import RnRModal from './RnRModal';
 import { StatusTag } from '../common/atoms';
+
+// import RnRModal from './RnRModal';
 
 const ProjectItem = ({ name, summary, profileImage, startAt, endAt, status }) => {
   return (
@@ -13,6 +14,7 @@ const ProjectItem = ({ name, summary, profileImage, startAt, endAt, status }) =>
       <Flex
         w='100%'
         background='gray.100'
+        alignItems='center'
         paddingY='24px'
         paddingX='32px'
         gap='20px'
@@ -30,7 +32,7 @@ const ProjectItem = ({ name, summary, profileImage, startAt, endAt, status }) =>
         </Flex>
         <Flex direction='column' gap='6px'>
           <StatusTag status={status} />
-          <RnRModal />
+          {/* <RnRModal /> */}
         </Flex>
       </Flex>
     </Flex>

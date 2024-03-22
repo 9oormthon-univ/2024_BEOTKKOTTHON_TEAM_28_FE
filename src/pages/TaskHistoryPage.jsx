@@ -14,8 +14,10 @@ const Tabs = ['스크럼 타임라인'];
 const TaskHistoryPage = () => {
   const [currentUser, setCurrentUser] = useState();
   const [data, setData] = useState([]);
+
   const { userId } = useUserStore();
   const { id } = useParams();
+
   useEffect(() => {
     const fetchData = async () => {
       if (!currentUser?.memberId) return;
@@ -59,7 +61,7 @@ const TaskHistoryPage = () => {
             />
           </Flex>
           <Flex direction='column' marginLeft='327px' w='922px' gap='86px'>
-            <GardenPlot id={userId} />
+            <GardenPlot id={Number(userId)} />
             <Flex direction='column' gap='32px'>
               <TabBar tabs={Tabs} />
               <Flex direction='column' gap='24px'>
