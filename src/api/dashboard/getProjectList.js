@@ -3,7 +3,7 @@ import axiosInstance from '..';
 
 const getProjectList = async (id) => {
   try {
-    const response = await axiosInstance.get(`/teams/members/${id}/retrieve-list?sort=progress`);
+    const response = await axiosInstance.get(`/teams/members/${id}/retrieve-list?sort=all`);
     return response.data.data.projectList;
   } catch (err) {
     if (err === AxiosError) {

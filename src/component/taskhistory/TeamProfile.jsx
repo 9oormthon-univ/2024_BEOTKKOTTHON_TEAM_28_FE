@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image } from '@chakra-ui/react';
+import { Box, Flex, Image } from '@chakra-ui/react';
 
 import { getTeamInfo } from '../../api/taskhistory';
 import linkICON from '../../assets/link.png';
@@ -40,9 +40,9 @@ const TeamProfile = () => {
         </Box>
         <Box>{data?.startAt}</Box>
       </Flex>
-      <Button variant='grayWhite' width='full'>
+      {/* <Button variant='grayWhite' width='full'>
         프로젝트 팀 변경하기
-      </Button>
+      </Button> */}
     </Flex>
   );
 };

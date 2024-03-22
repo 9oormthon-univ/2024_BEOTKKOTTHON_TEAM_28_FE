@@ -11,7 +11,7 @@ const ProjectListModal = ({ isTaskHistory }) => {
   useEffect(() => {
     const fetchProjectList = async () => {
       const projectListData = await getProjectList();
-      setProjects(projectListData);
+      setProjects(projectListData.progressingProjectList);
     };
 
     fetchProjectList();
