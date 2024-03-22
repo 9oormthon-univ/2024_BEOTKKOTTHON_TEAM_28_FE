@@ -8,8 +8,6 @@ import loader from '../../assets/loader.png';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-// import { heatMapData } from '../../mocks/heatMapData';
-
 const GardenPlot = () => {
   const [data, setData] = useState([]);
 
@@ -21,7 +19,7 @@ const GardenPlot = () => {
     const fetchData = async () => {
       // TODO
       const response = await getGardenData(5);
-      setData(response);
+      setData(response ?? []);
     };
 
     fetchData();

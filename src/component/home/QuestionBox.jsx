@@ -35,7 +35,7 @@ const QuestionBox = () => {
         padding='12px'
         borderRadius='12px'
       >
-        {data.map((el) => {
+        {data?.map((el) => {
           return (
             <Flex gap='8px' key={el.id}>
               <Image

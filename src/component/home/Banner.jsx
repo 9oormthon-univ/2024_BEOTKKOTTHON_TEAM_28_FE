@@ -16,8 +16,8 @@ const Banner = () => {
     const fetchData = async () => {
       const response = await getMemberRanking(id);
       console.log(response);
-      setDatas(response.rankList);
-      setProjectName(response.projectName);
+      setDatas(response?.rankList ?? []);
+      setProjectName(response?.projectName ?? '');
     };
 
     fetchData();

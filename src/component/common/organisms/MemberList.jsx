@@ -18,7 +18,7 @@ const MemberList = ({ isWhite }) => {
     const fetchData = async () => {
       const response = await getMemberList(id);
 
-      setData(response.memberList);
+      setData(response?.memberList ?? []);
     };
 
     fetchData();
