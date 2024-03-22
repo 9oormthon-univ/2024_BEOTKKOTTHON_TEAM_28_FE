@@ -26,7 +26,6 @@ const InputContent = ({ label, placeholder, mt, value, onChange, type, confirmVa
         type={type}
         borderColor={borderColor}
         focusBorderColor='#059669'
-        hoverBorderColor='none'
       />
     </Flex>
   );

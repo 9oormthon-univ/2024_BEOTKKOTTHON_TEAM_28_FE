@@ -30,8 +30,15 @@ const SignupPage = () => {
     console.log('password:', password);
     console.log('confirmPassword:', confirmPassword);
 
-    if (!nickname || !discordId || !password || !confirmPassword) {
-      alert('모든 필드를 입력해주세요.');
+    if (
+      !nickname ||
+      !discordId ||
+      !password ||
+      !confirmPassword ||
+      isTermsChecked ||
+      isPrivacyChecked
+    ) {
+      alert('모든 항목 입력 및 약관 동의가 필요합니다.');
       return;
     }
 
