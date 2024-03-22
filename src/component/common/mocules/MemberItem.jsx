@@ -6,8 +6,6 @@ import { returnProfileImg } from '../../../lips/returnProfile';
 import { useNavigate } from 'react-router-dom';
 
 const MemberItem = ({ active, memberId, part, profileImage, nickname }) => {
-  // TODO
-  console.log(memberId);
   const navigate = useNavigate();
 
   return (

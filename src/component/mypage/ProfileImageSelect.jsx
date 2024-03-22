@@ -14,8 +14,9 @@ import { useState } from 'react';
 
 const images = ['TOMATO', 'CUCUMBER', 'CARROT', 'STRAWBERRY', 'BLUEBERRY', 'CABBAGE'];
 
-const ProfileImageSelect = ({ handleImage }) => {
-  const [selectedImage, setSelectedImage] = useState();
+const ProfileImageSelect = ({ currentImage, handleImage }) => {
+  console.log(currentImage);
+  const [selectedImage, setSelectedImage] = useState(images.indexOf(currentImage));
 
   const handleClick = (index) => {
     setSelectedImage(index);
@@ -104,5 +105,6 @@ const ProfileImageSelect = ({ handleImage }) => {
 
 ProfileImageSelect.propTypes = {
   handleImage: PropTypes.func,
+  currentImage: PropTypes.string,
 };
 export default ProfileImageSelect;

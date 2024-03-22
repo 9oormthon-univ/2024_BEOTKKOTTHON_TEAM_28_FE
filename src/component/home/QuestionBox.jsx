@@ -38,7 +38,7 @@ const QuestionBox = () => {
         {!data || (data?.length === 0 && '아직 요청이 없어요!')}
         {data?.map((el) => {
           return (
-            <Flex gap='8px' key={el.id}>
+            <Flex gap='8px' key={el.sender.id}>
               <Image
                 borderRadius='50%'
                 src={returnProfileImg(el.sender.profileImage) ?? tomato}

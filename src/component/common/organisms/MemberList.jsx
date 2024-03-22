@@ -56,7 +56,7 @@ const MemberList = ({ isWhite }) => {
       </Flex>
       <Button
         onClick={() => {
-          navigate('/3/manage');
+          navigate(`/${id}/manage`);
         }}
         width='100%'
         background='#475569'

@@ -1,12 +1,13 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
 
+import PropTypes from 'prop-types';
 import { ToggleIcon } from '../common/atoms';
 import cucumber from '../../assets/cucumber.png';
 import getProjectList from '../../api/common/getProjectList';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const ProjectList = () => {
+const ProjectList = ({ handleCurrentTeam }) => {
   const [isToggledInProgressList, setIsToggledInProgressList] = useState(false);
   const [isToggledCompletedList, setIsToggledCompletedList] = useState(false);
   const [data, setData] = useState();
@@ -40,19 +41,23 @@ const ProjectList = () => {
           }}
         >
           <ToggleIcon isToggled={isToggledInProgressList} />
-          <Box>진행중</Box>
+          <Box>진행중 {data?.progressingProjectCount}</Box>
         </Flex>
         {isToggledInProgressList && (
           <Flex direction='column' gap='12px'>
-            {data?.map((el) => {
-              if (el.status === 'IN_PROGRESS')
-                return (
-                  <Flex key={el.id} gap='8px' alignItems='center'>
-                    <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
-                    <Box>{el.name}</Box>
-                  </Flex>
-                );
-            })}
+            {data?.progressingProjectList?.map((el) => (
+              <Flex
+                key={el.id}
+                gap='8px'
+                alignItems='center'
+                onClick={() => {
+                  handleCurrentTeam({ teamName: el.name, teamId: el.id });
+                }}
+              >
+                <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+                <Box>{el.name}</Box>
+              </Flex>
+            ))}
           </Flex>
         )}
         <Flex
@@ -62,24 +67,25 @@ const ProjectList = () => {
           }}
         >
           <ToggleIcon isToggled={isToggledCompletedList} />
-          <Box>완료</Box>
+          <Box>완료 {data?.endProjectCount}</Box>
         </Flex>
         {isToggledCompletedList && (
           <Flex direction='column' gap='12px'>
-            {data?.map((el) => {
-              if (el.status === 'FINISH')
-                return (
-                  <Flex key={el.id} gap='8px' alignItems='center'>
-                    <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
-                    <Box>{el.name}</Box>
-                  </Flex>
-                );
-            })}
+            {data?.endProjectList?.map((el) => (
+              <Flex key={el.id} gap='8px' alignItems='center'>
+                <Image src={el.image ?? cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+                <Box>{el.name}</Box>
+              </Flex>
+            ))}
           </Flex>
         )}
       </Flex>
     </Flex>
   );
+};
+
+ProjectList.propTypes = {
+  handleCurrentTeam: PropTypes.func,
 };
 
 export default ProjectList;

@@ -7,9 +7,11 @@ import { returnProfileImg } from '../../lips/returnProfile';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
+// import { useParams } from 'react-router-dom';
+
 const Profile = ({ isOther }) => {
   const [data, setData] = useState();
-
+  // const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
       const response = await getUserInfo();
@@ -25,7 +27,7 @@ const Profile = ({ isOther }) => {
       <Box className='SubHead-xl' marginTop='19px' marginBottom='13px'>
         {data?.nickname}
       </Box>
-      {!isOther && <ProfileEditModal />}
+      {!isOther && <ProfileEditModal data={data} />}
     </Box>
   );
 };

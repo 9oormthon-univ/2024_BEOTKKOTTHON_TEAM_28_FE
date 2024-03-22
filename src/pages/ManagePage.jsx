@@ -3,8 +3,25 @@ import { Box, Flex } from '@chakra-ui/react';
 import { MemberList } from '../component/common/organisms';
 import { TaskItem } from '../component/manage';
 import { TeamProfile } from '../component/taskhistory';
+import getTeamTimeManage from '../api/teamhistory/getTeamTimeManage';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const ManagePage = () => {
+  const [data, setData] = useState([]);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getTeamTimeManage(id);
+      setData(response);
+    };
+
+    fetchData();
+  }, [id]);
+
   return (
     <main>
       <Flex gap='27px' mt='68px' justifyContent='center'>
@@ -18,12 +35,9 @@ const ManagePage = () => {
             <Box className='Display-sm'>팀원들의 업무 시간을 확인해 주세요!</Box>
           </Flex>
           <Flex direction='column' gap='26px'>
-            <TaskItem />
-            <TaskItem />
-            <TaskItem />
-            <TaskItem />
-            <TaskItem />
-            <TaskItem />
+            {data?.map((el) => (
+              <TaskItem key={el.id} />
+            ))}
           </Flex>
         </Flex>
       </Flex>

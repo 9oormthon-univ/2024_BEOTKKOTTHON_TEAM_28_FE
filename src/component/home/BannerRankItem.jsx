@@ -2,12 +2,19 @@ import { Box, Flex, Image } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 import { returnProfileImg } from '../../lips/returnProfile';
+import { useNavigate } from 'react-router-dom';
 
-const BannerRankItem = ({ rank, memberId, totalTime, profileImage, nickname, isWin }) => {
-  // TODO
-  console.log(memberId);
+const BannerRankItem = ({ rank, totalTime, profileImage, nickname, isWin }) => {
+  const navigate = useNavigate();
+
   return (
-    <Flex gap='20px' alignItems='center'>
+    <Flex
+      gap='20px'
+      alignItems='center'
+      onClick={() => {
+        navigate(`/question-list`);
+      }}
+    >
       <Flex gap='8px' alignItems='center'>
         <Flex
           className='Body-lg'

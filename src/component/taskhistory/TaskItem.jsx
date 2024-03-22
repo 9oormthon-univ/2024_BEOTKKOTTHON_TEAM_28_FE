@@ -36,7 +36,7 @@ const TaskItem = ({ content, startAt, endAt, workList }) => {
           <Flex direction='column' gap='12px'>
             {workList?.map((el) => (
               <Flex
-                key={el}
+                key={el.id}
                 direction='column'
                 background='white'
                 paddingX='24px'

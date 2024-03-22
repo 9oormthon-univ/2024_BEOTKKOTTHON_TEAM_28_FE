@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { MenuIcon } from '../atoms';
 import ProjectListModal from './ProjectListModal';
 import text_logo from '../../../assets/text_logo.png';
-import tomato from '../../../assets/cucumber.png';
 import { useNavigate } from 'react-router-dom';
+import useUserStore from '../../../stores/userStore';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,6 +14,8 @@ const Header = () => {
   const [onProjectListTowToggled, setOnProjectListTowToggled] = useState(false);
   const [onMenuToggled, setMenuToggled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
+
+  const { profile } = useUserStore();
 
   useEffect(() => {
     const currentPath = window.location.pathname;
@@ -98,7 +100,7 @@ const Header = () => {
             >
               나의 대시보드
             </Button>
-            <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
+            <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />
           </Flex>
         </Flex>
       </header>

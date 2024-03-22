@@ -3,7 +3,7 @@ import axiosInstance from '..';
 
 const getReceivedQuestion = async (id) => {
   try {
-    const response = await axiosInstance.get(`/teams/members/${id}/retrieve-list`);
+    const response = await axiosInstance.get(`/teams/members/${id}/retrieve-list?sort=all`);
     return response.data.data.questionList;
   } catch (err) {
     if (err === AxiosError) {

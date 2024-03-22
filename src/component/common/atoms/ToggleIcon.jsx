@@ -1,4 +1,4 @@
-const ToggleIcon = ({ isToggled }) => {
+const ToggleIcon = ({ isToggled = false }) => {
   if (isToggled)
     return (
       <svg
