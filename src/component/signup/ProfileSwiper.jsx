@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -17,13 +18,21 @@ import arrowNext from '../../assets/next.png';
 
 import checkIcon from '../../assets/check.png';
 
-const images = [tomato, cucumber, carrot, strawberry, blueberry, cabbage];
+const images = [
+  { name: 'tomato', src: tomato },
+  { name: 'cucumber', src: cucumber },
+  { name: 'carrot', src: carrot },
+  { name: 'strawberry', src: strawberry },
+  { name: 'blueberry', src: blueberry },
+  { name: 'cabbage', src: cabbage },
+];
 
-const ProfileSwiper = () => {
+const ProfileSwiper = ({ onSelectImage }) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleClick = (index) => {
-    setSelectedImage(index);
+  const handleClick = (image) => {
+    setSelectedImage(image.name);
+    onSelectImage(image.name);
   };
 
   return (
@@ -49,12 +58,12 @@ const ProfileSwiper = () => {
               cursor='pointer'
               boxSizing='border-box'
               overflow='hidden'
-              border={selectedImage === index ? '3px solid #059669' : '3px solid transparent'}
-              borderRadius={selectedImage === index ? '4px' : '0'}
-              onClick={() => handleClick(index)}
+              border={selectedImage === image.name ? '3px solid #059669' : '3px solid transparent'}
+              borderRadius={selectedImage === image.name ? '4px' : '0'}
+              onClick={() => handleClick(image)}
             >
-              <Image src={image} alt={`image-${index}`} w='100%' h='100%' objectFit='cover' />
-              {selectedImage === index && (
+              <Image src={image.src} alt={`image-${index}`} w='100%' h='100%' objectFit='cover' />
+              {selectedImage === image.name && (
                 <Image
                   src={checkIcon}
                   alt='Selected'
@@ -98,6 +107,10 @@ const ProfileSwiper = () => {
       />
     </Box>
   );
+};
+
+ProfileSwiper.propTypes = {
+  onSelectImage: PropTypes.func.isRequired,
 };
 
 export default ProfileSwiper;
