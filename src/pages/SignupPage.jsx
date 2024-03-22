@@ -30,18 +30,6 @@ const SignupPage = () => {
     console.log('password:', password);
     console.log('confirmPassword:', confirmPassword);
 
-    if (
-      !nickname ||
-      !discordId ||
-      !password ||
-      !confirmPassword ||
-      isTermsChecked ||
-      isPrivacyChecked
-    ) {
-      alert('모든 항목 입력 및 약관 동의가 필요합니다.');
-      return;
-    }
-
     if (password !== confirmPassword) {
       alert('비밀번호가 일치하지 않습니다.');
       return;
@@ -167,6 +155,7 @@ const SignupPage = () => {
             mt='36px'
             onClick={handleSignup}
             colorScheme={isAllValid() ? 'green' : 'gray'}
+            isDisabled={!isAllValid()}
           >
             회원가입
           </Button>
