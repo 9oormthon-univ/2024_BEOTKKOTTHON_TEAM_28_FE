@@ -18,6 +18,8 @@ const Header = () => {
   useEffect(() => {
     const currentPath = window.location.pathname;
     setActiveLink(currentPath);
+    setOnProjectListToggled(false);
+    setOnProjectListTowToggled(false);
   }, []);
 
   const paddingX = useBreakpointValue({ base: '10px', md: '182px' });
