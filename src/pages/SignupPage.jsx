@@ -84,6 +84,7 @@ const SignupPage = () => {
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            confirmValue={confirmPassword}
           />
           <InputContent
             label='비밀번호 확인'
@@ -92,6 +93,7 @@ const SignupPage = () => {
             type='password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            confirmValue={password}
           />
           <Flex direction='column' w='100%'>
             <Flex justify='space-between' mt='36px'>
