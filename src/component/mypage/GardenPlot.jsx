@@ -3,15 +3,29 @@ import { Box, Flex } from '@chakra-ui/react';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import { MONTHS } from '../../constants/calendarData';
 import clock from '../../assets/clock.png';
+import { getGardenData } from '../../api/common';
 import loader from '../../assets/loader.png';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 // import { heatMapData } from '../../mocks/heatMapData';
 
 const GardenPlot = () => {
+  const [data, setData] = useState([]);
+
   const startDate = new Date();
   startDate.setFullYear(startDate.getFullYear() - 1);
   const endDate = new Date();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      // TODO
+      const response = await getGardenData(5);
+      setData(response);
+    };
+
+    fetchData();
+  }, []);
   return (
     <Flex
       direction='column'
@@ -27,7 +41,7 @@ const GardenPlot = () => {
         <CalendarHeatmap
           startDate={startDate}
           endDate={endDate}
-          values={[]}
+          values={data}
           monthLabels={MONTHS}
           classForValue={(value) => {
             if (!value) {
