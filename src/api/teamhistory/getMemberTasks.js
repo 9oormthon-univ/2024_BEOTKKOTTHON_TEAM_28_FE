@@ -1,10 +1,10 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getMemberTasks = async ({ teamId }) => {
+const getMemberTasks = async (teamId, sort) => {
   try {
-    const response = await axiosInstance.get(`/teams/${teamId}/works`);
-    return response.data;
+    const response = await axiosInstance.get(`/teams/${teamId}/works?sort=${sort}`);
+    return response.data.data.workList;
   } catch (err) {
     if (err === AxiosError) {
       console.error(err);

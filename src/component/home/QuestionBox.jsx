@@ -35,6 +35,7 @@ const QuestionBox = () => {
         padding='12px'
         borderRadius='12px'
       >
+        {!data || (data?.length === 0 && '아직 요청이 없어요!')}
         {data?.map((el) => {
           return (
             <Flex gap='8px' key={el.id}>

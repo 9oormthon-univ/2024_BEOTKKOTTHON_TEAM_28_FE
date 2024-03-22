@@ -5,8 +5,10 @@ import { MenuIcon } from '../atoms';
 import ProjectListModal from './ProjectListModal';
 import text_logo from '../../../assets/text_logo.png';
 import tomato from '../../../assets/cucumber.png';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [onProjectListToggled, setOnProjectListToggled] = useState(false);
   // TODO
   const [onProjectListTowToggled, setOnProjectListTowToggled] = useState(false);
@@ -16,6 +18,8 @@ const Header = () => {
   useEffect(() => {
     const currentPath = window.location.pathname;
     setActiveLink(currentPath);
+    setOnProjectListToggled(false);
+    setOnProjectListTowToggled(false);
   }, []);
 
   const paddingX = useBreakpointValue({ base: '10px', md: '182px' });
@@ -84,14 +88,16 @@ const Header = () => {
             >
               작업 기록
             </Button>
-            <Link
+            <Button
               className='Body-xl smNone'
-              href='/dashboard'
+              onClick={() => {
+                navigate('/dashboard');
+              }}
               color={activeLink === '/dashboard' ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
             >
               나의 대시보드
-            </Link>
+            </Button>
             <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
           </Flex>
         </Flex>

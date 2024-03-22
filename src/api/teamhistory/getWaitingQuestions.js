@@ -3,7 +3,7 @@ import axiosInstance from '..';
 
 const getWaitingQuestions = async (id) => {
   try {
-    const response = await axiosInstance.get(`/teams/${id}/questions/wait`);
+    const response = await axiosInstance.get(`/teams/${id}/questions/received?sort=pending`);
 
     return response.data.data.questionList;
   } catch (err) {

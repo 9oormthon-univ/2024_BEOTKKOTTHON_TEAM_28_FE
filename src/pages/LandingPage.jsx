@@ -27,7 +27,7 @@ const LandingPage = () => {
           gap='28px'
         >
           <Text className='Headline-lg'>START UP VALLEY</Text>
-          <Text clafssName='Display-lg' textAlign='center'>
+          <Text className='Display-lg' textAlign='center'>
             팀원들이{' '}
             <Text as='span' color='#648B7B'>
               별 일

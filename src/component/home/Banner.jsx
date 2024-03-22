@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, List } from '@chakra-ui/react';
+import { Box, Flex, Image, List } from '@chakra-ui/react';
 
 import BannerRankItem from './BannerRankItem';
 import { getMemberRanking } from '../../api/teamhistory';
@@ -43,17 +43,17 @@ const Banner = () => {
             <br />
             1등 농부는
           </Box>
-          <Box className='Display-md' color='secondary'>
+          <Box className='Display-md' mt='20px' color='secondary'>
             {data[0]?.nickname ?? ''}님
           </Box>
         </Flex>
-        <Button background='#475569' color='white'>
+        {/* <Button background='#475569' color='white'>
           프로젝트 팀 변경하기
-        </Button>
+        </Button> */}
       </Flex>
       <List width='922px'>
         <Flex direction='column' gap='6px'>
-          {data.map((el, index) => (
+          {data.slice(0, 4).map((el, index) => (
             <BannerRankItem
               rank={index + 1}
               key={el.memberId}
