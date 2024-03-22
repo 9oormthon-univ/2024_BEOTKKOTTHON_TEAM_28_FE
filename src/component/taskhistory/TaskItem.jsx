@@ -1,9 +1,10 @@
 import { Box, Divider, Flex } from '@chakra-ui/react';
 
 import { ContributionModal } from '../questionlist';
+import PropTypes from 'prop-types';
 import { TitleProfile } from '../common/mocules';
 
-const TaskItem = () => {
+const TaskItem = ({ content, startAt, endAt, workList }) => {
   return (
     <Flex direction='column' gap='20px'>
       <TitleProfile isNoTime={true} right={<ContributionModal />} />
@@ -17,7 +18,7 @@ const TaskItem = () => {
       >
         <Flex gap='16px' alignItems='center'>
           <Box className='Headline-md' color='brandBold'>
-            2024. 03. 13 - 2024. 03. 17
+            {startAt} - {endAt}
           </Box>
           <Box
             background='#ECFDF5'
@@ -30,27 +31,34 @@ const TaskItem = () => {
           </Box>
         </Flex>
         <Flex direction='column' gap='24px' className='Body-lg'>
-          <Box>
-            요약문입니다요약문입니다요약문입니다요약문입니다요약문입니다요약문입니다요약문입니다요약문입니다요약문입니다요약문입니다요약문입니다요약문입니다
-          </Box>
+          <Box>{content}</Box>
           <Divider />
           <Flex direction='column' gap='12px'>
-            <Flex
-              direction='column'
-              background='white'
-              paddingX='24px'
-              paddingY='16px'
-              gap='10px'
-              borderRadius='4px'
-            >
-              <Box className='SubHead-xl'>@username</Box>
-              <Box className='Body-lg'>디테일한 사항에 대한 내용들</Box>
-            </Flex>
+            {workList?.map((el) => (
+              <Flex
+                key={el}
+                direction='column'
+                background='white'
+                paddingX='24px'
+                paddingY='16px'
+                gap='10px'
+                borderRadius='4px'
+              >
+                <Box className='Body-lg'>{el.content}</Box>
+              </Flex>
+            ))}
           </Flex>
         </Flex>
       </Flex>
     </Flex>
   );
+};
+
+TaskItem.propTypes = {
+  content: PropTypes.string,
+  startAt: PropTypes.string,
+  endAt: PropTypes.string,
+  workList: PropTypes.array,
 };
 
 export default TaskItem;

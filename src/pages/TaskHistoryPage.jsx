@@ -3,10 +3,25 @@ import { TaskItem, TeamProfile } from '../component/taskhistory';
 
 import { Flex } from '@chakra-ui/react';
 import { GardenPlot } from '../component/mypage';
+import { getMemberScrum } from '../api/taskhistory';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Tabs = ['스크럼 타임라인', '참여 프로젝트'];
 
 const TaskHistoryPage = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getMemberScrum(13);
+
+      setData(response ?? []);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <main>
       <Flex justify='center'>
@@ -20,11 +35,15 @@ const TaskHistoryPage = () => {
             <Flex direction='column' gap='32px'>
               <TabBar tabs={Tabs} />
               <Flex direction='column' gap='24px'>
-                <TaskItem />
-                <TaskItem />
-                <TaskItem />
-                <TaskItem />
-                <TaskItem />
+                {data?.map((el) => (
+                  <TaskItem
+                    key={el.id}
+                    content={el.content}
+                    startAt={el.startAt}
+                    endAt={el.endAt}
+                    workList={el.workList}
+                  />
+                ))}
               </Flex>
             </Flex>
           </Flex>

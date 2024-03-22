@@ -41,14 +41,14 @@ const QuestionBox = () => {
             <Flex gap='8px' key={el.id}>
               <Image
                 borderRadius='50%'
-                src={returnProfileImg(el.profileImage) ?? tomato}
+                src={returnProfileImg(el.sender.profileImage) ?? tomato}
                 alt='프로필'
                 width='48px'
               />
               <Flex direction='column'>
-                <Box className='SubHead-lg'>{el.title}</Box>
+                <Box className='SubHead-lg'>{el.sender.content}</Box>
                 <Box className='SubHead-md' color='brandBold'>
-                  {el.requestPart}
+                  {el.sender.part}
                 </Box>
               </Flex>
             </Flex>
