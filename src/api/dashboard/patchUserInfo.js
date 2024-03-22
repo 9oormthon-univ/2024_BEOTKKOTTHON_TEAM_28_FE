@@ -3,7 +3,7 @@ import axiosInstance from '..';
 
 const postUserInfo = async (body) => {
   try {
-    const response = await axiosInstance.post(`/users`, body);
+    const response = await axiosInstance.patch(`/users`, body);
     return response.data.data;
   } catch (err) {
     if (err === AxiosError) {
