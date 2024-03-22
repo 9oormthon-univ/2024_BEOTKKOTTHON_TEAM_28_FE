@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthBox, InputContent } from '../component/common/mocules';
-import { Button, Checkbox, Flex, Text } from '@chakra-ui/react';
+import { Button, Checkbox, Flex, Text, Img } from '@chakra-ui/react';
 import ProfileSwiper from '../component/signup/ProfileSwiper';
 import postUserData from '../api/signup/postUserData';
+
+import link from '../assets/link.svg';
 
 const SignupPage = () => {
   const [nickname, setNickname] = useState('');
@@ -55,6 +57,18 @@ const SignupPage = () => {
     }
   };
 
+  const handleTermsOfUseClick = () => {
+    window.open(
+      'https://transparent-louse-5ee.notion.site/Startup-Valley-0f3e2dca3cb74d4995fd5b59e610d416?pvs=4',
+    );
+  };
+
+  const handlePersonalInformationClick = () => {
+    window.open(
+      'https://transparent-louse-5ee.notion.site/Startup-Valley-9e3e48b413a7444eb6d1c37d68543664',
+    );
+  };
+
   return (
     <main>
       <Flex justify='center'>
@@ -97,11 +111,22 @@ const SignupPage = () => {
           />
           <Flex direction='column' w='100%'>
             <Flex justify='space-between' mt='36px'>
-              <Text>이용약관 확인</Text>
+              <Flex>
+                <Text mr='8px'>이용약관 확인</Text>
+                <Img src={link} onClick={handleTermsOfUseClick} alt='Image' cursor='pointer' />
+              </Flex>
               <Checkbox />
             </Flex>
             <Flex justify='space-between' mt='12px'>
-              <Text>개인정보 처리방침 확인</Text>
+              <Flex>
+                <Text mr='8px'>개인정보 처리방침 확인</Text>
+                <Img
+                  src={link}
+                  onClick={handlePersonalInformationClick}
+                  alt='Image'
+                  cursor='pointer'
+                />
+              </Flex>
               <Checkbox />
             </Flex>
           </Flex>
