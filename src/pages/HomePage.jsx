@@ -2,12 +2,13 @@ import { Banner, QuestionBox } from '../component/home';
 import { Box, Flex } from '@chakra-ui/react';
 import { MemberList, TabBar } from '../component/common/organisms';
 
-import { Note } from '../component/common/mocules';
 import WorkItem from '../component/home/WorkItem';
 import { getMemberTasks } from '../api/teamhistory';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+
+// import { Note } from '../component/common/mocules';
 
 const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드'];
 
@@ -46,7 +47,7 @@ const HomePage = () => {
             <MemberList />
           </Flex>
           <Flex direction='column' marginLeft='48px' w='922px' gap='36px'>
-            <Note />
+            {/* <Note /> */}
             <Box>
               <TabBar tabs={Tabs} currentTap={currentTap} handleCurrentTap={handleCurrentTap} />
               <Box className='Display-sm' marginY='24px'>

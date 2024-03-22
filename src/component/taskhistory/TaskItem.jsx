@@ -4,10 +4,16 @@ import { ContributionModal } from '../questionlist';
 import PropTypes from 'prop-types';
 import { TitleProfile } from '../common/mocules';
 
-const TaskItem = ({ content, startAt, endAt, workList }) => {
+const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
   return (
     <Flex direction='column' gap='20px'>
-      <TitleProfile isNoTime={true} right={<ContributionModal />} />
+      <TitleProfile
+        isNoTime={true}
+        right={<ContributionModal />}
+        part={currentUser.part}
+        profileImage={currentUser.profile}
+        nickname={currentUser.name}
+      />
       <Flex
         direction='column'
         gap='24px'
@@ -59,6 +65,7 @@ TaskItem.propTypes = {
   startAt: PropTypes.string,
   endAt: PropTypes.string,
   workList: PropTypes.array,
+  currentUser: PropTypes.object,
 };
 
 export default TaskItem;

@@ -5,7 +5,15 @@ import PropTypes from 'prop-types';
 import { returnProfileImg } from '../../../lips/returnProfile';
 import { useNavigate } from 'react-router-dom';
 
-const MemberItem = ({ active, memberId, part, profileImage, nickname }) => {
+const MemberItem = ({
+  currentUser,
+  handleCurrentUser,
+  active,
+  memberId,
+  part,
+  profileImage,
+  nickname,
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -13,8 +21,13 @@ const MemberItem = ({ active, memberId, part, profileImage, nickname }) => {
       gap='8px'
       alignItems='center'
       onClick={() => {
-        navigate(`/user/${memberId}`);
+        if (handleCurrentUser) {
+          handleCurrentUser({ name: nickname, profile: profileImage, part, memberId });
+        } else {
+          navigate(`/user/${memberId}`);
+        }
       }}
+      background={currentUser?.name === nickname && 'pink'}
     >
       <Image borderRadius='50%' src={returnProfileImg(profileImage)} alt='프로필' width='48px' />
       <div>{nickname}</div>
@@ -29,6 +42,8 @@ MemberItem.propTypes = {
   part: PropTypes.string,
   profileImage: PropTypes.string,
   nickname: PropTypes.string,
+  handleCurrentUser: PropTypes.func,
+  currentUser: PropTypes.object,
 };
 
 export default MemberItem;
