@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://startupvalley.site',
+  baseURL: 'https://startupvalley.site/api',
   timeout: 5000,
 });
 
 axiosInstance.interceptors.request.use((config) => {
   config.headers['Content-Type'] = 'application/json';
-  config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
+  config.headers.Authorization = `Bearer eyJKV1QiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1dWlkIjo5LCJyb2xlIjoiVVNFUiIsImlhdCI6MTcxMTA4MTYwMiwiZXhwIjoxNzExMTY4MDAyfQ.mvo4br6-cjFWc77nOsYqW7RnKuJozCnA9urtE3WEBwouxg0fpbjKnoHahlxX8SxKtY2mNcaT8pORrLxSdJbbww`;
   return config;
 });
 

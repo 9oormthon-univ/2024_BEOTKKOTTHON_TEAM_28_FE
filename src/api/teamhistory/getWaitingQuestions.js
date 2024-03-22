@@ -1,9 +1,10 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getReceivedQuestion = async (id) => {
+const getWaitingQuestions = async (id) => {
   try {
-    const response = await axiosInstance.get(`/api/teams/${id}/questions/received`);
+    const response = await axiosInstance.get(`/teams/${id}/questions/wait`);
+
     return response.data.data.questionList;
   } catch (err) {
     if (err === AxiosError) {
@@ -13,4 +14,4 @@ const getReceivedQuestion = async (id) => {
   }
 };
 
-export default getReceivedQuestion;
+export default getWaitingQuestions;

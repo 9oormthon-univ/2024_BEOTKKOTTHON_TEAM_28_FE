@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getUserInfo = async () => {
+const getMemberList = async (id) => {
   try {
-    const response = await axiosInstance.get(`/users`);
+    const response = await axiosInstance.get(`/teams/${id}/members`);
     return response.data.data;
   } catch (err) {
     if (err === AxiosError) {
@@ -13,4 +13,4 @@ const getUserInfo = async () => {
   }
 };
 
-export default getUserInfo;
+export default getMemberList;

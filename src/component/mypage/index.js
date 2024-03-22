@@ -7,3 +7,4 @@ export { default as ProfileEditModalUserItem } from './ProfileEditModalUserItem'
 export { default as RnRModal } from './RnRModal';
 export { default as RnRContentItem } from './RnRContentItem';
 export { default as RnRStatusTag } from './RnRStatusTag';
+export { default as ProfileImageSelect } from './ProfileImageSelect';

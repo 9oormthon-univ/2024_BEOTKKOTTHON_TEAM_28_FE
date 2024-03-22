@@ -1,9 +1,11 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
-import tomato from '../../assets/tomato.png';
+import { returnProfileImg } from '../../lips/returnProfile';
 
-const BannerRankItem = ({ isWin }) => {
+const BannerRankItem = ({ rank, memberId, totalTime, profileImage, nickname, isWin }) => {
+  // TODO
+  console.log(memberId);
   return (
     <Flex gap='20px' alignItems='center'>
       <Flex gap='8px' alignItems='center'>
@@ -18,11 +20,16 @@ const BannerRankItem = ({ isWin }) => {
           background='
 brandBold'
         >
-          1
+          {rank}
         </Flex>
         <Flex alignItems='center' gap='8px'>
-          <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
-          <Box>정아현</Box>
+          <Image
+            borderRadius='50%'
+            src={returnProfileImg(profileImage)}
+            alt='프로필'
+            width='48px'
+          />
+          <Box>{nickname}</Box>
         </Flex>
       </Flex>
       <Flex
@@ -35,7 +42,7 @@ brandBold'
         paddingX='12px'
         justifyContent='flex-end'
       >
-        100시간 23분
+        {totalTime}분
       </Flex>
     </Flex>
   );
@@ -43,6 +50,11 @@ brandBold'
 
 BannerRankItem.propTypes = {
   isWin: PropTypes.bool,
+  memberId: PropTypes.number,
+  totalTime: PropTypes.number,
+  nickname: PropTypes.string,
+  profileImage: PropTypes.string,
+  rank: PropTypes.number,
 };
 
 export default BannerRankItem;

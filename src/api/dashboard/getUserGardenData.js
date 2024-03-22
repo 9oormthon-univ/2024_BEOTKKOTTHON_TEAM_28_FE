@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getUserGardenDate = async ({ teamId }) => {
+const getUserGardenData = async ({ teamId }) => {
   try {
     const response = await axiosInstance.get(`/teams/${teamId}/questions`);
     return response.data;
@@ -13,4 +13,4 @@ const getUserGardenDate = async ({ teamId }) => {
   }
 };
 
-export default getUserGardenDate;
+export default getUserGardenData;

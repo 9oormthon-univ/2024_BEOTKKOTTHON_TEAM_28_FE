@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {
   HomePage,
+  LandingPage,
   LoginPage,
   ManagePage,
   MyPage,
   QuestionListPage,
-  TaskHistoryPage,
   SignupPage,
-  LandingPage,
+  TaskHistoryPage,
+  UserPage,
 } from './pages';
 
 const Router = () => {
@@ -15,13 +16,14 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/home' element={<HomePage />} />
+        <Route path='/:id/team-task-history' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/dashboard' element={<MyPage />} />
         <Route path='/question-list' element={<QuestionListPage />} />
-        <Route path='/task-history' element={<TaskHistoryPage />} />
+        <Route path='/:id/task-history' element={<TaskHistoryPage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/:id/manage' element={<ManagePage />} />
+        <Route path='/user/:id' element={<UserPage />} />
       </Routes>
     </BrowserRouter>
   );

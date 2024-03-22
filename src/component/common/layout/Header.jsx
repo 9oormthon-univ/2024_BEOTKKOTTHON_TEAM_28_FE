@@ -1,11 +1,15 @@
-import { Flex, Image, Link, Spacer, useBreakpointValue } from '@chakra-ui/react';
+import { Button, Flex, Image, Link, Spacer, useBreakpointValue } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import { MenuIcon } from '../atoms';
+import ProjectListModal from './ProjectListModal';
 import text_logo from '../../../assets/text_logo.png';
 import tomato from '../../../assets/cucumber.png';
 
 const Header = () => {
+  const [onProjectListToggled, setOnProjectListToggled] = useState(false);
+  // TODO
+  const [onProjectListTowToggled, setOnProjectListTowToggled] = useState(false);
   const [onMenuToggled, setMenuToggled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
 
@@ -47,14 +51,19 @@ const Header = () => {
             >
               <MenuIcon />
             </div>
-            <Link
+            <Button
+              onClick={() => {
+                setOnProjectListToggled((prev) => !prev);
+                setOnProjectListTowToggled(false);
+              }}
               className='Body-xl smNone'
               href='/home'
+              background='transparent'
               color={activeLink === '/home' ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
             >
               팀 작업 기록
-            </Link>
+            </Button>
             <Link
               className='Body-xl smNone'
               href='/question-list'
@@ -63,14 +72,18 @@ const Header = () => {
             >
               질문 목록
             </Link>
-            <Link
+            <Button
               className='Body-xl smNone'
-              href='/task-history'
+              background='transparent'
+              onClick={() => {
+                setOnProjectListTowToggled((prev) => !prev);
+                setOnProjectListToggled(false);
+              }}
               color={activeLink === '/task-history' ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
             >
               작업 기록
-            </Link>
+            </Button>
             <Link
               className='Body-xl smNone'
               href='/dashboard'
@@ -143,6 +156,8 @@ const Header = () => {
           </Flex>
         </Flex>
       )}
+      {onProjectListToggled && <ProjectListModal />}
+      {onProjectListTowToggled && <ProjectListModal isTaskHistory={true} />}
     </>
   );
 };

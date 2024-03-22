@@ -1,14 +1,28 @@
 import { Box, Button, Flex, Image } from '@chakra-ui/react';
 
+import { getWaitingQuestions } from '../../api/teamhistory';
+import { returnProfileImg } from '../../lips/returnProfile';
 import tomato from '../../assets/tomato.png';
-
-const data = [
-  { title: '질문 제목', part: '요청 직군' },
-  { title: '질문 제목', part: '요청 직군' },
-  { title: '질문 제목', part: '요청 직군' },
-];
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const QuestionBox = () => {
+  const [data, setData] = useState([]);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getWaitingQuestions(id);
+
+      setData(response);
+    };
+
+    fetchData();
+  }, [id]);
+
   return (
     <Flex direction='column' gap='16px'>
       <Box className='SubHead-xl'>답변을 기다리는 요청</Box>
@@ -21,20 +35,31 @@ const QuestionBox = () => {
         padding='12px'
         borderRadius='12px'
       >
-        {data.map((el) => {
+        {data?.map((el) => {
           return (
-            <Flex gap='8px' key={el.title}>
-              <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
+            <Flex gap='8px' key={el.id}>
+              <Image
+                borderRadius='50%'
+                src={returnProfileImg(el.profileImage) ?? tomato}
+                alt='프로필'
+                width='48px'
+              />
               <Flex direction='column'>
-                <Box className='SubHead-lg'>질문 제목</Box>
+                <Box className='SubHead-lg'>{el.title}</Box>
                 <Box className='SubHead-md' color='brandBold'>
-                  요청 직군
+                  {el.requestPart}
                 </Box>
               </Flex>
             </Flex>
           );
         })}
-        <Button variant='greenGreen' width='100%'>
+        <Button
+          variant='greenGreen'
+          width='100%'
+          onClick={() => {
+            navigate(`/${id}/task-history`);
+          }}
+        >
           더보기
         </Button>
       </Flex>
