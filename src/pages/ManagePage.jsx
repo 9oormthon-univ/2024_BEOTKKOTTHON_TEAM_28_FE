@@ -57,7 +57,7 @@ const ManagePage = () => {
         </Flex>
         <Flex direction='column' marginLeft='327px' w='922px' gap='42px'>
           <Flex direction='column'>
-            <Box className='Display-md'>{currentUser.name}님의 업무시간</Box>
+            <Box className='Display-md'>{currentUser?.name}님의 업무시간</Box>
             <Box className='Display-sm'>팀원들의 업무 시간을 확인해 주세요!</Box>
           </Flex>
           <Flex direction='column' gap='26px'>
