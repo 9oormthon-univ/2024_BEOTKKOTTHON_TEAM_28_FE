@@ -15,6 +15,9 @@ const SignupPage = () => {
 
   const [selectedProfile, setSelectedProfile] = useState(null);
 
+  const [isTermsChecked, setIsTermsChecked] = useState(false);
+  const [isPrivacyChecked, setIsPrivacyChecked] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSelectProfile = (profile) => {
@@ -55,6 +58,19 @@ const SignupPage = () => {
       console.error('Signup Error:', error);
       alert('회원가입에 실패하였습니다.');
     }
+  };
+
+  const isAllValid = () => {
+    return (
+      nickname &&
+      discordId &&
+      password &&
+      confirmPassword &&
+      password === confirmPassword &&
+      isTermsChecked &&
+      isPrivacyChecked &&
+      selectedProfile != null
+    );
   };
 
   const handleTermsOfUseClick = () => {
@@ -115,7 +131,11 @@ const SignupPage = () => {
                 <Text mr='8px'>이용약관 확인</Text>
                 <Img src={link} onClick={handleTermsOfUseClick} alt='Image' cursor='pointer' />
               </Flex>
-              <Checkbox />
+              <Checkbox
+                colorScheme='green'
+                isChecked={isTermsChecked}
+                onChange={(e) => setIsTermsChecked(e.target.checked)}
+              />
             </Flex>
             <Flex justify='space-between' mt='12px'>
               <Flex>
@@ -127,10 +147,20 @@ const SignupPage = () => {
                   cursor='pointer'
                 />
               </Flex>
-              <Checkbox />
+              <Checkbox
+                colorScheme='green'
+                isChecked={isPrivacyChecked}
+                onChange={(e) => setIsPrivacyChecked(e.target.checked)}
+              />
             </Flex>
           </Flex>
-          <Button w='100%' p='11px' mt='36px' onClick={handleSignup}>
+          <Button
+            w='100%'
+            p='11px'
+            mt='36px'
+            onClick={handleSignup}
+            colorScheme={isAllValid() ? 'green' : 'gray'}
+          >
             회원가입
           </Button>
         </AuthBox>
