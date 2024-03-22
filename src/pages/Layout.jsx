@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
 
       handleProfile({
         profile: returnProfileImg(response.profileImage),
-        userId: response.id,
+        userId: response.memberId,
         userName: response.nickname,
       });
     };

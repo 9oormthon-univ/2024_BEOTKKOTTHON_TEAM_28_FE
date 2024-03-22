@@ -16,7 +16,12 @@ const TabBar = ({ tabs, currentTap, handleCurrentTap }) => {
   }, [currentTap, selectedIndex, tabs]);
 
   return (
-    <Tabs index={selectedIndex} onChange={(index) => handleCurrentTap(tabs[index])}>
+    <Tabs
+      index={selectedIndex}
+      onChange={(index) => {
+        handleCurrentTap(tabs[index]);
+      }}
+    >
       <TabList>
         {tabs.map((tab) => (
           <Tab key={tab} _selected={{ color: 'successBold', borderColor: 'successBold' }}>
