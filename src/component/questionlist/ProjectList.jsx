@@ -44,10 +44,10 @@ const ProjectList = () => {
         </Flex>
         {isToggledInProgressList && (
           <Flex direction='column' gap='12px'>
-            {data.map((el) => {
+            {data?.map((el) => {
               if (el.status === 'IN_PROGRESS')
                 return (
-                  <Flex key='el.id' gap='8px' alignItems='center'>
+                  <Flex key={el.id} gap='8px' alignItems='center'>
                     <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
                     <Box>{el.name}</Box>
                   </Flex>
@@ -66,12 +66,12 @@ const ProjectList = () => {
         </Flex>
         {isToggledCompletedList && (
           <Flex direction='column' gap='12px'>
-            {data.map((el) => {
+            {data?.map((el) => {
               if (el.status === 'FINISH')
                 return (
-                  <Flex key='el.id' gap='8px' alignItems='center'>
+                  <Flex key={el.id} gap='8px' alignItems='center'>
                     <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
-                    <Box>프로젝트 A</Box>
+                    <Box>{el.name}</Box>
                   </Flex>
                 );
             })}

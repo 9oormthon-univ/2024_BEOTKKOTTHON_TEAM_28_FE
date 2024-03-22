@@ -30,7 +30,7 @@ const ProjectListModal = ({ isTaskHistory }) => {
       gap='8px'
       boxShadow='0px 4px 16px 0px rgba(0, 0, 0, 0.25), 0px 0px 32px 0px rgba(0, 0, 0, 0.04)'
     >
-      {projects.map((project) => (
+      {projects?.map((project) => (
         <Link
           key={project.name}
           href={isTaskHistory ? `/${project.id}/task-history` : `/${project.id}/team-task-history`}
@@ -41,7 +41,9 @@ const ProjectListModal = ({ isTaskHistory }) => {
           </Flex>
         </Link>
       ))}
-      {projects.length === 0 && <Box className='Body-md'>연결된 프로젝트가 없어요!</Box>}
+      {(!projects || projects?.length === 0) && (
+        <Box className='Body-md'>연결된 프로젝트가 없어요!</Box>
+      )}
     </Flex>
   );
 };

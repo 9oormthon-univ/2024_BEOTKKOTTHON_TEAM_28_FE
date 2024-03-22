@@ -17,7 +17,7 @@ const GardenList = () => {
   }, []);
   return (
     <Flex direction='column' gap='40px'>
-      {data.map((el) => (
+      {data?.map((el) => (
         <ProjectItem
           key={el.id}
           name={el.name}
