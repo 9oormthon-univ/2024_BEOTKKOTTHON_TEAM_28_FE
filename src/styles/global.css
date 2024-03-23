@@ -70,9 +70,9 @@ body {
   }
   .Headline-md {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 28px;
-    letter-spacing: 0px;
+    letter-spacing: 0.2px;
   }
   .SubHead-xl {
     font-weight: 500;

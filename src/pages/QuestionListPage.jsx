@@ -22,6 +22,8 @@ const QuestionListPage = () => {
   const [sort, setSort] = useState('all');
   const { userName } = useUserStore();
 
+  const [selectedSort, setSelectedSort] = useState('전체');
+
   useEffect(() => {
     if (currentTeam.teamId === 0) return;
 
@@ -58,6 +60,11 @@ const QuestionListPage = () => {
     fetchData();
   }, []);
 
+  const handleReceivedTabClick = (newSort) => {
+    setSort(ReceivedTab[SortType.indexOf(newSort)]);
+    setSelectedSort(newSort);
+  };
+
   return (
     <main>
       <Flex justify='center'>
@@ -75,13 +82,16 @@ const QuestionListPage = () => {
                   <Box
                     onClick={() => {
                       setSort(ReceivedTab[SortType.indexOf(sort)]);
+                      handleReceivedTabClick(sort);
                     }}
                     key={sort}
-                    border='1px solid gray'
                     borderRadius='999px'
                     paddingY='6px'
                     paddingX='16px'
                     colorscheme='blue'
+                    color={selectedSort === sort ? 'secondary' : '#94A3B8'}
+                    border={selectedSort === sort ? '1px solid #475569' : '1px solid #CCD6E3'}
+                    cursor='pointer'
                   >
                     {sort}
                   </Box>

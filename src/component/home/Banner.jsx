@@ -39,14 +39,14 @@ const Banner = () => {
       gap='40px'
       background='#ECFDF5'
       justifyContent='center'
-      alignItems='center'
+      // alignItems='center'
       padding='50px'
       position='relative'
       overflow='hidden'
     >
       <Flex direction='column' gap='50px' width='300px'>
         <Flex direction='column'>
-          <Box className='Display-sm' color='brandBold'>
+          <Box className='Display-sm' color='brandBold' mb='10px'>
             2024.03.14
           </Box>
           <Box className='Display-sm' color='primary'>

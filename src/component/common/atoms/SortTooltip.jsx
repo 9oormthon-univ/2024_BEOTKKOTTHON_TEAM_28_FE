@@ -1,14 +1,16 @@
 import { Box } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-const SortTooltip = ({ sort }) => {
+const SortTooltip = ({ sort, isSelected, onSelect }) => {
   return (
     <Box
-      border='1px solid gray'
       borderRadius='999px'
       paddingY='6px'
       paddingX='16px'
-      colorscheme='blue'
+      onClick={onSelect}
+      border={isSelected ? '1px solid #475569' : '1px solid #CCD6E3'}
+      color={isSelected ? '#475569' : '#CCD6E3'}
+      cursor='pointer'
     >
       {sort}
     </Box>
@@ -16,7 +18,9 @@ const SortTooltip = ({ sort }) => {
 };
 
 SortTooltip.propTypes = {
-  sort: PropTypes.string,
+  sort: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool,
+  onSelect: PropTypes.func,
 };
 
 export default SortTooltip;

@@ -127,7 +127,7 @@ const ContributionModal = ({ id }) => {
                 </Flex>
               </Flex>
               <Flex direction='column' gap='20px' width='full'>
-                <Box className='Display-sm'>동료 평가 요약문</Box>
+                <Box className='Display-sm'>동료 평가</Box>
                 <Flex
                   direction='column'
                   padding='24px'
@@ -160,9 +160,9 @@ const ContributionModal = ({ id }) => {
                   ))}
                 </Flex>
               </Flex>
-              {/* TODO <Button variant='grayWhite' width='200px'>
+              <Button variant='grayWhite' width='200px' bg='#475569'>
                 비공개 전환
-              </Button> */}
+              </Button>
             </Flex>
           </ModalBody>
         </ModalContent>

@@ -24,7 +24,11 @@ const TabBar = ({ tabs, currentTap, handleCurrentTap }) => {
     >
       <TabList>
         {tabs.map((tab) => (
-          <Tab key={tab} _selected={{ color: 'successBold', borderColor: 'successBold' }}>
+          <Tab
+            className='Headline-md'
+            key={tab}
+            _selected={{ color: 'successBold', borderColor: 'successBold' }}
+          >
             {tab}
           </Tab>
         ))}
