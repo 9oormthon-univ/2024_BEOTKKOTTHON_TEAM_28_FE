@@ -72,7 +72,9 @@ const ManagePage = () => {
                 endAt={el.endAt}
               />
             ))}
-            {(!data || data?.length === 0) && <NonData />}
+            {(!data || data?.length === 0) && (
+              <NonData extraText='서버에 디스코드 봇을 추가하여 팀원들과 소통해보세요!' />
+            )}
           </Flex>
         </Flex>
       </Flex>

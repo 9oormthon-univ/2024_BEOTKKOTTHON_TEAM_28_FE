@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../../stores/userStore';
+import NonData from '../common/mocules/NonData';
 
 const GardenList = ({ sort }) => {
   const [data, setData] = useState([]);
@@ -34,6 +35,12 @@ const GardenList = ({ sort }) => {
           status={el.status}
         />
       ))}
+      {(!data || data?.length === 0) &&
+        (sort === 'all' ? (
+          <NonData extraText='서버에 디스코드 봇을 추가하여 팀원들과 소통해보세요!' />
+        ) : (
+          <NonData />
+        ))}
     </Flex>
   );
 };

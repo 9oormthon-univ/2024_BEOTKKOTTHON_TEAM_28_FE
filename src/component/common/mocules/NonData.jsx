@@ -1,7 +1,8 @@
 import { Flex, Text, Img } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
 import nonexistence from '../../../assets/nonexistence.svg';
 
-const NonData = () => {
+const NonData = ({ extraText }) => {
   return (
     <Flex justify='center' align='center'>
       <Flex direction='column' mt='70px' justify='center' align='center'>
@@ -10,15 +11,15 @@ const NonData = () => {
           <Text mt='36px' mb='12px' className='Headline-lg'>
             데이터가 존재하지 않아요.
           </Text>
-          <Text textAlign='center'>
-            서버에 디스코드 봇을 추가하여
-            <br />
-            팀원들과 소통해보세요!
-          </Text>
+          {extraText && <Text textAlign='center'>{extraText}</Text>}
         </Flex>
       </Flex>
     </Flex>
   );
+};
+
+NonData.propTypes = {
+  extraText: PropTypes.string,
 };
 
 export default NonData;

@@ -66,7 +66,7 @@ const TaskHistoryPage = () => {
               <TabBar tabs={Tabs} />
               <Flex direction='column' gap='24px'>
                 {data.length === 0 ? (
-                  <NonData />
+                  <NonData extraText='서버에 디스코드 봇을 추가하여 팀원들과 소통해보세요!' />
                 ) : (
                   data.map((el) => (
                     <TaskItem
