@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import axiosFormInstance from '../axiosFormInstance';
 
-const postCredentials = async (discordId, password) => {
+const postCredentials = async (discordId, password, setCookie) => {
   const formData = new FormData();
   formData.append('serial_id', discordId);
   formData.append('password', password);
@@ -17,6 +17,8 @@ const postCredentials = async (discordId, password) => {
         document.cookie = cookie;
       });
     }
+    console.log(setCookie);
+    //  setCookie("jwt-token", token, { path: "/", secure: true });
 
     return response.data.success;
   } catch (err) {

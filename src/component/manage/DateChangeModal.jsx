@@ -11,14 +11,25 @@ import {
 } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
+import patchDateChange from '../../api/manage/patchDateChange';
+import { useState } from 'react';
+import useToastStore from '../../stores/toastStore';
 
-// import { useState } from 'react';
-
-const DateChangeModal = ({ startAt, endAt }) => {
+const DateChangeModal = ({ currentUser, id, startAt, endAt }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { handleShowToastMessage } = useToastStore();
 
-  // const [data, useData]=useState()
-  console.log(startAt, endAt);
+  const [data, setData] = useState({
+    startAt,
+    endAt,
+  });
+
+  const handleSubmit = () => {
+    patchDateChange(currentUser.memberId, id, data);
+    handleShowToastMessage('업무 시간 수정 완료!');
+    onClose();
+  };
+
   return (
     <>
       <Button
@@ -37,16 +48,69 @@ const DateChangeModal = ({ startAt, endAt }) => {
           <ModalCloseButton />
           <ModalBody>
             <Flex direction='column' width={500}>
-              <Box>{'username'}님의 시간을 수정해주세요</Box>
+              <Box>{currentUser?.name}님의 시간을 수정해주세요</Box>
               <Flex>
-                <Button>-30분</Button>
-                <Button>-1시간</Button>
-                <Button>-6시간</Button>
+                <Button
+                  onClick={() => {
+                    const newDate = new Date(data.endAt);
+                    newDate.setMinutes(newDate.getMinutes() - 30);
+                    setData((prev) => ({
+                      ...prev,
+                      endAt: newDate,
+                    }));
+                  }}
+                >
+                  -30분
+                </Button>
+                <Button
+                  onClick={() => {
+                    const newDate = new Date(data.startAt);
+                    newDate.setHours(newDate.getHours() - 1);
+                    setData((prev) => ({
+                      ...prev,
+                      startAt: newDate,
+                    }));
+                  }}
+                >
+                  -1시간
+                </Button>
+                <Button
+                  onClick={() => {
+                    const newDate = new Date(data.startAt);
+                    newDate.setHours(newDate.getHours() - 6);
+                    setData((prev) => ({
+                      ...prev,
+                      startAt: newDate,
+                    }));
+                  }}
+                >
+                  -6시간
+                </Button>
               </Flex>
-              <Box>
-                {'2024 / 03 / 24 HH:MM'}-{'2024 / 03 / 24 HH:MM'}
-              </Box>
-              <Button>선택 완료</Button>
+              <Flex>
+                <input
+                  type='datetime-local'
+                  value={data.startAt.toISOString().split('.')[0]}
+                  onChange={(e) => {
+                    setData((prev) => ({
+                      ...prev,
+                      startAt: new Date(e.target.value),
+                    }));
+                  }}
+                />
+                <Box>-</Box>
+                <input
+                  type='datetime-local'
+                  value={data.endAt.toISOString().split('.')[0]}
+                  onChange={(e) => {
+                    setData((prev) => ({
+                      ...prev,
+                      endAt: new Date(e.target.value),
+                    }));
+                  }}
+                />
+              </Flex>
+              <Button onClick={handleSubmit}>선택 완료</Button>
             </Flex>
           </ModalBody>
         </ModalContent>
@@ -56,8 +120,10 @@ const DateChangeModal = ({ startAt, endAt }) => {
 };
 
 DateChangeModal.propTypes = {
+  currentUser: PropTypes.object,
   startAt: PropTypes.string,
   endAt: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default DateChangeModal;
