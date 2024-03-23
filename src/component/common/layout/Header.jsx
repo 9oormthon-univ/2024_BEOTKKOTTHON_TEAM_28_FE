@@ -42,15 +42,16 @@ const Header = () => {
           p={`15px ${paddingX}`}
         >
           <Link href='/' mr='9px'>
-            <Flex gap='9px' alignItems='center'>
+            <Flex gap='9px' alignItems='center' minWidth='200px'>
               <Image src='/favicon.ico' width='40px' height='40px' />
-              <Image src={text_logo} width='131px' alt='스타트업밸리 로고' />
+              <Image src={text_logo} width='131px' height='21px' alt='스타트업밸리 로고' />
             </Flex>
           </Link>
           <Spacer />
           <Flex gap='20px' align='center'>
             <div
               className='sm'
+              style={{ position: 'fixed', top: '20px', right: '20px' }}
               onClick={() => {
                 setMenuToggled((prev) => !prev);
               }}
@@ -110,28 +111,43 @@ const Header = () => {
               나의 대시보드
             </Button>
             <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />
+            <Button background='brand' color='white' width='100px'>
+              로그인
+            </Button>
           </Flex>
         </Flex>
       </header>
-      {onMenuToggled && (
+      {width === '200px' && onMenuToggled && (
         <Flex
           className='sm'
-          zIndex='998'
+          zIndex='1000'
           position='fixed'
-          top='60px'
+          top='0px'
           right='0'
           width={width}
           bottom='0'
           alignItems='center'
-          paddingY='20px'
+          paddingY='30px'
           gap='20px'
           background='#efefef'
           direction='column'
         >
-          {/*<Flex gap='9px' alignItems='center'>
+          <Button
+            onClick={() => {
+              setMenuToggled(false);
+            }}
+            className='sm'
+            position='absolute'
+            top='-5px'
+            right='165px'
+            background='transparent'
+          >
+            X
+          </Button>
+          <Flex gap='9px' alignItems='center'>
             <Image src='/favicon.ico' width='40px' height='40px' />
             <Image src={text_logo} width='131px' alt='스타트업밸리 로고' />
-          </Flex>*/}
+          </Flex>
           <Flex
             justifyContent='space-between'
             height='200px'
