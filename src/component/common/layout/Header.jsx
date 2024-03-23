@@ -15,7 +15,7 @@ const Header = () => {
   const [onMenuToggled, setMenuToggled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
 
-  const { memberId, profile } = useUserStore();
+  const { userId, profile } = useUserStore();
 
   useEffect(() => {
     const currentPath = window.location.pathname;
@@ -60,7 +60,7 @@ const Header = () => {
             </div>
             <Button
               onClick={() => {
-                if (!memberId) {
+                if (!userId) {
                   navigate('/login');
                 }
                 setOnProjectListToggled((prev) => !prev);
@@ -91,7 +91,7 @@ const Header = () => {
               className='Body-xl smNone'
               background='transparent'
               onClick={() => {
-                if (!memberId) {
+                if (!userId) {
                   navigate('/login');
                 }
                 setOnProjectListTowToggled((prev) => !prev);
@@ -116,8 +116,8 @@ const Header = () => {
             >
               나의 대시보드
             </Button>
-            {memberId && <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />}
-            {!memberId && (
+            {userId && <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />}
+            {!userId && (
               <Button
                 background='brand'
                 color='white'

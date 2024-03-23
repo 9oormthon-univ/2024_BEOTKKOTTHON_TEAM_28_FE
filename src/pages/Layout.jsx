@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
 
       handleProfile({
         profile: returnProfileImg(response.profileImage),
-        userId: response.memberId,
+        userId: response.userId,
         userName: response.nickname,
       });
     };
@@ -39,18 +39,18 @@ const Layout = ({ children }) => {
     fetchData();
   }, [handleProfile, accessToken]);
 
-  const { memberId } = useUserStore();
+  const { userId } = useUserStore();
   const navigate = useNavigate();
 
   useEffect(() => {
     const currentPath = location.pathname;
 
     if (!['/login', '/', '/signup'].includes(currentPath)) {
-      if (!memberId) {
+      if (!userId) {
         navigate('/login');
       }
     }
-  }, [memberId, navigate, location]);
+  }, [userId, navigate, location]);
 
   return (
     <div>
