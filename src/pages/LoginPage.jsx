@@ -11,6 +11,8 @@ const LoginPage = () => {
   const [discordId, setDiscordId] = useState('');
   const [password, setPassword] = useState('');
 
+  const isFormFilled = discordId.trim() !== '' && password.trim() !== '';
+
   const [, setCookie] = useCookies(['access_token']);
 
   const handleSignUpClick = () => {
@@ -53,7 +55,14 @@ const LoginPage = () => {
           <Text mt='36px' textDecoration='underline' cursor='pointer' onClick={handleSignUpClick}>
             회원가입
           </Text>
-          <Button w='100%' p='11px' mt='12px' onClick={handleLoginClick}>
+          <Button
+            w='100%'
+            p='11px'
+            mt='12px'
+            onClick={handleLoginClick}
+            colorScheme={isFormFilled ? 'green' : 'gray'}
+            isDisabled={!isFormFilled}
+          >
             로그인
           </Button>
         </AuthBox>
