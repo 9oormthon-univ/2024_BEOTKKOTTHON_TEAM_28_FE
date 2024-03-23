@@ -29,14 +29,14 @@ const ProfileEditModal = ({ data }) => {
     postUserInfo(body);
     handleProfile({
       userId,
-      profileImage: returnProfileImg(body.profileImage),
-      userName: body.nickname,
+      profileImage: body.profileImage ? returnProfileImg(body.profileImage) : data.profileImage,
+      userName: body.nickname ?? data.nickname,
     });
     onClose();
   };
 
   const handleImage = (string) => {
-    setBody((prev) => ({ ...prev, profileImage: string }));
+    setBody((prev) => ({ ...prev, profileImage: returnProfileImg(string) }));
   };
 
   return (
