@@ -8,6 +8,7 @@ import getTeamTimeManage from '../api/teamhistory/getTeamTimeManage';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import NonData from '../component/common/mocules/NonData';
 
 const ManagePage = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -64,7 +65,7 @@ const ManagePage = () => {
             {data?.map((el) => (
               <TaskItem key={el.id} content={el.content} startAt={el.startAt} endAt={el.endAt} />
             ))}
-            {(!data || data?.length === 0) && <Box>데이터가 없어요!</Box>}
+            {(!data || data?.length === 0) && <NonData />}
           </Flex>
         </Flex>
       </Flex>
