@@ -1,5 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 
+import DateChangeModal from './DateChangeModal';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import useToastStore from '../../stores/toastStore';
@@ -45,34 +46,7 @@ const TaskItem = ({ content, startAt, endAt }) => {
       {isToggled && (
         <Flex direction='column' alignItems='flex-end'>
           <Box width='full'>{content}</Box>
-          {/* TODO {isEditing ? (
-            <Button
-              paddingX='75px'
-              paddingY='13px'
-              background='brand'
-              color='white'
-              _hover='brand'
-              onClick={(event) => {
-                event.stopPropagation();
-                handleShowToastMessage('업무 시간 수정완료!');
-                setIsEditing(false);
-              }}
-            >
-              저장하기
-            </Button>
-          ) : (
-            <Button
-              paddingX='75px'
-              paddingY='13px'
-              border='1px solid black'
-              onClick={(event) => {
-                event.stopPropagation();
-                setIsEditing(true);
-              }}
-            >
-              수정하기
-            </Button>
-          )} */}
+          <DateChangeModal startAt={startAt} endAt={endAt} />
         </Flex>
       )}
     </Flex>

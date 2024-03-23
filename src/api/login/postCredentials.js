@@ -7,7 +7,9 @@ const postCredentials = async (discordId, password) => {
   formData.append('password', password);
 
   try {
-    const response = await axiosFormInstance.post('/auth/sign-in', formData);
+    const response = await axiosFormInstance.post('/auth/sign-in', formData, {
+      withCredentials: true,
+    });
 
     const cookies = response.headers['set-cookie'];
     if (cookies) {
