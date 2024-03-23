@@ -36,7 +36,7 @@ const ProfileEditModal = ({ data }) => {
   };
 
   const handleImage = (string) => {
-    setBody((prev) => ({ ...prev, profileImage: string }));
+    setBody((prev) => ({ ...prev, profileImage: returnProfileImg(string) }));
   };
 
   return (
