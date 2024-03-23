@@ -1,11 +1,11 @@
 import { Box, Flex } from '@chakra-ui/react';
 
-import DateChangeModal from './DateChangeModal';
+// import DateChangeModal from './DateChangeModal';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import useToastStore from '../../stores/toastStore';
 
-const TaskItem = ({ id, content, startAt, endAt, currentUser }) => {
+const TaskItem = ({ content, startAt, endAt }) => {
   const [isToggled, setIsToggled] = useState(false);
   // const [isEditing, setIsEditing] = useState(false);
 
@@ -46,7 +46,7 @@ const TaskItem = ({ id, content, startAt, endAt, currentUser }) => {
       {isToggled && (
         <Flex direction='column' alignItems='flex-end'>
           <Box width='full'>{content}</Box>
-          <DateChangeModal id={id} startAt={startAt} endAt={endAt} currentUser={currentUser} />
+          {/* <DateChangeModal id={id} startAt={startAt} endAt={endAt} currentUser={currentUser} /> */}
         </Flex>
       )}
     </Flex>
