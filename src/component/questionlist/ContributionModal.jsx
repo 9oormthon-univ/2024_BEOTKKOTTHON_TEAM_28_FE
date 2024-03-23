@@ -10,12 +10,52 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
+import { getMemberScrum, getPeerReviewResult, getTeamInfo } from '../../api/taskhistory';
 
-import ContributionModalItem from './ContributionModalItem';
-import cucumber from '../../assets/cucumber.png';
+import PropTypes from 'prop-types';
+import { TaskItem } from '../taskhistory';
+import { returnProfileImg } from '../../lips/returnProfile';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
-const ContributionModal = () => {
+const ContributionModal = ({ id }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [data, setData] = useState();
+  const { id: teamId } = useParams();
+  const [teamData, setTeamData] = useState();
+  const [scrums, setScrums] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getPeerReviewResult(id);
+
+      setData(response);
+    };
+
+    fetchData();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getTeamInfo(teamId);
+
+      setTeamData(response);
+    };
+
+    fetchData();
+  }, [teamId]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getMemberScrum(id);
+
+      setScrums(response);
+    };
+
+    fetchData();
+  }, [id]);
+
   return (
     <>
       <Button color='brandBold' background='transparent' onClick={onOpen}>
@@ -29,10 +69,16 @@ const ContributionModal = () => {
             <Flex direction='column' alignItems='flex-start' gap='40px'>
               <Flex alignItems='center' justifyContent='space-between' width='full'>
                 <Flex gap='16px' alignItems='center'>
-                  <Image src={cucumber} alt='팀 프로필' width='120px' />
+                  <Image
+                    src={returnProfileImg(teamData?.profileImage)}
+                    alt='팀 프로필'
+                    width='120px'
+                  />
                   <Flex direction='column' width='383px'>
-                    <Box className='Display-sm'>프로젝트 A</Box>
-                    <Box className='Body-xl'>2024.03.07 - 24.03.24</Box>
+                    <Box className='Display-sm'>{teamData?.name}</Box>
+                    <Box className='Body-xl'>
+                      {teamData?.startAt} - {teamData?.endAt}
+                    </Box>
                   </Flex>
                 </Flex>
                 <Flex direction='column'>
@@ -55,7 +101,7 @@ const ContributionModal = () => {
                       >
                         참여시간
                       </Box>
-                      <Box className='Display-sm'>100시간</Box>
+                      <Box className='Display-sm'>{data?.totalTime}시간</Box>
                     </Flex>
                     <Flex
                       direction='column'
@@ -75,13 +121,13 @@ const ContributionModal = () => {
                       >
                         직무
                       </Box>
-                      <Box className='Display-sm'>디자인</Box>
+                      <Box className='Display-sm'>{data?.part}</Box>
                     </Flex>
                   </Flex>
                 </Flex>
               </Flex>
               <Flex direction='column' gap='20px' width='full'>
-                <Box className='Display-sm'>동료 평가</Box>
+                <Box className='Display-sm'>동료 평가 요약문</Box>
                 <Flex
                   direction='column'
                   padding='24px'
@@ -90,23 +136,33 @@ const ContributionModal = () => {
                   borderRadius='12px'
                   gap='16px'
                 >
-                  <Box color='brandBold' className='Headline-md'>
+                  {/* <Box color='brandBold' className='Headline-md'>
                     동료 평가 제목
-                  </Box>
-                  <Box className='Body-lg'>동료평가 내용입니다</Box>
+                  </Box> */}
+                  {
+                    <Box className='Body-lg'>
+                      {data?.peerReviewSummary ?? '아직 동료 평가가 없어요'}
+                    </Box>
+                  }
                 </Flex>
               </Flex>
-              <Flex direction='column' gap='20px'>
-                <Box className='Display-sm'>R&R</Box>
-                <ContributionModalItem />
-                <ContributionModalItem />
-                <ContributionModalItem />
-                <ContributionModalItem />
-                <ContributionModalItem />
+              <Flex direction='column' gap='20px' width='full'>
+                <Box className='Display-sm'>백로그</Box>
+                <Flex direction='column' gap='20px' width='full'>
+                  {scrums?.map((el) => (
+                    <TaskItem
+                      key={el.id}
+                      content={el.content}
+                      startAt={el.startAt}
+                      endAt={el.endAt}
+                      workList={el.workList}
+                    />
+                  ))}
+                </Flex>
               </Flex>
-              <Button variant='grayWhite' width='200px'>
+              {/* TODO <Button variant='grayWhite' width='200px'>
                 비공개 전환
-              </Button>
+              </Button> */}
             </Flex>
           </ModalBody>
         </ModalContent>
@@ -115,4 +171,7 @@ const ContributionModal = () => {
   );
 };
 
+ContributionModal.propTypes = {
+  id: PropTypes.number,
+};
 export default ContributionModal;

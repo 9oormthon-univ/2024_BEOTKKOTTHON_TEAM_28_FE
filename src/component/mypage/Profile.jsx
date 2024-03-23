@@ -7,19 +7,25 @@ import { returnProfileImg } from '../../lips/returnProfile';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-// import { useParams } from 'react-router-dom';
+//import { useParams } from 'react-router-dom';
 
 const Profile = ({ isOther }) => {
   const [data, setData] = useState();
+  // TODO
   // const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getUserInfo();
-      setData(response);
+      if (isOther) {
+        const response = await getUserInfo();
+        setData(response);
+      } else {
+        const response = await getUserInfo();
+        setData(response);
+      }
     };
 
     fetchData();
-  }, []);
+  }, [isOther]);
 
   return (
     <Box w='292px' position='fixed' top='138px'>

@@ -6,14 +6,16 @@ import { TitleProfile } from '../common/mocules';
 
 const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
   return (
-    <Flex direction='column' gap='20px'>
-      <TitleProfile
-        isNoTime={true}
-        right={<ContributionModal />}
-        part={currentUser.part}
-        profileImage={currentUser.profile}
-        nickname={currentUser.name}
-      />
+    <Flex direction='column' gap='20px' width='full'>
+      {currentUser && (
+        <TitleProfile
+          isNoTime={true}
+          right={<ContributionModal id={currentUser.memberId} />}
+          part={currentUser.part}
+          profileImage={currentUser.profile}
+          nickname={currentUser.name}
+        />
+      )}
       <Flex
         direction='column'
         gap='24px'
