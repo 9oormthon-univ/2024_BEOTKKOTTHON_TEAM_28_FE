@@ -10,6 +10,7 @@ const SortTooltip = ({ sort, isSelected, onSelect }) => {
       onClick={onSelect}
       border={isSelected ? '1px solid #475569' : '1px solid #CCD6E3'}
       color={isSelected ? '#475569' : '#CCD6E3'}
+      cursor='pointer'
     >
       {sort}
     </Box>

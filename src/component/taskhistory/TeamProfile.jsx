@@ -36,7 +36,14 @@ const TeamProfile = () => {
         <Image src={linkICON} alt='프로필' width='20px' />
       </Flex>
       <Flex gap='8px' alignItems='center'>
-        <Box color='primary' background='#E0E7EE' paddingX='8px' paddingY='4px' borderRadius='14px'>
+        <Box
+          color='primary'
+          background='#E0E7EE'
+          paddingX='8px'
+          paddingY='4px'
+          borderRadius='14px'
+          border='1px solid #475569'
+        >
           팀 개설일
         </Box>
         <Box>{data?.startAt}</Box>
