@@ -3,27 +3,22 @@ import axios from 'axios';
 const axiosInstance = axios.create({
   baseURL: 'https://startupvalley.site/api',
   timeout: 5000,
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use((config) => {
+  const cookies = document.cookie.split(';');
+
+  let accessToken = '';
+  cookies.forEach((cookie) => {
+    if (cookie.trim().startsWith('access_token=')) {
+      accessToken = cookie.trim().substring('access_token='.length);
+    }
+  });
+
   config.headers['Content-Type'] = 'application/json';
-  config.headers.Authorization = `Bearer`;
+  config.headers.Authorization = `Bearer ${accessToken}`;
   return config;
 });
-
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-
-      window.location.href = '/login';
-    }
-
-    return await Promise.reject(error);
-  },
-);
 
 export default axiosInstance;
