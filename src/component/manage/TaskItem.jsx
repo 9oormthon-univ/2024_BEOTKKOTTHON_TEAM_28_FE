@@ -36,8 +36,8 @@ const TaskItem = ({ content, startAt, endAt }) => {
     >
       <Flex width='100%' justifyContent='space-between' alignItems='center'>
         <Box className='SubHead-xl'>
-          {start.getMonth() + 1}.{start.getDate()} {start.getHours()}:{start.getMinutes()} ~{' '}
-          {end.getMonth() + 1}.{end.getDate()} {end.getHours()}:{end.getMinutes()}
+          {start.getMonth() + 1}월 {start.getDate()}일 {start.getHours()}시 {start.getMinutes()}분 ~{' '}
+          {end.getMonth() + 1}월 {end.getDate()}일 {end.getHours()}시 {end.getMinutes()}분
         </Box>
         <Box className='Body-lg' color='brandBold'>
           {hours}시간 {minutes}분
