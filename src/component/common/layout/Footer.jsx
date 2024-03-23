@@ -25,14 +25,9 @@ const Footer = () => {
           <Text mt='8px'>@2024 startupvally.all rights reserved</Text>
         </Flex>
         <Grid templateColumns='repeat(6, 1fr)' gap='15px' w={width}>
-          <Text fontSize='sm' textAlign='left'>
-            Team 28
+          <Text fontSize='sm' textAlign='left' gridColumn='1 / span 6'>
+            Team AGRI
           </Text>
-          <Text fontSize='sm' textAlign='center'></Text>
-          <Text fontSize='sm' textAlign='center'></Text>
-          <Text fontSize='sm' textAlign='center'></Text>
-          <Text fontSize='sm' textAlign='center'></Text>
-          <Text fontSize='sm' textAlign='center'></Text>
           {Members.map((member, index) => (
             <Text key={index} textAlign='left' fontSize='sm'>
               {member}

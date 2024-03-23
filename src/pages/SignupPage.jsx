@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthBox, InputContent } from '../component/common/mocules';
-import { Button, Checkbox, Flex, Text } from '@chakra-ui/react';
+import { Button, Checkbox, Flex, Text, Img } from '@chakra-ui/react';
 import ProfileSwiper from '../component/signup/ProfileSwiper';
 import postUserData from '../api/signup/postUserData';
+
+import link from '../assets/link.svg';
 
 const SignupPage = () => {
   const [nickname, setNickname] = useState('');
@@ -12,6 +14,9 @@ const SignupPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const [selectedProfile, setSelectedProfile] = useState(null);
+
+  const [isTermsChecked, setIsTermsChecked] = useState(false);
+  const [isPrivacyChecked, setIsPrivacyChecked] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,11 +29,6 @@ const SignupPage = () => {
     console.log('discordId:', discordId);
     console.log('password:', password);
     console.log('confirmPassword:', confirmPassword);
-
-    if (!nickname || !discordId || !password || !confirmPassword) {
-      alert('모든 필드를 입력해주세요.');
-      return;
-    }
 
     if (password !== confirmPassword) {
       alert('비밀번호가 일치하지 않습니다.');
@@ -55,57 +55,112 @@ const SignupPage = () => {
     }
   };
 
+  const isAllValid = () => {
+    return (
+      nickname &&
+      discordId &&
+      password &&
+      confirmPassword &&
+      password === confirmPassword &&
+      isTermsChecked &&
+      isPrivacyChecked &&
+      selectedProfile != null
+    );
+  };
+
+  const handleTermsOfUseClick = () => {
+    window.open(
+      'https://transparent-louse-5ee.notion.site/Startup-Valley-0f3e2dca3cb74d4995fd5b59e610d416?pvs=4',
+    );
+  };
+
+  const handlePersonalInformationClick = () => {
+    window.open(
+      'https://transparent-louse-5ee.notion.site/Startup-Valley-9e3e48b413a7444eb6d1c37d68543664',
+    );
+  };
+
   return (
     <main>
-      <AuthBox mt='80px' mb='191px'>
-        <Text mt='36px' mb='12px' w='100%'>
-          프로필 캐릭터
-        </Text>
-        <ProfileSwiper onSelectImage={handleSelectProfile} />
-        <InputContent
-          label='닉네임'
-          placeholder='닉네임'
-          mt='36px'
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
-        />
-        <InputContent
-          label='디스코드 아이디'
-          placeholder='discord id'
-          mt='12px'
-          value={discordId}
-          onChange={(e) => setDiscordId(e.target.value)}
-        />
-        <InputContent
-          label='비밀번호 입력'
-          placeholder='PW'
-          mt='36px'
-          type='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <InputContent
-          label='비밀번호 확인'
-          placeholder='PW'
-          mt='36px'
-          type='password'
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <Flex direction='column' w='100%'>
-          <Flex justify='space-between' mt='36px'>
-            <Text>이용약관 확인</Text>
-            <Checkbox />
+      <Flex justify='center'>
+        <AuthBox mt='80px' mb='191px'>
+          <Text mt='36px' mb='12px' w='100%'>
+            프로필 캐릭터
+          </Text>
+          <ProfileSwiper onSelectImage={handleSelectProfile} />
+          <InputContent
+            label='닉네임'
+            placeholder='닉네임'
+            mt='36px'
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+          />
+          <InputContent
+            label='디스코드 아이디'
+            placeholder='discord id'
+            mt='12px'
+            value={discordId}
+            onChange={(e) => setDiscordId(e.target.value)}
+          />
+          <InputContent
+            label='비밀번호 입력'
+            placeholder='PW'
+            mt='36px'
+            type='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            confirmValue={confirmPassword}
+          />
+          <InputContent
+            label='비밀번호 확인'
+            placeholder='PW'
+            mt='36px'
+            type='password'
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            confirmValue={password}
+          />
+          <Flex direction='column' w='100%'>
+            <Flex justify='space-between' mt='36px'>
+              <Flex>
+                <Text mr='8px'>이용약관 확인</Text>
+                <Img src={link} onClick={handleTermsOfUseClick} alt='Image' cursor='pointer' />
+              </Flex>
+              <Checkbox
+                colorScheme='green'
+                isChecked={isTermsChecked}
+                onChange={(e) => setIsTermsChecked(e.target.checked)}
+              />
+            </Flex>
+            <Flex justify='space-between' mt='12px'>
+              <Flex>
+                <Text mr='8px'>개인정보 처리방침 확인</Text>
+                <Img
+                  src={link}
+                  onClick={handlePersonalInformationClick}
+                  alt='Image'
+                  cursor='pointer'
+                />
+              </Flex>
+              <Checkbox
+                colorScheme='green'
+                isChecked={isPrivacyChecked}
+                onChange={(e) => setIsPrivacyChecked(e.target.checked)}
+              />
+            </Flex>
           </Flex>
-          <Flex justify='space-between' mt='12px'>
-            <Text>개인정보 처리방침 확인</Text>
-            <Checkbox />
-          </Flex>
-        </Flex>
-        <Button w='100%' p='11px' mt='36px' onClick={handleSignup}>
-          회원가입
-        </Button>
-      </AuthBox>
+          <Button
+            w='100%'
+            p='11px'
+            mt='36px'
+            onClick={handleSignup}
+            colorScheme={isAllValid() ? 'green' : 'gray'}
+            isDisabled={!isAllValid()}
+          >
+            회원가입
+          </Button>
+        </AuthBox>
+      </Flex>
     </main>
   );
 };
