@@ -12,8 +12,18 @@ const Layout = ({ children }) => {
 
   const { handleProfile } = useUserStore();
 
+  const cookies = document.cookie.split(';');
+
+  let accessToken = '';
+  cookies.forEach((cookie) => {
+    if (cookie.trim().startsWith('access_token=')) {
+      accessToken = cookie.trim().substring('access_token='.length);
+    }
+  });
+
   useEffect(() => {
     const fetchData = async () => {
+      if (!accessToken) return;
       const response = await getUserInfo();
 
       handleProfile({
@@ -24,7 +34,7 @@ const Layout = ({ children }) => {
     };
 
     fetchData();
-  }, [handleProfile]);
+  }, [handleProfile, accessToken]);
 
   return (
     <div>
