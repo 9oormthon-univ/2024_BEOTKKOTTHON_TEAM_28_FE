@@ -16,21 +16,26 @@ import getTeamLeader from '../../api/manage/getTeamLeader';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import useUserStore from '../../stores/userStore';
 
 const ManagerChangeModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState();
-
+  const [leader, setLeader] = useState();
   const { id } = useParams();
+  const { userName } = useUserStore();
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getTeamLeader(id);
       setData(response);
+      setLeader(response.filter((el) => el.isLeader === true));
     };
 
     fetchData();
   }, [id]);
+
+  if (leader && leader[0].nickname === userName) return null;
 
   return (
     <>

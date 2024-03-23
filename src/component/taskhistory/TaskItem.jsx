@@ -51,6 +51,7 @@ const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
                 paddingY='16px'
                 gap='10px'
                 borderRadius='4px'
+                border='1px solid #E0E7EE'
               >
                 <Box className='Body-lg'>{el.content}</Box>
               </Flex>

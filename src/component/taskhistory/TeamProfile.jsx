@@ -2,7 +2,6 @@ import { Box, Flex, Image } from '@chakra-ui/react';
 
 import ManagerChangeModal from '../manage/ManagerChangeModal';
 import { getTeamInfo } from '../../api/taskhistory';
-import linkICON from '../../assets/link.png';
 import tomato from '../../assets/tomato.png';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -33,7 +32,6 @@ const TeamProfile = () => {
         alignItems='center'
       >
         <Box>{data?.name}</Box>
-        <Image src={linkICON} alt='프로필' width='20px' />
       </Flex>
       <Flex gap='8px' alignItems='center'>
         <Box

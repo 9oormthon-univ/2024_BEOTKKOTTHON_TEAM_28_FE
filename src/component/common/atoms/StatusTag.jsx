@@ -21,6 +21,7 @@ const StatusTag = ({ status }) => {
       color={switchedStatus.color}
       paddingX='16px'
       paddingY='8px'
+      borderRadius='4px'
     >
       <Flex gap='8px' alignItems='center'>
         <Box>{switchedStatus.string}</Box>

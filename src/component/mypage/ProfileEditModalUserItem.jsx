@@ -2,8 +2,16 @@ import { Box, Button, Flex, Image } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 import { returnProfileImg } from '../../lips/returnProfile';
+import patchManager from '../../api/manage/patchManager';
+import { useParams } from 'react-router-dom';
 
-const ProfileEditModalUserItem = ({ onClick, memberId, nickname, profileImage, isLeader }) => {
+const ProfileEditModalUserItem = ({ memberId, nickname, profileImage, isLeader }) => {
+  const { id } = useParams();
+
+  const handleClick = () => {
+    patchManager(id, memberId);
+  };
+
   return (
     <Flex direction='column' gap='12px' alignItems='flex-start'>
       <Flex gap='8px' alignItems='center'>
@@ -17,14 +25,7 @@ const ProfileEditModalUserItem = ({ onClick, memberId, nickname, profileImage, i
           리더 입니다
         </Button>
       ) : (
-        <Button
-          className='SubHead-lg'
-          paddingX='16px'
-          variant='grayWhite'
-          onClick={() => {
-            onClick(memberId);
-          }}
-        >
+        <Button className='SubHead-lg' paddingX='16px' variant='grayWhite' onClick={handleClick}>
           권한 위임
         </Button>
       )}
