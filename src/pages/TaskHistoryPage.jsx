@@ -1,13 +1,14 @@
 import { MemberList, TabBar } from '../component/common/organisms';
 import { TaskItem, TeamProfile } from '../component/taskhistory';
 
-import { Flex, Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { GardenPlot } from '../component/mypage';
 import { getMemberScrum } from '../api/taskhistory';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../stores/userStore';
+import NonData from '../component/common/mocules/NonData';
 
 const Tabs = ['백로그 타임라인'];
 
@@ -65,7 +66,7 @@ const TaskHistoryPage = () => {
               <TabBar tabs={Tabs} />
               <Flex direction='column' gap='24px'>
                 {data.length === 0 ? (
-                  <Box>데이터가 없습니다.</Box>
+                  <NonData />
                 ) : (
                   data.map((el) => (
                     <TaskItem

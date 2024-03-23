@@ -9,6 +9,7 @@ import getRequestedQuestion from '../api/questionlist/getRequestedQuestion';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import useUserStore from '../stores/userStore';
+import NonData from '../component/common/mocules/NonData';
 
 const Tabs = ['받은 요청', '전달한 요청'];
 const ReceivedTab = ['all', 'pending', 'completed'];
@@ -68,9 +69,9 @@ const QuestionListPage = () => {
   return (
     <main>
       <Flex justify='center'>
-        <Flex gap='27px' mt='68px'>
+        <Flex gap='27px' mt='68px' alignItems='flex-start'>
           <ProjectList handleCurrentTeam={handleCurrentTeam} />
-          <Flex direction='column' marginLeft='327px' w='922px' gap='32px'>
+          <Flex direction='column' marginLeft='40.33px' w='922px' gap='32px'>
             {/* <FormBox /> */}
             <Box className='Display-md'>
               {currentTeam.teamName ?? 'TeamName'} | {userName ?? 'User'}님의 작업요청
@@ -100,7 +101,7 @@ const QuestionListPage = () => {
             </Flex>
             <Box className='Display-md'>다른 팀원은 어떤 일을 했을까요?</Box>
             <Flex direction='column'>
-              {!data || (data?.length === 0 && <div>아직 요청이 없어요</div>)}
+              {!data || (data?.length === 0 && <NonData />)}
               {data?.map((el) => (
                 <WorkItem
                   key={el.id}

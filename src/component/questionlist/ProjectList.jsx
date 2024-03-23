@@ -31,13 +31,14 @@ const ProjectList = ({ handleCurrentTeam }) => {
   return (
     <Flex
       direction='column'
-      position='fixed'
       border='1px solid #CCD6E3'
       width='280px'
       padding='12px'
       borderRadius='12px'
       className='SubHead-xl'
       gap='12px'
+      marginBottom='00px'
+      minHeight='140px'
     >
       <Box>전체프로젝트</Box>
       <Flex direction='column' gap='12px'>

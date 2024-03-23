@@ -28,7 +28,7 @@ const Profile = ({ isOther }) => {
   }, [isOther, id]);
 
   return (
-    <Box w='292px' position='fixed' top='138px'>
+    <Box w='292px' top='138px'>
       <Image src={returnProfileImg(data?.profileImage)} alt='프로필' width='120px' />
       <Box className='SubHead-xl' marginTop='19px' marginBottom='13px'>
         {data?.nickname}
