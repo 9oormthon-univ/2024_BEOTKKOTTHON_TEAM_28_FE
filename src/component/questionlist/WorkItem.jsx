@@ -21,8 +21,8 @@ const WorkItem = ({ name, profileImage, part, content, createdAt, receiver }) =>
             width='32px'
           />
           <Box paddingX='24px' paddingY='16px' borderRadius='4px'>
-            {`${receiver.name} `}
-            {receiver.content}
+            {`${receiver?.name} `}
+            {receiver?.content}
           </Box>
         </Flex>
         {/* <Flex gap='12px'>
