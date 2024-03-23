@@ -13,9 +13,11 @@ import {
 import PropTypes from 'prop-types';
 import patchDateChange from '../../api/manage/patchDateChange';
 import { useState } from 'react';
+import useToastStore from '../../stores/toastStore';
 
 const DateChangeModal = ({ currentUser, id, startAt, endAt }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { handleShowToastMessage } = useToastStore();
 
   const [data, setData] = useState({
     startAt,
@@ -24,6 +26,8 @@ const DateChangeModal = ({ currentUser, id, startAt, endAt }) => {
 
   const handleSubmit = () => {
     patchDateChange(currentUser.memberId, id, data);
+    handleShowToastMessage('업무 시간 수정 완료!');
+    onClose();
   };
 
   return (
