@@ -1,9 +1,10 @@
 # 2024_BEOTKKOTTHON_TEAM_28_FE
 🍀 Startup Valley ⭐는 디스코드봇을 통해 기획자와 디자이너, 백엔드 및 프론트엔드 개발자의 성장 척도를 기록하여, 개인의 성장 척도와 팀의 성장을 도와주는 프로젝트 입니다.
 
-🔗 서비스 링크 : #
-
+🔗 서비스 링크 : https://client.startupvalley.site/
 ## 주요 기능 및 특징
+![244376](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_28_FE/assets/75254185/f1c46c80-636c-4b09-b565-fa768eb5b727)
+
 ### 🩷 회원가입 및 역할, 프로필 선택
 디스코드봇을 방에 초대하고, 팀원 개개인이 각자의 역할과 프로필을 선택하여 계정을 생성한 후 디스코드봇을 통해 자신의 척도를 기록합니다.
 
