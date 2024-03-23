@@ -15,7 +15,7 @@ const Header = () => {
   const [onMenuToggled, setMenuToggled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
 
-  const { userId, profile } = useUserStore();
+  const { profile } = useUserStore();
 
   useEffect(() => {
     const currentPath = window.location.pathname;
@@ -26,6 +26,15 @@ const Header = () => {
 
   const paddingX = useBreakpointValue({ base: '10px', md: '182px' });
   const width = useBreakpointValue({ base: '200px', md: 0 });
+
+  const cookies = document.cookie.split(';');
+
+  let accessToken = '';
+  cookies.forEach((cookie) => {
+    if (cookie.trim().startsWith('access_token=')) {
+      accessToken = cookie.trim().substring('access_token='.length);
+    }
+  });
 
   return (
     <>
@@ -60,8 +69,9 @@ const Header = () => {
             </div>
             <Button
               onClick={() => {
-                if (!userId) {
+                if (!accessToken) {
                   navigate('/login');
+                  return;
                 }
                 setOnProjectListToggled((prev) => !prev);
                 setOnProjectListTowToggled(false);
@@ -91,8 +101,9 @@ const Header = () => {
               className='Body-xl smNone'
               background='transparent'
               onClick={() => {
-                if (!userId) {
+                if (!accessToken) {
                   navigate('/login');
+                  return;
                 }
                 setOnProjectListTowToggled((prev) => !prev);
                 setOnProjectListToggled(false);
@@ -116,8 +127,8 @@ const Header = () => {
             >
               나의 대시보드
             </Button>
-            {userId && <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />}
-            {!userId && (
+            {accessToken && <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />}
+            {!accessToken && (
               <Button
                 background='brand'
                 color='white'
@@ -204,8 +215,10 @@ const Header = () => {
           </Flex>
         </Flex>
       )}
-      {onProjectListToggled && profile && <ProjectListModal />}
-      {onProjectListTowToggled && profile && <ProjectListModal isTaskHistory={true} />}
+      {onProjectListToggled && accessToken && profile && <ProjectListModal />}
+      {onProjectListTowToggled && accessToken && profile && (
+        <ProjectListModal isTaskHistory={true} />
+      )}
     </>
   );
 };

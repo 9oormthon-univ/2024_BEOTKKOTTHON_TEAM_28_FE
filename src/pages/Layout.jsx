@@ -39,18 +39,17 @@ const Layout = ({ children }) => {
     fetchData();
   }, [handleProfile, accessToken]);
 
-  const { userId } = useUserStore();
   const navigate = useNavigate();
 
   useEffect(() => {
     const currentPath = location.pathname;
 
     if (!['/login', '/', '/signup'].includes(currentPath)) {
-      if (!userId) {
+      if (!accessToken) {
         navigate('/login');
       }
     }
-  }, [userId, navigate, location]);
+  }, [accessToken, location.pathname, navigate]);
 
   return (
     <div>
