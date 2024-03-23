@@ -189,8 +189,8 @@ const Header = () => {
           </Flex>
         </Flex>
       )}
-      {onProjectListToggled && <ProjectListModal />}
-      {onProjectListTowToggled && <ProjectListModal isTaskHistory={true} />}
+      {onProjectListToggled && profile && <ProjectListModal />}
+      {onProjectListTowToggled && profile && <ProjectListModal isTaskHistory={true} />}
     </>
   );
 };
