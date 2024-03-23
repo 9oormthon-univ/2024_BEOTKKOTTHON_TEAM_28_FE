@@ -23,7 +23,7 @@ const ProjectListModal = ({ isTaskHistory }) => {
       direction='column'
       zIndex='997'
       top='59px'
-      right={isTaskHistory ? '150px' : '370px'}
+      right={isTaskHistory ? '300px' : '550px'}
       width='300px'
       background='white'
       padding='12px'

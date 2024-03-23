@@ -15,7 +15,7 @@ const Header = () => {
   const [onMenuToggled, setMenuToggled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
 
-  const { profile } = useUserStore();
+  const { memberId, profile } = useUserStore();
 
   useEffect(() => {
     const currentPath = window.location.pathname;
@@ -60,6 +60,9 @@ const Header = () => {
             </div>
             <Button
               onClick={() => {
+                if (!memberId) {
+                  navigate('/login');
+                }
                 setOnProjectListToggled((prev) => !prev);
                 setOnProjectListTowToggled(false);
               }}
@@ -88,6 +91,9 @@ const Header = () => {
               className='Body-xl smNone'
               background='transparent'
               onClick={() => {
+                if (!memberId) {
+                  navigate('/login');
+                }
                 setOnProjectListTowToggled((prev) => !prev);
                 setOnProjectListToggled(false);
               }}
@@ -110,10 +116,19 @@ const Header = () => {
             >
               나의 대시보드
             </Button>
-            <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />
-            <Button background='brand' color='white' width='100px'>
-              로그인
-            </Button>
+            {memberId && <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />}
+            {!memberId && (
+              <Button
+                background='brand'
+                color='white'
+                width='100px'
+                onClick={() => {
+                  navigate('/login');
+                }}
+              >
+                로그인
+              </Button>
+            )}
           </Flex>
         </Flex>
       </header>
@@ -189,8 +204,8 @@ const Header = () => {
           </Flex>
         </Flex>
       )}
-      {onProjectListToggled && <ProjectListModal />}
-      {onProjectListTowToggled && <ProjectListModal isTaskHistory={true} />}
+      {onProjectListToggled && profile && <ProjectListModal />}
+      {onProjectListTowToggled && profile && <ProjectListModal isTaskHistory={true} />}
     </>
   );
 };

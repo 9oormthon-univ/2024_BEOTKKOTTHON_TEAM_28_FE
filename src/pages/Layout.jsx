@@ -4,16 +4,29 @@ import PropTypes from 'prop-types';
 import getUserInfo from '../api/dashboard/getUserInfo';
 import { returnProfileImg } from '../lips/returnProfile';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useToastStore from '../stores/toastStore';
 import useUserStore from '../stores/userStore';
 
 const Layout = ({ children }) => {
+  const location = useLocation();
   const { isShowToast } = useToastStore();
 
   const { handleProfile } = useUserStore();
 
+  const cookies = document.cookie.split(';');
+
+  let accessToken = '';
+  cookies.forEach((cookie) => {
+    if (cookie.trim().startsWith('access_token=')) {
+      accessToken = cookie.trim().substring('access_token='.length);
+    }
+  });
+
   useEffect(() => {
     const fetchData = async () => {
+      if (!accessToken) return;
       const response = await getUserInfo();
 
       handleProfile({
@@ -24,7 +37,20 @@ const Layout = ({ children }) => {
     };
 
     fetchData();
-  }, [handleProfile]);
+  }, [handleProfile, accessToken]);
+
+  const { memberId } = useUserStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+
+    if (!['/login', '/', '/signup'].includes(currentPath)) {
+      if (!memberId) {
+        navigate('/login');
+      }
+    }
+  }, [memberId, navigate, location]);
 
   return (
     <div>
