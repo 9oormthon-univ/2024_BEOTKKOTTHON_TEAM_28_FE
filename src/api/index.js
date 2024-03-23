@@ -11,19 +11,19 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
+// axiosInstance.interceptors.response.use(
+//   (response) => response,
+//   async (error) => {
+//     const originalRequest = error.config;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
+//     if (error.response?.status === 401 && !originalRequest._retry) {
+//       originalRequest._retry = true;
 
-      window.location.href = '/login';
-    }
+//       window.location.href = '/login';
+//     }
 
-    return await Promise.reject(error);
-  },
-);
+//     return await Promise.reject(error);
+//   },
+// );
 
 export default axiosInstance;
