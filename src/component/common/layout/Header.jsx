@@ -63,21 +63,26 @@ const Header = () => {
                 setOnProjectListTowToggled(false);
               }}
               className='Body-xl smNone'
-              href='/home'
               background='transparent'
-              color={activeLink === '/home' ? '#047857' : 'black'}
+              color={activeLink.includes('/team-task-history') ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
+              _focus={{ bg: 'transparent' }}
             >
               팀 작업 기록
             </Button>
-            <Link
+            <Button
               className='Body-xl smNone'
-              href='/question-list'
-              color={activeLink === '/question-list' ? '#047857' : 'black'}
+              onClick={() => {
+                navigate('/question-list');
+                setActiveLink('/question-list');
+              }}
+              background='transparent'
+              color={activeLink.includes('question-list') ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
+              _focus={{ bg: 'transparent' }}
             >
               질문 목록
-            </Link>
+            </Button>
             <Button
               className='Body-xl smNone'
               background='transparent'
@@ -85,8 +90,9 @@ const Header = () => {
                 setOnProjectListTowToggled((prev) => !prev);
                 setOnProjectListToggled(false);
               }}
-              color={activeLink === '/task-history' ? '#047857' : 'black'}
+              color={activeLink.includes('/task-history') ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
+              _focus={{ bg: 'transparent' }}
             >
               작업 기록
             </Button>
@@ -94,9 +100,12 @@ const Header = () => {
               className='Body-xl smNone'
               onClick={() => {
                 navigate('/dashboard');
+                setActiveLink('/dashboard');
               }}
-              color={activeLink === '/dashboard' ? '#047857' : 'black'}
+              background='transparent'
+              color={activeLink.includes('dashboard') ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
+              _focus={{ bg: 'transparent' }}
             >
               나의 대시보드
             </Button>
