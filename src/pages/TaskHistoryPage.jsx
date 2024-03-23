@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../stores/userStore';
 
-const Tabs = ['스크럼 타임라인'];
+const Tabs = ['백로그 타임라인'];
 
 const TaskHistoryPage = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -50,8 +50,8 @@ const TaskHistoryPage = () => {
   return (
     <main>
       <Flex justify='center'>
-        <Flex gap='27px' mt='68px'>
-          <Flex direction='column' position='fixed' gap='92px'>
+        <Flex mt='68px' gap='33.93px'>
+          <Flex direction='column' gap='92px'>
             <TeamProfile />
             <MemberList
               isWhite={true}
@@ -59,7 +59,7 @@ const TaskHistoryPage = () => {
               handleCurrentUser={handleCurrentUser}
             />
           </Flex>
-          <Flex direction='column' marginLeft='327px' w='922px' gap='86px'>
+          <Flex direction='column' w='922px' gap='86px'>
             <GardenPlot id={Number(userId)} />
             <Flex direction='column' gap='32px'>
               <TabBar tabs={Tabs} />
