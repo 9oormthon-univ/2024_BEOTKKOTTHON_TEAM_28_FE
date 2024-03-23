@@ -35,7 +35,7 @@ const ManagerChangeModal = () => {
     fetchData();
   }, [id]);
 
-  if (leader && leader[0].nickname === userName) return null;
+  if (!leader || leader[0]?.nickname !== userName) return null;
 
   return (
     <>

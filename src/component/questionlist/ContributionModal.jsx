@@ -160,7 +160,7 @@ const ContributionModal = ({ id }) => {
                   ))}
                 </Flex>
               </Flex>
-              <Button variant='grayWhite' width='200px' bg='#475569' onClose={onClose}>
+              <Button variant='grayWhite' width='200px' bg='#475569' onClick={onClose}>
                 비공개 전환
               </Button>
             </Flex>
