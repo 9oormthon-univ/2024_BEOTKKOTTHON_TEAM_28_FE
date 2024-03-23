@@ -12,7 +12,7 @@ const chakraTheme = extendTheme({
     info: '#4F46E5',
     infoBold: '#3730A3',
     success: '#0D9488',
-    successBold: '#115E59',
+    successBold: '#065F46',
     warning: '#F59E0B',
     warningBold: '#B45309',
     background: '#36e7bd',
