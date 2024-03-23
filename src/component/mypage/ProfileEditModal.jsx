@@ -13,15 +13,25 @@ import {
 } from '@chakra-ui/react';
 
 import ProfileImageSelect from './ProfileImageSelect';
+import PropTypes from 'prop-types';
 import postUserInfo from '../../api/dashboard/patchUserInfo';
+import { returnProfileImg } from '../../lips/returnProfile';
 import { useState } from 'react';
+import useUserStore from '../../stores/userStore';
 
-const ProfileEditModal = () => {
+const ProfileEditModal = ({ data }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [body, setBody] = useState();
+  const [body, setBody] = useState(data);
+
+  const { userId, handleProfile } = useUserStore();
 
   const handleClick = () => {
     postUserInfo(body);
+    handleProfile({
+      userId,
+      profileImage: returnProfileImg(body.profileImage),
+      userName: body.nickname,
+    });
     onClose();
   };
 
@@ -90,6 +100,10 @@ const ProfileEditModal = () => {
       </Modal>
     </>
   );
+};
+
+ProfileEditModal.propTypes = {
+  data: PropTypes.object,
 };
 
 export default ProfileEditModal;

@@ -11,7 +11,7 @@ const ProjectListModal = ({ isTaskHistory }) => {
   useEffect(() => {
     const fetchProjectList = async () => {
       const projectListData = await getProjectList();
-      setProjects(projectListData);
+      setProjects(projectListData.progressingProjectList);
     };
 
     fetchProjectList();
@@ -36,7 +36,12 @@ const ProjectListModal = ({ isTaskHistory }) => {
           href={isTaskHistory ? `/${project.id}/task-history` : `/${project.id}/team-task-history`}
         >
           <Flex gap='6px' alignItems='center'>
-            <img src='/tomato.png' alt={project.name} width='40px' height='40px' />
+            <img
+              src={project.image ?? '/tomato.png'}
+              alt={project.name}
+              width='40px'
+              height='40px'
+            />
             <Box className='Body-md'>{project.name}</Box>
           </Flex>
         </Link>

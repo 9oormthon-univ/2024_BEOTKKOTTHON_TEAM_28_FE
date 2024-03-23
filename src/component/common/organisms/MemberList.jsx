@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
-const MemberList = ({ isWhite }) => {
+const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
   const [data, setData] = useState([]);
 
   const { id } = useParams();
@@ -46,17 +46,19 @@ const MemberList = ({ isWhite }) => {
       >
         {data?.map((el) => (
           <MemberItem
+            currentUser={currentUser}
             key={el.nickname}
             memberId={el.memberId}
             part={el.part}
             profileImage={el.profileImage}
             nickname={el.nickname}
+            handleCurrentUser={handleCurrentUser}
           />
         ))}
       </Flex>
       <Button
         onClick={() => {
-          navigate('/3/manage');
+          navigate(`/${id}/manage`);
         }}
         width='100%'
         background='#475569'
@@ -68,6 +70,10 @@ const MemberList = ({ isWhite }) => {
   );
 };
 
-MemberList.propTypes = { isWhite: PropTypes.bool };
+MemberList.propTypes = {
+  isWhite: PropTypes.bool,
+  handleCurrentUser: PropTypes.func,
+  currentUser: PropTypes.object,
+};
 
 export default MemberList;

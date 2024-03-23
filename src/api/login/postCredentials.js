@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import axiosInstance from '..';
+import axiosFormInstance from '../axiosFormInstance';
 
 const postCredentials = async (discordId, password) => {
   const formData = new FormData();
@@ -7,13 +7,16 @@ const postCredentials = async (discordId, password) => {
   formData.append('password', password);
 
   try {
-    const response = await axiosInstance.fetch('/api/auth/sign-in', {
-      method: 'POST',
-      body: formData,
-    });
+    const response = await axiosFormInstance.post('/auth/sign-in', formData);
 
-    console.log('Login Response:', response.data);
-    return response.data;
+    const cookies = response.headers['set-cookie'];
+    if (cookies) {
+      cookies.forEach((cookie) => {
+        document.cookie = cookie;
+      });
+    }
+
+    return response.data.success;
   } catch (err) {
     if (err instanceof AxiosError) {
       console.error(err);

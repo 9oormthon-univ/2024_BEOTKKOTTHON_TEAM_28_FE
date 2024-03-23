@@ -1,9 +1,10 @@
 import { create } from 'zustand';
-import { returnProfileImg } from '../lips/returnProfile';
 
 const useUserStore = create((set) => ({
   profile: '',
-  handleProfile: (string) => set({ profile: returnProfileImg(string) }),
+  userId: '',
+  userName: '',
+  handleProfile: ({ profile, userId, userName }) => set({ profile, userId, userName }),
 }));
 
 export default useUserStore;

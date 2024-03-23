@@ -1,14 +1,12 @@
 import { AuthBox, InputContent } from '../component/common/mocules';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
-import PartModal from '../component/login/PartModal';
 import postCredentials from '../api/login/postCredentials';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [isPartModalOpen, setIsPartModalOpen] = useState(false);
   const [discordId, setDiscordId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,19 +17,15 @@ const LoginPage = () => {
   const handleLoginClick = async () => {
     try {
       const response = await postCredentials(discordId, password);
-      console.log('Login Response:', response);
-
-      setIsPartModalOpen(true);
-      setDiscordId('');
-      setPassword('');
+      console.log(response);
+      if (response === 'true') {
+        console.log('로그인 성공');
+        navigate('/');
+      }
     } catch (error) {
       console.error('Login Error:', error);
       alert('로그인에 실패했습니다. 다시 시도해주세요.');
     }
-  };
-
-  const handleClosePartModal = () => {
-    setIsPartModalOpen(false);
   };
 
   return (
@@ -61,7 +55,6 @@ const LoginPage = () => {
           </Button>
         </AuthBox>
       </Flex>
-      <PartModal isOpen={isPartModalOpen} onClose={handleClosePartModal} />
     </main>
   );
 };

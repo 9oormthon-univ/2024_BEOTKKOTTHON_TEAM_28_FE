@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getMemberTasks = async (teamId, sort) => {
+const getTeamTimeManage = async (id) => {
   try {
-    const response = await axiosInstance.get(`/teams/${teamId}/works?sort=${sort}`);
+    const response = await axiosInstance.get(`/members/${id}/works`);
     return response.data.data.workList;
   } catch (err) {
     if (err === AxiosError) {
@@ -13,4 +13,4 @@ const getMemberTasks = async (teamId, sort) => {
   }
 };
 
-export default getMemberTasks;
+export default getTeamTimeManage;

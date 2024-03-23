@@ -8,7 +8,7 @@ const SortTooltip = ({ sort }) => {
       borderRadius='999px'
       paddingY='6px'
       paddingX='16px'
-      colorScheme='blue'
+      colorscheme='blue'
     >
       {sort}
     </Box>

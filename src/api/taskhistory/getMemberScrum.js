@@ -1,11 +1,10 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getProjectList = async () => {
+const getMemberScrum = async (id) => {
   try {
-    const response = await axiosInstance.get(`/teams`);
-
-    return response.data.data;
+    const response = await axiosInstance.get(`/members/${id}/scrums`);
+    return response.data.data.scrumList;
   } catch (err) {
     if (err === AxiosError) {
       console.error(err);
@@ -14,4 +13,4 @@ const getProjectList = async () => {
   }
 };
 
-export default getProjectList;
+export default getMemberScrum;

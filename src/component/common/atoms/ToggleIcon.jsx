@@ -1,4 +1,6 @@
-const ToggleIcon = ({ isToggled }) => {
+import PropTypes from 'prop-types';
+
+const ToggleIcon = ({ isToggled = false }) => {
   if (isToggled)
     return (
       <svg
@@ -37,6 +39,6 @@ const ToggleIcon = ({ isToggled }) => {
 };
 
 ToggleIcon.propTypes = {
-  isToggled: Boolean,
+  isToggled: PropTypes.bool,
 };
 export default ToggleIcon;
