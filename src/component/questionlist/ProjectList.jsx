@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from '@chakra-ui/react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 import { ToggleIcon } from '../common/atoms';
@@ -12,6 +12,8 @@ const ProjectList = ({ handleCurrentTeam }) => {
   const [isToggledCompletedList, setIsToggledCompletedList] = useState(false);
   const [data, setData] = useState();
 
+  const [selectedTeamId, setSelectedTeamId] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProjectList();
@@ -20,6 +22,11 @@ const ProjectList = ({ handleCurrentTeam }) => {
 
     fetchData();
   }, []);
+
+  const handleTeamClick = (team) => {
+    handleCurrentTeam(team);
+    setSelectedTeamId(team.teamId);
+  };
 
   return (
     <Flex
@@ -41,7 +48,12 @@ const ProjectList = ({ handleCurrentTeam }) => {
           }}
         >
           <ToggleIcon isToggled={isToggledInProgressList} />
-          <Box>진행중 {data?.progressingProjectCount}</Box>
+          <Box>
+            진행중{' '}
+            <Text as='span' color='successBold'>
+              {data?.progressingProjectCount}
+            </Text>
+          </Box>
         </Flex>
         {isToggledInProgressList && (
           <Flex direction='column' gap='12px'>
@@ -52,7 +64,14 @@ const ProjectList = ({ handleCurrentTeam }) => {
                 alignItems='center'
                 onClick={() => {
                   handleCurrentTeam({ teamName: el.name, teamId: el.id });
+                  handleTeamClick({ teamName: el.name, teamId: el.id });
                 }}
+                border={
+                  selectedTeamId === el.id ? '1.2px solid #059669' : '1.2px solid transparent'
+                }
+                padding='4px'
+                borderRadius='4px'
+                cursor='pointer'
               >
                 <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
                 <Box>{el.name}</Box>
@@ -67,7 +86,12 @@ const ProjectList = ({ handleCurrentTeam }) => {
           }}
         >
           <ToggleIcon isToggled={isToggledCompletedList} />
-          <Box>완료 {data?.endProjectCount}</Box>
+          <Box>
+            완료{' '}
+            <Text as='span' color='successBold'>
+              {data?.endProjectCount}
+            </Text>
+          </Box>
         </Flex>
         {isToggledCompletedList && (
           <Flex direction='column' gap='12px'>
