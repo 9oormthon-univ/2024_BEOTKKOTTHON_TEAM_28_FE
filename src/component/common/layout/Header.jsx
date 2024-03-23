@@ -118,7 +118,14 @@ const Header = () => {
             </Button>
             {memberId && <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />}
             {!memberId && (
-              <Button background='brand' color='white' width='100px'>
+              <Button
+                background='brand'
+                color='white'
+                width='100px'
+                onClick={() => {
+                  navigate('/login');
+                }}
+              >
                 로그인
               </Button>
             )}
