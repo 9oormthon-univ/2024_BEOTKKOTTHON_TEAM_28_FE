@@ -42,11 +42,13 @@ const Layout = ({ children }) => {
   const { userId } = useUserStore();
   const navigate = useNavigate();
 
+  console.log('userId', userId);
   useEffect(() => {
     const currentPath = location.pathname;
 
     if (!['/login', '/', '/signup'].includes(currentPath)) {
-      if (!userId) {
+      console.log(currentPath, '조건 패스');
+      if (!userId || userId === '') {
         navigate('/login');
       }
     }
