@@ -65,7 +65,7 @@ const Header = () => {
               className='Body-xl smNone'
               background='transparent'
               color={activeLink.includes('/team-task-history') ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none' }}
+              _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
               _focus={{ bg: 'transparent' }}
             >
               팀 작업 기록
@@ -78,7 +78,7 @@ const Header = () => {
               }}
               background='transparent'
               color={activeLink.includes('question-list') ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none' }}
+              _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
               _focus={{ bg: 'transparent' }}
             >
               질문 목록
@@ -91,7 +91,7 @@ const Header = () => {
                 setOnProjectListToggled(false);
               }}
               color={activeLink.includes('/task-history') ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none' }}
+              _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
               _focus={{ bg: 'transparent' }}
             >
               작업 기록
@@ -104,7 +104,7 @@ const Header = () => {
               }}
               background='transparent'
               color={activeLink.includes('dashboard') ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none' }}
+              _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
               _focus={{ bg: 'transparent' }}
             >
               나의 대시보드
