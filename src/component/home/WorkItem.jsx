@@ -17,7 +17,9 @@ const WorkItem = ({ content, createdAt, profileImage, nickname, part }) => {
         color='tertiary'
         paddingX='24px'
         paddingY='16px'
-        background='gray.100'
+        background='#F0F2F4'
+        borderRadius='4px'
+        border='1px solid #CCD6E3'
       >
         {content}
       </Box>
