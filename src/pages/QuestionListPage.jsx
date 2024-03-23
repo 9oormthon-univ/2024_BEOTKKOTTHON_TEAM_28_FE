@@ -101,10 +101,13 @@ const QuestionListPage = () => {
             </Flex>
             <Box className='Display-md'>다른 팀원은 어떤 일을 했을까요?</Box>
             <Flex direction='column'>
-              {!data ||
-                (data?.length === 0 && (
+              {(!data || data?.length === 0) &&
+                (sort === 'all' ? (
                   <NonData extraText='서버에 디스코드 봇을 추가하여 팀원들과 소통해보세요!' />
+                ) : (
+                  <NonData />
                 ))}
+
               {data?.map((el) => (
                 <WorkItem
                   key={el.id}

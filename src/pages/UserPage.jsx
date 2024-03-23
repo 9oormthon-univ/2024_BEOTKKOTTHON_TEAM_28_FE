@@ -17,7 +17,7 @@ const UserPage = () => {
       <Flex justify='center'>
         <Flex gap='27px' mt='68px'>
           <Profile isOther={true} />
-          <Flex direction='column' marginLeft='327px' w='922px' gap='86px'>
+          <Flex direction='column' w='922px' gap='86px'>
             <GardenPlot id={id} />
             <Box>
               <TabBar tabs={Tabs} />

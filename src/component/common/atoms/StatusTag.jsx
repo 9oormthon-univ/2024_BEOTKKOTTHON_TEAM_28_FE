@@ -1,4 +1,4 @@
-import { Box, Button, Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 
@@ -16,7 +16,7 @@ const StatusTag = ({ status }) => {
   const switchedStatus = switchStatus(status);
 
   return (
-    <Button
+    <Box
       border={`2px solid ${switchedStatus.color}`}
       color={switchedStatus.color}
       paddingX='16px'
@@ -26,7 +26,7 @@ const StatusTag = ({ status }) => {
         <Box>{switchedStatus.string}</Box>
         <Box background={switchedStatus.color} width='8px' height='8px' borderRadius='50%' />
       </Flex>
-    </Button>
+    </Box>
   );
 };
 
