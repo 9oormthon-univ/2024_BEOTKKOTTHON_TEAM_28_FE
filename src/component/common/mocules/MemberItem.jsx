@@ -27,7 +27,9 @@ const MemberItem = ({
           navigate(`/user/${memberId}`);
         }
       }}
-      background={currentUser?.name === nickname && 'pink'}
+      background={currentUser?.name === nickname && 'gray.100'}
+      padding='5px'
+      borderRadius='5px'
     >
       <Image borderRadius='50%' src={returnProfileImg(profileImage)} alt='프로필' width='48px' />
       <div>{nickname}</div>

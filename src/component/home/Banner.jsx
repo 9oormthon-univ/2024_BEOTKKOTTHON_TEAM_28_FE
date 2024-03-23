@@ -1,6 +1,8 @@
-import { Box, Flex, Image, List } from '@chakra-ui/react';
+import { Box, Flex, Grid, Image, List } from '@chakra-ui/react';
 
 import BannerRankItem from './BannerRankItem';
+import arrowNext from '../../assets/next.png';
+import arrowPrev from '../../assets/prev.png';
 import { getMemberRanking } from '../../api/teamhistory';
 import guy from '../../assets/guy.svg';
 import { useEffect } from 'react';
@@ -11,6 +13,7 @@ const Banner = () => {
   const { id } = useParams();
   const [data, setDatas] = useState([]);
   const [projectName, setProjectName] = useState('');
+  const [currentIndex, setCurrentIndex] = useState({ start: 0, end: 4 });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +25,14 @@ const Banner = () => {
 
     fetchData();
   }, [id]);
+
+  const handleIndexIncrease = () => {
+    setCurrentIndex((prev) => ({ start: prev.start + 4, end: prev.end + 4 }));
+  };
+  const handleIndexDecrease = () => {
+    setCurrentIndex((prev) => ({ start: prev.start - 4, end: prev.end - 4 }));
+  };
+
   return (
     <Flex
       width='99vw'
@@ -52,10 +63,32 @@ const Banner = () => {
         </Button> */}
       </Flex>
       <List width='922px'>
-        <Flex direction='column' gap='6px'>
-          {data.slice(0, 4).map((el, index) => (
+        <Grid
+          templateRows='repeat(4, 1fr)'
+          direction='column'
+          gap='6px'
+          justifyContent='flex-start'
+          position='relative'
+        >
+          {currentIndex.end <= data?.length && (
+            <img
+              src={arrowNext}
+              onClick={handleIndexIncrease}
+              className='swiper-button-next'
+              alt='Next'
+              style={{
+                position: 'absolute',
+                top: '50%',
+                right: '110px',
+                width: '68px',
+                height: '68px',
+                cursor: 'pointer',
+              }}
+            />
+          )}
+          {data.slice(currentIndex.start, currentIndex.end).map((el, index) => (
             <BannerRankItem
-              rank={index + 1}
+              rank={currentIndex.start + index + 1}
               key={el.memberId}
               nickname={el.nickname}
               profileImage={el.profileImage}
@@ -63,7 +96,23 @@ const Banner = () => {
               isWin={el.nickname === data[0].nickname}
             />
           ))}
-        </Flex>
+          {currentIndex.start > 0 && (
+            <img
+              src={arrowPrev}
+              onClick={handleIndexDecrease}
+              className='swiper-button-next'
+              alt='Next'
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '-70px',
+                width: '68px',
+                height: '68px',
+                cursor: 'pointer',
+              }}
+            />
+          )}
+        </Grid>
       </List>
       <Image src={guy} alt='그래픽요소' position='absolute' right='300px' top='150px' />
     </Flex>
