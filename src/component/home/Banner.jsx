@@ -33,6 +33,7 @@ const Banner = () => {
     setCurrentIndex((prev) => ({ start: prev.start - 4, end: prev.end - 4 }));
   };
 
+  const today = new Date();
   return (
     <Flex
       width='99vw'
@@ -47,7 +48,7 @@ const Banner = () => {
       <Flex direction='column' gap='50px' width='300px'>
         <Flex direction='column'>
           <Box className='Display-sm' color='brandBold' mb='10px'>
-            2024.03.14
+            {today.getFullYear()}.{today.getMonth() + 1}.{today.getDate()}
           </Box>
           <Box className='Display-sm' color='primary'>
             {projectName}팀의

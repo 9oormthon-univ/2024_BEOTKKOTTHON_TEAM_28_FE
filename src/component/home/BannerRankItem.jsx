@@ -40,7 +40,9 @@ brandBold'
         paddingX='12px'
         justifyContent='flex-end'
       >
-        {Math.floor(totalTime / 60)}시간 {totalTime % 60}분
+        {rank < 3
+          ? `${Math.floor(totalTime / 60)}시간`
+          : `${Math.floor(totalTime / 60)}시간 ${totalTime % 60}분`}
       </Flex>
     </Flex>
   );

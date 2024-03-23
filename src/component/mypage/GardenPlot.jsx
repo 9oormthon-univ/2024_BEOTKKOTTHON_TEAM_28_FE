@@ -65,7 +65,7 @@ const GardenPlot = ({ id }) => {
             <img src={clock} alt='프로젝트 참여일' width='16px' />
             <div className='Body-md'>총 참여 시간</div>
           </Flex>
-          <Box className='SubHead-xl'>{data?.totalTime ?? '00'}시간</Box>
+          <Box className='SubHead-xl'> {Math.floor(data?.totalTime / 60) ?? '00'}시간</Box>
         </Box>
       </Flex>
     </Flex>
