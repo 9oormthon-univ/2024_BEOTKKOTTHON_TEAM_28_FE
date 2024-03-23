@@ -62,8 +62,9 @@ const ManagePage = () => {
           </Flex>
           <Flex direction='column' gap='26px'>
             {data?.map((el) => (
-              <TaskItem key={el.id} />
+              <TaskItem key={el.id} content={el.content} startAt={el.startAt} endAt={el.endAt} />
             ))}
+            {(!data || data?.length === 0) && <Box>데이터가 없어요!</Box>}
           </Flex>
         </Flex>
       </Flex>

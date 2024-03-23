@@ -2,21 +2,21 @@ import { Box, Image } from '@chakra-ui/react';
 
 import ProfileEditModal from './ProfileEditModal';
 import PropTypes from 'prop-types';
+import { getUserIdInfo } from '../../api/dashboard';
 import getUserInfo from '../../api/dashboard/getUserInfo';
 import { returnProfileImg } from '../../lips/returnProfile';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-
-//import { useParams } from 'react-router-dom';
 
 const Profile = ({ isOther }) => {
   const [data, setData] = useState();
-  // TODO
-  // const { id } = useParams();
+
+  const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
       if (isOther) {
-        const response = await getUserInfo();
+        const response = await getUserIdInfo(id);
         setData(response);
       } else {
         const response = await getUserInfo();
@@ -25,7 +25,7 @@ const Profile = ({ isOther }) => {
     };
 
     fetchData();
-  }, [isOther]);
+  }, [isOther, id]);
 
   return (
     <Box w='292px' position='fixed' top='138px'>

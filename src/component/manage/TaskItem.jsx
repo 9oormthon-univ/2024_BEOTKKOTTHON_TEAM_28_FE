@@ -1,14 +1,24 @@
-import { Box, Button, Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import useToastStore from '../../stores/toastStore';
 
-const TaskItem = () => {
+const TaskItem = ({ content, startAt, endAt }) => {
   const [isToggled, setIsToggled] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
 
   const { handleShowToastMessage } = useToastStore();
   console.log(handleShowToastMessage);
+
+  const start = new Date(startAt);
+  const end = new Date(endAt);
+
+  const timeDiffInMilliseconds = end - start;
+  const timeDiffInMinutes = timeDiffInMilliseconds / (1000 * 60);
+
+  const hours = Math.floor((timeDiffInMinutes % (24 * 60)) / 60);
+  const minutes = Math.floor(timeDiffInMinutes % 60);
 
   return (
     <Flex
@@ -23,18 +33,18 @@ const TaskItem = () => {
       }}
     >
       <Flex width='100%' justifyContent='space-between' alignItems='center'>
-        <Box className='SubHead-xl'>03.18 12:00 ~ 03.19 13:00</Box>
+        <Box className='SubHead-xl'>
+          {start.getMonth() + 1}.{start.getDate()} {start.getHours()}:{start.getMinutes()} ~{' '}
+          {end.getMonth() + 1}.{end.getDate()} {end.getHours()}:{end.getMinutes()}
+        </Box>
         <Box className='Body-lg' color='brandBold'>
-          46시간 34분
+          {hours}시간 {minutes}분
         </Box>
       </Flex>
       {isToggled && (
         <Flex direction='column' alignItems='flex-end'>
-          <Box>
-            업무 종료 내용입니다.업무 종료 내용입니다.업무 종료 내용입니다.업무 종료 내용입니다.업무
-            종료 내용입니다.업무 종료 내용입니다.업무 종료 내용입니다.업무 종료 내용입니다.
-          </Box>
-          {isEditing ? (
+          <Box width='full'>{content}</Box>
+          {/* TODO {isEditing ? (
             <Button
               paddingX='75px'
               paddingY='13px'
@@ -61,11 +71,17 @@ const TaskItem = () => {
             >
               수정하기
             </Button>
-          )}
+          )} */}
         </Flex>
       )}
     </Flex>
   );
+};
+
+TaskItem.propTypes = {
+  content: PropTypes.string,
+  startAt: PropTypes.string,
+  endAt: PropTypes.string,
 };
 
 export default TaskItem;
