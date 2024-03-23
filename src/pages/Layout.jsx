@@ -39,20 +39,17 @@ const Layout = ({ children }) => {
     fetchData();
   }, [handleProfile, accessToken]);
 
-  const { userId } = useUserStore();
   const navigate = useNavigate();
 
-  console.log('userId', userId);
   useEffect(() => {
     const currentPath = location.pathname;
 
     if (!['/login', '/', '/signup'].includes(currentPath)) {
-      console.log(currentPath, '조건 패스');
-      if (!userId || userId === '') {
+      if (!accessToken) {
         navigate('/login');
       }
     }
-  }, [userId, navigate, location]);
+  }, [accessToken, location.pathname, navigate]);
 
   return (
     <div>
