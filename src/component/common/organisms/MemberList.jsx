@@ -3,13 +3,19 @@ import { Box, Button, Flex } from '@chakra-ui/react';
 import { MemberItem } from '../mocules';
 import PropTypes from 'prop-types';
 import { getMemberList } from '../../../api/taskhistory';
+import getTeamLeader from '../../../api/manage/getTeamLeader';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import useUserStore from '../../../stores/userStore';
 
 const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
   const [data, setData] = useState([]);
+
+  const [leader, setLeader] = useState();
+
+  const { userName } = useUserStore();
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -19,6 +25,16 @@ const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
       const response = await getMemberList(id);
 
       setData(response?.memberList ?? []);
+    };
+
+    fetchData();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getTeamLeader(id);
+
+      setLeader(response.filter((el) => el.isLeader === true));
     };
 
     fetchData();
@@ -56,16 +72,18 @@ const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
           />
         ))}
       </Flex>
-      <Button
-        onClick={() => {
-          navigate(`/${id}/manage`);
-        }}
-        width='100%'
-        background='#475569'
-        color='white'
-      >
-        팀원 관리
-      </Button>
+      {leader && leader[0].nickname === userName && (
+        <Button
+          onClick={() => {
+            navigate(`/${id}/manage`);
+          }}
+          width='100%'
+          background='#475569'
+          color='white'
+        >
+          팀원 관리
+        </Button>
+      )}
     </Flex>
   );
 };

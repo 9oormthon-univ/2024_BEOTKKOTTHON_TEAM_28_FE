@@ -48,13 +48,13 @@ const ContributionModal = ({ id }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getMemberScrum(id);
+      const response = await getMemberScrum(teamId, id);
 
       setScrums(response);
     };
 
     fetchData();
-  }, [id]);
+  }, [id, teamId]);
 
   return (
     <>

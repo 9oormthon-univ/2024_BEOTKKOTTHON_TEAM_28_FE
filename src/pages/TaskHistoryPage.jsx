@@ -21,13 +21,13 @@ const TaskHistoryPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (!currentUser?.memberId) return;
-      const response = await getMemberScrum(currentUser.memberId);
+      const response = await getMemberScrum(id, currentUser.memberId);
 
       setData(response ?? []);
     };
 
     fetchData();
-  }, [currentUser]);
+  }, [currentUser, id]);
 
   const handleCurrentUser = ({ name, profile, part, memberId }) => {
     setCurrentUser({ name, profile, part, memberId });
