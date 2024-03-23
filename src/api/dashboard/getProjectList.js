@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getProjectList = async (id) => {
+const getProjectList = async (id, sort = 'all') => {
   try {
-    const response = await axiosInstance.get(`/teams/members/${id}/retrieve-list?sort=all`);
+    const response = await axiosInstance.get(`/teams/members/${id}/retrieve-list?sort=${sort}`);
     return response.data.data.projectList;
   } catch (err) {
     if (err === AxiosError) {

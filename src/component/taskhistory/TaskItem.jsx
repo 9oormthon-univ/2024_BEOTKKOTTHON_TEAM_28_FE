@@ -28,7 +28,7 @@ const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
           <Box className='Headline-md' color='brandBold'>
             {startAt} - {endAt}
           </Box>
-          <Box
+          {/* <Box
             background='#ECFDF5'
             color='successBold'
             paddingX='8px'
@@ -36,7 +36,7 @@ const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
             borderRadius='14px'
           >
             NN 시간
-          </Box>
+          </Box> */}
         </Flex>
         <Flex direction='column' gap='24px' className='Body-lg'>
           <Box>{content}</Box>

@@ -1,9 +1,9 @@
 import { MemberList, TabBar } from '../component/common/organisms';
 import { TaskItem, TeamProfile } from '../component/taskhistory';
-import { getMemberList, getMemberScrum } from '../api/taskhistory';
 
 import { Flex } from '@chakra-ui/react';
 import { GardenPlot } from '../component/mypage';
+import { getMemberScrum } from '../api/taskhistory';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -20,33 +20,32 @@ const TaskHistoryPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!currentUser?.memberId) return;
-      const response = await getMemberScrum(currentUser.memberId);
+      const response = await getMemberScrum(id, currentUser?.memberId);
 
       setData(response ?? []);
     };
 
     fetchData();
-  }, [currentUser]);
+  }, [currentUser, id]);
 
   const handleCurrentUser = ({ name, profile, part, memberId }) => {
     setCurrentUser({ name, profile, part, memberId });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getMemberList(id);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await getMemberList(id);
 
-      setCurrentUser({
-        name: response?.memberList[0].nickname,
-        profile: response?.memberList[0].profileImage,
-        part: response?.memberList[0].part,
-        memberId: response?.memberList[0].memberId,
-      });
-    };
+  //     setCurrentUser({
+  //       name: response?.memberList[0].nickname,
+  //       profile: response?.memberList[0].profileImage,
+  //       part: response?.memberList[0].part,
+  //       memberId: response?.memberList[0].memberId,
+  //     });
+  //   };
 
-    fetchData();
-  }, [id]);
+  //   fetchData();
+  // }, [id]);
 
   return (
     <main>

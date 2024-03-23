@@ -1,21 +1,43 @@
 import { Box, Button, Flex, Image } from '@chakra-ui/react';
 
-import tomato from '../../assets/tomato.png';
+import PropTypes from 'prop-types';
+import { returnProfileImg } from '../../lips/returnProfile';
 
-const ProfileEditModalUserItem = () => {
+const ProfileEditModalUserItem = ({ onClick, memberId, nickname, profileImage, isLeader }) => {
   return (
     <Flex direction='column' gap='12px' alignItems='flex-start'>
-      <Flex gap='8px'>
-        <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
+      <Flex gap='8px' alignItems='center'>
+        <Image borderRadius='50%' src={returnProfileImg(profileImage)} alt='프로필' width='48px' />
         <Flex>
-          <Box>김새싹</Box>
+          <Box>{nickname}</Box>
         </Flex>
       </Flex>
-      <Button className='SubHead-lg' paddingX='16px' variant='grayWhite'>
-        권한 위임
-      </Button>
+      {isLeader ? (
+        <Button className='SubHead-lg' paddingX='16px' background='gray.200'>
+          리더 입니다
+        </Button>
+      ) : (
+        <Button
+          className='SubHead-lg'
+          paddingX='16px'
+          variant='grayWhite'
+          onClick={() => {
+            onClick(memberId);
+          }}
+        >
+          권한 위임
+        </Button>
+      )}
     </Flex>
   );
+};
+
+ProfileEditModalUserItem.propTypes = {
+  onClick: PropTypes.func,
+  memberId: PropTypes.string,
+  nickname: PropTypes.string,
+  profileImage: PropTypes.string,
+  isLeader: PropTypes.bool,
 };
 
 export default ProfileEditModalUserItem;

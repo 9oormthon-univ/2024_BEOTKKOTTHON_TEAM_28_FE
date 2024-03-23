@@ -1,9 +1,11 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getMemberScrum = async (id) => {
+const getMemberScrum = async (id, memberId) => {
   try {
-    const response = await axiosInstance.get(`/members/${id}/scrums`);
+    const response = await axiosInstance.get(
+      `/teams/${id}/scrums${memberId ? `?target=${memberId}` : ''}`,
+    );
     return response.data.data.scrumList;
   } catch (err) {
     if (err === AxiosError) {
