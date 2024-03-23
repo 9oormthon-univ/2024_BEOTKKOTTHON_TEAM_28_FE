@@ -46,7 +46,7 @@ const QuestionBox = () => {
                 width='48px'
               />
               <Flex direction='column'>
-                <Box className='SubHead-lg'>{el.sender.content}</Box>
+                <Box className='SubHead-lg'>{el.sender.content.substring(0, 10)}...</Box>
                 <Box className='SubHead-md' color='brandBold'>
                   {el.sender.part}
                 </Box>
