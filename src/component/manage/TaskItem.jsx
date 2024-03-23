@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import useToastStore from '../../stores/toastStore';
 
-const TaskItem = ({ content, startAt, endAt }) => {
+const TaskItem = ({ id, content, startAt, endAt, currentUser }) => {
   const [isToggled, setIsToggled] = useState(false);
   // const [isEditing, setIsEditing] = useState(false);
 
@@ -46,7 +46,7 @@ const TaskItem = ({ content, startAt, endAt }) => {
       {isToggled && (
         <Flex direction='column' alignItems='flex-end'>
           <Box width='full'>{content}</Box>
-          <DateChangeModal startAt={startAt} endAt={endAt} />
+          <DateChangeModal id={id} startAt={startAt} endAt={endAt} currentUser={currentUser} />
         </Flex>
       )}
     </Flex>
@@ -54,6 +54,8 @@ const TaskItem = ({ content, startAt, endAt }) => {
 };
 
 TaskItem.propTypes = {
+  id: PropTypes.string,
+  currentUser: PropTypes.object,
   content: PropTypes.string,
   startAt: PropTypes.string,
   endAt: PropTypes.string,
