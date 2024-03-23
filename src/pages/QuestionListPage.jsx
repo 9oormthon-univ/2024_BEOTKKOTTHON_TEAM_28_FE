@@ -22,7 +22,7 @@ const QuestionListPage = () => {
   const [sort, setSort] = useState('all');
   const { userName } = useUserStore();
 
-  const [selectedSort, setSelectedSort] = useState('');
+  const [selectedSort, setSelectedSort] = useState('전체');
 
   useEffect(() => {
     if (currentTeam.teamId === 0) return;
@@ -61,8 +61,8 @@ const QuestionListPage = () => {
   }, []);
 
   const handleReceivedTabClick = (newSort) => {
-    setSort(ReceivedTab[SortType.indexOf(newSort)]); // 외부 상태 업데이트 함수
-    setSelectedSort(newSort); // 내부 상태 업데이트
+    setSort(ReceivedTab[SortType.indexOf(newSort)]);
+    setSelectedSort(newSort);
   };
 
   return (
