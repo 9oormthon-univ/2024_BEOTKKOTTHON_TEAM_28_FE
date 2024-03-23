@@ -1,7 +1,7 @@
 import { MemberList, TabBar } from '../component/common/organisms';
 import { TaskItem, TeamProfile } from '../component/taskhistory';
 
-import { Flex } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import { GardenPlot } from '../component/mypage';
 import { getMemberScrum } from '../api/taskhistory';
 import { useEffect } from 'react';
@@ -64,16 +64,20 @@ const TaskHistoryPage = () => {
             <Flex direction='column' gap='32px'>
               <TabBar tabs={Tabs} />
               <Flex direction='column' gap='24px'>
-                {data.map((el) => (
-                  <TaskItem
-                    currentUser={currentUser}
-                    key={el.id}
-                    content={el.content}
-                    startAt={el.startAt}
-                    endAt={el.endAt}
-                    workList={el.workList}
-                  />
-                ))}
+                {data.length === 0 ? (
+                  <Box>데이터가 없습니다.</Box>
+                ) : (
+                  data.map((el) => (
+                    <TaskItem
+                      currentUser={currentUser}
+                      key={el.id}
+                      content={el.content}
+                      startAt={el.startAt}
+                      endAt={el.endAt}
+                      workList={el.workList}
+                    />
+                  ))
+                )}
               </Flex>
             </Flex>
           </Flex>
