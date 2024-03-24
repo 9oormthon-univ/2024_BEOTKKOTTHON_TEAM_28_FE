@@ -17,6 +17,9 @@
 ### 💜 1년동안의 작업 척도 시각화
 현재 진행 중인 프로젝트, 지난 프로젝트에서 본인의 작업 척도를 기록하여 비트맵을 통해 시각화합니다.
 
+## Wiki
+- [wiki](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_28_FE/wiki)
+
 ## Period
 - 2024.03.13 ~ 2024.03.24
 
