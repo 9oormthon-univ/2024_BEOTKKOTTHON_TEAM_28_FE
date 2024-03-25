@@ -22,6 +22,8 @@
 
 ## Period
 - 2024.03.13 ~ 2024.03.24
+  
+🌸 9oormthonUNIV 2기 Team 28 스타트업 밸리 우수상(구름 대표상) 수상
 
 ## Stacks
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=ffffff)
@@ -61,3 +63,13 @@
 | :----: | :----: |
 | <img src="https://avatars.githubusercontent.com/a-honey" alt="profile" width="180" height="180"> | <img src="https://avatars.githubusercontent.com/Sohyunnnn" alt="profile" width="180" height="180"> |
 | [@a-honey](https://github.com/a-honey) | [@Sohyunnnn](https://github.com/Sohyunnnn) |
+
+### 정아현
+- 컨벤션 통일, 프로젝트 구조 세팅 등 프로젝트 리드
+- 팀 작업 기록, 질문 목록, 작업기록, 나의 대시보드 페이지 마크업
+- REST API 응답에서 받은 쿠키에 저장된 토큰을 추출하여 요청 헤더에 삽입 및 로그인 상태 관리
+- 컴포넌트 분리 및 API 연결 진행
+
+### 박소현
+- 로그인, 회원가입, 랜딩 페이지 마크업 진행
+- 디자인 QA 및 스타일 수정 진행
