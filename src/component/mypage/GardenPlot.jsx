@@ -48,7 +48,7 @@ const GardenPlot = ({ id }) => {
               return 'color-empty';
             }
             const colorScale = Math.floor((4 * value.count) / data?.workMaxTime);
-            return `color-scale-${colorScale}`;
+            return `color-scale-${colorScale === 0 ? '1' : colorScale}`;
           }}
         />
       </Box>
