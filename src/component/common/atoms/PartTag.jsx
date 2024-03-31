@@ -1,5 +1,6 @@
 import { Badge } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+import { changePartToKr } from '../../../lips/changePartToKr';
 
 const PartTag = ({ part, active = false }) => {
   return (
@@ -12,7 +13,7 @@ const PartTag = ({ part, active = false }) => {
       paddingY='4px'
       paddingX='8px'
     >
-      {part}
+      {changePartToKr(part)}
     </Badge>
   );
 };
