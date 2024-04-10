@@ -17,6 +17,11 @@ const ProjectListModal = ({ isTaskHistory }) => {
     fetchProjectList();
   }, []);
 
+  /*
+  TODO
+  모달로 변경하기
+  클릭하면 페이지이동 X, 전역 상태 변경 및 리렌더링 확인
+  */
   return (
     <Flex
       position='fixed'
