@@ -17,7 +17,14 @@ const TitleProfile = ({ isNoTime = false, right, part, createdAt, profileImage, 
             <Box className='Headline-lg'>{nickname}</Box>
             <PartTag part={part} active={true} />
           </Flex>
-          {!isNoTime && <Box className='Body-md'>{timeDifference} 시간 전</Box>}
+          {!isNoTime && timeDifference === 0 ? (
+            <Box className='Body-md'>몇 분 전</Box>
+          ) : (
+            <Box className='Body-md'>
+              {timeDifference >= 24 && `${Math.floor(timeDifference / 24)}일 `}
+              {timeDifference % 24 !== 0 && `${timeDifference % 24}시간 `}전
+            </Box>
+          )}
         </Flex>
       </Flex>
       {right ?? null}
