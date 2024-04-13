@@ -36,6 +36,21 @@ const Header = () => {
     }
   });
 
+  const handleClickLogout = () => {
+    let updatedCookies = '';
+    cookies.forEach((cookie) => {
+      if (
+        !cookie.trim().startsWith('access_token=') &&
+        !cookie.trim().startsWith('refresh_token=')
+      ) {
+        updatedCookies += cookie.trim() + '; ';
+      }
+    });
+
+    document.cookie = updatedCookies;
+    accessToken = '';
+  };
+
   return (
     <>
       <header style={{ paddingBottom: '60px' }}>
@@ -128,6 +143,7 @@ const Header = () => {
               나의 대시보드
             </Button>
             {accessToken && <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />}
+            {accessToken && <Button onClick={handleClickLogout}>로그아웃</Button>}
             {!accessToken && (
               <Button
                 background='brand'
