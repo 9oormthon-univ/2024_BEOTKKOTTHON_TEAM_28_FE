@@ -1,13 +1,24 @@
 import { Flex, Text, Input } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-const InputContent = ({ label, placeholder, mt, value, onChange, type, confirmValue }) => {
+const InputContent = ({
+  label,
+  placeholder,
+  mt,
+  value,
+  onChange,
+  type,
+  confirmValue,
+  isConfirm,
+}) => {
   const isPasswordMatch = value === confirmValue;
 
   let borderColor = '#000';
   if (value && confirmValue) {
     borderColor = isPasswordMatch ? '#2563EB' : '#e53e3e';
   }
+
+  const shouldShowError = value && confirmValue && !isPasswordMatch && isConfirm;
 
   return (
     <Flex direction='column' mt={mt}>
@@ -27,6 +38,15 @@ const InputContent = ({ label, placeholder, mt, value, onChange, type, confirmVa
         borderColor={borderColor}
         focusBorderColor='#059669'
       />
+      {shouldShowError && (
+        <Text
+          color='#e53e3e'
+          mt='2px'
+          // position='fixed' top='908px'
+        >
+          비밀번호가 일치하지 않습니다.
+        </Text>
+      )}
     </Flex>
   );
 };
@@ -39,6 +59,8 @@ InputContent.propTypes = {
   onChange: PropTypes.func.isRequired,
   type: PropTypes.string,
   confirmValue: PropTypes.string,
+  CheckPassword: PropTypes.string,
+  isConfirm: PropTypes.bool,
 };
 
 export default InputContent;
