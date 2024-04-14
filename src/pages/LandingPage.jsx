@@ -1,17 +1,18 @@
-import { Button, Flex, Img, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Button, Flex, Image, Img, Text, useBreakpointValue } from '@chakra-ui/react';
 
 import landing1 from '../assets/landing1.png';
 import landing2 from '../assets/landing2.png';
 import landing3 from '../assets/landing3.png';
 import landing4 from '../assets/landing4.png';
 import landing5 from '../assets/landing5.png';
+import text_logo from '../assets/text_logo.png';
 
 const LandingPage = () => {
-  const mainImgWidth = useBreakpointValue({ base: '320px', md: '422.158px', lg: '571.63px' });
-  const flexDirection = useBreakpointValue({ base: 'column', md: 'row' });
-  const align = useBreakpointValue({ base: 'center', md: 'end' });
-  const padding = useBreakpointValue({ base: '20px', md: '0' });
-  const gap = useBreakpointValue({ base: '50px', md: '0' });
+  const mainImgWidth = { base: '320px', md: '422.158px', lg: '571.63px' };
+  const flexDirection = { base: 'column', md: 'row' };
+  const align = { base: 'center', md: 'end' };
+  const padding = { base: '20px', md: '0' };
+  const gap = { base: '50px', md: '0' };
 
   const title_lg = useBreakpointValue({ base: 'Headline-lg', md: 'Display-lg' });
 
@@ -28,7 +29,7 @@ const LandingPage = () => {
           width='100%'
           gap='28px'
         >
-          <Text className='Headline-lg'>STARTUP VALLEY</Text>
+          <Image src={text_logo} width='131px' height='21px' alt='스타트업밸리 로고' />
           <Text className={title_lg} textAlign='center'>
             팀원들이{' '}
             <Text as='span' color='#648B7B'>
@@ -46,6 +47,7 @@ const LandingPage = () => {
             bg='#059669'
             color='white'
             w='252px'
+            h='50px'
             onClick={() => {
               window.open(
                 'https://discord.com/api/oauth2/authorize?client_id=1214574551820800040&permissions=8&scope=bot',
@@ -57,20 +59,20 @@ const LandingPage = () => {
           </Button>
         </Flex>
         <Flex mt='120px' mb='158.59px'>
-          <Flex
-            direction={flexDirection}
-            align={'center'}
-            gap={useBreakpointValue({ base: '', md: '24px' })}
-          >
+          <Flex direction={flexDirection} align={'center'} gap={{ base: '', md: '24px' }}>
             <Flex
               direction='column'
               padding={padding}
               gap='28px'
               justify='center'
-              align={useBreakpointValue({ base: 'left', md: 'center' })}
+              align={{ base: 'left', md: 'center' }}
             >
               <Text
-                className={`${useBreakpointValue({ base: 'Headline-md', md: 'Display-sm', lg: 'Display-md' })}`}
+                className={useBreakpointValue({
+                  base: 'Headline-md',
+                  md: 'Display-sm',
+                  lg: 'Display-md',
+                })}
               >
                 <Text as='span' color='#648B7B'>
                   매번, 팀원의 작업을
