@@ -30,11 +30,6 @@ const SignupPage = () => {
     console.log('password:', password);
     console.log('confirmPassword:', confirmPassword);
 
-    if (password !== confirmPassword) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
     const userData = {
       nickname: nickname,
       discord_id: discordId,
@@ -119,6 +114,7 @@ const SignupPage = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             confirmValue={password}
+            isConfirm={true}
           />
           <Flex direction='column' w='100%'>
             <Flex justify='space-between' mt='36px'>
