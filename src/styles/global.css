@@ -103,7 +103,7 @@ body {
 main {
   position: relative;
   margin: 0 auto;
-  padding-bottom: 200px;
+  /* padding-bottom: 200px; */
   min-width: 360px;
 }
 
