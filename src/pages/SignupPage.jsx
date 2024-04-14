@@ -83,7 +83,7 @@ const SignupPage = () => {
   return (
     <main>
       <Flex justify='center'>
-        <AuthBox mt='80px' mb='191px'>
+        <AuthBox mt='100px' mb='100px'>
           <Text mt='36px' mb='12px' w='100%'>
             프로필 캐릭터
           </Text>
