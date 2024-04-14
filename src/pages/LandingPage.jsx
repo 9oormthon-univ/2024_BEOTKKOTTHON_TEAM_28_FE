@@ -7,11 +7,13 @@ import landing4 from '../assets/landing4.png';
 import landing5 from '../assets/landing5.png';
 
 const LandingPage = () => {
-  const mainImgWidth = useBreakpointValue({ base: '500vw', md: '776px' });
+  const mainImgWidth = useBreakpointValue({ base: '320px', md: '422.158px', lg: '571.63px' });
   const flexDirection = useBreakpointValue({ base: 'column', md: 'row' });
   const align = useBreakpointValue({ base: 'center', md: 'end' });
-  const padding = useBreakpointValue({ base: '50px', md: '0' });
+  const padding = useBreakpointValue({ base: '20px', md: '0' });
   const gap = useBreakpointValue({ base: '50px', md: '0' });
+
+  const title_lg = useBreakpointValue({ base: 'Headline-lg', md: 'Display-lg' });
 
   return (
     <main>
@@ -27,7 +29,7 @@ const LandingPage = () => {
           gap='28px'
         >
           <Text className='Headline-lg'>STARTUP VALLEY</Text>
-          <Text className='Display-lg' textAlign='center'>
+          <Text className={title_lg} textAlign='center'>
             팀원들이{' '}
             <Text as='span' color='#648B7B'>
               별 일
@@ -55,18 +57,34 @@ const LandingPage = () => {
           </Button>
         </Flex>
         <Flex mt='120px' mb='158.59px'>
-          <Flex direction={flexDirection}>
-            <Flex direction='column' padding={padding} w='472px' gap='28px' justify='center'>
-              <Text className='Display-lg'>
+          <Flex
+            direction={flexDirection}
+            align={'center'}
+            gap={useBreakpointValue({ base: '', md: '24px' })}
+          >
+            <Flex
+              direction='column'
+              padding={padding}
+              gap='28px'
+              justify='center'
+              align={useBreakpointValue({ base: 'left', md: 'center' })}
+            >
+              <Text
+                className={`${useBreakpointValue({ base: 'Headline-md', md: 'Display-sm', lg: 'Display-md' })}`}
+              >
                 <Text as='span' color='#648B7B'>
-                  매번, 팀원의 작업을 <br />
-                  번거롭게 확인하지 말고 <br />
+                  매번, 팀원의 작업을
+                  {useBreakpointValue({ base: '', md: <br /> })}
+                  번거롭게 확인하지 말고
+                  <br />
                 </Text>
-                스타트업밸리를 통해서 <br />
+                스타트업밸리를 통해서
+                {useBreakpointValue({ base: '', md: <br /> })}
                 작업을 기록해보세요
               </Text>
               <Text className='Subline-xl'>
-                팀원 뿐만 아니라, 여러분들의 작업 기록 또한 <br />
+                팀원 뿐만 아니라, 여러분들의 작업 기록 또한
+                <br />
                 AI를 통해 요약해 줄거에요!
               </Text>
             </Flex>
@@ -74,11 +92,15 @@ const LandingPage = () => {
           </Flex>
         </Flex>
         <Flex direction='column' gap='48px'>
-          <Text className='Display-lg' textAlign='center'>
+          <Text
+            className={useBreakpointValue({ base: 'Headline-md', md: 'Display-lg' })}
+            textAlign='center'
+          >
             <Text as='span' color='#648B7B'>
               업무에 메인 사람이 아니라 <br />{' '}
             </Text>
-            메인 업무에만 집중하실 수 있도록 이런 기능을 제공해요!
+            메인 업무에만 집중하실 수 있도록 {useBreakpointValue({ base: <br />, md: '' })}이런
+            기능을 제공해요!
           </Text>
           <Flex direction={flexDirection} align={align} justify='center' gap={gap}>
             <Img w='302.942px' h='301.732px' mr='32.27px' src={landing2} />

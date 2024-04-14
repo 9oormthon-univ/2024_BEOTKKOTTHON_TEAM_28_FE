@@ -6,7 +6,7 @@ const Footer = () => {
   const paddingX = useBreakpointValue({ base: '10px', md: '188px' });
   const flexDirection = useBreakpointValue({ base: 'column', md: 'row' });
   const gap = useBreakpointValue({ base: '10px', md: '0' });
-  const width = useBreakpointValue({ base: '450px', md: '700px' });
+  const width = useBreakpointValue({ base: '320px', md: '700px' });
 
   return (
     <footer>
@@ -21,15 +21,23 @@ const Footer = () => {
       >
         <Flex direction='column' width='full'>
           <Text>Check our Notion</Text>
-          <Text>저희의 협업 이야기를 알고 싶으신가요? 저희의 노션을 방문해보세요</Text>
+          <Text>
+            저희의 협업 이야기를 알고 싶으신가요?{useBreakpointValue({ base: <br />, md: '' })}{' '}
+            저희의 노션을 방문해보세요
+          </Text>
           <Text mt='8px'>@2024 startupvally.all rights reserved</Text>
         </Flex>
-        <Grid templateColumns='repeat(6, 1fr)' gap='15px' w={width}>
-          <Text fontSize='sm' textAlign='left' gridColumn='1 / span 6'>
-            Team AGRI
-          </Text>
+
+        <Text
+          className='Body-lg'
+          textAlign='left'
+          width={useBreakpointValue({ base: '100%', md: '200px' })}
+        >
+          Team AGRI
+        </Text>
+        <Grid templateColumns={`repeat(${useBreakpointValue({ base: 4, md: 6 })}, 1fr)`} w={width}>
           {Members.map((member, index) => (
-            <Text key={index} textAlign='left' fontSize='sm'>
+            <Text key={index} className='Body-lg'>
               {member}
             </Text>
           ))}
