@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { MenuIcon } from '../atoms';
 import ProjectListModal from './ProjectListModal';
+import { postLogout } from '../../../api/login';
 import text_logo from '../../../assets/text_logo.png';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../../../stores/userStore';
@@ -35,19 +36,13 @@ const Header = () => {
     }
   });
 
-  const handleClickLogout = () => {
-    let updatedCookies = '';
-    cookies.forEach((cookie) => {
-      if (
-        !cookie.trim().startsWith('access_token=') &&
-        !cookie.trim().startsWith('refresh_token=')
-      ) {
-        updatedCookies += cookie.trim() + '; ';
-      }
-    });
-
-    document.cookie = updatedCookies;
-    accessToken = '';
+  const handleClickLogout = async () => {
+    try {
+      await postLogout();
+    } catch (error) {
+      console.error('Login Error:', error);
+      alert('로그아웃에 실패했습니다. 다시 시도해주세요.');
+    }
   };
 
   return (
@@ -80,13 +75,7 @@ const Header = () => {
           >
             <MenuIcon />
           </Box>
-          <Flex
-            className='smNone'
-            gap='20px'
-            align='center'
-            minWidth='500px'
-            display={{ base: 'none', ml: 'visible' }}
-          >
+          <Flex className='smNone' gap='20px' align='center' minWidth='500px'>
             <Button
               onClick={() => {
                 if (!accessToken) {
