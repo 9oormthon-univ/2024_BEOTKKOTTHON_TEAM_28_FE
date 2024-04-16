@@ -104,6 +104,7 @@ main {
   position: relative;
   margin: 0 auto;
   padding-bottom: 200px;
+  min-width: 360px;
 }
 
 .react-calendar-heatmap-month-label {
