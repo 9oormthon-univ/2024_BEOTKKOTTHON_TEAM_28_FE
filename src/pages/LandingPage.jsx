@@ -11,7 +11,7 @@ const LandingPage = () => {
   const mainImgWidth = { base: '320px', md: '422.158px', lg: '571.63px' };
   const flexDirection = { base: 'column', md: 'row' };
   const align = { base: 'center', md: 'end' };
-  const padding = { base: '20px', md: '0' };
+  const padding = { base: '0px', md: '0' };
   const gap = { base: '50px', md: '0' };
 
   const title_lg = useBreakpointValue({ base: 'Headline-lg', md: 'Display-lg' });
@@ -84,7 +84,7 @@ const LandingPage = () => {
                 {useBreakpointValue({ base: '', md: <br /> })}
                 작업을 기록해보세요
               </Text>
-              <Text className='Subline-xl'>
+              <Text className='Subline-xl' textColor='#334155'>
                 팀원 뿐만 아니라, 여러분들의 작업 기록 또한
                 <br />
                 AI를 통해 요약해 줄거에요!
@@ -105,10 +105,29 @@ const LandingPage = () => {
             기능을 제공해요!
           </Text>
           <Flex direction={flexDirection} align={align} justify='center' gap={gap}>
-            <Img w='302.942px' h='301.732px' mr='32.27px' src={landing2} />
-            <Img w='329.016px' h='335.412px' src={landing3} />
-            <Img w='349.112px' h='316.072px' ml='-12px' mb='-14.34px' src={landing4} />
-            <Img w='307.113px' h='301.732px' src={landing5} />
+            <Img
+              mr={{ base: '', md: '32.27px' }}
+              w={{ base: '267.7px', md: '302.942px' }}
+              h={{ base: '266.64px', md: '301.732px' }}
+              src={landing2}
+            />
+            <Img
+              w={{ base: '292.28px', md: '349.112px' }}
+              h={{ base: '296.39px', md: '335.412px' }}
+              src={landing3}
+            />
+            <Img
+              ml={{ base: '', md: '-12px' }}
+              mb={{ base: '', md: '-14.34px' }}
+              w={{ base: '308.5px', md: '349.112px' }}
+              h={{ base: '279.32px', md: '316.072px' }}
+              src={landing4}
+            />
+            <Img
+              w={{ base: '271.39px', md: '307.113px' }}
+              h={{ base: '271.26px', md: '301.732px' }}
+              src={landing5}
+            />
           </Flex>
         </Flex>
       </Flex>
