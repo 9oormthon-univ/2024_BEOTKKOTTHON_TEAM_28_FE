@@ -14,11 +14,16 @@ const InputContent = ({
   const isPasswordMatch = value === confirmValue;
 
   let borderColor = '#000';
-  if (value && confirmValue) {
-    borderColor = isPasswordMatch ? '#2563EB' : '#e53e3e';
+
+  if (value) {
+    if ((value || confirmValue) && isPasswordMatch) {
+      borderColor = '#2563EB';
+    } else {
+      borderColor = '#e53e3e';
+    }
   }
 
-  const shouldShowError = value && confirmValue && !isPasswordMatch && isConfirm;
+  const shouldShowError = value && !isPasswordMatch && isConfirm;
 
   return (
     <Flex direction='column' mt={mt}>
