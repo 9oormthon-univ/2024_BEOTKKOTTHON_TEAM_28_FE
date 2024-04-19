@@ -6,7 +6,7 @@ const chakraTheme = extendTheme({
     white: '#ffffff',
     primary: '#0A0A0D',
     secondary: '#334155',
-    tertiary: '#64748B',
+    tertiary: '#64748B', //확인필요
     brand: '#10B981',
     brandBold: '#065F46',
     info: '#4F46E5',
