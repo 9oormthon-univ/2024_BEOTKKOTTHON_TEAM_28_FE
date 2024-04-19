@@ -15,8 +15,7 @@ const BannerRankItem = ({ rank, totalTime, profileImage, nickname, isWin }) => {
           justifyContent='center'
           alignItems='center'
           color='white'
-          background='
-brandBold'
+          background='brandBold'
         >
           {rank}
         </Flex>
