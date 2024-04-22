@@ -31,7 +31,8 @@ const QuestionBox = () => {
         gap='12px'
         width='276px'
         marginBottom='12px'
-        background='#F0F2F4'
+        //background='#F0F2F4'
+        background='white' // 박스 색 변경
         padding='12px'
         borderRadius='12px'
       >
@@ -65,6 +66,7 @@ const QuestionBox = () => {
           onClick={() => {
             navigate(`/${id}/task-history`);
           }}
+          //border='1px solid success'
         >
           더보기
         </Button>

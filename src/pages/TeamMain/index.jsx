@@ -44,7 +44,10 @@ const HomePage = () => {
         <Flex margin='auto'>
           <Flex direction='column' gap='64px'>
             <QuestionBox />
-            <MemberList />
+            <MemberList
+              isWhite={true}
+              //색 변경
+            />
           </Flex>
           <Flex direction='column' marginLeft='48px' w='922px' gap='36px'>
             {/* <Note /> */}
