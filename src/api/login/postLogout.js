@@ -3,13 +3,9 @@ import axiosInstance from '..';
 
 const postLogout = async () => {
   try {
-    const response = await axiosInstance.post(
-      '/auth/sign-out',
-      {},
-      {
-        withCredentials: true,
-      },
-    );
+    const response = await axiosInstance.post('/auth/sign-out', null, {
+      withCredentials: true,
+    });
 
     console.log('로그아웃');
 
