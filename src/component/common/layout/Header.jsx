@@ -1,8 +1,9 @@
-import { Button, Flex, Image, Link, Spacer, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Link, useBreakpointValue } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import { MenuIcon } from '../atoms';
 import ProjectListModal from './ProjectListModal';
+import { postLogout } from '../../../api/login';
 import text_logo from '../../../assets/text_logo.png';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../../../stores/userStore';
@@ -24,8 +25,7 @@ const Header = () => {
     setOnProjectListTowToggled(false);
   }, []);
 
-  const paddingX = useBreakpointValue({ base: '10px', md: '182px' });
-  const width = useBreakpointValue({ base: '200px', md: 0 });
+  const width = useBreakpointValue({ base: '360px', md: 0 });
 
   const cookies = document.cookie.split(';');
 
@@ -36,19 +36,13 @@ const Header = () => {
     }
   });
 
-  const handleClickLogout = () => {
-    let updatedCookies = '';
-    cookies.forEach((cookie) => {
-      if (
-        !cookie.trim().startsWith('access_token=') &&
-        !cookie.trim().startsWith('refresh_token=')
-      ) {
-        updatedCookies += cookie.trim() + '; ';
-      }
-    });
-
-    document.cookie = updatedCookies;
-    accessToken = '';
+  const handleClickLogout = async () => {
+    try {
+      await postLogout();
+    } catch (error) {
+      console.error('Login Error:', error);
+      alert('로그아웃에 실패했습니다. 다시 시도해주세요.');
+    }
   };
 
   return (
@@ -62,8 +56,9 @@ const Header = () => {
           zIndex='999'
           width='100%'
           height='60px'
+          justifyContent='space-between'
           alignItems='center'
-          p={`15px ${paddingX}`}
+          p={{ base: '15px 10px', md: '15px 64px', xl: '15px 182px' }}
         >
           <Link href='/' mr='9px'>
             <Flex gap='9px' alignItems='center' minWidth='200px'>
@@ -71,17 +66,16 @@ const Header = () => {
               <Image src={text_logo} width='131px' height='21px' alt='스타트업밸리 로고' />
             </Flex>
           </Link>
-          <Spacer />
-          <Flex gap='20px' align='center'>
-            <div
-              className='sm'
-              style={{ position: 'fixed', top: '20px', right: '20px' }}
-              onClick={() => {
-                setMenuToggled((prev) => !prev);
-              }}
-            >
-              <MenuIcon />
-            </div>
+
+          <Box
+            className='sm'
+            onClick={() => {
+              setMenuToggled((prev) => !prev);
+            }}
+          >
+            <MenuIcon />
+          </Box>
+          <Flex className='smNone' gap='20px' align='center' minWidth='500px'>
             <Button
               onClick={() => {
                 if (!accessToken) {
@@ -159,7 +153,7 @@ const Header = () => {
           </Flex>
         </Flex>
       </header>
-      {width === '200px' && onMenuToggled && (
+      {width <= '360px' && onMenuToggled && (
         <Flex
           className='sm'
           zIndex='1000'

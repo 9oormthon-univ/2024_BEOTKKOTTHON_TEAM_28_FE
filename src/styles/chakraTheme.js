@@ -16,6 +16,17 @@ const chakraTheme = extendTheme({
     warning: '#F59E0B',
     warningBold: '#B45309',
     background: '#36e7bd',
+    gray: {
+      100: '#F1F5F9',
+      200: '#E2E8F0',
+      300: '#CBD5E1',
+      400: '#94A3B8',
+      500: '#64748B',
+      600: '#475569',
+      700: '#334155',
+      800: '#1E293B',
+      900: '#0A0A0D',
+    },
   },
   components: {
     Button: {
@@ -24,6 +35,12 @@ const chakraTheme = extendTheme({
         grayWhite: { bg: '#475569', color: '#FFFFFF' },
       },
     },
+  },
+  breakpoints: {
+    sm: '360px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1440px',
   },
 });
 
