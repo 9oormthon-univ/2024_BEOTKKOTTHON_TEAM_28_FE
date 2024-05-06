@@ -13,6 +13,6 @@ export const returnVegi = (img) => {
     case '/tomato.png':
       return 'TOMATO';
     default:
-      return 'img';
+      return img;
   }
 };
