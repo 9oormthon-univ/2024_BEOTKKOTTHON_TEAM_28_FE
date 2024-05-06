@@ -24,7 +24,7 @@ const MyPage = () => {
         <Flex gap='25px' mt='68px'>
           <Profile />
           <Flex direction='column' w='922px' gap='86px'>
-            <GardenPlot id={userId} />
+            <GardenPlot id={String(userId)} />
             <Box>
               <TabBar tabs={Tabs} />
               <Box direction='column' marginY='20px'>
