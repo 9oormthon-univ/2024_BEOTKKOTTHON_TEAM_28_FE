@@ -1,17 +1,12 @@
 import { Box, Flex } from '@chakra-ui/react';
 
-// import DateChangeModal from './DateChangeModal';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import useToastStore from '../../stores/toastStore';
+
+const itemContainerWidth = { base: '320px', md: '666px', lg: '708px', xl: '924px' };
 
 const TaskItem = ({ content, startAt, endAt }) => {
   const [isToggled, setIsToggled] = useState(false);
-  // const [isEditing, setIsEditing] = useState(false);
-
-  const { handleShowToastMessage } = useToastStore();
-  //이걸로 토스트 56번 줄 참고
-  console.log(handleShowToastMessage);
 
   const start = new Date(startAt);
   const end = new Date(endAt);
@@ -28,8 +23,9 @@ const TaskItem = ({ content, startAt, endAt }) => {
       gap='20px'
       paddingX='24px'
       paddingY='16px'
-      background='gray.100'
+      background='#F0F2F4'
       borderRadius='8px'
+      width={itemContainerWidth}
       onClick={() => {
         setIsToggled((prev) => !prev);
       }}

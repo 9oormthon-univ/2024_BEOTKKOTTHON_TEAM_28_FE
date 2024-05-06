@@ -11,7 +11,7 @@ const postLogout = async () => {
       },
     );
 
-    console.log('로그아웃');
+    window.location.href('/');
 
     return response.data.success;
   } catch (err) {
