@@ -2,9 +2,9 @@ import { Banner, QuestionBox } from '../../component/home';
 import { Box, Flex } from '@chakra-ui/react';
 import { MemberList, TabBar } from '../../component/common/organisms';
 
-import WorkItem from '../component/home/WorkItem';
-import { getMemberTasks } from '../api/teamhistory';
-import { getMemberRanking } from '../api/teamhistory';
+import WorkItem from '../../component/home/WorkItem';
+import { getMemberTasks } from '../../api/teamhistory';
+import { getMemberRanking } from '../../api/teamhistory';
 
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
