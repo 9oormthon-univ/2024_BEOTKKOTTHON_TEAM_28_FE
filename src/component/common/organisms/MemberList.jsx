@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../../../stores/userStore';
 
-const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
+const MemberList = ({ currentUser, isWhite, handleCurrentUser, projectName }) => {
   const [data, setData] = useState([]);
 
   const [leader, setLeader] = useState();
@@ -44,7 +44,7 @@ const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
     <Flex direction='column' gap='12px'>
       {isWhite ? (
         <Flex direction='column'>
-          <Box>스타트업 밸리팀</Box>
+          <Box>{projectName}팀</Box>
           <Box>멤버들의 백로그를 확인해보세요!</Box>
         </Flex>
       ) : (
@@ -92,6 +92,7 @@ MemberList.propTypes = {
   isWhite: PropTypes.bool,
   handleCurrentUser: PropTypes.func,
   currentUser: PropTypes.object,
+  projectName: PropTypes.string,
 };
 
 export default MemberList;

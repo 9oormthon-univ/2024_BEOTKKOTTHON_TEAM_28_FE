@@ -1,13 +1,14 @@
 import { Box, Button, Flex, Image } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
-import { returnProfileImg } from '../../lips/returnProfile';
 import patchManager from '../../api/manage/patchManager';
+import { returnProfileImg } from '../../lips/returnProfile';
 import { useParams } from 'react-router-dom';
 
 const ProfileEditModalUserItem = ({ memberId, nickname, profileImage, isLeader }) => {
   const { id } = useParams();
 
+  console.log(id, memberId);
   const handleClick = () => {
     patchManager(id, memberId);
   };

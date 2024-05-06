@@ -16,8 +16,9 @@ import ProfileImageSelect from './ProfileImageSelect';
 import PropTypes from 'prop-types';
 import postUserInfo from '../../api/dashboard/patchUserInfo';
 import { returnProfileImg } from '../../lips/returnProfile';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useUserStore from '../../stores/userStore';
+import { returnVegi } from '../../lips/returnVegi';
 
 const ProfileEditModal = ({ data }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,14 +26,34 @@ const ProfileEditModal = ({ data }) => {
 
   const { userId, handleProfile } = useUserStore();
 
-  const handleClick = () => {
-    postUserInfo(body);
-    handleProfile({
-      userId,
-      profileImage: body.profileImage ? returnProfileImg(body.profileImage) : data.profileImage,
-      userName: body.nickname ?? data.nickname,
-    });
-    onClose();
+  useEffect(() => {
+    setBody(data);
+  }, [data]);
+
+  const handleClick = async () => {
+    try {
+      const { profileImage, nickname } = body;
+
+      const userData = {
+        profileImage: profileImage ? returnVegi(profileImage) : null,
+        nickname: nickname ?? null,
+      };
+
+      const response = await postUserInfo(userData);
+
+      const responseData = response?.data;
+
+      handleProfile({
+        userId,
+        profileImage: responseData?.profileImage ?? userData.profileImage,
+        userName: responseData?.nickname ?? userData.nickname,
+      });
+
+      onClose();
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleImage = (string) => {

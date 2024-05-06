@@ -4,15 +4,15 @@ import axiosInstance from '..';
 const postLogout = async () => {
   try {
     const response = await axiosInstance.post(
-      '/auth/sign-out',
+      '/users/sign-out',
       {},
       {
         withCredentials: true,
       },
     );
 
-    console.log('로그아웃');
-
+    console.log(response.data);
+    console.log(response.data.success);
     return response.data.success;
   } catch (err) {
     if (err instanceof AxiosError) {

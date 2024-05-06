@@ -8,7 +8,7 @@ const axiosFormInstance = axios.create({
 
 axiosFormInstance.interceptors.request.use((config) => {
   config.headers['Content-Type'] = 'multipart/form-data';
-  config.headers.Authorization = `Bearer`;
+  config.headers.Authorization = `Bearer `;
   return config;
 });
 

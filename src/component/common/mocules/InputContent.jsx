@@ -10,13 +10,15 @@ const InputContent = ({
   type,
   confirmValue,
   isConfirm,
+  passBorder,
 }) => {
   const isPasswordMatch = value === confirmValue;
 
   let borderColor = '#000';
 
-  if (value) {
-    if ((value || confirmValue) && isPasswordMatch) {
+
+  if (passBorder && value) {
+    if (isPasswordMatch) {
       borderColor = '#2563EB';
     } else {
       borderColor = '#e53e3e';
@@ -42,6 +44,7 @@ const InputContent = ({
         type={type}
         borderColor={borderColor}
         focusBorderColor='#059669'
+        _hover='#000'
       />
       {shouldShowError && (
         <Text
@@ -66,6 +69,9 @@ InputContent.propTypes = {
   confirmValue: PropTypes.string,
   CheckPassword: PropTypes.string,
   isConfirm: PropTypes.bool,
+  nickname: PropTypes.string,
+  discordId: PropTypes.string,
+  passBorder: PropTypes.bool,
 };
 
 export default InputContent;

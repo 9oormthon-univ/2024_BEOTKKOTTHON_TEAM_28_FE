@@ -69,8 +69,9 @@ const ManagerChangeModal = () => {
               >
                 {data?.map((el) => (
                   <ProfileEditModalUserItem
-                    id={el.memberId}
+                    id={el.id}
                     key={el.id}
+                    memberId={el.id}
                     nickname={el.nickname}
                     profileImage={el.profileImage}
                     isLeader={el.isLeader}

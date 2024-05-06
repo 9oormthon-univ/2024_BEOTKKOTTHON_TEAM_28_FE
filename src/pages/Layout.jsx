@@ -45,8 +45,8 @@ const Layout = ({ children }) => {
     const currentPath = location.pathname;
 
     if (!['/login', '/', '/signup'].includes(currentPath)) {
-      if (!accessToken) {
-        navigate('/login');
+      if (accessToken) {
+        // navigate('/login');
       }
     }
   }, [accessToken, location.pathname, navigate]);
