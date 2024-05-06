@@ -2,28 +2,29 @@ import { Box, Button, Flex, Image, Link, useBreakpointValue } from '@chakra-ui/r
 import { useEffect, useState } from 'react';
 
 import { MenuIcon } from '../atoms';
-import ProjectListModal from './ProjectListModal';
+import TeamSelectModal from '../../TeamSelectModal';
 import { postLogout } from '../../../api/login';
 import text_logo from '../../../assets/text_logo.png';
 import { useNavigate } from 'react-router-dom';
+import useTeamStore from '../../../stores/useTeamStore';
 import useUserStore from '../../../stores/userStore';
 
 const Header = () => {
   const navigate = useNavigate();
-  const [onProjectListToggled, setOnProjectListToggled] = useState(false);
   // TODO
-  const [onProjectListTowToggled, setOnProjectListTowToggled] = useState(false);
   const [onMenuToggled, setMenuToggled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
+  const [isGoTaskHistory, setIsGoTaskHistory] = useState(false);
 
+  const { teamId, isOpenTeamSelectModal, openTeamSelectModal, closeTeamSelectModal } =
+    useTeamStore();
   const { profile } = useUserStore();
 
   useEffect(() => {
     const currentPath = window.location.pathname;
     setActiveLink(currentPath);
-    setOnProjectListToggled(false);
-    setOnProjectListTowToggled(false);
-  }, []);
+    closeTeamSelectModal();
+  }, [closeTeamSelectModal]);
 
   const width = useBreakpointValue({ base: '360px', md: 0 });
 
@@ -38,7 +39,11 @@ const Header = () => {
 
   const handleClickLogout = async () => {
     try {
-      await postLogout();
+      const isSuccess = await postLogout();
+      console.log('전달', isSuccess);
+      if (isSuccess) {
+        navigate('/');
+      }
     } catch (error) {
       console.error('Login Error:', error);
       alert('로그아웃에 실패했습니다. 다시 시도해주세요.');
@@ -47,6 +52,7 @@ const Header = () => {
 
   return (
     <>
+      {isOpenTeamSelectModal && <TeamSelectModal isGoTaskHistory={isGoTaskHistory} />}
       <header style={{ paddingBottom: '60px' }}>
         <Flex
           borderBottom='1px solid #B5C1D1'
@@ -78,12 +84,16 @@ const Header = () => {
           <Flex className='smNone' gap='20px' align='center' minWidth='500px'>
             <Button
               onClick={() => {
-                if (!accessToken) {
-                  navigate('/login');
+                // if (!accessToken) {
+                //  navigate('/login');
+                // return;
+                // }
+                setIsGoTaskHistory(false);
+                if (teamId !== 0) {
+                  navigate(`/${teamId}/team-task-history`);
                   return;
                 }
-                setOnProjectListToggled((prev) => !prev);
-                setOnProjectListTowToggled(false);
+                openTeamSelectModal();
               }}
               className='Body-xl smNone'
               background='transparent'
@@ -110,12 +120,16 @@ const Header = () => {
               className='Body-xl smNone'
               background='transparent'
               onClick={() => {
-                if (!accessToken) {
-                  navigate('/login');
+                //if (!accessToken) {
+                // navigate('/login');
+                // return;
+                //}
+                setIsGoTaskHistory(true);
+                if (teamId !== 0) {
+                  navigate(`/${teamId}/task-history`);
                   return;
                 }
-                setOnProjectListTowToggled((prev) => !prev);
-                setOnProjectListToggled(false);
+                openTeamSelectModal();
               }}
               color={activeLink.includes('/task-history') ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
@@ -224,10 +238,6 @@ const Header = () => {
             </Link>
           </Flex>
         </Flex>
-      )}
-      {onProjectListToggled && accessToken && profile && <ProjectListModal />}
-      {onProjectListTowToggled && accessToken && profile && (
-        <ProjectListModal isTaskHistory={true} />
       )}
     </>
   );

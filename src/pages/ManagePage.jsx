@@ -1,6 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 
 import { MemberList } from '../component/common/organisms';
+import NonData from '../component/common/mocules/NonData';
 import { TaskItem } from '../component/manage';
 import { TeamProfile } from '../component/taskhistory';
 import { getMemberList } from '../api/taskhistory';
@@ -8,7 +9,8 @@ import getTeamTimeManage from '../api/teamhistory/getTeamTimeManage';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import NonData from '../component/common/mocules/NonData';
+
+const pageWidth = { base: '680px', md: '885px', lg: '950px', xl: '1250px' };
 
 const ManagePage = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -47,8 +49,17 @@ const ManagePage = () => {
 
   return (
     <main>
-      <Flex gap='27px' minHeight='calc(100vw - 400px)' mt='68px' pb='200px' justifyContent='center'>
-        <Flex direction='column' left='325px' position='fixed' gap='70px'>
+      <Flex
+        width={pageWidth}
+        gap='27px'
+        margin='auto'
+        minHeight='calc(100vw - 400px)'
+        mt='68px'
+        pb='200px'
+        flexDirection={{ base: 'column', md: 'row' }}
+        justifyContent='center'
+      >
+        <Flex direction='column' gap='70px'>
           <TeamProfile />
           <MemberList
             isWhite={true}
@@ -56,7 +67,7 @@ const ManagePage = () => {
             handleCurrentUser={handleCurrentUser}
           />
         </Flex>
-        <Flex direction='column' marginLeft='327px' w='922px' gap='42px'>
+        <Flex direction='column' w='922px' gap='42px'>
           <Flex direction='column'>
             <Box className='Display-md'>{currentUser?.name}님의 업무시간</Box>
             <Box className='Display-sm'>팀원들의 업무 시간을 확인해 주세요!</Box>

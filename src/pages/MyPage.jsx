@@ -19,12 +19,12 @@ const MyPage = () => {
   const [selectedSort, setSelectedSort] = useState('전체');
 
   return (
-    <main>
+    <main style={{ paddingBottom: '150px' }}>
       <Flex justify='center'>
         <Flex gap='25px' mt='68px'>
           <Profile />
           <Flex direction='column' w='922px' gap='86px'>
-            <GardenPlot id={userId} />
+            <GardenPlot id={String(userId)} />
             <Box>
               <TabBar tabs={Tabs} />
               <Box direction='column' marginY='20px'>

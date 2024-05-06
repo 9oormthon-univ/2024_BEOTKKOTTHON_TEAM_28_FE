@@ -30,11 +30,6 @@ const SignupPage = () => {
     console.log('password:', password);
     console.log('confirmPassword:', confirmPassword);
 
-    if (password !== confirmPassword) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
     const userData = {
       nickname: nickname,
       discord_id: discordId,
@@ -83,7 +78,7 @@ const SignupPage = () => {
   return (
     <main>
       <Flex justify='center'>
-        <AuthBox mt='80px' mb='191px'>
+        <AuthBox mt='90px' mb='100px'>
           <Text mt='36px' mb='12px' w='100%'>
             프로필 캐릭터
           </Text>
@@ -110,6 +105,7 @@ const SignupPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             confirmValue={confirmPassword}
+            passBorder={true}
           />
           <InputContent
             label='비밀번호 확인'
@@ -119,6 +115,8 @@ const SignupPage = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             confirmValue={password}
+            isConfirm={true}
+            passBorder={true}
           />
           <Flex direction='column' w='100%'>
             <Flex justify='space-between' mt='36px'>
@@ -162,6 +160,7 @@ const SignupPage = () => {
         </AuthBox>
       </Flex>
     </main>
+    //
   );
 };
 

@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Image, List } from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, Image, List } from '@chakra-ui/react';
 
 import BannerRankItem from './BannerRankItem';
 import arrowNext from '../../assets/next.png';
@@ -8,9 +8,11 @@ import guy from '../../assets/guy.svg';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import useTeamStore from '../../stores/useTeamStore';
 
 const Banner = () => {
   const { id } = useParams();
+  const { openTeamSelectModal } = useTeamStore();
   const [data, setDatas] = useState([]);
   const [projectName, setProjectName] = useState('');
   const [currentIndex, setCurrentIndex] = useState({ start: 0, end: 4 });
@@ -59,9 +61,9 @@ const Banner = () => {
             {data[0]?.nickname ?? ''}님
           </Box>
         </Flex>
-        {/* <Button background='#475569' color='white'>
+        <Button background='#475569' color='white' onClick={openTeamSelectModal}>
           프로젝트 팀 변경하기
-        </Button> */}
+        </Button>
       </Flex>
       <List width='922px'>
         <Grid

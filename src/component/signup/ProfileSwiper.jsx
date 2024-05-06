@@ -53,8 +53,8 @@ const ProfileSwiper = ({ onSelectImage }) => {
           <SwiperSlide key={index}>
             <Box
               pos='relative'
-              w='120px'
-              h='120px'
+              w='115px'
+              h='115px'
               cursor='pointer'
               boxSizing='border-box'
               overflow='hidden'
