@@ -45,7 +45,7 @@ const HomePage = () => {
   };
 
   return (
-    <main style={{ paddingBottom: '100px' }}>
+    <main style={{ paddingBottom: '150px' }}>
       <Flex direction='column' gap='64px'>
         <Banner />
         <Flex margin='auto'>

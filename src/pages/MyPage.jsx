@@ -19,7 +19,7 @@ const MyPage = () => {
   const [selectedSort, setSelectedSort] = useState('전체');
 
   return (
-    <main>
+    <main style={{ paddingBottom: '150px' }}>
       <Flex justify='center'>
         <Flex gap='25px' mt='68px'>
           <Profile />
