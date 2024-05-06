@@ -16,7 +16,7 @@ import ProfileImageSelect from './ProfileImageSelect';
 import PropTypes from 'prop-types';
 import postUserInfo from '../../api/dashboard/patchUserInfo';
 import { returnProfileImg } from '../../lips/returnProfile';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useUserStore from '../../stores/userStore';
 import { returnVegi } from '../../lips/returnVegi';
 
@@ -25,6 +25,10 @@ const ProfileEditModal = ({ data }) => {
   const [body, setBody] = useState(data);
 
   const { userId, handleProfile } = useUserStore();
+
+  useEffect(() => {
+    setBody(data);
+  }, [data]);
 
   const handleClick = async () => {
     try {
@@ -41,8 +45,8 @@ const ProfileEditModal = ({ data }) => {
 
       handleProfile({
         userId,
-        profileImage: responseData?.profileImage ?? profileImage,
-        userName: responseData?.nickname ?? nickname,
+        profileImage: responseData?.profileImage ?? userData.profileImage,
+        userName: responseData?.nickname ?? userData.nickname,
       });
 
       onClose();
