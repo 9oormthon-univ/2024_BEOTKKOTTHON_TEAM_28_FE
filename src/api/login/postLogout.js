@@ -11,8 +11,8 @@ const postLogout = async () => {
       },
     );
 
-    window.location.href('/');
-
+    console.log(response.data);
+    console.log(response.data.success);
     return response.data.success;
   } catch (err) {
     if (err instanceof AxiosError) {

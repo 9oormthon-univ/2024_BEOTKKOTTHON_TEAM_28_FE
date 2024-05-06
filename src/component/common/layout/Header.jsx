@@ -40,6 +40,7 @@ const Header = () => {
   const handleClickLogout = async () => {
     try {
       const isSuccess = await postLogout();
+      console.log('전달', isSuccess);
       if (isSuccess) {
         navigate('/');
       }
