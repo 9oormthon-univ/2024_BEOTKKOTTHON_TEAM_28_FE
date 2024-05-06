@@ -36,7 +36,7 @@ const ProfileEditModal = ({ data }) => {
 
       const userData = {
         profileImage: profileImage ? returnVegi(profileImage) : null,
-        nickname: nickname ?? null,
+        nickname: nickname ?? data.nickname,
       };
 
       const response = await postUserInfo(userData);
