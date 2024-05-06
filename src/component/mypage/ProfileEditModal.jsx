@@ -67,8 +67,8 @@ const ProfileEditModal = ({ data }) => {
       </Button>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent borderRadius='16px' minWidth='fit-content'>
-          <ModalCloseButton />
+        <ModalContent borderRadius='16px' minWidth='fit-content' position='absolute' top='60px'>
+          <ModalCloseButton position='absolute' right='8px' top='-50px' w='32px' color='white' />
           <ModalBody position='relative'>
             <Flex
               top='0'
