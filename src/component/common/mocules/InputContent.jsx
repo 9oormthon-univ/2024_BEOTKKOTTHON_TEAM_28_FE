@@ -16,6 +16,7 @@ const InputContent = ({
 
   let borderColor = '#000';
 
+
   if (passBorder && value) {
     if (isPasswordMatch) {
       borderColor = '#2563EB';
