@@ -10,7 +10,9 @@ export const returnVegi = (img) => {
       return 'CUCUMBER';
     case '/strawberry.png':
       return 'STRAWBERRY';
-    default:
+    case '/tomato.png':
       return 'TOMATO';
+    default:
+      return 'img';
   }
 };

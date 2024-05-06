@@ -45,7 +45,7 @@ const ProfileEditModal = ({ data }) => {
 
       handleProfile({
         userId,
-        profileImage: responseData?.profileImage ?? userData.profileImage,
+        profileImage: responseData?.profileImage ?? userData.profileImage ?? profileImage,
         userName: responseData?.nickname ?? userData.nickname,
       });
 
