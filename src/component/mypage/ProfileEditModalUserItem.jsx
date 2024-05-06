@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 const ProfileEditModalUserItem = ({ memberId, nickname, profileImage, isLeader }) => {
   const { id } = useParams();
 
+  console.log(id, memberId);
   const handleClick = () => {
     patchManager(id, memberId);
   };
