@@ -49,7 +49,7 @@ const TaskHistoryPage = () => {
   // }, [id]);
 
   return (
-    <main>
+    <main style={{ paddingBottom: '150px' }}>
       <Flex justify='center'>
         <Flex mt='68px' gap='33.93px'>
           <Flex direction='column' gap='92px'>
