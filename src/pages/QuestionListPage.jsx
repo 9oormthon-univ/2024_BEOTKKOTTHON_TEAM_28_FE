@@ -67,7 +67,7 @@ const QuestionListPage = () => {
   };
 
   return (
-    <main>
+    <main style={{ paddingBottom: '150px' }}>
       <Flex justify='center'>
         <Flex gap='27px' mt='68px' alignItems='flex-start'>
           <ProjectList handleCurrentTeam={handleCurrentTeam} />

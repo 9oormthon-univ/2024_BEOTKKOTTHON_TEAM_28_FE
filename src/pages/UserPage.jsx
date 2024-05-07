@@ -13,7 +13,7 @@ const SortType = ['전체', '완료한 프로젝트'];
 const UserPage = () => {
   const { id } = useParams();
   return (
-    <main>
+    <main style={{ paddingBottom: '150px' }}>
       <Flex justify='center'>
         <Flex gap='27px' mt='68px'>
           <Profile isOther={true} />
