@@ -61,7 +61,7 @@ const Banner = () => {
             {data[0]?.nickname ?? ''}님
           </Box>
         </Flex>
-        <Button background='#475569' color='white' onClick={openTeamSelectModal}>
+        <Button padding='8px' background='#475569' color='white' onClick={openTeamSelectModal}>
           프로젝트 팀 변경하기
         </Button>
       </Flex>
