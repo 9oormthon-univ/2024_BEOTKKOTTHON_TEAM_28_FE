@@ -38,7 +38,7 @@ const Banner = () => {
   const today = new Date();
   return (
     <Flex
-      width='99vw'
+      height='300px'
       gap='40px'
       background='#ECFDF5'
       justifyContent='center'

@@ -40,7 +40,12 @@ const ProjectList = ({ handleCurrentTeam }) => {
       marginBottom='00px'
       minHeight='140px'
     >
-      <Box>전체프로젝트</Box>
+      <Box>
+        전체 프로젝트{' '}
+        <Text as='span' color='successBold'>
+          {data && data.progressingProjectCount + data.endProjectCount}
+        </Text>
+      </Box>
       <Flex direction='column' gap='12px'>
         <Flex
           gap='2px'

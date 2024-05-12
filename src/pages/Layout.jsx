@@ -53,8 +53,8 @@ const Layout = ({ children }) => {
 
   return (
     <div>
-      {isShowToast && <Toast />}
       <Header />
+      {isShowToast && <Toast />}
       {children}
       <Footer />
     </div>

@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, Image } from '@chakra-ui/react';
+import { Box, Button, Divider, Flex, Image, Input } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 import { TitleProfile } from '../common/mocules';
@@ -25,12 +25,12 @@ const WorkItem = ({ name, profileImage, part, content, createdAt, receiver }) =>
               {receiver?.content}
             </Box>
           </Flex>
-          {/* <Flex gap='12px'>
-            <Input placeholder='오늘은 어떤 작업을 진행하셨나요?' />
+          <Flex gap='12px'>
+            <Input placeholder='답변을 남겨주세요' />
             <Button background='#059669' color='white'>
               전송
             </Button>
-          </Flex> */}
+          </Flex>
         </Flex>
       )}
       <Divider />

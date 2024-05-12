@@ -9,7 +9,7 @@ const TitleProfile = ({ isNoTime = false, right, part, createdAt, profileImage, 
   const createdDate = new Date(createdAt);
   const timeDifference = Math.floor((today - createdDate) / (1000 * 60 * 60));
   return (
-    <Flex justifyContent='space-between' alignItems='center'>
+    <Flex justifyContent='space-between' alignItems='center' padding='4px'>
       <Flex gap='8px' alignItems='center'>
         <Image borderRadius='50%' src={returnProfileImg(profileImage)} alt='프로필' width='48px' />
         <Flex direction='column'>
