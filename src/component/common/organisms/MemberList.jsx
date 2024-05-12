@@ -8,14 +8,16 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import useTeamStore from '../../../stores/useTeamStore';
 import useUserStore from '../../../stores/userStore';
 
-const MemberList = ({ currentUser, isWhite, handleCurrentUser, projectName }) => {
+const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
   const [data, setData] = useState([]);
 
   const [leader, setLeader] = useState();
 
   const { userName } = useUserStore();
+  const { teamName } = useTeamStore();
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -44,7 +46,7 @@ const MemberList = ({ currentUser, isWhite, handleCurrentUser, projectName }) =>
     <Flex direction='column' gap='12px'>
       {isWhite ? (
         <Flex direction='column'>
-          <Box>{projectName}팀</Box>
+          <Box>{teamName}팀</Box>
           <Box>멤버들의 백로그를 확인해보세요!</Box>
         </Flex>
       ) : (

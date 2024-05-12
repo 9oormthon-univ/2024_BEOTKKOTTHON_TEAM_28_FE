@@ -1,14 +1,14 @@
 import { MemberList, TabBar } from '../component/common/organisms';
 import { TaskItem, TeamProfile } from '../component/taskhistory';
+import { getMemberList, getMemberScrum } from '../api/taskhistory';
 
 import { Flex } from '@chakra-ui/react';
 import { GardenPlot } from '../component/mypage';
-import { getMemberScrum } from '../api/taskhistory';
+import NonData from '../component/common/mocules/NonData';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../stores/userStore';
-import NonData from '../component/common/mocules/NonData';
 
 const Tabs = ['백로그 타임라인'];
 
@@ -33,20 +33,20 @@ const TaskHistoryPage = () => {
     setCurrentUser({ name, profile, part, memberId });
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await getMemberList(id);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getMemberList(id);
 
-  //     setCurrentUser({
-  //       name: response?.memberList[0].nickname,
-  //       profile: response?.memberList[0].profileImage,
-  //       part: response?.memberList[0].part,
-  //       memberId: response?.memberList[0].memberId,
-  //     });
-  //   };
+      setCurrentUser({
+        name: response?.memberList[0].nickname,
+        profile: response?.memberList[0].profileImage,
+        part: response?.memberList[0].part,
+        memberId: response?.memberList[0].memberId,
+      });
+    };
 
-  //   fetchData();
-  // }, [id]);
+    fetchData();
+  }, [id]);
 
   return (
     <main style={{ paddingBottom: '150px' }}>
