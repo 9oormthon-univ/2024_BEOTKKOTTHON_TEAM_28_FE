@@ -17,7 +17,7 @@ const LandingPage = () => {
   const title_lg = useBreakpointValue({ base: 'Headline-lg', md: 'Display-lg' });
 
   return (
-    <main>
+    <main style={{ paddingBottom: '150px' }}>
       <Flex w='100%' justify='center' align='center' direction='column' width='100%'>
         <Flex
           bg='#ECFDF5'

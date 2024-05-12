@@ -1,13 +1,31 @@
 import { Flex, Text, Input } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-const InputContent = ({ label, placeholder, mt, value, onChange, type, confirmValue }) => {
+const InputContent = ({
+  label,
+  placeholder,
+  mt,
+  value,
+  onChange,
+  type,
+  confirmValue,
+  isConfirm,
+  passBorder,
+}) => {
   const isPasswordMatch = value === confirmValue;
 
   let borderColor = '#000';
-  if (value && confirmValue) {
-    borderColor = isPasswordMatch ? '#2563EB' : '#e53e3e';
+
+
+  if (passBorder && value) {
+    if (isPasswordMatch) {
+      borderColor = '#2563EB';
+    } else {
+      borderColor = '#e53e3e';
+    }
   }
+
+  const shouldShowError = value && !isPasswordMatch && isConfirm;
 
   return (
     <Flex direction='column' mt={mt}>
@@ -26,7 +44,17 @@ const InputContent = ({ label, placeholder, mt, value, onChange, type, confirmVa
         type={type}
         borderColor={borderColor}
         focusBorderColor='#059669'
+        _hover='#000'
       />
+      {shouldShowError && (
+        <Text
+          color='#e53e3e'
+          mt='2px'
+          // position='fixed' top='908px'
+        >
+          비밀번호가 일치하지 않습니다.
+        </Text>
+      )}
     </Flex>
   );
 };
@@ -39,6 +67,11 @@ InputContent.propTypes = {
   onChange: PropTypes.func.isRequired,
   type: PropTypes.string,
   confirmValue: PropTypes.string,
+  CheckPassword: PropTypes.string,
+  isConfirm: PropTypes.bool,
+  nickname: PropTypes.string,
+  discordId: PropTypes.string,
+  passBorder: PropTypes.bool,
 };
 
 export default InputContent;

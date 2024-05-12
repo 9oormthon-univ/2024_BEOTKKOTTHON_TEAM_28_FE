@@ -78,6 +78,7 @@ const ProjectList = ({ handleCurrentTeam }) => {
                 padding='4px'
                 borderRadius='4px'
                 cursor='pointer'
+                color='#065F46'
               >
                 <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
                 <Box>{el.name}</Box>

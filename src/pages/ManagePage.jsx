@@ -48,7 +48,7 @@ const ManagePage = () => {
   };
 
   return (
-    <main>
+    <main style={{ paddingBottom: '150px' }}>
       <Flex
         width={pageWidth}
         gap='27px'

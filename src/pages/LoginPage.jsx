@@ -35,7 +35,7 @@ const LoginPage = () => {
 
   return (
     <main>
-      <Flex h='calc(100vh - 472px)' justify='center' marginTop='100px' align='center'>
+      <Flex justify='center' align='center' h='calc(100vh - 172px)'>
         <AuthBox>
           <InputContent
             label='디스코드 아이디'
