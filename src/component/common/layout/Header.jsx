@@ -236,6 +236,19 @@ const Header = () => {
             >
               나의 대시보드
             </Link>
+            {accessToken && <Button onClick={handleClickLogout}>로그아웃</Button>}
+            {!accessToken && (
+              <Button
+                background='brand'
+                color='white'
+                width='100px'
+                onClick={() => {
+                  navigate('/login');
+                }}
+              >
+                로그인
+              </Button>
+            )}
           </Flex>
         </Flex>
       )}
