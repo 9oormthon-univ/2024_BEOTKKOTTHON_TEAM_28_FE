@@ -3,6 +3,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import { MemberList, TabBar } from '../../component/common/organisms';
 
 import WorkItem from '../../component/home/WorkItem';
+import getFullDate from '../../lips/getFullDate';
 import { getMemberRanking } from '../../api/teamhistory';
 import { getMemberTasks } from '../../api/teamhistory';
 import { useEffect } from 'react';
@@ -22,8 +23,6 @@ const HomePage = () => {
   const [currentTap, setCurrentTap] = useState('전체');
   const [part, setPart] = useState('all');
   const [sort, setSort] = useState('all');
-
-  const [prevDate, setPrevDate] = useState('');
 
   const [projectName, setProjectName] = useState('');
 
@@ -62,22 +61,36 @@ const HomePage = () => {
                 {projectName}의 다른 팀원은 어떤 일을 했을까요?
               </Box>
               <Flex direction='column' gap='20px'>
-                {data
-                  .filter((el) => sort !== 'all' && el.part === part)
-                  .map((el) => {
-                    const showDate = el.createdAt !== prevDate;
+                {sort === 'all' &&
+                  data.map((el, index) => {
+                    const showDate =
+                      el.createdAt.split('T')[0] !== data[index - 1]?.createdAt.split('T')[0];
 
-                    setPrevDate(el.createdAt);
-
-                    const date = new Date(el.createdAt);
-
-                    const year = date.getFullYear();
-                    const month = date.getMonth() + 1;
-                    const day = date.getDate();
-
+                    const date = getFullDate(el.createdAt);
                     return (
                       <>
-                        {showDate && <div className='Headline-md'>{`${year}.${month}.${day}`}</div>}
+                        {showDate && <div className='Headline-md'>{date}</div>}
+                        <WorkItem
+                          key={el.content}
+                          part={el.part}
+                          content={el.content}
+                          createdAt={el.createdAt}
+                          profileImage={el.profileImage}
+                          nickname={el.nickname}
+                        />
+                      </>
+                    );
+                  })}
+                {data
+                  .filter((el) => sort !== 'all' && el.part === part)
+                  .map((el, index) => {
+                    const showDate =
+                      el.createdAt.split('T')[0] !== data[index - 1]?.createdAt.split('T')[0];
+
+                    const date = getFullDate(el.createdAt);
+                    return (
+                      <>
+                        {showDate && <div className='Headline-md'>{date}</div>}
                         <WorkItem
                           key={el.content}
                           part={el.part}
