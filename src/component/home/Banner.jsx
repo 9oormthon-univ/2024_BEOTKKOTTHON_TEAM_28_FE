@@ -47,7 +47,7 @@ const Banner = () => {
       position='relative'
       overflow='hidden'
     >
-      <Flex direction='column' gap='50px' width='300px'>
+      <Flex direction='column' gap='25px' width='300px'>
         <Flex direction='column'>
           <Box className='Display-sm' color='brandBold' mb='10px'>
             {today.getFullYear()}.{today.getMonth() + 1}.{today.getDate()}

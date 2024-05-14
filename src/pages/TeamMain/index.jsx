@@ -3,9 +3,8 @@ import { Box, Flex } from '@chakra-ui/react';
 import { MemberList, TabBar } from '../../component/common/organisms';
 
 import WorkItem from '../../component/home/WorkItem';
-import { getMemberTasks } from '../../api/teamhistory';
 import { getMemberRanking } from '../../api/teamhistory';
-
+import { getMemberTasks } from '../../api/teamhistory';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -23,6 +22,8 @@ const HomePage = () => {
   const [currentTap, setCurrentTap] = useState('전체');
   const [part, setPart] = useState('all');
   const [sort, setSort] = useState('all');
+
+  const [prevDate, setPrevDate] = useState('');
 
   const [projectName, setProjectName] = useState('');
 
@@ -61,29 +62,33 @@ const HomePage = () => {
                 {projectName}의 다른 팀원은 어떤 일을 했을까요?
               </Box>
               <Flex direction='column' gap='20px'>
-                {sort === 'all' &&
-                  data.map((el) => (
-                    <WorkItem
-                      key={el.content}
-                      part={el.part}
-                      content={el.content}
-                      createdAt={el.createdAt}
-                      profileImage={el.profileImage}
-                      nickname={el.nickname}
-                    />
-                  ))}
                 {data
                   .filter((el) => sort !== 'all' && el.part === part)
-                  .map((el) => (
-                    <WorkItem
-                      key={el.content}
-                      part={el.part}
-                      content={el.content}
-                      createdAt={el.createdAt}
-                      profileImage={el.profileImage}
-                      nickname={el.nickname}
-                    />
-                  ))}
+                  .map((el) => {
+                    const showDate = el.createdAt !== prevDate;
+
+                    setPrevDate(el.createdAt);
+
+                    const date = new Date(el.createdAt);
+
+                    const year = date.getFullYear();
+                    const month = date.getMonth() + 1;
+                    const day = date.getDate();
+
+                    return (
+                      <>
+                        {showDate && <div className='Headline-md'>{`${year}.${month}.${day}`}</div>}
+                        <WorkItem
+                          key={el.content}
+                          part={el.part}
+                          content={el.content}
+                          createdAt={el.createdAt}
+                          profileImage={el.profileImage}
+                          nickname={el.nickname}
+                        />
+                      </>
+                    );
+                  })}
               </Flex>
             </Box>
           </Flex>
