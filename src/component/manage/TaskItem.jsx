@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const itemContainerWidth = { base: '320px', md: '666px', lg: '708px', xl: '924px' };
 
-const TaskItem = ({ currentUser, id, content, startAt, endAt }) => {
+const TaskItem = ({ updateTaskItems, currentUser, id, content, startAt, endAt }) => {
   const [isToggled, setIsToggled] = useState(false);
 
   const start = new Date(startAt ?? '');
@@ -43,7 +43,13 @@ const TaskItem = ({ currentUser, id, content, startAt, endAt }) => {
       {isToggled && (
         <Flex direction='column' alignItems='flex-end'>
           <Box width='full'>{content}</Box>
-          <DateChangeModal id={id} startAt={startAt} endAt={endAt} currentUser={currentUser} />
+          <DateChangeModal
+            updateTaskItems={updateTaskItems}
+            id={id}
+            startAt={startAt}
+            endAt={endAt}
+            currentUser={currentUser}
+          />
         </Flex>
       )}
     </Flex>
@@ -51,6 +57,7 @@ const TaskItem = ({ currentUser, id, content, startAt, endAt }) => {
 };
 
 TaskItem.propTypes = {
+  updateTaskItems: PropTypes.func,
   id: PropTypes.number,
   currentUser: PropTypes.object,
   content: PropTypes.string,

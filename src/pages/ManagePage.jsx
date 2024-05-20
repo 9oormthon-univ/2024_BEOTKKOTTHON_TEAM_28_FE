@@ -47,6 +47,14 @@ const ManagePage = () => {
     setCurrentUser({ name, profile, part, memberId });
   };
 
+  const updateTaskItems = ({ id, startAt, endAt }) => {
+    setData((prev) => {
+      return prev.map((item) =>
+        item.id === id ? { ...item, startAt: new Date(startAt), endAt: new Date(endAt) } : item,
+      );
+    });
+  };
+
   return (
     <main style={{ paddingBottom: '150px' }}>
       <Flex
@@ -75,6 +83,7 @@ const ManagePage = () => {
           <Flex direction='column' gap='26px'>
             {data?.map((el) => (
               <TaskItem
+                updateTaskItems={updateTaskItems}
                 key={el.id}
                 id={el.id}
                 currentUser={currentUser}

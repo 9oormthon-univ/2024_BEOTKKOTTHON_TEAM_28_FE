@@ -35,7 +35,7 @@ const toLocalISOString = (date) => {
   return localISOTime;
 };
 
-const DateChangeModal = ({ currentUser, id, startAt, endAt }) => {
+const DateChangeModal = ({ updateTaskItems, currentUser, id, startAt, endAt }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { handleShowToastMessage } = useToastStore();
 
@@ -49,9 +49,9 @@ const DateChangeModal = ({ currentUser, id, startAt, endAt }) => {
       startAt: toLocalISOString(data.startAt),
       endAt: toLocalISOString(data.endAt),
     };
-    console.log(formattedData);
     patchDateChange(currentUser.memberId, id, formattedData);
     handleShowToastMessage('업무 시간 수정 완료!');
+    updateTaskItems({ id, startAt: formattedData.startAt, endAt: formattedData.endAt });
     onClose();
   };
 
@@ -60,9 +60,7 @@ const DateChangeModal = ({ currentUser, id, startAt, endAt }) => {
       <Button
         paddingX='75px'
         paddingY='13px'
-        border='1px solid black'
-        variant='grayWhite'
-        w='100%'
+        border='1px solid #475569'
         onClick={(e) => {
           e.stopPropagation();
           onOpen();
@@ -191,6 +189,7 @@ const DateChangeModal = ({ currentUser, id, startAt, endAt }) => {
 };
 
 DateChangeModal.propTypes = {
+  updateTaskItems: PropTypes.func,
   currentUser: PropTypes.object,
   startAt: PropTypes.string,
   endAt: PropTypes.string,
