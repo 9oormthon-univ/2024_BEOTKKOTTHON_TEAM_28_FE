@@ -124,6 +124,7 @@ const chakraTheme = extendTheme({
   components: {
     Button: {
       variants: {
+        greenWhite: { bg: '#047857', color: '#ffffff' },
         greenGreen: { bg: '#F0FDFA', color: '#047857' },
         grayWhite: { bg: '#475569', color: '#FFFFFF' },
       },

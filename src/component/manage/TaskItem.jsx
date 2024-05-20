@@ -1,15 +1,16 @@
 import { Box, Flex } from '@chakra-ui/react';
 
+import DateChangeModal from './DateChangeModal';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 const itemContainerWidth = { base: '320px', md: '666px', lg: '708px', xl: '924px' };
 
-const TaskItem = ({ content, startAt, endAt }) => {
+const TaskItem = ({ updateTaskItems, currentUser, id, content, startAt, endAt }) => {
   const [isToggled, setIsToggled] = useState(false);
 
-  const start = new Date(startAt);
-  const end = new Date(endAt);
+  const start = new Date(startAt ?? '');
+  const end = new Date(endAt ?? '');
 
   const timeDiffInMilliseconds = end - start;
   const timeDiffInMinutes = timeDiffInMilliseconds / (1000 * 60);
@@ -42,7 +43,13 @@ const TaskItem = ({ content, startAt, endAt }) => {
       {isToggled && (
         <Flex direction='column' alignItems='flex-end'>
           <Box width='full'>{content}</Box>
-          {/* <DateChangeModal id={id} startAt={startAt} endAt={endAt} currentUser={currentUser} /> */}
+          <DateChangeModal
+            updateTaskItems={updateTaskItems}
+            id={id}
+            startAt={startAt}
+            endAt={endAt}
+            currentUser={currentUser}
+          />
         </Flex>
       )}
     </Flex>
@@ -50,7 +57,8 @@ const TaskItem = ({ content, startAt, endAt }) => {
 };
 
 TaskItem.propTypes = {
-  id: PropTypes.string,
+  updateTaskItems: PropTypes.func,
+  id: PropTypes.number,
   currentUser: PropTypes.object,
   content: PropTypes.string,
   startAt: PropTypes.string,
