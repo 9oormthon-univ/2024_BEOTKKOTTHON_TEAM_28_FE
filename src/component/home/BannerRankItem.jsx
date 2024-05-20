@@ -42,7 +42,9 @@ const BannerRankItem = ({ rank, totalTime, profileImage, nickname, isWin }) => {
         paddingX='12px'
         justifyContent='flex-end'
       >
-        {rank === 1 && `${Math.floor(totalTime / 60)}시간 ${totalTime % 60}분`}
+        {rank > 3
+          ? `${Math.floor(totalTime / 60)}시간`
+          : `${Math.floor(totalTime / 60)}시간 ${totalTime % 60}분`}
       </Flex>
     </Flex>
   );
