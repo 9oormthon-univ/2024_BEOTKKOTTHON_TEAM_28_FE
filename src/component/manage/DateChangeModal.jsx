@@ -62,6 +62,7 @@ const DateChangeModal = ({ updateTaskItems, currentUser, id, startAt, endAt }) =
         paddingX='75px'
         paddingY='13px'
         border='1px solid #475569'
+        backgroundColor='transparent'
         onClick={(e) => {
           e.stopPropagation();
           onOpen();
