@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
+import TimeButton from './TimeButton';
 import patchDateChange from '../../api/manage/patchDateChange';
 import { useState } from 'react';
 import useToastStore from '../../stores/toastStore';
@@ -76,8 +77,7 @@ const DateChangeModal = ({ updateTaskItems, currentUser, id, startAt, endAt }) =
             <Flex direction='column' gap='24px' width='700px' padding='48px'>
               <Box className='Display-sm'>{currentUser?.name}님의 시간을 수정해주세요</Box>
               <Flex gap='24px'>
-                <Button
-                  className='Display-sm'
+                <TimeButton
                   onClick={() => {
                     const newDate = data.endAt;
                     newDate.setMinutes(newDate.getMinutes() - 30);
@@ -86,11 +86,9 @@ const DateChangeModal = ({ updateTaskItems, currentUser, id, startAt, endAt }) =
                       endAt: newDate,
                     }));
                   }}
-                >
-                  -30분
-                </Button>
-                <Button
-                  className='Display-sm'
+                  text='-30분'
+                />
+                <TimeButton
                   onClick={() => {
                     const newDate = data.endAt;
                     newDate.setHours(newDate.getHours() - 1);
@@ -99,11 +97,9 @@ const DateChangeModal = ({ updateTaskItems, currentUser, id, startAt, endAt }) =
                       endAt: newDate,
                     }));
                   }}
-                >
-                  -1시간
-                </Button>
-                <Button
-                  className='Display-sm'
+                  text='-1시간'
+                />
+                <TimeButton
                   onClick={() => {
                     const newDate = data.endAt;
                     newDate.setHours(newDate.getHours() - 6);
@@ -112,9 +108,8 @@ const DateChangeModal = ({ updateTaskItems, currentUser, id, startAt, endAt }) =
                       endAt: newDate,
                     }));
                   }}
-                >
-                  -6시간
-                </Button>
+                  text='-6시간'
+                />
               </Flex>
               <Flex gap='24px' alignItems='center' width='100%'>
                 <Flex
