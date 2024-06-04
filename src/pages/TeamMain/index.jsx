@@ -3,9 +3,9 @@ import { Box, Flex } from '@chakra-ui/react';
 import { MemberList, TabBar } from '../../component/common/organisms';
 
 import WorkItem from '../../component/home/WorkItem';
-import { getMemberTasks } from '../../api/teamhistory';
+import getFullDate from '../../lips/getFullDate';
 import { getMemberRanking } from '../../api/teamhistory';
-
+import { getMemberTasks } from '../../api/teamhistory';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -62,28 +62,46 @@ const HomePage = () => {
               </Box>
               <Flex direction='column' gap='20px'>
                 {sort === 'all' &&
-                  data.map((el) => (
-                    <WorkItem
-                      key={el.content}
-                      part={el.part}
-                      content={el.content}
-                      createdAt={el.createdAt}
-                      profileImage={el.profileImage}
-                      nickname={el.nickname}
-                    />
-                  ))}
+                  data.map((el, index) => {
+                    const showDate =
+                      el.createdAt.split('T')[0] !== data[index - 1]?.createdAt.split('T')[0];
+
+                    const date = getFullDate(el.createdAt);
+                    return (
+                      <>
+                        {showDate && <div className='Headline-md'>{date}</div>}
+                        <WorkItem
+                          key={el.content}
+                          part={el.part}
+                          content={el.content}
+                          createdAt={el.createdAt}
+                          profileImage={el.profileImage}
+                          nickname={el.nickname}
+                        />
+                      </>
+                    );
+                  })}
                 {data
                   .filter((el) => sort !== 'all' && el.part === part)
-                  .map((el) => (
-                    <WorkItem
-                      key={el.content}
-                      part={el.part}
-                      content={el.content}
-                      createdAt={el.createdAt}
-                      profileImage={el.profileImage}
-                      nickname={el.nickname}
-                    />
-                  ))}
+                  .map((el, index) => {
+                    const showDate =
+                      el.createdAt.split('T')[0] !== data[index - 1]?.createdAt.split('T')[0];
+
+                    const date = getFullDate(el.createdAt);
+                    return (
+                      <>
+                        {showDate && <div className='Headline-md'>{date}</div>}
+                        <WorkItem
+                          key={el.content}
+                          part={el.part}
+                          content={el.content}
+                          createdAt={el.createdAt}
+                          profileImage={el.profileImage}
+                          nickname={el.nickname}
+                        />
+                      </>
+                    );
+                  })}
               </Flex>
             </Box>
           </Flex>

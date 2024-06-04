@@ -26,7 +26,7 @@ const WorkItem = ({ name, profileImage, part, content, createdAt, receiver }) =>
             </Box>
           </Flex>
           {/* <Flex gap='12px'>
-            <Input placeholder='오늘은 어떤 작업을 진행하셨나요?' />
+            <Input placeholder='답변을 남겨주세요' />
             <Button background='#059669' color='white'>
               전송
             </Button>

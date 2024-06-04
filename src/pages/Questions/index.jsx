@@ -1,15 +1,15 @@
 import { Box, Flex } from '@chakra-ui/react';
 
-import { ProjectList } from '../component/questionlist';
-import { TabBar } from '../component/common/organisms';
-import WorkItem from '../component/questionlist/WorkItem';
-import { getProjectList } from '../api/common';
-import { getReceivedQuestions } from '../api/questionlist';
-import getRequestedQuestion from '../api/questionlist/getRequestedQuestion';
+import NonData from '../../component/common/mocules/NonData';
+import { ProjectList } from '../../component/questionlist';
+import { TabBar } from '../../component/common/organisms';
+import WorkItem from '../../component/questionlist/WorkItem';
+import { getProjectList } from '../../api/common';
+import { getReceivedQuestions } from '../../api/questionlist';
+import getRequestedQuestion from '../../api/questionlist/getRequestedQuestion';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import useUserStore from '../stores/userStore';
-import NonData from '../component/common/mocules/NonData';
+import useUserStore from '../../stores/userStore';
 
 const Tabs = ['받은 요청', '전달한 요청'];
 const ReceivedTab = ['all', 'pending', 'completed'];
@@ -19,7 +19,7 @@ const SortType = ['전체', '진행중인 요청', '완료된 요청'];
 const QuestionListPage = () => {
   const [currentTeam, setCurrentTeam] = useState({ teamName: '', teamId: 0 });
   const [data, setData] = useState([]);
-  const [currentTap, setCurrentTap] = useState('');
+  const [currentTap, setCurrentTap] = useState('받은 요청');
   const [sort, setSort] = useState('all');
   const { userName } = useUserStore();
 

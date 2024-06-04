@@ -1,10 +1,10 @@
 import { Box, Flex } from '@chakra-ui/react';
-import { GardenPlot, Profile } from '../component/mypage';
+import { GardenPlot, Profile } from '../../component/mypage';
 
-import GardenList from '../component/mypage/ProjectList';
-import { TabBar } from '../component/common/organisms';
+import GardenList from '../../component/mypage/ProjectList';
+import { TabBar } from '../../component/common/organisms';
 import { useState } from 'react';
-import useUserStore from '../stores/userStore';
+import useUserStore from '../../stores/userStore';
 
 const Tabs = ['참여 프로젝트'];
 

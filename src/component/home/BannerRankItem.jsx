@@ -36,6 +36,7 @@ const BannerRankItem = ({ rank, totalTime, profileImage, nickname, isWin }) => {
         color={isWin ? 'white' : 'successBold'}
         border={isWin ? 'none' : '1px solid tertiary'}
         //border 추가
+        height='46px'
         borderRadius='12px'
         paddingY='8px'
         paddingX='12px'

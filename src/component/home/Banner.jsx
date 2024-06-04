@@ -38,7 +38,7 @@ const Banner = () => {
   const today = new Date();
   return (
     <Flex
-      width='99vw'
+      height='300px'
       gap='40px'
       background='#ECFDF5'
       justifyContent='center'
@@ -47,7 +47,7 @@ const Banner = () => {
       position='relative'
       overflow='hidden'
     >
-      <Flex direction='column' gap='50px' width='300px'>
+      <Flex direction='column' gap='25px' width='300px'>
         <Flex direction='column'>
           <Box className='Display-sm' color='brandBold' mb='10px'>
             {today.getFullYear()}.{today.getMonth() + 1}.{today.getDate()}
@@ -61,7 +61,7 @@ const Banner = () => {
             {data[0]?.nickname ?? ''}님
           </Box>
         </Flex>
-        <Button background='#475569' color='white' onClick={openTeamSelectModal}>
+        <Button padding='8px' background='#475569' color='white' onClick={openTeamSelectModal}>
           프로젝트 팀 변경하기
         </Button>
       </Flex>

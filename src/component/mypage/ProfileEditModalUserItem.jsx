@@ -3,14 +3,25 @@ import { Box, Button, Flex, Image } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import patchManager from '../../api/manage/patchManager';
 import { returnProfileImg } from '../../lips/returnProfile';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import useToastStore from '../../stores/toastStore';
 
 const ProfileEditModalUserItem = ({ memberId, nickname, profileImage, isLeader }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  console.log(id, memberId);
+  const { handleShowToastMessage } = useToastStore();
+
   const handleClick = () => {
-    patchManager(id, memberId);
+    try {
+      patchManager(id, memberId);
+
+      handleShowToastMessage('권한 위임 완료!');
+      navigate(`/${id}/team-task-history`);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 
 import { getProjectList } from '../../api/common';
+import no_team_profile from '../../assets/images/no_team_profile.png';
 import propTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -82,7 +83,7 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
                   }}
                 >
                   <img
-                    src={project.image ?? '/tomato.png'}
+                    src={project.image ?? no_team_profile}
                     alt={project.name}
                     width='40px'
                     height='40px'
