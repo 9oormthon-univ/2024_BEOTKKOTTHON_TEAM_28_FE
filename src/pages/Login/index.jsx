@@ -1,6 +1,7 @@
 import { AuthBox, InputContent } from '../../components/molecules';
 import { Button, Flex, Text } from '@chakra-ui/react';
 
+import Paths from '../../constants/Paths';
 import postCredentials from '../../api/login/postCredentials';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +17,7 @@ const LoginPage = () => {
   const [, setCookie] = useCookies(['access_token']);
 
   const handleSignUpClick = () => {
-    navigate('/signup');
+    navigate(Paths.Register);
   };
 
   const handleLoginClick = async () => {
@@ -25,7 +26,7 @@ const LoginPage = () => {
       console.log(response);
       if (response === 'true') {
         console.log('로그인 성공');
-        navigate('/');
+        navigate(Paths.Landing);
       }
     } catch (error) {
       console.error('Login Error:', error);

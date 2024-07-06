@@ -1,6 +1,7 @@
 import { AuthBox, InputContent } from '../../components/molecules';
 import { Button, Checkbox, Flex, Img, Text } from '@chakra-ui/react';
 
+import Paths from '../../constants/Paths';
 import ProfileSwiper from './components/ProfileSwiper';
 import link from '../../assets/link.svg';
 import postUserData from '../../api/signup/postUserData';
@@ -43,7 +44,7 @@ const SignupPage = () => {
       const response = await postUserData(userData);
       console.log('Signup Response:', response);
 
-      navigate('/login');
+      navigate(Paths.Login);
     } catch (error) {
       console.error('Signup Error:', error);
       alert('회원가입에 실패하였습니다.');
