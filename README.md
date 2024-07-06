@@ -68,6 +68,7 @@
 - ⚡️ improve: 기존 기능 업그레이드
 - 🐛 fix: 에러 수정
 - 💄 style: 코드 스타일 수정
+- 🚀 deploy: 배포 작업
 - 📝 docs: 문서 작성 및 편집
 - 🔨 refactor: 코드 리팩토링
 - 📦 chore: 기타 작업
