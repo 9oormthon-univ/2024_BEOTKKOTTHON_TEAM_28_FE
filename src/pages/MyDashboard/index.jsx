@@ -1,8 +1,8 @@
 import { Box, Flex } from '@chakra-ui/react';
-import { GardenPlot, Profile } from '../../component/mypage';
+import { GardenPlot, Profile } from './components';
 
-import GardenList from '../../component/mypage/ProjectList';
-import { TabBar } from '../../component/common/organisms';
+import GardenList from './components/ProjectList';
+import { TabBar } from '../../components/organisms';
 import { useState } from 'react';
 import useUserStore from '../../stores/userStore';
 
