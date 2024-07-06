@@ -1,9 +1,11 @@
+import Paths, { ProtectedPaths } from '../../../constants/Paths';
+
 import Footer from './Footer';
 import Header from './Header';
-import Paths from '../../../constants/Paths';
 import PropTypes from 'prop-types';
 import Toast from './Toast';
 import getUserInfo from '../../../api/dashboard/getUserInfo';
+import { isDev } from '../../../constants/env';
 import { returnProfileImg } from '../../../lips/returnProfile';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -45,11 +47,9 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     const currentPath = location.pathname;
-
-    if (![Paths.Login, Paths.Landing, Paths.Register].includes(currentPath)) {
-      if (accessToken) {
-        // navigate('/login');
-      }
+    if (isDev) return;
+    if (!accessToken && ProtectedPaths.includes(currentPath)) {
+      navigate(Paths.Login);
     }
   }, [accessToken, location.pathname, navigate]);
 
