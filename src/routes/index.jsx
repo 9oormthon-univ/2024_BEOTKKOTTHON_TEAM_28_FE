@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from '../pages/Landing';
 import Layout from '../components/components/Layout';
 import Login from '../pages/Login';
+import Mobile from '../pages/Mobile';
 import MyDashboard from '../pages/MyDashboard';
 import Paths from '../constants/Paths';
 import QuestionList from '../pages/QuestionList';
@@ -25,11 +26,24 @@ const RoutesList = [
 ];
 
 const Router = () => {
+  const isMobile =
+    /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/.test(
+      navigator.userAgent,
+    ) && window.innerWidth <= 768;
+
   return (
     <BrowserRouter>
       <Routes>
         {RoutesList.map(({ path, element }, index) => (
-          <Route key={index} path={path} element={<Layout>{element}</Layout>} />
+          <Route
+            key={index}
+            path={path}
+            element={
+              <Mobile isMobile={isMobile}>
+                <Layout>{element}</Layout>
+              </Mobile>
+            }
+          />
         ))}
       </Routes>
     </BrowserRouter>
