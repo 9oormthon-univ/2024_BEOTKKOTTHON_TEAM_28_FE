@@ -1,7 +1,8 @@
+import { apiBaseUrl } from '../constants/env';
 import axios from 'axios';
 
 const axiosFormInstance = axios.create({
-  baseURL: 'https://startupvalley.site/api',
+  baseURL: apiBaseUrl,
   timeout: 5000,
   withCredentials: true,
 });

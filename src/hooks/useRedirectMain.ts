@@ -1,3 +1,4 @@
+import Paths from '../constants/Paths';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../stores/userStore';
@@ -8,7 +9,7 @@ const useRedirectMain = () => {
 
   useEffect(() => {
     if (!memberId) {
-      navigate('/login');
+      navigate(Paths.Login);
     }
   }, [memberId, navigate]);
 };

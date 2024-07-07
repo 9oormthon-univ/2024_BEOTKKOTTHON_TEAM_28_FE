@@ -1,8 +1,8 @@
-import { Banner, QuestionBox } from '../../component/home';
+import { Banner, QuestionBox } from './components';
 import { Box, Flex } from '@chakra-ui/react';
-import { MemberList, TabBar } from '../../component/common/organisms';
+import { MemberList, TabBar } from '../../components/organisms';
 
-import WorkItem from '../../component/home/WorkItem';
+import WorkItem from './components/WorkItem';
 import getFullDate from '../../lips/getFullDate';
 import { getMemberRanking } from '../../api/teamhistory';
 import { getMemberTasks } from '../../api/teamhistory';
@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
-// import { Note } from '../component/common/mocules';
+// import { Note } from '../components/molecules';
 
 const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드'];
 
