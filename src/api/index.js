@@ -1,7 +1,9 @@
+import { apiBaseUrl, isDev } from '../constants/env';
+
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: '/api',
+  baseURL: isDev ? apiBaseUrl : '/api',
   timeout: 5000,
   withCredentials: true,
 });
