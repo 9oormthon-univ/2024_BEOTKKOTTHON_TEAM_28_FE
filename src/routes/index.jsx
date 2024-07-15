@@ -5,6 +5,7 @@ import Layout from '../components/components/Layout';
 import Login from '../pages/Login';
 import Mobile from '../pages/Mobile';
 import MyDashboard from '../pages/MyDashboard';
+import NotFound from '../pages/NotFound';
 import Paths from '../constants/Paths';
 import QuestionList from '../pages/QuestionList';
 import Register from '../pages/Register';
@@ -23,6 +24,7 @@ const RoutesList = [
   { path: Paths.QuestionList, element: <QuestionList /> },
   { path: Paths.TeamHistory, element: <TeamHistory /> },
   { path: Paths.TeamManage, element: <TeamManage /> },
+  { path: '*', element: <NotFound /> },
 ];
 
 const Router = () => {
