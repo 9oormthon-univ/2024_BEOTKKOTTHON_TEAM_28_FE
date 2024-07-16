@@ -1,6 +1,7 @@
 import { Button, Flex, Img, Text } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
+import { discordBotUrl } from '../../constants';
 import nonexistence from '../../assets/nonexistence.svg';
 
 const NonData = ({ extraText, isConnectButton }) => {
@@ -14,7 +15,14 @@ const NonData = ({ extraText, isConnectButton }) => {
           </Text>
           {extraText && <Text textAlign='center'>{extraText}</Text>}
           {isConnectButton && (
-            <Button marginTop='25px' backgroundColor='#065F46' textColor='white'>
+            <Button
+              marginTop='25px'
+              backgroundColor='#065F46'
+              textColor='white'
+              onClick={() => {
+                window.open(discordBotUrl, '_blank');
+              }}
+            >
               봇 연결하기
             </Button>
           )}
