@@ -75,7 +75,7 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
                     handleTeamId(project.id, project.name);
                     closeTeamSelectModal();
                     if (!isGoTaskHistory || splittedPathname[2] === 'team-task-history') {
-                      navigate(`/${project.id}/team-task-history`);
+                      navigate(`/team-task-history/${project.id}`);
                     }
                     if (isGoTaskHistory || splittedPathname[2] === 'task-history') {
                       navigate(`/${project.id}/task-history`);

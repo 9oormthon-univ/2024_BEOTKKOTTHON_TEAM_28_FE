@@ -4,7 +4,7 @@ const Paths = {
   Register: '/signup',
   MyDashboard: '/dashboard',
   UserDashboard: '/user/:id',
-  TeamMain: '/:id/team-task-history',
+  TeamMain: '/team-task-history/:id',
   QuestionList: '/question-list',
   TeamHistory: '/:id/task-history',
   TeamManage: '/:id/manage',

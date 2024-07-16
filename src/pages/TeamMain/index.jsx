@@ -2,6 +2,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import { MemberList, TabBar } from '../../components/organisms';
 
 import Banner2 from './components/Banner2';
+import NonData from '../../components/molecules/NonData';
 import { QuestionBox } from './components';
 import WorkItem from './components/WorkItem';
 import getFullDate from '../../lips/getFullDate';
@@ -52,18 +53,18 @@ const HomePage = () => {
         <Flex margin='auto'>
           <Flex direction='column' gap='64px'>
             <QuestionBox />
-            <MemberList projectName={projectName} />
+            <MemberList isWhite projectName={projectName} />
           </Flex>
           <Flex direction='column' marginLeft='48px' w='922px' gap='36px'>
             {/* <Note /> */}
             <Box>
               <TabBar tabs={Tabs} currentTap={currentTap} handleCurrentTap={handleCurrentTap} />
               <Box className='Display-sm' marginY='24px'>
-                {projectName}의 다른 팀원은 어떤 일을 했을까요?
+                {projectName && `${projectName} 의`}다른 팀원은 어떤 일을 했을까요?
               </Box>
               <Flex direction='column' gap='20px'>
                 {sort === 'all' &&
-                  data.map((el, index) => {
+                  data?.map((el, index) => {
                     const showDate =
                       el.createdAt.split('T')[0] !== data[index - 1]?.createdAt.split('T')[0];
 
@@ -83,8 +84,8 @@ const HomePage = () => {
                     );
                   })}
                 {data
-                  .filter((el) => sort !== 'all' && el.part === part)
-                  .map((el, index) => {
+                  ?.filter((el) => sort !== 'all' && el.part === part)
+                  ?.map((el, index) => {
                     const showDate =
                       el.createdAt.split('T')[0] !== data[index - 1]?.createdAt.split('T')[0];
 
@@ -103,6 +104,12 @@ const HomePage = () => {
                       </>
                     );
                   })}
+                {!data && (
+                  <NonData
+                    isConnectButton
+                    extraText='서버에 디스코드봇을 추가하여 팀원들과 소통해보세요!'
+                  />
+                )}
               </Flex>
             </Box>
           </Flex>

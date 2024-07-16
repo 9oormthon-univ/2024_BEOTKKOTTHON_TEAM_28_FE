@@ -1,9 +1,9 @@
-import { Flex, Img, Text } from '@chakra-ui/react';
+import { Button, Flex, Img, Text } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 import nonexistence from '../../assets/nonexistence.svg';
 
-const NonData = ({ extraText }) => {
+const NonData = ({ extraText, isConnectButton }) => {
   return (
     <Flex justify='center' align='center'>
       <Flex direction='column' mt='70px' justify='center' align='center'>
@@ -13,6 +13,11 @@ const NonData = ({ extraText }) => {
             데이터가 존재하지 않아요.
           </Text>
           {extraText && <Text textAlign='center'>{extraText}</Text>}
+          {isConnectButton && (
+            <Button marginTop='25px' backgroundColor='#065F46' textColor='white'>
+              봇 연결하기
+            </Button>
+          )}
         </Flex>
       </Flex>
     </Flex>
@@ -21,6 +26,7 @@ const NonData = ({ extraText }) => {
 
 NonData.propTypes = {
   extraText: PropTypes.string,
+  isConnectButton: PropTypes.bool,
 };
 
 export default NonData;
