@@ -90,10 +90,10 @@ const Header = () => {
                 // }
                 setIsGoTaskHistory(false);
                 if (teamId !== 0) {
-                  navigate(`/${teamId}/team-task-history`);
+                  navigate(`/team-task-history/${teamId}`);
                   return;
                 }
-                openTeamSelectModal();
+                navigate(`/team-task-history/no-connected`);
               }}
               className='Body-xl smNone'
               background='transparent'
@@ -129,7 +129,7 @@ const Header = () => {
                   navigate(`/${teamId}/task-history`);
                   return;
                 }
-                openTeamSelectModal();
+                navigate(`/team-task-history/no-connected`);
               }}
               color={activeLink.includes('/task-history') ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
@@ -151,7 +151,21 @@ const Header = () => {
               나의 대시보드
             </Button>
             {accessToken && <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />}
-            {accessToken && <Button onClick={handleClickLogout}>로그아웃</Button>}
+            {accessToken && (
+              <>
+                <Button
+                  background='brand'
+                  color='white'
+                  width='100px'
+                  onClick={() => {
+                    openTeamSelectModal();
+                  }}
+                >
+                  팀 변경
+                </Button>
+                <Button onClick={handleClickLogout}>로그아웃</Button>
+              </>
+            )}
             {!accessToken && (
               <Button
                 background='brand'

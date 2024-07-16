@@ -62,6 +62,7 @@ const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
         padding='12px'
         borderRadius='12px'
       >
+        {(!data || data.length === 0) && <MemberItem isBlank />}
         {data?.map((el) => (
           <MemberItem
             currentUser={currentUser}

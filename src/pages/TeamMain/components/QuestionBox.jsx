@@ -1,5 +1,6 @@
-import { Box, Button, Flex, Image } from '@chakra-ui/react';
+import { Box, Button, Flex } from '@chakra-ui/react';
 
+import QuestionItem from './QuestionItem';
 import { getWaitingQuestions } from '../../../api/teamhistory';
 import { returnProfileImg } from '../../../lips/returnProfile';
 import tomato from '../../../assets/tomato.png';
@@ -37,28 +38,21 @@ const QuestionBox = () => {
         padding='12px'
         borderRadius='12px'
       >
-        {!data || (data?.length === 0 && '아직 요청이 없어요!')}
+        {!data || (data?.length === 0 && <QuestionItem isBlank />)}
         {data?.map((el) => {
           return (
-            <Flex gap='8px' key={el.sender.id}>
-              <Image
-                borderRadius='50%'
-                src={returnProfileImg(el.sender.profileImage) ?? tomato}
-                alt='프로필'
-                width='48px'
-              />
-              <Flex direction='column'>
-                <Box className='SubHead-lg'>
-                  {' '}
-                  {el.sender.content.length <= 10
-                    ? el.sender.content
-                    : el.sender.content.substring(0, 10) + '...'}
-                </Box>
-                <Box className='SubHead-md' color='brandBold'>
-                  {el.sender.part}
-                </Box>
-              </Flex>
-            </Flex>
+            <QuestionItem
+              isBlank
+              key={el.sender.id}
+              id={el.sender.id}
+              profileImage={returnProfileImg(el.sender.profileImage) ?? tomato}
+              questionContent={
+                el.sender.content.length <= 10
+                  ? el.sender.content
+                  : el.sender.content.substring(0, 10) + '...'
+              }
+              part={el.sender.part}
+            />
           );
         })}
         <Button

@@ -1,5 +1,6 @@
 import { Button, Flex, Image, Img, Text, useBreakpointValue } from '@chakra-ui/react';
 
+import { discordBotUrl } from '../../constants';
 import landing1 from '../../assets/landing1.png';
 import landing2 from '../../assets/landing2.png';
 import landing3 from '../../assets/landing3.png';
@@ -49,10 +50,7 @@ const Landing = () => {
             w='252px'
             h='50px'
             onClick={() => {
-              window.open(
-                'https://discord.com/api/oauth2/authorize?client_id=1214574551820800040&permissions=8&scope=bot',
-                '_blank',
-              );
+              window.open(discordBotUrl, '_blank');
             }}
           >
             디스코드 봇 추가하기
