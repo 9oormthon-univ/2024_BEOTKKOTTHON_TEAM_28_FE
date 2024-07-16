@@ -1,7 +1,8 @@
-import { Banner, QuestionBox } from './components';
 import { Box, Flex } from '@chakra-ui/react';
 import { MemberList, TabBar } from '../../components/organisms';
 
+import Banner2 from './components/Banner2';
+import { QuestionBox } from './components';
 import WorkItem from './components/WorkItem';
 import getFullDate from '../../lips/getFullDate';
 import { getMemberRanking } from '../../api/teamhistory';
@@ -47,11 +48,11 @@ const HomePage = () => {
   return (
     <main style={{ paddingBottom: '150px' }}>
       <Flex direction='column' gap='64px'>
-        <Banner />
+        <Banner2 />
         <Flex margin='auto'>
           <Flex direction='column' gap='64px'>
             <QuestionBox />
-            <MemberList isWhite={true} projectName={projectName} />
+            <MemberList projectName={projectName} />
           </Flex>
           <Flex direction='column' marginLeft='48px' w='922px' gap='36px'>
             {/* <Note /> */}
