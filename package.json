@@ -60,7 +60,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --cache --write",
-      "eslint --cache --fix --max-warnings=0"
+      "eslint --cache --fix --max-warnings=0 --ignore-pattern !/.storybook"
     ],
     "*.{js,jsx}": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
