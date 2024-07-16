@@ -8,7 +8,6 @@ import NonData from '../../components/molecules/NonData';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import useUserStore from '../../stores/userStore';
 
 const Tabs = ['백로그 타임라인'];
 
@@ -16,7 +15,6 @@ const TaskHistoryPage = () => {
   const [currentUser, setCurrentUser] = useState();
   const [data, setData] = useState([]);
 
-  const { userId } = useUserStore();
   const { id } = useParams();
 
   useEffect(() => {
@@ -61,7 +59,7 @@ const TaskHistoryPage = () => {
             />
           </Flex>
           <Flex direction='column' w='922px' gap='86px'>
-            <GardenPlot id={Number(userId)} />
+            <GardenPlot name={currentUser?.name} id={Number(currentUser?.memberId)} />
             <Flex direction='column' gap='32px'>
               <TabBar tabs={Tabs} />
               <Flex direction='column' gap='24px'>

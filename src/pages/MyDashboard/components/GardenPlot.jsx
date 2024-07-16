@@ -8,7 +8,7 @@ import loader from '../../../assets/loader.png';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const GardenPlot = ({ id }) => {
+const GardenPlot = ({ name, id }) => {
   const [data, setData] = useState([]);
 
   const startDate = new Date();
@@ -33,7 +33,7 @@ const GardenPlot = ({ id }) => {
       padding='30px'
     >
       <Flex className='Display-sm'>
-        <Box color='brandBold'>{data?.userNickName ?? 'User'}</Box>님의 작업 척도
+        <Box color='brandBold'>{name ?? data?.userNickName}</Box>님의 작업 척도
       </Flex>
       <Box>
         <CommitBox
@@ -62,6 +62,6 @@ const GardenPlot = ({ id }) => {
   );
 };
 
-GardenPlot.propTypes = { id: PropTypes.string };
+GardenPlot.propTypes = { id: PropTypes.string, name: PropTypes.string };
 
 export default GardenPlot;
