@@ -28,6 +28,7 @@
     "react-custom-calendar-heatmap": "^1.0.5",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
+    "storybook-addon-react-router-v6": "^2.0.15",
     "swiper": "^11.0.7",
     "swiper-bundle": "0.0.1-security",
     "swiper-react": "^1.0.0",
