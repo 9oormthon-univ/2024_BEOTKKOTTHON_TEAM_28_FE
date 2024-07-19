@@ -13,6 +13,7 @@ const MemberItem = ({
   part,
   profileImage,
   nickname,
+  isBlank,
 }) => {
   const navigate = useNavigate();
 
@@ -31,14 +32,20 @@ const MemberItem = ({
       padding='5px'
       borderRadius='5px'
     >
-      <Image borderRadius='50%' src={returnProfileImg(profileImage)} alt='프로필' width='48px' />
-      <div>{nickname}</div>
-      <PartTag part={part} active={active ?? false} />
+      <Image
+        borderRadius='50%'
+        src={isBlank ? returnProfileImg('TOMATO') : returnProfileImg(profileImage)}
+        alt='프로필'
+        width='48px'
+      />
+      <div>{isBlank ? '팀원이 없어요' : nickname}</div>
+      {!isBlank && <PartTag part={part} active={active ?? false} />}
     </Flex>
   );
 };
 
 MemberItem.propTypes = {
+  isBlank: PropTypes.bool,
   active: PropTypes.bool,
   memberId: PropTypes.number,
   part: PropTypes.string,

@@ -1,7 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 
-import CalendarHeatmap from 'react-calendar-heatmap';
-import { MONTHS } from '../../../constants/calendarData';
+import CommitBox from '../../../components/molecules/CommitBox';
 import PropTypes from 'prop-types';
 import clock from '../../../assets/clock.png';
 import { getGardenData } from '../../../api/common';
@@ -9,12 +8,11 @@ import loader from '../../../assets/loader.png';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const GardenPlot = ({ id }) => {
+const GardenPlot = ({ name, id }) => {
   const [data, setData] = useState([]);
 
   const startDate = new Date();
   startDate.setFullYear(startDate.getFullYear() - 1);
-  const endDate = new Date();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,21 +33,13 @@ const GardenPlot = ({ id }) => {
       padding='30px'
     >
       <Flex className='Display-sm'>
-        <Box color='brandBold'>{data?.userNickName ?? 'User'}</Box>님의 작업 척도
+        <Box color='brandBold'>{name ?? data?.userNickName}</Box>님의 작업 척도
       </Flex>
       <Box>
-        <CalendarHeatmap
-          startDate={startDate}
-          endDate={endDate}
-          values={data?.workDateList?.map((el) => ({ date: el.date, count: el.time })) ?? []}
-          monthLabels={MONTHS}
-          classForValue={(value) => {
-            if (!value) {
-              return 'color-empty';
-            }
-            const colorScale = Math.floor((4 * value.count) / data?.workMaxTime);
-            return `color-scale-${colorScale === 0 ? '1' : colorScale}`;
-          }}
+        <CommitBox
+          values={
+            data?.workDateList?.map((el) => ({ date: new Date(el.date), value: el.time })) ?? []
+          }
         />
       </Box>
       <Flex gap='20px' color='tertiary'>
@@ -72,6 +62,6 @@ const GardenPlot = ({ id }) => {
   );
 };
 
-GardenPlot.propTypes = { id: PropTypes.string };
+GardenPlot.propTypes = { id: PropTypes.string, name: PropTypes.string };
 
 export default GardenPlot;

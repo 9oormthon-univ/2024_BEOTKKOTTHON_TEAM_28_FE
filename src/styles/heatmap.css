@@ -1,0 +1,121 @@
+/* 
+
+Heatmap
+
+*/
+
+.heatmap-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 4px;
+  height: calc(14 * 7px);
+  max-width: calc(365 / 7px);
+}
+
+.heatmap-element {
+  position: relative;
+  width: 10px;
+  height: 10px;
+}
+
+.heatmap-hover-element {
+  display: none;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  align-items: center;
+  justify-content: center;
+  background-color: #b5b5b5;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+  width: 10px;
+  height: 10x;
+  z-index: 1;
+}
+
+.heatmap-element:hover .heatmap-hover-element {
+  display: flex;
+}
+
+.heatmap-element-depth-empty {
+  fill: '#ffffff';
+}
+
+.heatmap-element-depth-0 {
+}
+
+.heatmap-element-depth-1 {
+}
+
+.heatmap-element-depth-2 {
+}
+
+.heatmap-element-depth-3 {
+}
+
+.heatmap-element-depth-4 {
+}
+
+.heatmap-element-depth-5 {
+}
+/* 
+
+CalendarHeatmap
+
+*/
+
+.calendar-heatmap-container {
+  display: grid;
+  gap: 10px;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+}
+
+.calendar-heatmap-empty-element {
+  grid-row: 1;
+  grid-column: 0;
+}
+
+.month-container {
+  grid-row: 1;
+  grid-column: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.month-element {
+  color: #64748b;
+  /* .body/.body-md */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+  letter-spacing: 0.2px;
+}
+
+.week-container {
+  grid-row: 0;
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.week-element {
+  color: #64748b;
+  /* .body/.body-md */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+  letter-spacing: 0.2px;
+}
+
+.calendar-heatmap {
+  grid-row: 1;
+  grid-column: 1;
+}
