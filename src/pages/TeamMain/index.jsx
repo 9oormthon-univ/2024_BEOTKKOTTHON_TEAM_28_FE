@@ -49,7 +49,7 @@ const HomePage = () => {
   return (
     <main style={{ paddingBottom: '150px' }}>
       <Flex direction='column' gap='64px'>
-        <Banner2 />
+        <Banner2 isTeamId={false} />
         <Flex margin='auto'>
           <Flex direction='column' gap='64px'>
             <QuestionBox />

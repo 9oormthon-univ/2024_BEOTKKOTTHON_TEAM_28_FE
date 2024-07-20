@@ -55,7 +55,7 @@ const Layout = ({ children }) => {
 
   return (
     <div>
-      <Header />
+      <Header isLogin={!!accessToken} />
       {isShowToast && <Toast />}
       {children}
       <Footer />

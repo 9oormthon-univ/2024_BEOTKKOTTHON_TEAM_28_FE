@@ -20,7 +20,9 @@ const Footer = () => {
             저희의 협업 이야기를 알고 싶으신가요?{useBreakpointValue({ base: <br />, md: '' })}{' '}
             저희의 노션을 방문해보세요
           </Text>
-          <Text mt='8px'>@2024 startupvally.all rights reserved</Text>
+          <Text className='copyright' mt='8px'>
+            @2024 startupvalley.all rights reserved
+          </Text>
         </Flex>
         <Flex direction='column' width='full'>
           <Text
