@@ -11,7 +11,7 @@ const ContentCard = ({ isConnected }) => {
       direction='column'
       backgroundColor='#F0F2F4'
       width='292px'
-      height='262px'
+      height='260px'
     >
       <Box className='Display-sm' textColor='#065F46'>
         2024.03.14
