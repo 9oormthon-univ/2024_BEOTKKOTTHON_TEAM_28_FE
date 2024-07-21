@@ -7,13 +7,12 @@ export default {
 
 export const Login = {
   args: {
-    primary: true,
-    label: 'Button',
+    isLogin: true,
   },
 };
 
 export const Logout = {
   args: {
-    label: 'Button',
+    isLogin: false,
   },
 };

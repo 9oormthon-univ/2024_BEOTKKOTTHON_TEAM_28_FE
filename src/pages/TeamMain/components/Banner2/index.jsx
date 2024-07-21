@@ -2,11 +2,10 @@ import { Box, Flex, Image } from '@chakra-ui/react';
 
 import Card from './Card';
 import ContentCard from './ContentCard';
+import PropTypes from 'prop-types';
 import no_team_select from '../../../../assets/images/no_connected.png';
 
-const Banner2 = () => {
-  const isTeamId = false;
-
+const Banner2 = ({ isTeamId = false }) => {
   return (
     <Flex gap='24px' margin={'65px auto auto auto'}>
       <ContentCard isConnected={false} />
@@ -38,6 +37,10 @@ const Banner2 = () => {
       )}
     </Flex>
   );
+};
+
+Banner2.propTypes = {
+  isTeamId: PropTypes.bool,
 };
 
 export default Banner2;

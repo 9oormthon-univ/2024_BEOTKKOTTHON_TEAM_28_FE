@@ -2,14 +2,16 @@ import { Box, Button, Flex, Image, Link, useBreakpointValue } from '@chakra-ui/r
 import { useEffect, useState } from 'react';
 
 import MenuIcon from '../../atoms/MenuIcon';
+import PropTypes from 'prop-types';
 import TeamSelectModal from './TeamSelectModal';
+import carrot from '../../../assets/carrot.png';
 import { postLogout } from '../../../api/login';
 import text_logo from '../../../assets/text_logo.png';
 import { useNavigate } from 'react-router-dom';
 import useTeamStore from '../../../stores/useTeamStore';
 import useUserStore from '../../../stores/userStore';
 
-const Header = () => {
+const Header = ({ isLogin }) => {
   const navigate = useNavigate();
   // TODO
   const [onMenuToggled, setMenuToggled] = useState(false);
@@ -27,15 +29,6 @@ const Header = () => {
   }, [closeTeamSelectModal]);
 
   const width = useBreakpointValue({ base: '360px', md: 0 });
-
-  const cookies = document.cookie.split(';');
-
-  let accessToken = '';
-  cookies.forEach((cookie) => {
-    if (cookie.trim().startsWith('access_token=')) {
-      accessToken = cookie.trim().substring('access_token='.length);
-    }
-  });
 
   const handleClickLogout = async () => {
     try {
@@ -72,7 +65,6 @@ const Header = () => {
               <Image src={text_logo} width='131px' height='21px' alt='스타트업밸리 로고' />
             </Flex>
           </Link>
-
           <Box
             className='sm'
             onClick={() => {
@@ -150,8 +142,15 @@ const Header = () => {
             >
               나의 대시보드
             </Button>
-            {accessToken && <Image borderRadius='50%' src={profile} alt='프로필' width='48px' />}
-            {accessToken && (
+            {isLogin && (
+              <Image
+                borderRadius='50%'
+                src={profile !== '' ? profile : carrot}
+                alt='프로필'
+                width='48px'
+              />
+            )}
+            {isLogin && (
               <>
                 <Button
                   background='brand'
@@ -166,7 +165,7 @@ const Header = () => {
                 <Button onClick={handleClickLogout}>로그아웃</Button>
               </>
             )}
-            {!accessToken && (
+            {!isLogin && (
               <Button
                 background='brand'
                 color='white'
@@ -250,8 +249,8 @@ const Header = () => {
             >
               나의 대시보드
             </Link>
-            {accessToken && <Button onClick={handleClickLogout}>로그아웃</Button>}
-            {!accessToken && (
+            {isLogin && <Button onClick={handleClickLogout}>로그아웃</Button>}
+            {!isLogin && (
               <Button
                 background='brand'
                 color='white'
@@ -270,4 +269,7 @@ const Header = () => {
   );
 };
 
+Header.propTypes = {
+  isLogin: PropTypes.bool,
+};
 export default Header;

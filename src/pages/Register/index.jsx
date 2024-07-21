@@ -10,9 +10,6 @@ import { useState } from 'react';
 
 const SignupPage = () => {
   const [nickname, setNickname] = useState('');
-  const [discordId, setDiscordId] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
   const [selectedProfile, setSelectedProfile] = useState(null);
 
@@ -27,14 +24,9 @@ const SignupPage = () => {
 
   const handleSignup = async () => {
     console.log('nickname:', nickname);
-    console.log('discordId:', discordId);
-    console.log('password:', password);
-    console.log('confirmPassword:', confirmPassword);
 
     const userData = {
       nickname: nickname,
-      discord_id: discordId,
-      password: password,
       profile_image: selectedProfile,
     };
 
@@ -52,16 +44,7 @@ const SignupPage = () => {
   };
 
   const isAllValid = () => {
-    return (
-      nickname &&
-      discordId &&
-      password &&
-      confirmPassword &&
-      password === confirmPassword &&
-      isTermsChecked &&
-      isPrivacyChecked &&
-      selectedProfile != null
-    );
+    return nickname && isPrivacyChecked && selectedProfile != null;
   };
 
   const handleTermsOfUseClick = () => {
@@ -90,34 +73,6 @@ const SignupPage = () => {
             mt='36px'
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
-          />
-          <InputContent
-            label='디스코드 아이디'
-            placeholder='discord id'
-            mt='12px'
-            value={discordId}
-            onChange={(e) => setDiscordId(e.target.value)}
-          />
-          <InputContent
-            label='비밀번호 입력'
-            placeholder='PW'
-            mt='36px'
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            confirmValue={confirmPassword}
-            passBorder={true}
-          />
-          <InputContent
-            label='비밀번호 확인'
-            placeholder='PW'
-            mt='36px'
-            type='password'
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            confirmValue={password}
-            isConfirm={true}
-            passBorder={true}
           />
           <Flex direction='column' w='100%'>
             <Flex justify='space-between' mt='36px'>
