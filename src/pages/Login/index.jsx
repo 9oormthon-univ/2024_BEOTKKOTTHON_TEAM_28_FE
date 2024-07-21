@@ -1,70 +1,51 @@
-import { AuthBox, InputContent } from '../../components/molecules';
-import { Button, Flex, Text } from '@chakra-ui/react';
+import { Button, Flex, Img, Text } from '@chakra-ui/react';
 
+import { AuthBox } from '../../components/molecules';
 import Paths from '../../constants/Paths';
-import postCredentials from '../../api/login/postCredentials';
-import { useCookies } from 'react-cookie';
+import { discordAuthUrl } from '../../constants/env';
+import discordIcon from '../../assets/discord.png';
+import postDiscordOAuth from '../../api/auth/postDiscordOAuth';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [discordId, setDiscordId] = useState('');
-  const [password, setPassword] = useState('');
+  const [searchParams] = useSearchParams();
 
-  const isFormFilled = discordId.trim() !== '' && password.trim() !== '';
+  const code = searchParams.get('code');
 
-  const [, setCookie] = useCookies(['access_token']);
-
-  const handleSignUpClick = () => {
-    navigate(Paths.Register);
-  };
-
-  const handleLoginClick = async () => {
-    try {
-      const response = await postCredentials(discordId, password, setCookie);
-      console.log(response);
-      if (response === 'true') {
-        console.log('로그인 성공');
-        navigate(Paths.Landing);
+  useEffect(() => {
+    const handleDiscordOAuth = async () => {
+      if (code) {
+        try {
+          await postDiscordOAuth(code);
+          navigate('/');
+        } catch (error) {
+          navigate(Paths.Register);
+        }
       }
-    } catch (error) {
-      console.error('Login Error:', error);
-      alert('로그인에 실패했습니다. 다시 시도해주세요.');
-    }
-  };
+    };
+
+    handleDiscordOAuth();
+  }, [code, navigate]);
 
   return (
     <main>
       <Flex justify='center' align='center' h='calc(100vh - 172px)'>
         <AuthBox>
-          <InputContent
-            label='디스코드 아이디'
-            placeholder='discord id'
-            mt='36px'
-            value={discordId}
-            onChange={(e) => setDiscordId(e.target.value)}
-          />
-          <InputContent
-            label='비밀번호 입력'
-            placeholder='PW'
-            mt='36px'
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Text mt='36px' textDecoration='underline' cursor='pointer' onClick={handleSignUpClick}>
-            회원가입
-          </Text>
+          <Text mt='36px'>가입 과정 없이 디스코드로 로그인 해보세요.</Text>
           <Button
-            w='100%'
-            p='11px'
+            w='358px'
+            background='#767FF8'
+            color='white'
             mt='12px'
-            onClick={handleLoginClick}
-            colorScheme={isFormFilled ? 'green' : 'gray'}
-            isDisabled={!isFormFilled}
+            onClick={() => {
+              navigate(discordAuthUrl);
+            }}
           >
-            로그인
+            <Img src={discordIcon} alt='Discord Icon' w='24px' mr='2' />
+            디스코드로 로그인
           </Button>
         </AuthBox>
       </Flex>
