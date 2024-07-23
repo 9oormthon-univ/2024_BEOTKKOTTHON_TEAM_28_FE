@@ -2,7 +2,7 @@
 
 🍀 Startup Valley ⭐는 디스코드봇을 통해 기획자와 디자이너, 백엔드 및 프론트엔드 개발자의 성장 척도를 기록하여, 개인의 성장 척도와 팀의 성장을 도와주는 프로젝트 입니다.
 
-🔗 서비스 링크 : https://client.startupvalley.site/
+🔗 서비스 링크 : https://www.startupvalley.site/
 
 ## 주요 기능 및 특징
 
