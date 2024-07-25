@@ -15,6 +15,8 @@ import useUserStore from '../../../stores/userStore';
 
 const Layout = ({ children }) => {
   const location = useLocation();
+  const currentPath = location.pathname;
+
   const { isShowToast } = useToastStore();
 
   const { handleProfile } = useUserStore();
@@ -46,16 +48,15 @@ const Layout = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const currentPath = location.pathname;
     if (isDev) return;
     if (!accessToken && ProtectedPaths.includes(currentPath)) {
       navigate(Paths.Login);
     }
-  }, [accessToken, location.pathname, navigate]);
+  }, [accessToken, location.pathname, navigate, currentPath]);
 
   return (
     <div>
-      <Header isLogin={!!accessToken} />
+      <Header isLogin={!!accessToken && currentPath !== Paths.Register} />
       {isShowToast && <Toast />}
       {children}
       <Footer />
