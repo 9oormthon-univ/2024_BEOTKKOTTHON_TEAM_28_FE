@@ -1,7 +1,7 @@
 import StatusTag from './StatusTag';
 
 export default {
-  title: 'atom/StatusTag',
+  title: 'Atoms/StatusTag',
   component: StatusTag,
 };
 

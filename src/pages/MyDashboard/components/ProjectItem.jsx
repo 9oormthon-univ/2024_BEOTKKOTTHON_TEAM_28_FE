@@ -11,12 +11,13 @@ const ProjectItem = ({ name, summary, profileImage, startAt, endAt, status }) =>
       </Box>
       <Flex
         w='100%'
-        background='gray.100'
+        background='#F0F2F4'
         alignItems='center'
         paddingY='24px'
         paddingX='32px'
         gap='20px'
         borderRadius='12px'
+        border='1px solid #CCD6E3'
       >
         <img
           src={profileImage ?? '/tomato.png'}

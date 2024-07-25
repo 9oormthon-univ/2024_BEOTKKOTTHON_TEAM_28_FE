@@ -1,7 +1,7 @@
 import Card from './Card';
 
 export default {
-  title: 'Atom/BannerCard',
+  title: 'Atoms/BannerCard',
   component: Card,
 };
 
