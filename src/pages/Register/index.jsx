@@ -26,7 +26,7 @@ const SignupPage = () => {
 
   const handleSignup = async () => {
     const userData = {
-      nickname: nickname,
+      nickname: nickname.toUpperCase(),
       profileImage: selectedProfile,
     };
 
