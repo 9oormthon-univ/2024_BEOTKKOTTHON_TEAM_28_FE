@@ -27,7 +27,7 @@ const SignupPage = () => {
   const handleSignup = async () => {
     const userData = {
       nickname: nickname,
-      profile_image: selectedProfile,
+      profileImage: selectedProfile,
     };
 
     try {
