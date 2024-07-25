@@ -21,12 +21,12 @@ const SignupPage = () => {
   const navigate = useNavigate();
 
   const handleSelectProfile = (profile) => {
-    setSelectedProfile(profile);
+    setSelectedProfile(profile.toUpperCase());
   };
 
   const handleSignup = async () => {
     const userData = {
-      nickname: nickname.toUpperCase(),
+      nickname: nickname,
       profileImage: selectedProfile,
     };
 
