@@ -7,6 +7,7 @@ import link from '../../assets/link.svg';
 import postUserData from '../../api/signup/postUserData';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import useToastStore from '../../stores/toastStore';
 
 const SignupPage = () => {
   const [nickname, setNickname] = useState('');
@@ -16,6 +17,7 @@ const SignupPage = () => {
   const [isTermsChecked, setIsTermsChecked] = useState(false);
   const [isPrivacyChecked, setIsPrivacyChecked] = useState(false);
 
+  const { handleShowToastMessage } = useToastStore();
   const navigate = useNavigate();
 
   const handleSelectProfile = (profile) => {
@@ -23,22 +25,17 @@ const SignupPage = () => {
   };
 
   const handleSignup = async () => {
-    console.log('nickname:', nickname);
-
     const userData = {
       nickname: nickname,
       profile_image: selectedProfile,
     };
 
-    console.log(userData);
-
     try {
-      const response = await postUserData(userData);
-      console.log('Signup Response:', response);
+      await postUserData(userData);
 
+      handleShowToastMessage('로그인 성공!');
       navigate(Paths.Login);
     } catch (error) {
-      console.error('Signup Error:', error);
       alert('회원가입에 실패하였습니다.');
     }
   };
