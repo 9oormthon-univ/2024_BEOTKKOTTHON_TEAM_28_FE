@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Image, Link, useBreakpointValue } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
+import HeaderMenuItem from './HeaderMenuItem';
 import MenuIcon from '../../atoms/MenuIcon';
 import PropTypes from 'prop-types';
 import TeamSelectModal from './TeamSelectModal';
@@ -13,9 +14,9 @@ import useUserStore from '../../../stores/userStore';
 
 const Header = ({ isLogin }) => {
   const navigate = useNavigate();
+  const currentPath = window.location.pathname;
   // TODO
   const [onMenuToggled, setMenuToggled] = useState(false);
-  const [activeLink, setActiveLink] = useState('');
   const [isGoTaskHistory, setIsGoTaskHistory] = useState(false);
 
   const { teamId, isOpenTeamSelectModal, openTeamSelectModal, closeTeamSelectModal } =
@@ -23,8 +24,6 @@ const Header = ({ isLogin }) => {
   const { profile } = useUserStore();
 
   useEffect(() => {
-    const currentPath = window.location.pathname;
-    setActiveLink(currentPath);
     closeTeamSelectModal();
   }, [closeTeamSelectModal]);
 
@@ -58,12 +57,18 @@ const Header = ({ isLogin }) => {
           alignItems='center'
           p={{ base: '15px 10px', md: '15px 64px', xl: '15px 182px' }}
         >
-          <Link href='/' mr='9px'>
-            <Flex gap='9px' alignItems='center' minWidth='200px'>
-              <Image src='/favicon.ico' width='40px' height='40px' />
-              <Image src={text_logo} width='131px' height='21px' alt='스타트업밸리 로고' />
-            </Flex>
-          </Link>
+          <Flex
+            gap='9px'
+            alignItems='center'
+            minWidth='200px'
+            onClick={() => {
+              navigate(`/`);
+            }}
+          >
+            <Image src='/favicon.ico' width='40px' height='40px' />
+            <Image src={text_logo} width='131px' height='21px' alt='스타트업밸리 로고' />
+          </Flex>
+
           <Box
             className='sm'
             onClick={() => {
@@ -73,74 +78,48 @@ const Header = ({ isLogin }) => {
             <MenuIcon />
           </Box>
           <Flex className='smNone' gap='20px' align='center' minWidth='500px'>
-            <Button
+            <HeaderMenuItem
               onClick={() => {
-                // if (!accessToken) {
-                //  navigate('/login');
-                // return;
-                // }
                 setIsGoTaskHistory(false);
                 if (teamId !== 0) {
                   navigate(`/team-task-history/${teamId}`);
                   return;
                 }
-                navigate(`/team-task-history/no-connected`);
+                navigate(`/team-task-history`);
               }}
-              className='Body-xl smNone'
-              background='transparent'
-              color={activeLink.includes('/team-task-history') ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
-              _focus={{ bg: 'transparent' }}
+              color={currentPath.includes('/team-task-history') ? '#047857' : 'black'}
             >
               팀 작업 기록
-            </Button>
-            <Button
-              className='Body-xl smNone'
+            </HeaderMenuItem>
+            <HeaderMenuItem
               onClick={() => {
                 navigate('/question-list');
-                setActiveLink('/question-list');
               }}
-              background='transparent'
-              color={activeLink.includes('question-list') ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
-              _focus={{ bg: 'transparent' }}
+              color={currentPath.includes('question-list') ? '#047857' : 'black'}
             >
               질문 목록
-            </Button>
-            <Button
-              className='Body-xl smNone'
-              background='transparent'
+            </HeaderMenuItem>
+            <HeaderMenuItem
               onClick={() => {
-                //if (!accessToken) {
-                // navigate('/login');
-                // return;
-                //}
                 setIsGoTaskHistory(true);
                 if (teamId !== 0) {
                   navigate(`/${teamId}/task-history`);
                   return;
                 }
-                navigate(`/team-task-history/no-connected`);
+                navigate(`/team-task-history`);
               }}
-              color={activeLink.includes('/task-history') ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
-              _focus={{ bg: 'transparent' }}
+              color={currentPath.includes('/task-history') ? '#047857' : 'black'}
             >
               작업 기록
-            </Button>
-            <Button
-              className='Body-xl smNone'
+            </HeaderMenuItem>
+            <HeaderMenuItem
               onClick={() => {
                 navigate('/dashboard');
-                setActiveLink('/dashboard');
               }}
-              background='transparent'
-              color={activeLink.includes('dashboard') ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none', background: '#ECFDF5', color: '#047857' }}
-              _focus={{ bg: 'transparent' }}
+              color={currentPath.includes('dashboard') ? '#047857' : 'black'}
             >
               나의 대시보드
-            </Button>
+            </HeaderMenuItem>
             {isLogin && (
               <Image
                 borderRadius='50%'
@@ -219,7 +198,7 @@ const Header = ({ isLogin }) => {
             <Link
               className='sm'
               href='/home'
-              color={activeLink === '/home' ? '#047857' : 'black'}
+              color={currentPath === '/home' ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
             >
               팀 작업 기록
@@ -227,7 +206,7 @@ const Header = ({ isLogin }) => {
             <Link
               className='sm'
               href='/question-list'
-              color={activeLink === '/question-list' ? '#047857' : 'black'}
+              color={currentPath === '/question-list' ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
             >
               질문 목록
@@ -235,7 +214,7 @@ const Header = ({ isLogin }) => {
             <Link
               className='sm'
               href='/task-history'
-              color={activeLink === '/task-history' ? '#047857' : 'black'}
+              color={currentPath === '/task-history' ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
             >
               작업 기록
@@ -243,7 +222,7 @@ const Header = ({ isLogin }) => {
             <Link
               className='sm'
               href='/dashboard'
-              color={activeLink === '/dashboard' ? '#047857' : 'black'}
+              color={currentPath === '/dashboard' ? '#047857' : 'black'}
               _hover={{ textDecoration: 'none' }}
             >
               나의 대시보드

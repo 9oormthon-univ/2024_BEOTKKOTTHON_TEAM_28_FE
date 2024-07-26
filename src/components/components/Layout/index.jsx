@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import useToastStore from '../../../stores/toastStore';
 import useUserStore from '../../../stores/userStore';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, isFooter }) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -59,13 +59,14 @@ const Layout = ({ children }) => {
       <Header isLogin={!!accessToken && currentPath !== Paths.Register} />
       {isShowToast && <Toast />}
       {children}
-      <Footer />
+      {isFooter && <Footer />}
     </div>
   );
 };
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  isFooter: PropTypes.bool,
 };
 
 export default Layout;

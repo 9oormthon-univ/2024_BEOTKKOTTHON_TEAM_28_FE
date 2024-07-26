@@ -33,7 +33,7 @@ const SignupPage = () => {
     try {
       await postUserData(userData);
 
-      handleShowToastMessage('로그인 성공!');
+      handleShowToastMessage('회원가입 성공!');
       navigate(Paths.Login);
     } catch (error) {
       alert('회원가입에 실패하였습니다.');

@@ -15,12 +15,13 @@ import TeamManage from '../pages/TeamManage';
 import UserDashboard from '../pages/UserDashboard';
 
 const RoutesList = [
-  { path: Paths.Landing, element: <Landing />, isMobileVisible: true },
-  { path: Paths.Login, element: <Login />, isMobileVisible: true },
-  { path: Paths.Register, element: <Register />, isMobileVisible: true },
+  { path: Paths.Landing, element: <Landing />, isMobileVisible: true, isFooter: true },
+  { path: Paths.Login, element: <Login />, isMobileVisible: true, isFooter: true },
+  { path: Paths.Register, element: <Register />, isMobileVisible: true, isFooter: true },
   { path: Paths.MyDashboard, element: <MyDashboard />, isMobileVisible: false },
   { path: Paths.UserDashboard, element: <UserDashboard />, isMobileVisible: false },
   { path: Paths.TeamMain, element: <TeamMain />, isMobileVisible: false },
+  { path: '/team-task-history', element: <TeamMain />, isMobileVisible: false },
   { path: '/:id/team-task-history', element: <TeamMain />, isMobileVisible: false },
   { path: Paths.QuestionList, element: <QuestionList />, isMobileVisible: false },
   { path: Paths.TeamHistory, element: <TeamHistory />, isMobileVisible: false },
@@ -37,15 +38,15 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {RoutesList.map(({ path, element, isMobileVisible }, index) => (
+        {RoutesList.map(({ path, element, isMobileVisible, isFooter }, index) => (
           <Route
             key={index}
             path={path}
             element={
               isMobileVisible ? (
-                <Layout>{element}</Layout>
+                <Layout isFooter={!!isFooter}>{element}</Layout>
               ) : (
-                <Mobile isMobile={isMobile}>
+                <Mobile isMobile={isMobile} isFooter={!!isFooter}>
                   <Layout>{element}</Layout>
                 </Mobile>
               )

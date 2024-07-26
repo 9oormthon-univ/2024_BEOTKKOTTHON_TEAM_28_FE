@@ -7,7 +7,7 @@ test.describe('팀 메인 페이지(TM)를 테스트한다', () => {
     const browserContext = await browser.newContext(contextOptions);
     page = await browserContext.newPage();
 
-    await page.goto('https://www.startupvalley.site/team-task-history/no-connected');
+    await page.goto('https://www.startupvalley.site/team-task-history');
   });
 
   test('MT-NO-1. 로그인이 되어있지 않거나 프로젝트가 없으면 미연결 컴포넌트를 보여준다', async () => {

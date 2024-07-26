@@ -28,26 +28,27 @@ const TeamProfile = () => {
     <Flex gap='4px' direction='column' w='292px' top='50px'>
       <Image src={data?.profileImage ?? tomato} alt='프로필' width='120px' />
       <Flex
+        direction='column'
         className='SubHead-xl'
         marginTop='19px'
-        marginBottom='13px'
+        marginBottom='12px'
         gap='10px'
-        alignItems='center'
       >
         <Box>{data?.name}</Box>
-      </Flex>
-      <Flex gap='8px' alignItems='center'>
-        <Box
-          color='primary'
-          background='#E0E7EE'
-          paddingX='8px'
-          paddingY='4px'
-          borderRadius='14px'
-          border='1px solid #475569'
-        >
-          팀 개설일
-        </Box>
-        <Box>{data?.startAt}</Box>
+        <Flex gap='8px' alignItems='center'>
+          <Box
+            className='SubHead-sm'
+            color='primary'
+            background='#E0E7EE'
+            paddingX='8px'
+            paddingY='4px'
+            borderRadius='14px'
+            border='1px solid #475569'
+          >
+            팀 개설일
+          </Box>
+          <Box>{data?.startAt}</Box>
+        </Flex>
       </Flex>
       <Button background='#475569' color='white' onClick={openTeamSelectModal}>
         프로젝트 팀 변경하기
