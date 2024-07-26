@@ -19,6 +19,14 @@ const NonData = ({ extraText, isConnectButton }) => {
               marginTop='25px'
               backgroundColor='#065F46'
               textColor='white'
+              sx={{
+                fontFamily: 'Pretendard',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                lineHeight: '28px',
+                letterSpacing: '0.2px',
+              }}
               onClick={() => {
                 window.open(discordBotUrl, '_blank');
               }}

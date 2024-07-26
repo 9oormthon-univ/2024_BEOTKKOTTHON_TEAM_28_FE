@@ -134,13 +134,43 @@ const Header = ({ isLogin }) => {
                   background='brand'
                   color='white'
                   width='100px'
+                  sx={{
+                    fontFamily: 'Pretendard',
+                    fontSize: '18px',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    lineHeight: '28px',
+                    letterSpacing: '0.2px',
+                  }}
+                  _hover={{
+                    background: 'brand',
+                    color: 'white',
+                  }}
                   onClick={() => {
                     openTeamSelectModal();
                   }}
                 >
                   팀 변경
                 </Button>
-                <Button onClick={handleClickLogout}>로그아웃</Button>
+                <Button
+                  background='#E0E7EE'
+                  color='#334155'
+                  sx={{
+                    fontFamily: 'Pretendard',
+                    fontSize: '18px',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    lineHeight: '28px',
+                    letterSpacing: '0.2px',
+                  }}
+                  _hover={{
+                    background: '#E0E7EE',
+                    color: '#334155',
+                  }}
+                  onClick={handleClickLogout}
+                >
+                  로그아웃
+                </Button>
               </>
             )}
             {!isLogin && (
@@ -148,6 +178,18 @@ const Header = ({ isLogin }) => {
                 background='brand'
                 color='white'
                 width='100px'
+                sx={{
+                  fontFamily: 'Pretendard',
+                  fontSize: '18px',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: '28px',
+                  letterSpacing: '0.2px',
+                }}
+                _hover={{
+                  background: 'brand',
+                  color: 'white',
+                }}
                 onClick={() => {
                   navigate('/login');
                 }}

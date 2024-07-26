@@ -94,7 +94,7 @@ const HomePage = () => {
                     const date = getFullDate(el.createdAt);
                     return (
                       <>
-                        {showDate && <div className='Headline-md'>{date}</div>}
+                        {el.content && showDate && <div className='Headline-md'>{date}</div>}
                         <WorkItem
                           key={el.content}
                           part={el.part}
@@ -127,7 +127,7 @@ const HomePage = () => {
                       </>
                     );
                   })}
-                {!data && (
+                {(!id || !data) && (
                   <NonData
                     isConnectButton
                     extraText='서버에 디스코드봇을 추가하여 팀원들과 소통해보세요!'
