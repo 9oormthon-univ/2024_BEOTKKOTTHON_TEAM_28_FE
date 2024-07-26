@@ -4,6 +4,9 @@ import Card from './Card';
 import ContentCard from './ContentCard';
 import PropTypes from 'prop-types';
 import no_team_select from '../../../../assets/images/no_connected.png';
+import { returnProfileImg } from '../../../../lips/returnProfile';
+
+const CARD_TYPES = ['LONGEST_WORK', 'MOST_WORK', 'MOST_QUESTION', 'FASTEST_ANSWER', 'MOST_DETAIL'];
 
 const Banner2 = ({ isTeamId = false }) => {
   return (
@@ -29,10 +32,46 @@ const Banner2 = ({ isTeamId = false }) => {
         </Box>
       ) : (
         <Flex gap='16px'>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <Card
+            cardType={CARD_TYPES[0]}
+            content='14일'
+            profile={returnProfileImg('TOMATO')}
+            part='DESIGN'
+            card='-10px -10px'
+            username='안재윤'
+            nextUsername='정아현'
+            nextUserProfile={returnProfileImg('CARROT')}
+          />
+          <Card
+            cardType={CARD_TYPES[1]}
+            content='186시간'
+            profile={returnProfileImg('BLUEBERRY')}
+            part='DESIGN'
+            card='-250px -280px'
+            username='최정흠'
+            nextUserProfile={returnProfileImg('CARROT')}
+            nextUsername='정아현'
+          />
+          <Card
+            cardType={CARD_TYPES[2]}
+            content='32회'
+            profile={returnProfileImg('CABBAGE')}
+            part='DESIGN'
+            card='-490px -550px'
+            username='김영원'
+            nextUsername='정아현'
+            nextUserProfile={returnProfileImg('CARROT')}
+          />
+          <Card
+            cardType={CARD_TYPES[3]}
+            content='36회'
+            profile={returnProfileImg('CUCUMBER')}
+            part='DESIGN'
+            card='-730px -830px'
+            username='박소현'
+            nextUserProfile={returnProfileImg('CARROT')}
+            nextUsername='정아현'
+          />
         </Flex>
       )}
     </Flex>
