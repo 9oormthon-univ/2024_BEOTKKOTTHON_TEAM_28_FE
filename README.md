@@ -4,6 +4,8 @@
 
 🔗 서비스 링크 : https://www.startupvalley.site/
 
+![image](https://github.com/user-attachments/assets/c5543e1f-7508-411b-8dc4-ad8b3011176d)
+
 ## 주요 기능 및 특징
 
 ![244376](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_28_FE/assets/75254185/f1c46c80-636c-4b09-b565-fa768eb5b727)
@@ -47,6 +49,11 @@
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=ffffff)
 ![Husky](https://img.shields.io/badge/Husky-4E8EE9?style=for-the-badge&logo=husky&logoColor=ffffff)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=ffffff)
+![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=ffffff)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=ffffff)
+![react-custom-calendar-heatmap](https://img.shields.io/badge/react--custom--calendar--heatmap-FF5733?style=for-the-badge&logo=react&logoColor=ffffff)
+![PropTypes](https://img.shields.io/badge/PropTypes-61DAFB?style=for-the-badge&logo=react&logoColor=ffffff)
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=ffffff)
 
 ## Convention
 
@@ -84,8 +91,10 @@
 
 - 컨벤션 통일, 프로젝트 구조 세팅 등 프로젝트 리드
 - 팀 작업 기록, 질문 목록, 작업기록, 나의 대시보드 페이지 마크업
+- 랜딩 페이지 반응형 작업
+- Storybook을 통한 UI 테스트 및 Playwright를 활용한 기능 명시
 - REST API 응답에서 받은 쿠키에 저장된 토큰을 추출하여 요청 헤더에 삽입 및 로그인 상태 관리
-- 컴포넌트 분리 및 API 연결 진행
+- 스타일과 로 컴포넌트 분리 및 API 연결 진행
 
 ### 박소현
 
