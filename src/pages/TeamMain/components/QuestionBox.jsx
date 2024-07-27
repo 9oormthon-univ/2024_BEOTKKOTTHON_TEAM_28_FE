@@ -42,7 +42,6 @@ const QuestionBox = () => {
         {data?.map((el) => {
           return (
             <QuestionItem
-              isBlank
               key={el.sender.id}
               id={el.sender.id}
               profileImage={returnProfileImg(el.sender.profileImage) ?? tomato}

@@ -54,7 +54,6 @@ const Banner2 = ({ isTeamId = false }) => {
             cardType={CARD_TYPES[0]}
             content={`${rankingInfo.workedDate[0].number}일`}
             profile={returnProfileImg(rankingInfo.workedDate[0].memberInfo.profileImage)}
-            part='DESIGN'
             card={`-10px ${getProfilePositionX(rankingInfo.workedDate[0].memberInfo.profileImage)}`}
             username={rankingInfo.workedDate[0].memberInfo.nickname}
             nextContent={`${rankingInfo.workedDate[1].number}일`}
@@ -66,7 +65,6 @@ const Banner2 = ({ isTeamId = false }) => {
             content={`${rankingInfo.workedTime[0].number}시간`}
             card={`-250px ${getProfilePositionX(rankingInfo.workedTime[0].memberInfo.profileImage)}`}
             profile={returnProfileImg(rankingInfo.workedTime[0].memberInfo.profileImage)}
-            part='DESIGN'
             username={rankingInfo.workedTime[0].memberInfo.nickname}
             nextContent={`${rankingInfo.workedTime[1].number}시간`}
             nextUsername={rankingInfo.workedTime[1].memberInfo.nickname}
@@ -77,7 +75,6 @@ const Banner2 = ({ isTeamId = false }) => {
             content={`${rankingInfo.questionTimes[0].number}회`}
             card={`-490px ${getProfilePositionX(rankingInfo.questionTimes[0].memberInfo.profileImage)}`}
             profile={returnProfileImg(rankingInfo.questionTimes[0].memberInfo.profileImage)}
-            part='DESIGN'
             username={rankingInfo.questionTimes[0].memberInfo.nickname}
             nextContent={`${rankingInfo.questionTimes[1].number}회`}
             nextUsername={rankingInfo.questionTimes[1].memberInfo.nickname}
@@ -85,10 +82,9 @@ const Banner2 = ({ isTeamId = false }) => {
           />
           <Card
             cardType={CARD_TYPES[3]}
-            content={`${rankingInfo.fastAnswered[0].number}회`}
+            content={`평균 ${rankingInfo.fastAnswered[0].number}회`}
             card={`-730px ${getProfilePositionX(rankingInfo.fastAnswered[0].memberInfo.profileImage)}`}
             profile={returnProfileImg(rankingInfo.fastAnswered[0].memberInfo.profileImage)}
-            part='DESIGN'
             username={rankingInfo.fastAnswered[0].memberInfo.nickname}
             nextContent={`${rankingInfo.fastAnswered[1].number}회`}
             nextUsername={rankingInfo.fastAnswered[1].memberInfo.nickname}

@@ -5,13 +5,23 @@ import GardenList from '../MyDashboard/components/ProjectList';
 import { SortTooltipList } from '../../components/molecules';
 import { TabBar } from '../../components/organisms';
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const Tabs = ['참여 프로젝트'];
 
-const SortType = ['전체', '완료한 프로젝트'];
+const Sorts = [
+  { label: '전체', value: 'all' },
+  { label: '완료한 프로젝트', value: 'complete' },
+];
 
 const UserPage = () => {
   const { id } = useParams();
+  const [currentSort, setCurrentSort] = useState(Sorts[0]);
+
+  const handleCurrentSort = (sort) => {
+    setCurrentSort(sort);
+  };
+
   return (
     <main style={{ paddingBottom: '150px' }}>
       <Flex justify='center'>
@@ -22,9 +32,13 @@ const UserPage = () => {
             <Box>
               <TabBar tabs={Tabs} />
               <Box direction='column' marginY='20px'>
-                <SortTooltipList sorts={SortType} />
+                <SortTooltipList
+                  sorts={Sorts}
+                  currentSort={currentSort}
+                  handleCurrentSort={handleCurrentSort}
+                />
               </Box>
-              <GardenList />
+              <GardenList sort={currentSort.value} />
             </Box>
           </Flex>
         </Flex>

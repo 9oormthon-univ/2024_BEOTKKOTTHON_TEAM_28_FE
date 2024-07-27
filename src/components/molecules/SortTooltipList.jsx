@@ -1,19 +1,16 @@
 import { Flex } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import SortTooltip from '../atoms/SortTooltip';
-import { useState } from 'react';
 
-const SortTooltipList = ({ sorts }) => {
-  const [selectedSort, setSelectedSort] = useState('전체');
-
+const SortTooltipList = ({ sorts, handleCurrentSort, currentSort }) => {
   return (
     <Flex gap='12px'>
       {sorts.map((sort) => (
         <SortTooltip
-          key={sort}
-          sort={sort}
-          isSelected={sort === selectedSort}
-          onSelect={() => setSelectedSort(sort)}
+          key={sort.label}
+          sort={sort.label}
+          isSelected={sort.value === currentSort.value}
+          onSelect={() => handleCurrentSort(sort)}
         />
       ))}
     </Flex>
@@ -22,5 +19,7 @@ const SortTooltipList = ({ sorts }) => {
 
 SortTooltipList.propTypes = {
   sorts: PropTypes.array,
+  currentSort: PropTypes.string,
+  handleCurrentSort: PropTypes.func,
 };
 export default SortTooltipList;

@@ -2,6 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 import StatusTag from '../../../components/atoms/StatusTag';
+import no_team_profile from '../../../assets/images/no_team_profile.png';
 
 const ProjectItem = ({ name, summary, profileImage, startAt, endAt, status }) => {
   return (
@@ -20,7 +21,7 @@ const ProjectItem = ({ name, summary, profileImage, startAt, endAt, status }) =>
         border='1px solid #CCD6E3'
       >
         <img
-          src={profileImage ?? '/tomato.png'}
+          src={profileImage ?? no_team_profile}
           alt={`${name}의 팀프로필`}
           width='80px'
           height='80px'

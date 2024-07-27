@@ -105,7 +105,7 @@ const QuestionListPage = () => {
     <main style={{ paddingBottom: '150px' }}>
       <Flex justify='center'>
         <Flex gap='27px' mt='68px' alignItems='flex-start'>
-          <ProjectList handleCurrentTeam={handleCurrentTeam} />
+          <ProjectList handleCurrentTeam={handleCurrentTeam} currentTeam={currentTeam} />
           <Flex direction='column' marginLeft='40.33px' w='922px' gap='32px'>
             {/* <FormBox /> */}
             <Box className='Display-md'>

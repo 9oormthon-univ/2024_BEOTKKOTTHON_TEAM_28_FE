@@ -29,7 +29,6 @@ const ContentCard = () => {
     }
   }, [id]);
 
-  console.log(teamStatus);
   if (!id) {
     return (
       <Flex

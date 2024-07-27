@@ -7,13 +7,14 @@ import NonData from '../../components/molecules/NonData';
 import { QuestionBox } from './components';
 import WorkItem from './components/WorkItem';
 import getFullDate from '../../lips/getFullDate';
-import { getMemberRanking } from '../../api/teamhistory';
 import { getMemberTasks } from '../../api/teamhistory';
+import getTeamInfo from '../../api/team/getTeamInfo';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import useTeamStore from '../../stores/useTeamStore';
 
-// import { Note } from '../components/molecules';
+// import { Note } from '../../components/molecules';
 
 const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드'];
 
@@ -29,19 +30,22 @@ const HomePage = () => {
 
   const [projectName, setProjectName] = useState('');
 
+  const { handleTeamId } = useTeamStore();
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await getMemberTasks(id, sort);
       setData(response);
 
-      const rankingResponse = await getMemberRanking(id);
-      setProjectName(rankingResponse?.projectName ?? '');
+      const res = await getTeamInfo(id);
+      setProjectName(res.name ?? '');
+      handleTeamId(id, res.name);
     };
 
     if (id) {
       fetchData();
     }
-  }, [id, sort, currentTap]);
+  }, [id, sort, currentTap, handleTeamId]);
 
   const handleCurrentTap = (string) => {
     setCurrentTap(string);
@@ -57,7 +61,7 @@ const HomePage = () => {
           <Flex direction='column' gap='64px'>
             <QuestionBox />
             {id ? (
-              <MemberList isWhite projectName={projectName} />
+              <MemberList isWhite />
             ) : (
               <Flex direction='column' gap='12px'>
                 <Flex direction='column'>
@@ -79,7 +83,7 @@ const HomePage = () => {
             )}
           </Flex>
           <Flex direction='column' marginLeft='48px' w='922px' gap='36px'>
-            {/* <Note /> */}
+            {/* <Note placeholder={`${projectName}에서 오늘은 어떤 작업을 진행하셨나요?`} /> */}
             <Box>
               <TabBar tabs={Tabs} currentTap={currentTap} handleCurrentTap={handleCurrentTap} />
               <Box className='Display-sm' marginY='24px'>
