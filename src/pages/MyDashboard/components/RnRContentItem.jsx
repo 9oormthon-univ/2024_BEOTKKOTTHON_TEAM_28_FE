@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Textarea } from '@chakra-ui/react';
+import { Divider, Flex, Textarea } from '@chakra-ui/react';
 
 import MemberItem from '../../../components/molecules/MemberItem';
 import RnRStatusTag from './RnRStatusTag';
@@ -8,6 +8,18 @@ import PropTypes from 'prop-types';
 
 const RnRContentItem = ({ nickname, part, memberId, profileImage }) => {
   const [isToggled, setIsToggled] = useState(false);
+  const [text, setText] = useState('');
+  const [isDone, setIsDone] = useState(false);
+
+  const handleTextChange = (e) => {
+    const value = e.target.value;
+    setText(value);
+    if (new TextEncoder().encode(value).length >= 50) {
+      setIsDone(true);
+    } else {
+      setIsDone(false);
+    }
+  };
 
   return (
     <Flex
@@ -32,7 +44,7 @@ const RnRContentItem = ({ nickname, part, memberId, profileImage }) => {
             profileImage={profileImage}
           />
         </Flex>
-        <RnRStatusTag />
+        <RnRStatusTag isDone={isDone} />
       </Flex>
       {isToggled && (
         <Flex direction='column' alignItems='flex-end' gap='12px'>
@@ -42,15 +54,9 @@ const RnRContentItem = ({ nickname, part, memberId, profileImage }) => {
             background='#F0F2F4'
             border='1px solid #CCD6E3'
             onClick={(e) => e.stopPropagation()}
+            onChange={handleTextChange}
+            value={text}
           />
-          <Button
-            background='transparent'
-            border='1px solid #CCD6E3'
-            className='SubHead-md'
-            color='#94A3B8'
-          >
-            작성 완료
-          </Button>
         </Flex>
       )}
       <Divider />

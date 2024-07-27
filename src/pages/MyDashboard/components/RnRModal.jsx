@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import {
   Box,
   Flex,
@@ -7,31 +6,59 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalOverlay,
   useDisclosure,
+  Button,
 } from '@chakra-ui/react';
-
 import RnRContentItem from './RnRContentItem';
-import saveSVG from '../../../assets/save.svg';
-
 import PropTypes from 'prop-types';
-import useTeamStore from '../../../stores/useTeamStore';
 import { getMemberList } from '../../../api/taskhistory';
+import useUserStore from '../../../stores/userStore';
 
-const RnRModal = () => {
+const RnRModal = ({ teamName }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { teamName } = useTeamStore();
   const [data, setData] = useState([]);
+  const [isDoneStatus, setIsDoneStatus] = useState({});
+
+  const { userId } = useUserStore((state) => ({
+    userId: parseInt(state.userId, 10),
+  }));
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getMemberList();
-      setData(response);
+      try {
+        const response = await getMemberList(3);
+        console.log('API Response:', response);
+
+        const memberList = response.memberList || [];
+
+        // 본인을 제외한 멤버 리스트
+        const filteredMemberList = memberList.filter((member) => member.memberId !== userId);
+        console.log('Filtered Member List:', filteredMemberList);
+
+        setData(filteredMemberList);
+        setIsDoneStatus(
+          filteredMemberList.reduce((acc, member) => {
+            acc[member.memberId] = false;
+            return acc;
+          }, {}),
+        );
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
+
+  const handleIsDoneChange = (memberId, status) => {
+    setIsDoneStatus((prevStatus) => ({
+      ...prevStatus,
+      [memberId]: status,
+    }));
+  };
+
+  const allDone = Object.values(isDoneStatus).every((status) => status);
 
   return (
     <>
@@ -43,7 +70,6 @@ const RnRModal = () => {
         <ModalContent borderRadius='16px' minWidth='fit-content'>
           <ModalCloseButton />
           <ModalBody paddingX='40px' paddingY='48px'>
-            {/* 모달바디 안에서 작업하기 */}
             <Flex direction='column'>
               <Box className='Display-sm'>
                 {teamName}를 진행하면서
@@ -54,33 +80,35 @@ const RnRModal = () => {
                 * 동료 평가를 진행하지 않으면, 본인의 평가를 확인할 수 없어요
               </Box>
               <Box marginY='24px' className='SubHead-xl'>
-                {/* {teamName}의 멤버 {num} */}
-                {teamName}의 멤버 {data?.data?.memberCount || 0}
+                {teamName}의 멤버 {data.length}
               </Box>
             </Flex>
             <Flex direction='column'>
-              <RnRContentItem />
-              <RnRContentItem />
-              <RnRContentItem />
-              {data?.data?.memberList?.map((member) => (
+              {data.map((member) => (
                 <RnRContentItem
                   key={member.memberId}
                   memberId={member.memberId}
                   nickname={member.nickname}
                   part={member.part}
                   profileImage={member.profileImage}
+                  isDone={isDoneStatus[member.memberId]}
+                  onIsDoneChange={handleIsDoneChange}
                 />
               ))}
             </Flex>
+            <Button
+              width='100%'
+              background={allDone ? '#059669' : '#E2E8F0'}
+              color={allDone ? 'white' : '#A0AEC0'}
+              _hover={{
+                background: allDone ? '#059669' : '#E2E8F0',
+                color: allDone ? 'white' : '#A0AEC0',
+              }}
+              isDisabled={!allDone}
+            >
+              동료평가 제출
+            </Button>
           </ModalBody>
-          <ModalFooter>
-            <Flex direction='column' width='100%' gap='24px'>
-              <Flex gap='12px' alignItems='center'>
-                <img src={saveSVG} alt='저장 아이콘' />
-                <Box className='Body-md'>작성 내용은 자동 저장됩니다.</Box>
-              </Flex>
-            </Flex>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
@@ -88,7 +116,7 @@ const RnRModal = () => {
 };
 
 RnRModal.propTypes = {
-  num: PropTypes.string,
+  teamName: PropTypes.string.isRequired,
 };
 
 export default RnRModal;
