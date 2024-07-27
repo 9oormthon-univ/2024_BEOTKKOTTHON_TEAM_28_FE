@@ -1,11 +1,13 @@
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard.woff')
     format('woff');
 }
+
 * {
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
 }
+
 body {
   display: flex;
   flex-direction: column;
@@ -39,18 +41,21 @@ body {
     letter-spacing: -0.6px;
   }
   .Display-lg {
-    font-weight: bold;
+    font-style: normal;
+    font-weight: 500;
     font-size: 40px;
     line-height: 52px;
     letter-spacing: -0.6px;
   }
   .Display-md {
-    font-weight: bold;
+    font-style: normal;
+    font-weight: 600;
     font-size: 32px;
     line-height: 42px;
     letter-spacing: -0.4px;
   }
   .Display-sm {
+    font-style: normal;
     font-weight: 500;
     font-size: 24px;
     line-height: 36px;

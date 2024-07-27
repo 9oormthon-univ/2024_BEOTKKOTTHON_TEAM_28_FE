@@ -1,24 +1,26 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
 
-const getProfileItem = (profile) => {
-  switch (profile) {
-    case 'BLUEBERRY':
-      return { textColor: '#1E40AF', badgeColor: '#053FBF', profileUrl: '/blueberry.png' };
-    case 'CABBAGE':
-      return '/cabbage.png';
-    case 'CARROT':
-      return '/carrot.png';
-    case 'CUCUMBER':
-      return '/cucumber.png';
-    case 'STRAWBERRY':
-      return '/strawberry.png';
+import PropTypes from 'prop-types';
+
+const getCardType = (type) => {
+  switch (type) {
+    case 'LONGEST_WORK':
+      return { color: '#065F46', label: '꾸준히 업무했어요' };
+    case 'MOST_WORK':
+      return { color: '#1E40AF', label: '업무를 가장 많이 했어요' };
+    case 'MOST_QUESTION':
+      return { color: '#A04F04', label: '질문을 가장 많이 했어요' };
+    case 'FASTEST_ANSWER':
+      return { color: '#940C0C', label: '가장 빠르게 답변했어요' };
+    case 'MOST_DETAIL':
+      return { color: '#270B79', label: '백로그를 자세히 남겨요' };
     default:
-      return '/tomato.png';
+      return { color: '#065F46', label: '꾸준히 업무했어요' };
   }
 };
 
-const Card = () => {
-  const { textColor, badgeColor, profileUrl } = getProfileItem('BLUEBERRY');
+const Card = ({ card, cardType, content, profile, username, nextUsername, nextUserProfile }) => {
+  const { color, label } = getCardType(cardType);
   return (
     <Flex direction='column' position='relative'>
       <Flex
@@ -32,19 +34,50 @@ const Card = () => {
         <Box
           as='div'
           backgroundImage={`url(/banner_imgs.png)`}
-          backgroundPosition='-10px -10px'
+          backgroundPosition={card}
           width='224px'
           height='260px'
           borderRadius={8.9}
         />
-        <Flex direction='column' position='absolute' paddingY='11.86px' paddingX='11.87px'>
-          <Box backgroundColor={badgeColor} textColor='white'>
-            업무를 가장 많이 했어요
+        <Flex
+          direction='column'
+          position='absolute'
+          paddingY='11.86px'
+          paddingX='11.87px'
+          gap='10px'
+        >
+          <Box
+            backgroundColor={color}
+            textColor='white'
+            paddingY='6px'
+            paddingX='9px'
+            borderRadius='5.932px'
+            sx={{
+              fontFamily: 'Pretendard',
+              fontSize: '11.865px',
+              fontStyle: 'normal',
+              fontWeight: '600',
+              lineHeight: '19.28px',
+              letterSpacing: '0.445px',
+            }}
+          >
+            {label}
           </Box>
-          <Box textColor={textColor}>186시간</Box>
-          <Flex>
-            <Image src={profileUrl} width={26.7} borderRadius={50} />
-            <Box>최정흠</Box>
+          <Box
+            textColor={color}
+            sx={{
+              fontSize: '26.696px',
+              fontStyle: 'normal',
+              fontWeight: '600',
+              lineHeight: '26.696px',
+              letterSpacing: '0.148px',
+            }}
+          >
+            {content}
+          </Box>
+          <Flex gap='6px'>
+            <Image src={profile} width={26.7} borderRadius={50} />
+            <Box>{username}</Box>
           </Flex>
         </Flex>
       </Flex>
@@ -57,19 +90,54 @@ const Card = () => {
         border='1px #E0E7EE solid'
         padding='11px'
       >
-        <Flex justifyContent='space-between' alignItems='center'>
+        <Flex justifyContent='space-between' alignItems='center' paddingTop='20px'>
           <Flex gap='4px' alignItems='center'>
-            <Image src={profileUrl} width='32px' borderRadius={50} />
+            <Image src={nextUserProfile} width='32px' borderRadius={50} />
             <Flex direction='column'>
-              <Box>다음 MVP는?</Box>
-              <Box>안재윤</Box>
+              <Box
+                sx={{
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: '16px',
+                  letterSpacing: '0.2px',
+                }}
+                color='#64748B'
+              >
+                다음 MVP는?
+              </Box>
+              <Box
+                sx={{
+                  fontFamily: 'Pretendard',
+                  fontSize: '12px',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: '16px',
+                  letterSpacing: '0.2px',
+                }}
+              >
+                {nextUsername}
+              </Box>
             </Flex>
           </Flex>
-          <Box className='SubHead-lg'>12일</Box>
+          <Box className='SubHead-lg' color={color}>
+            12일
+          </Box>
         </Flex>
       </Box>
     </Flex>
   );
+};
+
+Card.propTypes = {
+  cardType: PropTypes.string,
+  content: PropTypes.string,
+  profile: PropTypes.string,
+  username: PropTypes.string,
+  card: PropTypes.string,
+  nextUsername: PropTypes.string,
+  nextUserProfile: PropTypes.string,
 };
 
 export default Card;

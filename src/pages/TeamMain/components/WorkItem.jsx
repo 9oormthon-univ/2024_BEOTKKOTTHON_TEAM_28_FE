@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { TitleProfile } from '../../../components/molecules';
 
 const WorkItem = ({ content, createdAt, profileImage, nickname, part }) => {
+  if (!content) return null;
   return (
     <Flex direction='column' gap='20px'>
       <TitleProfile

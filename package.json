@@ -73,5 +73,6 @@
     "ignorePatterns": [
       "!/.storybook/**"
     ]
-  }
+  },
+  "proxy": "https://api.startupvalley.site"
 }

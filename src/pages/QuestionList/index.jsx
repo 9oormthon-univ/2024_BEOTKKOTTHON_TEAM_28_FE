@@ -8,7 +8,9 @@ import { getProjectList } from '../../api/common';
 import { getReceivedQuestions } from '../../api/questionlist';
 import getRequestedQuestion from '../../api/questionlist/getRequestedQuestion';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
+import useTeamStore from '../../stores/useTeamStore';
 import useUserStore from '../../stores/userStore';
 
 const Tabs = ['받은 요청', '전달한 요청'];
@@ -17,6 +19,11 @@ const ReceivedTab = ['all', 'pending', 'completed'];
 const SortType = ['전체', '진행중인 요청', '완료된 요청'];
 
 const QuestionListPage = () => {
+  const [searchParams] = useSearchParams();
+  const teamId = searchParams.get('teamId');
+
+  const { teamId: storeTeamId } = useTeamStore();
+
   const [currentTeam, setCurrentTeam] = useState({ teamName: '', teamId: 0 });
   const [data, setData] = useState([]);
   const [currentTap, setCurrentTap] = useState('받은 요청');
@@ -52,14 +59,42 @@ const QuestionListPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProjectList();
-      setCurrentTeam({
-        teamName: response.progressingProjectList[0].name,
-        teamId: response.progressingProjectList[0].id,
-      });
+      if (teamId && !storeTeamId) {
+        const matchedTeam = response.progressingProjectList.find((team) => team.id === +teamId);
+        if (matchedTeam) {
+          setCurrentTeam({
+            teamName: matchedTeam.name,
+            teamId: matchedTeam.id,
+          });
+        } else {
+          setCurrentTeam({
+            teamName: response.progressingProjectList[0].name,
+            teamId: response.progressingProjectList[0].id,
+          });
+        }
+      } else if (storeTeamId) {
+        const matchedTeam = response.progressingProjectList.find((team) => team.id === storeTeamId);
+        if (matchedTeam) {
+          setCurrentTeam({
+            teamName: matchedTeam.name,
+            teamId: matchedTeam.id,
+          });
+        } else {
+          setCurrentTeam({
+            teamName: response.progressingProjectList[0].name,
+            teamId: response.progressingProjectList[0].id,
+          });
+        }
+      } else {
+        setCurrentTeam({
+          teamName: response.progressingProjectList[0].name,
+          teamId: response.progressingProjectList[0].id,
+        });
+      }
     };
 
     fetchData();
-  }, []);
+  }, [teamId, storeTeamId]);
 
   const handleReceivedTabClick = (newSort) => {
     setSort(ReceivedTab[SortType.indexOf(newSort)]);

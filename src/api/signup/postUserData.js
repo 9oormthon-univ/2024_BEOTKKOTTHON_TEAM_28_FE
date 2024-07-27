@@ -3,8 +3,7 @@ import axiosInstance from '..';
 
 const postUserData = async (userData) => {
   try {
-    const response = await axiosInstance.post('/auth/sign-up', userData);
-    console.log('Post User Data Response:', response.data);
+    const response = await axiosInstance.patch('/users', userData);
     return response.data;
   } catch (err) {
     if (err === AxiosError) {

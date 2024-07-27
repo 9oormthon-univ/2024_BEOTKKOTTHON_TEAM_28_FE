@@ -1,7 +1,7 @@
 import PartTag from './PartTag';
 
 export default {
-  title: 'atom/PartTag',
+  title: 'Atoms/PartTag',
   component: PartTag,
   argTypes: {
     active: { control: 'boolean' },

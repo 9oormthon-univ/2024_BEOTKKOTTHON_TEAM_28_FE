@@ -2,6 +2,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import { MemberList, TabBar } from '../../components/organisms';
 
 import Banner2 from './components/Banner2';
+import { MemberItem } from '../../components/molecules';
 import NonData from '../../components/molecules/NonData';
 import { QuestionBox } from './components';
 import WorkItem from './components/WorkItem';
@@ -37,7 +38,9 @@ const HomePage = () => {
       setProjectName(rankingResponse?.projectName ?? '');
     };
 
-    fetchData();
+    if (id) {
+      fetchData();
+    }
   }, [id, sort, currentTap]);
 
   const handleCurrentTap = (string) => {
@@ -49,11 +52,31 @@ const HomePage = () => {
   return (
     <main style={{ paddingBottom: '150px' }}>
       <Flex direction='column' gap='64px'>
-        <Banner2 isTeamId={false} />
+        <Banner2 isTeamId={!!id} />
         <Flex margin='auto'>
           <Flex direction='column' gap='64px'>
             <QuestionBox />
-            <MemberList isWhite projectName={projectName} />
+            {id ? (
+              <MemberList isWhite projectName={projectName} />
+            ) : (
+              <Flex direction='column' gap='12px'>
+                <Flex direction='column'>
+                  <Box>멤버들의 백로그를 확인해보세요!</Box>
+                </Flex>
+                <Flex
+                  direction='column'
+                  gap='12px'
+                  width='276px'
+                  marginBottom='12px'
+                  background='transparent'
+                  border='1px solid #CCD6E3'
+                  padding='12px'
+                  borderRadius='12px'
+                >
+                  <MemberItem isBlank />
+                </Flex>
+              </Flex>
+            )}
           </Flex>
           <Flex direction='column' marginLeft='48px' w='922px' gap='36px'>
             {/* <Note /> */}
@@ -71,7 +94,7 @@ const HomePage = () => {
                     const date = getFullDate(el.createdAt);
                     return (
                       <>
-                        {showDate && <div className='Headline-md'>{date}</div>}
+                        {el.content && showDate && <div className='Headline-md'>{date}</div>}
                         <WorkItem
                           key={el.content}
                           part={el.part}
@@ -104,7 +127,7 @@ const HomePage = () => {
                       </>
                     );
                   })}
-                {!data && (
+                {(!id || !data) && (
                   <NonData
                     isConnectButton
                     extraText='서버에 디스코드봇을 추가하여 팀원들과 소통해보세요!'

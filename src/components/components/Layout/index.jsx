@@ -13,8 +13,10 @@ import { useNavigate } from 'react-router-dom';
 import useToastStore from '../../../stores/toastStore';
 import useUserStore from '../../../stores/userStore';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, isFooter }) => {
   const location = useLocation();
+  const currentPath = location.pathname;
+
   const { isShowToast } = useToastStore();
 
   const { handleProfile } = useUserStore();
@@ -46,25 +48,25 @@ const Layout = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const currentPath = location.pathname;
     if (isDev) return;
     if (!accessToken && ProtectedPaths.includes(currentPath)) {
       navigate(Paths.Login);
     }
-  }, [accessToken, location.pathname, navigate]);
+  }, [accessToken, location.pathname, navigate, currentPath]);
 
   return (
     <div>
-      <Header isLogin={!!accessToken} />
+      <Header isLogin={!!accessToken && currentPath !== Paths.Register} />
       {isShowToast && <Toast />}
       {children}
-      <Footer />
+      {isFooter && <Footer />}
     </div>
   );
 };
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  isFooter: PropTypes.bool,
 };
 
 export default Layout;

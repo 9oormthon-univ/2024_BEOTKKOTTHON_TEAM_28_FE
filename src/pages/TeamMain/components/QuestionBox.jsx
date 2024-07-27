@@ -38,7 +38,7 @@ const QuestionBox = () => {
         padding='12px'
         borderRadius='12px'
       >
-        {!data || (data?.length === 0 && <QuestionItem isBlank />)}
+        {(!data || data?.length === 0) && <QuestionItem isBlank />}
         {data?.map((el) => {
           return (
             <QuestionItem
@@ -59,7 +59,7 @@ const QuestionBox = () => {
           variant='greenGreen'
           width='100%'
           onClick={() => {
-            navigate(`/${id}/task-history`);
+            navigate(`/question-list?teamId=${id}`);
           }}
           border='1px solid #059669'
         >

@@ -2,7 +2,9 @@
 
 🍀 Startup Valley ⭐는 디스코드봇을 통해 기획자와 디자이너, 백엔드 및 프론트엔드 개발자의 성장 척도를 기록하여, 개인의 성장 척도와 팀의 성장을 도와주는 프로젝트 입니다.
 
-🔗 서비스 링크 : https://client.startupvalley.site/
+🔗 서비스 링크 : https://www.startupvalley.site/
+
+![image](https://github.com/user-attachments/assets/c5543e1f-7508-411b-8dc4-ad8b3011176d)
 
 ## 주요 기능 및 특징
 
@@ -12,17 +14,27 @@
 
 디스코드봇을 방에 초대하고, 팀원 개개인이 각자의 역할과 프로필을 선택하여 계정을 생성한 후 디스코드봇을 통해 자신의 척도를 기록합니다.
 
+![image](https://github.com/user-attachments/assets/e1d54f95-8222-4a66-9ca9-069720d8c016)
+
 ### 💚 팀 내 작업 척도 순위 확인
 
 일일 팀원 내 작업 척도의 순위를 확인하며 서로의 적극적인 참여를 권장합니다.
+
+![image](https://github.com/user-attachments/assets/b43b08ac-68c9-45ae-8b0e-8442160ff06f)
 
 ### 💛 작업 진행 공유
 
 실제로 각자 어떤 작업을 진행했는지 확인하며 팀 프로젝트의 진행상황을 확인합니다.
 
+![image](https://github.com/user-attachments/assets/d85de736-c24f-41a7-a068-7fbc30effdd6)
+
+
 ### 💜 1년동안의 작업 척도 시각화
 
 현재 진행 중인 프로젝트, 지난 프로젝트에서 본인의 작업 척도를 기록하여 비트맵을 통해 시각화합니다.
+
+![image](https://github.com/user-attachments/assets/76965146-63cd-4aac-a169-95f81b58a327)
+
 
 ## Wiki
 
@@ -47,6 +59,11 @@
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=ffffff)
 ![Husky](https://img.shields.io/badge/Husky-4E8EE9?style=for-the-badge&logo=husky&logoColor=ffffff)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=ffffff)
+![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=ffffff)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=ffffff)
+![react-custom-calendar-heatmap](https://img.shields.io/badge/react--custom--calendar--heatmap-FF5733?style=for-the-badge&logo=react&logoColor=ffffff)
+![PropTypes](https://img.shields.io/badge/PropTypes-61DAFB?style=for-the-badge&logo=react&logoColor=ffffff)
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=ffffff)
 
 ## Convention
 
@@ -84,8 +101,10 @@
 
 - 컨벤션 통일, 프로젝트 구조 세팅 등 프로젝트 리드
 - 팀 작업 기록, 질문 목록, 작업기록, 나의 대시보드 페이지 마크업
+- 랜딩 페이지 반응형 작업
+- Storybook을 통한 UI 테스트 및 Playwright를 활용한 기능 명시
 - REST API 응답에서 받은 쿠키에 저장된 토큰을 추출하여 요청 헤더에 삽입 및 로그인 상태 관리
-- 컴포넌트 분리 및 API 연결 진행
+- 스타일과 로 컴포넌트 분리 및 API 연결 진행
 
 ### 박소현
 
