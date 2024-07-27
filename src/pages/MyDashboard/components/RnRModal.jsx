@@ -31,6 +31,7 @@ const RnRModal = ({ teamName }) => {
         console.log('API Response:', response);
 
         const memberList = response.memberList || [];
+        console.log('Member List:', memberList);
 
         // 본인을 제외한 멤버 리스트
         const filteredMemberList = memberList.filter((member) => member.memberId !== userId);
@@ -50,6 +51,11 @@ const RnRModal = ({ teamName }) => {
 
     fetchData();
   }, [userId]);
+
+  useEffect(() => {
+    console.log('isDoneStatus:', isDoneStatus);
+    console.log('allDone:', allDone);
+  }, [isDoneStatus, allDone]);
 
   const handleIsDoneChange = (memberId, status) => {
     setIsDoneStatus((prevStatus) => ({
@@ -91,7 +97,6 @@ const RnRModal = ({ teamName }) => {
                   nickname={member.nickname}
                   part={member.part}
                   profileImage={member.profileImage}
-                  isDone={isDoneStatus[member.memberId]}
                   onIsDoneChange={handleIsDoneChange}
                 />
               ))}

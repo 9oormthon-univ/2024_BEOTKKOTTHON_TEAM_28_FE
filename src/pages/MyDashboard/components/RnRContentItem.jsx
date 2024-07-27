@@ -1,24 +1,19 @@
 import { Divider, Flex, Textarea } from '@chakra-ui/react';
-
 import MemberItem from '../../../components/molecules/MemberItem';
 import RnRStatusTag from './RnRStatusTag';
 import ToggleIcon from '../../../components/atoms/ToggleIcon';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const RnRContentItem = ({ nickname, part, memberId, profileImage }) => {
+const RnRContentItem = ({ nickname, part, memberId, profileImage, onIsDoneChange }) => {
   const [isToggled, setIsToggled] = useState(false);
   const [text, setText] = useState('');
-  const [isDone, setIsDone] = useState(false);
 
   const handleTextChange = (e) => {
     const value = e.target.value;
     setText(value);
-    if (new TextEncoder().encode(value).length >= 50) {
-      setIsDone(true);
-    } else {
-      setIsDone(false);
-    }
+    const isDone = new TextEncoder().encode(value).length >= 50;
+    onIsDoneChange(memberId, isDone);
   };
 
   return (
@@ -44,7 +39,7 @@ const RnRContentItem = ({ nickname, part, memberId, profileImage }) => {
             profileImage={profileImage}
           />
         </Flex>
-        <RnRStatusTag isDone={isDone} />
+        <RnRStatusTag isDone={new TextEncoder().encode(text).length >= 50} />
       </Flex>
       {isToggled && (
         <Flex direction='column' alignItems='flex-end' gap='12px'>
@@ -69,6 +64,7 @@ RnRContentItem.propTypes = {
   part: PropTypes.string.isRequired,
   memberId: PropTypes.string.isRequired,
   profileImage: PropTypes.string.isRequired,
+  onIsDoneChange: PropTypes.func.isRequired,
 };
 
 export default RnRContentItem;
