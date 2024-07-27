@@ -2,19 +2,25 @@
 name: Feature request
 about: Suggest an idea for this project
 title: ''
-labels: ''
-assignees: ''
+labels: 'todo'
+assignees: 'a-honey'
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## 💁‍♂️ ISSUE 개요
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+- 업무에 대한 요약 및 설명
+- 이슈 상황 설명
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+<br/>
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+## 📓 체크리스트
+
+- [ ] 내용 1
+- [ ] 내용 2
+
+<br/>
+
+## 📢 비고
+
+- 기타 내용
