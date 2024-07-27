@@ -41,6 +41,7 @@ const RnRContentItem = ({ nickname, part, memberId, profileImage }) => {
             resize='none'
             background='#F0F2F4'
             border='1px solid #CCD6E3'
+            onClick={(e) => e.stopPropagation()}
           />
           <Button
             background='transparent'
