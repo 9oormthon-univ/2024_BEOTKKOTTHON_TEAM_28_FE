@@ -1,7 +1,11 @@
 import { Box, Flex } from '@chakra-ui/react';
 
 import ContentMembers from './ContentMembers';
+import getTeamMemberStatus from '../../../../api/team/getTeamMemberStatus';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import useUserStore from '../../../../stores/userStore';
 
 const ContentCard = () => {
   const { id } = useParams();
@@ -11,6 +15,21 @@ const ContentCard = () => {
   const month = today.getMonth() + 1;
   const date = today.getDate();
 
+  const [teamStatus, setTeamStatus] = useState();
+  const { userName } = useUserStore();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getTeamMemberStatus(id);
+      setTeamStatus(res);
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+
+  console.log(teamStatus);
   if (!id) {
     return (
       <Flex
@@ -42,12 +61,20 @@ const ContentCard = () => {
       <Box className='Head-lg' textColor='#065F46'>
         {`${year}.${month}.${date}`}
       </Box>
-      <Box className='Display-sm'>
-        스타트업 밸리팀의
+      <Box className='Display-sm' minHeight='110px'>
+        {teamStatus?.projectName} 팀의
         <br />
         업무 상태에요.
       </Box>
-      <ContentMembers />
+      {teamStatus && teamStatus.currentWorkerList.length !== 0 && (
+        <ContentMembers members={teamStatus.currentWorkerList} />
+      )}
+      {teamStatus && teamStatus.latestWork && (
+        <Flex direction='column' gap='14px'>
+          <Box className='SubHead-lg'>{userName}님의 마지막 업무에요.</Box>
+          <Box>{teamStatus.latestWork}</Box>
+        </Flex>
+      )}
     </Flex>
   );
 };
