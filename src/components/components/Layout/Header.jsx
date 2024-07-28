@@ -1,4 +1,14 @@
-import { Box, Button, Flex, Image, Link, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  Link,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import HeaderMenuItem from './HeaderMenuItem';
@@ -68,9 +78,10 @@ const Header = ({ isLogin }) => {
             <Image src='/favicon.ico' width='40px' height='40px' />
             <Image src={text_logo} width='131px' height='21px' alt='스타트업밸리 로고' />
           </Flex>
-
           <Box
             className='sm'
+            position='fixed'
+            right='20px'
             onClick={() => {
               setMenuToggled((prev) => !prev);
             }}
@@ -201,89 +212,101 @@ const Header = ({ isLogin }) => {
         </Flex>
       </header>
       {width <= '360px' && onMenuToggled && (
-        <Flex
-          className='sm'
-          zIndex='1000'
-          position='fixed'
-          top='0px'
-          right='0'
-          width={width}
-          bottom='0'
-          alignItems='center'
-          paddingY='30px'
-          gap='20px'
-          background='#efefef'
-          direction='column'
+        <Modal
+          zIndex='997'
+          borderRadius='4px'
+          blockScrollOnMount={false}
+          isOpen={onMenuToggled}
+          onClose={() => {
+            setMenuToggled(false);
+          }}
         >
-          <Button
-            onClick={() => {
-              setMenuToggled(false);
-            }}
-            className='sm'
-            position='absolute'
-            top='-5px'
-            right='165px'
-            background='transparent'
-          >
-            X
-          </Button>
-          <Flex gap='9px' alignItems='center'>
-            <Image src='/favicon.ico' width='40px' height='40px' />
-            <Image src={text_logo} width='131px' alt='스타트업밸리 로고' />
-          </Flex>
-          <Flex
-            justifyContent='space-between'
-            height='200px'
-            alignItems='center'
-            direction='column'
-          >
-            <Link
+          <ModalOverlay />
+          <ModalContent>
+            <Flex
               className='sm'
-              href='/home'
-              color={currentPath === '/home' ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none' }}
+              zIndex='1000'
+              position='fixed'
+              top='0px'
+              right='0'
+              width={width}
+              bottom='0'
+              alignItems='center'
+              paddingY='30px'
+              gap='20px'
+              background='#ffffff'
+              direction='column'
             >
-              팀 작업 기록
-            </Link>
-            <Link
-              className='sm'
-              href='/question-list'
-              color={currentPath === '/question-list' ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none' }}
-            >
-              질문 목록
-            </Link>
-            <Link
-              className='sm'
-              href='/task-history'
-              color={currentPath === '/task-history' ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none' }}
-            >
-              작업 기록
-            </Link>
-            <Link
-              className='sm'
-              href='/dashboard'
-              color={currentPath === '/dashboard' ? '#047857' : 'black'}
-              _hover={{ textDecoration: 'none' }}
-            >
-              나의 대시보드
-            </Link>
-            {isLogin && <Button onClick={handleClickLogout}>로그아웃</Button>}
-            {!isLogin && (
-              <Button
-                background='brand'
-                color='white'
-                width='100px'
-                onClick={() => {
-                  navigate('/login');
-                }}
+              <Flex justifyContent='space-between' width='100%' paddingX='30px'>
+                <Flex gap='9px' alignItems='center'>
+                  <Image src='/favicon.ico' width='40px' height='40px' />
+                  <Image src={text_logo} width='131px' alt='스타트업밸리 로고' />
+                </Flex>
+                <Button
+                  onClick={() => {
+                    setMenuToggled(false);
+                  }}
+                  className='sm'
+                  background='transparent'
+                >
+                  X
+                </Button>
+              </Flex>
+              <Flex
+                justifyContent='space-between'
+                height='200px'
+                alignItems='center'
+                direction='column'
               >
-                로그인
-              </Button>
-            )}
-          </Flex>
-        </Flex>
+                <Link
+                  className='sm'
+                  href='/home'
+                  color={currentPath === '/home' ? '#047857' : 'black'}
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  팀 작업 기록
+                </Link>
+                <Link
+                  className='sm'
+                  href='/question-list'
+                  color={currentPath === '/question-list' ? '#047857' : 'black'}
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  질문 목록
+                </Link>
+                <Link
+                  className='sm'
+                  href='/task-history'
+                  color={currentPath === '/task-history' ? '#047857' : 'black'}
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  작업 기록
+                </Link>
+                <Link
+                  className='sm'
+                  href='/dashboard'
+                  color={currentPath === '/dashboard' ? '#047857' : 'black'}
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  나의 대시보드
+                </Link>
+                {isLogin && <Button onClick={handleClickLogout}>로그아웃</Button>}
+                {!isLogin && (
+                  <Button
+                    background='brand'
+                    color='white'
+                    width='100px'
+                    onClick={() => {
+                      navigate('/login');
+                    }}
+                  >
+                    로그인
+                  </Button>
+                )}
+              </Flex>
+            </Flex>
+          </ModalContent>
+        </Modal>
       )}
     </>
   );
