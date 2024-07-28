@@ -21,6 +21,7 @@ const MemberItem = ({
     <Flex
       gap='8px'
       alignItems='center'
+      cursor='pointer'
       onClick={() => {
         if (handleCurrentUser) {
           handleCurrentUser({ name: nickname, profile: profileImage, part, memberId });

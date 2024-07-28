@@ -93,7 +93,7 @@ const Card = ({
       <Box
         position='absolute'
         borderRadius={10}
-        bottom='-5px'
+        bottom='4px'
         left='0'
         right='4px'
         border='1px #E0E7EE solid'

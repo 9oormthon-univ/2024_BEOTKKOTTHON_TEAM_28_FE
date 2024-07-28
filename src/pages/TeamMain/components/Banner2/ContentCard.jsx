@@ -71,7 +71,11 @@ const ContentCard = () => {
       {teamStatus && teamStatus.latestWork && (
         <Flex direction='column' gap='14px'>
           <Box className='SubHead-lg'>{userName}님의 마지막 업무에요.</Box>
-          <Box>{teamStatus.latestWork}</Box>
+          <Box>
+            {teamStatus.latestWork.length <= 10
+              ? teamStatus.latestWork
+              : teamStatus.latestWork.substring(0, 10) + '...'}
+          </Box>
         </Flex>
       )}
     </Flex>

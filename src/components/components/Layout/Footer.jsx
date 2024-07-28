@@ -1,5 +1,7 @@
 import { Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react';
 
+import { service_notion } from '../../../constants';
+
 const Members = ['김영원', '안재윤', '박소현', '정아현', '임정우', '최정흠'];
 
 const Footer = () => {
@@ -18,7 +20,9 @@ const Footer = () => {
           <Text minWidth='360px'>Check our Notion</Text>
           <Text>
             저희의 협업 이야기를 알고 싶으신가요?{useBreakpointValue({ base: <br />, md: '' })}{' '}
-            저희의 노션을 방문해보세요
+            <a href={service_notion} style={{ cursor: 'pointer' }}>
+              저희의 노션을 방문해보세요
+            </a>
           </Text>
           <Text className='copyright' mt='8px'>
             @2024 startupvalley.all rights reserved

@@ -56,9 +56,9 @@ const Banner2 = ({ isTeamId = false }) => {
             profile={returnProfileImg(rankingInfo.workedDate[0].memberInfo.profileImage)}
             card={`-10px ${getProfilePositionX(rankingInfo.workedDate[0].memberInfo.profileImage)}`}
             username={rankingInfo.workedDate[0].memberInfo.nickname}
-            nextContent={`${rankingInfo.workedDate[1].number}일`}
-            nextUsername={rankingInfo.workedDate[1].memberInfo.nickname}
-            nextUserProfile={returnProfileImg(rankingInfo.workedDate[1].memberInfo.profileImage)}
+            nextContent={`${rankingInfo.workedDate[1]?.number}일`}
+            nextUsername={rankingInfo.workedDate[1]?.memberInfo.nickname}
+            nextUserProfile={returnProfileImg(rankingInfo.workedDate[1]?.memberInfo.profileImage)}
           />
           <Card
             cardType={CARD_TYPES[1]}
@@ -66,9 +66,9 @@ const Banner2 = ({ isTeamId = false }) => {
             card={`-250px ${getProfilePositionX(rankingInfo.workedTime[0].memberInfo.profileImage)}`}
             profile={returnProfileImg(rankingInfo.workedTime[0].memberInfo.profileImage)}
             username={rankingInfo.workedTime[0].memberInfo.nickname}
-            nextContent={`${rankingInfo.workedTime[1].number}시간`}
-            nextUsername={rankingInfo.workedTime[1].memberInfo.nickname}
-            nextUserProfile={returnProfileImg(rankingInfo.workedTime[1].memberInfo.profileImage)}
+            nextContent={`${rankingInfo.workedTime[1]?.number}시간`}
+            nextUsername={rankingInfo.workedTime[1]?.memberInfo.nickname}
+            nextUserProfile={returnProfileImg(rankingInfo.workedTime[1]?.memberInfo.profileImage)}
           />
           <Card
             cardType={CARD_TYPES[2]}
@@ -76,9 +76,11 @@ const Banner2 = ({ isTeamId = false }) => {
             card={`-490px ${getProfilePositionX(rankingInfo.questionTimes[0].memberInfo.profileImage)}`}
             profile={returnProfileImg(rankingInfo.questionTimes[0].memberInfo.profileImage)}
             username={rankingInfo.questionTimes[0].memberInfo.nickname}
-            nextContent={`${rankingInfo.questionTimes[1].number}회`}
-            nextUsername={rankingInfo.questionTimes[1].memberInfo.nickname}
-            nextUserProfile={returnProfileImg(rankingInfo.questionTimes[1].memberInfo.profileImage)}
+            nextContent={`${rankingInfo.questionTimes[1]?.number}회`}
+            nextUsername={rankingInfo.questionTimes[1]?.memberInfo.nickname}
+            nextUserProfile={returnProfileImg(
+              rankingInfo.questionTimes[1]?.memberInfo.profileImage,
+            )}
           />
           <Card
             cardType={CARD_TYPES[3]}
@@ -86,9 +88,9 @@ const Banner2 = ({ isTeamId = false }) => {
             card={`-730px ${getProfilePositionX(rankingInfo.fastAnswered[0].memberInfo.profileImage)}`}
             profile={returnProfileImg(rankingInfo.fastAnswered[0].memberInfo.profileImage)}
             username={rankingInfo.fastAnswered[0].memberInfo.nickname}
-            nextContent={`${rankingInfo.fastAnswered[1].number}회`}
-            nextUsername={rankingInfo.fastAnswered[1].memberInfo.nickname}
-            nextUserProfile={returnProfileImg(rankingInfo.fastAnswered[1].memberInfo.profileImage)}
+            nextContent={`${rankingInfo.fastAnswered[1]?.number}회`}
+            nextUsername={rankingInfo.fastAnswered[1]?.memberInfo.nickname}
+            nextUserProfile={returnProfileImg(rankingInfo.fastAnswered[1]?.memberInfo.profileImage)}
           />
         </Flex>
       )}

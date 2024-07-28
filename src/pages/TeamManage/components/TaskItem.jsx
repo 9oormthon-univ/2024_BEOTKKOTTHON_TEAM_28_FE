@@ -44,6 +44,7 @@ const TaskItem = ({ updateTaskItems, currentUser, id, content, startAt, endAt })
         <Flex direction='column' alignItems='flex-end'>
           <Box width='full'>{content}</Box>
           <DateChangeModal
+            content={content}
             updateTaskItems={updateTaskItems}
             id={id}
             startAt={startAt}
