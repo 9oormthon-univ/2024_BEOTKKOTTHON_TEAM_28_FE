@@ -66,7 +66,7 @@ const Banner2 = ({ isTeamId = false }) => {
             card={`-250px ${getProfilePositionX(rankingInfo.workedTime[0].memberInfo.profileImage)}`}
             profile={returnProfileImg(rankingInfo.workedTime[0].memberInfo.profileImage)}
             username={rankingInfo.workedTime[0].memberInfo.nickname}
-            nextContent={`${Math.floor(rankingInfo.workedTime[1].number / 60)}시간`}
+            nextContent={`${Math.floor(rankingInfo.workedTime[1]?.number / 60)}시간`}
             nextUsername={rankingInfo.workedTime[1]?.memberInfo.nickname}
             nextUserProfile={returnProfileImg(rankingInfo.workedTime[1]?.memberInfo.profileImage)}
           />
