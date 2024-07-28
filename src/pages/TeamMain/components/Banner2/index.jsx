@@ -62,11 +62,11 @@ const Banner2 = ({ isTeamId = false }) => {
           />
           <Card
             cardType={CARD_TYPES[1]}
-            content={`${rankingInfo.workedTime[0].number}시간`}
+            content={`${Math.floor(rankingInfo.workedTime[0].number / 60)}시간`}
             card={`-250px ${getProfilePositionX(rankingInfo.workedTime[0].memberInfo.profileImage)}`}
             profile={returnProfileImg(rankingInfo.workedTime[0].memberInfo.profileImage)}
             username={rankingInfo.workedTime[0].memberInfo.nickname}
-            nextContent={`${rankingInfo.workedTime[1]?.number}시간`}
+            nextContent={`${Math.floor(rankingInfo.workedTime[1].number / 60)}시간`}
             nextUsername={rankingInfo.workedTime[1]?.memberInfo.nickname}
             nextUserProfile={returnProfileImg(rankingInfo.workedTime[1]?.memberInfo.profileImage)}
           />
