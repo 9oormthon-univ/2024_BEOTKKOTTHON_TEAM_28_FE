@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
 
 const RnRStatusTag = ({ isDone }) => {
   if (isDone)
@@ -28,6 +29,6 @@ const RnRStatusTag = ({ isDone }) => {
   );
 };
 RnRStatusTag.propTypes = {
-  isDone: Boolean,
+  isDone: PropTypes.bool.isRequired,
 };
 export default RnRStatusTag;

@@ -3,41 +3,39 @@ import {
   Button,
   Flex,
   Image,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  useDisclosure,
 } from '@chakra-ui/react';
-import { getMemberScrum, getPeerReviewResult, getTeamInfo } from '../../../api/taskhistory';
+import { getPeerReviewResult, getTeamInfo } from '../../../api/taskhistory';
 
 import PropTypes from 'prop-types';
-import TaskItem from '../../TeamHistory/components/TaskItem';
 import no_team_profile from '../../../assets/images/no_team_profile.png';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../../../stores/userStore';
 
-const ContributionModal = ({ id }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+const MyRoleModal = ({ teamId }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState();
-  const { id: teamId } = useParams();
   const [teamData, setTeamData] = useState();
-  const [scrums, setScrums] = useState();
 
-  const { userId } = useUserStore();
+  const { id } = useParams();
+  const { userId, userName } = useUserStore();
+
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getPeerReviewResult(id);
+      const response = await getPeerReviewResult(userId);
 
       setData(response);
     };
 
     fetchData();
-  }, [id]);
-
+  }, [userId]);
   useEffect(() => {
     const fetchData = async () => {
       const response = await getTeamInfo(teamId);
@@ -48,22 +46,27 @@ const ContributionModal = ({ id }) => {
     fetchData();
   }, [teamId]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getMemberScrum(teamId, id);
-
-      setScrums(response);
-    };
-
-    fetchData();
-  }, [id, teamId]);
+  if (id !== undefined && id !== userId) return;
 
   return (
     <>
-      <Button color='brandBold' background='transparent' onClick={onOpen}>
-        더보기
-      </Button>
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+      <Box
+        onClick={() => {
+          setIsOpen(true);
+        }}
+        textAlign='center'
+        cursor='pointer'
+        borderBottom='1px solid #334155'
+      >
+        나의 역할 작성
+      </Box>
+      <Modal
+        blockScrollOnMount={false}
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      >
         <ModalOverlay />
         <ModalContent borderRadius='16px' minWidth='fit-content'>
           <ModalCloseButton />
@@ -81,11 +84,6 @@ const ContributionModal = ({ id }) => {
                     <Box className='Body-xl'>
                       {teamData?.startAt} - {teamData?.endAt}
                     </Box>
-                    {userId === id && (
-                      <Button variant='grayWhite' width='200px' bg='#475569' onClick={onClose}>
-                        비공개 전환
-                      </Button>
-                    )}
                   </Flex>
                 </Flex>
                 <Flex direction='column'>
@@ -133,42 +131,17 @@ const ContributionModal = ({ id }) => {
                   </Flex>
                 </Flex>
               </Flex>
-              <Flex direction='column' gap='20px' width='full'>
-                <Box className='Display-sm'>동료 평가</Box>
-                <Flex
-                  direction='column'
-                  padding='24px'
+              <Flex direction='column' width='full' gap='20px'>
+                <Box className='Display-md'>{userName}님의 역할</Box>
+                <Input
+                  className='Body-lg'
+                  paddingY='20px'
+                  width='full'
+                  background='#F0F2F4'
                   border='1px solid #059669'
-                  background='#ECFDF5'
-                  borderRadius='12px'
-                  gap='16px'
-                >
-                  {/* <Box color='brandBold' className='Headline-md'>
-                    동료 평가 제목
-                  </Box> */}
-                  {
-                    <Box className='Body-lg'>
-                      {data?.peerReviewSummary ?? '아직 동료 평가가 없어요'}
-                    </Box>
-                  }
-                </Flex>
+                />
               </Flex>
-              <Flex direction='column' gap='20px' width='full'>
-                <Box className='Display-sm'>
-                  백로그 <span style={{ color: '#065F46' }}>{scrums?.length}</span>
-                </Box>
-                <Flex direction='column' gap='20px' width='full'>
-                  {scrums?.map((el) => (
-                    <TaskItem
-                      key={el.id}
-                      content={el.content}
-                      startAt={el.startAt}
-                      endAt={el.endAt}
-                      workList={el.workList}
-                    />
-                  ))}
-                </Flex>
-              </Flex>
+              <Button variant='greenWhite'>수정 내용 저장</Button>
             </Flex>
           </ModalBody>
         </ModalContent>
@@ -177,7 +150,7 @@ const ContributionModal = ({ id }) => {
   );
 };
 
-ContributionModal.propTypes = {
-  id: PropTypes.number,
+MyRoleModal.propTypes = {
+  teamId: PropTypes.number,
 };
-export default ContributionModal;
+export default MyRoleModal;

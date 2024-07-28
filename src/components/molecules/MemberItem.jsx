@@ -6,6 +6,7 @@ import { returnProfileImg } from '../../lips/returnProfile';
 import { useNavigate } from 'react-router-dom';
 
 const MemberItem = ({
+  isDisableMove,
   currentUser,
   handleCurrentUser,
   active,
@@ -25,6 +26,8 @@ const MemberItem = ({
       onClick={() => {
         if (handleCurrentUser) {
           handleCurrentUser({ name: nickname, profile: profileImage, part, memberId });
+        } else if (isDisableMove) {
+          return;
         } else {
           navigate(`/user/${memberId}`);
         }
@@ -48,6 +51,7 @@ const MemberItem = ({
 
 MemberItem.propTypes = {
   isBlank: PropTypes.bool,
+  isDisableMove: PropTypes.bool,
   active: PropTypes.bool,
   memberId: PropTypes.number,
   part: PropTypes.string,
