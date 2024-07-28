@@ -1,9 +1,10 @@
 import { Divider, Flex, Textarea } from '@chakra-ui/react';
+
 import MemberItem from '../../../components/molecules/MemberItem';
+import PropTypes from 'prop-types';
 import RnRStatusTag from './RnRStatusTag';
 import ToggleIcon from '../../../components/atoms/ToggleIcon';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 
 const RnRContentItem = ({ nickname, part, memberId, profileImage, onIsDoneChange }) => {
   const [isToggled, setIsToggled] = useState(false);
@@ -32,6 +33,7 @@ const RnRContentItem = ({ nickname, part, memberId, profileImage, onIsDoneChange
         <Flex alignItems='center' gap='10px'>
           <ToggleIcon isToggled={isToggled} />
           <MemberItem
+            isDisableMove
             active={true}
             memberId={memberId}
             nickname={nickname}

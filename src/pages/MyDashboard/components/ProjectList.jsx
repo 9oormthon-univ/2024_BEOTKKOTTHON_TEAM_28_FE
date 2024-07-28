@@ -27,6 +27,7 @@ const GardenList = ({ sort }) => {
       {data?.map((el) => (
         <ProjectItem
           key={el.id}
+          teamId={el.id}
           name={el.name}
           summary={el.summary}
           profileImage={el.profileImage}
