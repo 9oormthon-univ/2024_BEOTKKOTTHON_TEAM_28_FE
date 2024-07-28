@@ -59,7 +59,7 @@ const QuestionListPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProjectList();
-      if (teamId && !storeTeamId) {
+      if (teamId !== undefined) {
         const matchedTeam = response.progressingProjectList.find((team) => team.id === +teamId);
         if (matchedTeam) {
           setCurrentTeam({
@@ -72,7 +72,7 @@ const QuestionListPage = () => {
             teamId: response.progressingProjectList[0].id,
           });
         }
-      } else if (storeTeamId) {
+      } else if (!teamId && storeTeamId) {
         const matchedTeam = response.progressingProjectList.find((team) => team.id === storeTeamId);
         if (matchedTeam) {
           setCurrentTeam({
@@ -105,7 +105,7 @@ const QuestionListPage = () => {
     <main style={{ paddingBottom: '150px' }}>
       <Flex justify='center'>
         <Flex gap='27px' mt='68px' alignItems='flex-start'>
-          <ProjectList handleCurrentTeam={handleCurrentTeam} />
+          <ProjectList handleCurrentTeam={handleCurrentTeam} currentTeam={currentTeam} />
           <Flex direction='column' marginLeft='40.33px' w='922px' gap='32px'>
             {/* <FormBox /> */}
             <Box className='Display-md'>

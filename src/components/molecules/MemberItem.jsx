@@ -22,6 +22,7 @@ const MemberItem = ({
     <Flex
       gap='8px'
       alignItems='center'
+      cursor='pointer'
       onClick={() => {
         if (handleCurrentUser) {
           handleCurrentUser({ name: nickname, profile: profileImage, part, memberId });
@@ -31,8 +32,8 @@ const MemberItem = ({
           navigate(`/user/${memberId}`);
         }
       }}
-      background={!currentUser?.name === nickname && '#ECFDF5'}
-      border={!currentUser?.name === nickname && '1px solid #059669'}
+      background={currentUser?.name === nickname && '#ECFDF5'}
+      border={currentUser?.name === nickname && '1px solid #059669'}
       padding='5px'
       borderRadius='5px'
     >

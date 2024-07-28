@@ -4,6 +4,7 @@ import MyRoleModal from './MyRoleModal';
 import PropTypes from 'prop-types';
 import RnRModal from './RnRModal';
 import StatusTag from '../../../components/atoms/StatusTag';
+import no_team_profile from '../../../assets/images/no_team_profile.png';
 import { useState } from 'react';
 
 const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, status }) => {
@@ -37,7 +38,7 @@ const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, stat
           border='1px solid #CCD6E3'
         >
           <img
-            src={profileImage ?? '/tomato.png'}
+            src={profileImage ?? no_team_profile}
             alt={`${name}의 팀프로필`}
             width='80px'
             height='80px'

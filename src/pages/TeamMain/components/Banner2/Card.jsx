@@ -19,7 +19,16 @@ const getCardType = (type) => {
   }
 };
 
-const Card = ({ card, cardType, content, profile, username, nextUsername, nextUserProfile }) => {
+const Card = ({
+  card,
+  cardType,
+  content,
+  profile,
+  username,
+  nextUsername,
+  nextUserProfile,
+  nextContent,
+}) => {
   const { color, label } = getCardType(cardType);
   return (
     <Flex direction='column' position='relative'>
@@ -84,7 +93,7 @@ const Card = ({ card, cardType, content, profile, username, nextUsername, nextUs
       <Box
         position='absolute'
         borderRadius={10}
-        bottom='-5px'
+        bottom='4px'
         left='0'
         right='4px'
         border='1px #E0E7EE solid'
@@ -122,7 +131,7 @@ const Card = ({ card, cardType, content, profile, username, nextUsername, nextUs
             </Flex>
           </Flex>
           <Box className='SubHead-lg' color={color}>
-            12일
+            {nextContent}
           </Box>
         </Flex>
       </Box>
@@ -138,6 +147,7 @@ Card.propTypes = {
   card: PropTypes.string,
   nextUsername: PropTypes.string,
   nextUserProfile: PropTypes.string,
+  nextContent: PropTypes.string,
 };
 
 export default Card;

@@ -1,47 +1,30 @@
 import { Box, Flex } from '@chakra-ui/react';
 
 import ContentMember from './ContentMember';
+import PropTypes from 'prop-types';
+import { returnProfileImg } from '../../../../lips/returnProfile';
 
-const MOCK = [
-  {
-    profile: '/carrot.png',
-    username: '정아현',
-    part: '프론트엔드',
-  },
-  {
-    profile: '/blueberry.png',
-    username: '최정흠',
-    part: '백엔드',
-  },
-  {
-    profile: '/tomato.png',
-    username: '안재윤',
-    part: '디자이너',
-  },
-  {
-    profile: '/cabbage.png',
-    username: '김영원',
-    part: 'PM',
-  },
-  {
-    profile: '/cucumber.png',
-    username: '박소현',
-    part: '프론트엔드',
-  },
-];
-
-const ContentMembers = () => {
+const ContentMembers = ({ members }) => {
   return (
-    <Flex direction='column' gap='14px' marginTop='30px'>
+    <Flex direction='column' gap='14px'>
       <Box className='SubHead-lg'>
-        현재 업무 진행중인 멤버 <span style={{ color: '#065F46' }}>3</span>
+        현재 업무 진행중인 멤버 <span style={{ color: '#065F46' }}>{members.length}</span>
       </Box>
       <Flex gap='10px'>
-        {MOCK.map((arg) => (
-          <ContentMember key={arg.username} {...arg} />
+        {members.map(({ id, nickname, profileImage, part }) => (
+          <ContentMember
+            key={id}
+            profile={returnProfileImg(profileImage)}
+            username={nickname}
+            part={part ?? ''}
+          />
         ))}
       </Flex>
     </Flex>
   );
+};
+
+ContentMembers.propTypes = {
+  members: PropTypes.array,
 };
 export default ContentMembers;
