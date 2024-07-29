@@ -6,15 +6,24 @@ import RnRStatusTag from './RnRStatusTag';
 import ToggleIcon from '../../../components/atoms/ToggleIcon';
 import { useState } from 'react';
 
-const RnRContentItem = ({ nickname, part, memberId, profileImage, onIsDoneChange }) => {
+const RnRContentItem = ({
+  memberRnR,
+  onChange,
+  nickname,
+  part,
+  memberId,
+  profileImage,
+  onIsDoneChange,
+}) => {
+  const [text, setText] = useState(memberRnR[0].content);
   const [isToggled, setIsToggled] = useState(false);
-  const [text, setText] = useState('');
 
-  const handleTextChange = (e) => {
-    const value = e.target.value;
-    setText(value);
-    const isDone = new TextEncoder().encode(value).length >= 50;
+  const handleOnChange = (e) => {
+    const val = e.target.value;
+    const isDone = new TextEncoder().encode(val).length >= 50;
     onIsDoneChange(memberId, isDone);
+    setText(val);
+    onChange(memberId, val);
   };
 
   return (
@@ -51,7 +60,7 @@ const RnRContentItem = ({ nickname, part, memberId, profileImage, onIsDoneChange
             background='#F0F2F4'
             border='1px solid #CCD6E3'
             onClick={(e) => e.stopPropagation()}
-            onChange={handleTextChange}
+            onChange={handleOnChange}
             value={text}
           />
         </Flex>
@@ -67,6 +76,8 @@ RnRContentItem.propTypes = {
   memberId: PropTypes.string.isRequired,
   profileImage: PropTypes.string.isRequired,
   onIsDoneChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  memberRnR: PropTypes.object,
 };
 
 export default RnRContentItem;

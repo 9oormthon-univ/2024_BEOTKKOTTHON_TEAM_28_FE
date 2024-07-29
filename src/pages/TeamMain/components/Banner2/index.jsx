@@ -109,7 +109,7 @@ function getProfilePositionX(profile) {
     case 'BLUEBERRY': // 280
       return `-280px`;
     case 'CABBAGE': // 1390
-      return '-490px';
+      return '-1390px';
     case 'CARROT':
       return '-550px';
     case 'CUCUMBER': // 1110

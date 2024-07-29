@@ -1,9 +1,11 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const patchProjectPublic = async (memberId) => {
+const postMyRole = async (teamId, content) => {
   try {
-    const response = await axiosInstance.patch(`/members/${memberId}`);
+    const response = await axiosInstance.patch(`/teams/${teamId}/retrospection`, {
+      content,
+    });
     return response.data;
   } catch (err) {
     if (err === AxiosError) {
@@ -13,4 +15,4 @@ const patchProjectPublic = async (memberId) => {
   }
 };
 
-export default patchProjectPublic;
+export default postMyRole;

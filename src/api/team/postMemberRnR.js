@@ -1,9 +1,12 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const patchProjectPublic = async (memberId) => {
+const postMemberRnR = async (teamId, memberId, content) => {
   try {
-    const response = await axiosInstance.patch(`/members/${memberId}`);
+    const response = await axiosInstance.post(`/teams/${teamId}/peer-review`, {
+      memberId,
+      content,
+    });
     return response.data;
   } catch (err) {
     if (err === AxiosError) {
@@ -13,4 +16,4 @@ const patchProjectPublic = async (memberId) => {
   }
 };
 
-export default patchProjectPublic;
+export default postMemberRnR;
