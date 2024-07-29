@@ -13,14 +13,28 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import RnRContentItem from './RnRContentItem';
 import { getMemberList } from '../../../api/taskhistory';
+import postMemberRnR from '../../../api/team/postMemberRnR';
 import useUserStore from '../../../stores/userStore';
 
 const RnRModal = ({ teamId, teamName, isOpen, onClose }) => {
   const [data, setData] = useState([]);
   const [isDoneStatus, setIsDoneStatus] = useState({});
+  const [memberRnRData, setMemberRnRData] = useState([]);
 
-  const { userId } = useUserStore((state) => ({
+  const handleMemberRnRData = (memberId, content) => {
+    setMemberRnRData((prev) => {
+      const exists = prev.some((item) => item.memberId === memberId);
+      if (exists) {
+        return prev.map((item) => (item.memberId === memberId ? { memberId, content } : item));
+      } else {
+        return [...prev, { memberId, content }];
+      }
+    });
+  };
+
+  const { userId, userName } = useUserStore((state) => ({
     userId: parseInt(state.userId, 10),
+    userName: state.userName,
   }));
 
   useEffect(() => {
@@ -30,9 +44,15 @@ const RnRModal = ({ teamId, teamName, isOpen, onClose }) => {
 
         const memberList = response.memberList || [];
 
-        const filteredMemberList = memberList.filter((member) => member.memberId !== userId);
+        const filteredMemberList = memberList.filter((member) => member.nickname !== userName);
+
+        const updatedMemberList = filteredMemberList.map((member) => ({
+          memberId: member.memberId,
+          content: '',
+        }));
 
         setData(filteredMemberList);
+        setMemberRnRData(updatedMemberList);
         setIsDoneStatus(
           filteredMemberList.reduce((acc, member) => {
             acc[member.memberId] = false;
@@ -45,7 +65,7 @@ const RnRModal = ({ teamId, teamName, isOpen, onClose }) => {
     };
 
     fetchData();
-  }, [userId, teamId]);
+  }, [userId, teamId, userName]);
 
   const handleIsDoneChange = (memberId, status) => {
     setIsDoneStatus((prevStatus) => ({
@@ -56,6 +76,11 @@ const RnRModal = ({ teamId, teamName, isOpen, onClose }) => {
 
   const allDone = Object.values(isDoneStatus).every((status) => status);
 
+  const handleSubmitRnR = async () => {
+    for (const { memberId, content } of memberRnRData) {
+      await postMemberRnR(teamId, memberId, content);
+    }
+  };
   return (
     <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -76,16 +101,23 @@ const RnRModal = ({ teamId, teamName, isOpen, onClose }) => {
             </Box>
           </Flex>
           <Flex direction='column'>
-            {data.map((member) => (
-              <RnRContentItem
-                key={member.memberId}
-                memberId={member.memberId}
-                nickname={member.nickname}
-                part={member.part}
-                profileImage={member.profileImage}
-                onIsDoneChange={handleIsDoneChange}
-              />
-            ))}
+            {data.map((member) => {
+              const memberContent = memberRnRData.filter(
+                ({ memberId }) => memberId === member.memberId,
+              );
+              return (
+                <RnRContentItem
+                  memberRnR={memberContent}
+                  onChange={handleMemberRnRData}
+                  key={member.memberId}
+                  memberId={member.memberId}
+                  nickname={member.nickname}
+                  part={member.part}
+                  profileImage={member.profileImage}
+                  onIsDoneChange={handleIsDoneChange}
+                />
+              );
+            })}
           </Flex>
           <Button
             width='100%'
@@ -96,6 +128,7 @@ const RnRModal = ({ teamId, teamName, isOpen, onClose }) => {
               color: allDone ? 'white' : '#A0AEC0',
             }}
             isDisabled={!allDone}
+            onClick={handleSubmitRnR}
           >
             동료평가 제출
           </Button>
