@@ -1,5 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 
+import BackLogModal from '../../../components/organisms/BackLogModal';
 import MyRoleModal from './MyRoleModal';
 import PropTypes from 'prop-types';
 import RnRModal from './RnRModal';
@@ -9,12 +10,23 @@ import { useState } from 'react';
 
 const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, status }) => {
   const [isRnRModalOpen, setIsRnRModalOpen] = useState(false);
+  const [isBackLogOpen, setIsBackLogOpen] = useState(false);
 
   const closeRnRModalOpen = () => {
     setIsRnRModalOpen(false);
   };
   return (
     <>
+      {isBackLogOpen && (
+        <BackLogModal
+          teamId={teamId}
+          id={teamId}
+          isOpen={isBackLogOpen}
+          onClose={() => {
+            setIsBackLogOpen(false);
+          }}
+        />
+      )}
       {isRnRModalOpen && (
         <RnRModal
           teamName={name}
@@ -36,6 +48,9 @@ const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, stat
           gap='20px'
           borderRadius='12px'
           border='1px solid #CCD6E3'
+          onClick={() => {
+            setIsBackLogOpen(true);
+          }}
         >
           <img
             src={profileImage ?? no_team_profile}
@@ -50,7 +65,8 @@ const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, stat
           <Flex direction='column' alignItems='center' gap='6px'>
             <StatusTag
               status={status}
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 if (status === 'PEER_REVIEW') {
                   setIsRnRModalOpen(true);
                 }

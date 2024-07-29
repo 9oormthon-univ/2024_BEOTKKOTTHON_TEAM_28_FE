@@ -51,7 +51,8 @@ const MyRoleModal = ({ teamId }) => {
   return (
     <>
       <Box
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           setIsOpen(true);
         }}
         textAlign='center'

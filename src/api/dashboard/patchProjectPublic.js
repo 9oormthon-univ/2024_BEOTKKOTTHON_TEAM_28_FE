@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const patchProjectPublic = async ({ memberId }) => {
+const patchProjectPublic = async (memberId) => {
   try {
     const response = await axiosInstance.patch(`/members/${memberId}`);
     return response.data;
