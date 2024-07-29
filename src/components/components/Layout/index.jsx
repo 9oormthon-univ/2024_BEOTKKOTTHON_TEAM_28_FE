@@ -1,4 +1,4 @@
-import Paths, { ProtectedPaths } from '../../../constants/Paths';
+import Paths, { ProtectedPaths, ProtectedWithLoginPaths } from '../../../constants/Paths';
 
 import Footer from './Footer';
 import Header from './Header';
@@ -51,6 +51,9 @@ const Layout = ({ children, isFooter }) => {
     if (isDev) return;
     if (!accessToken && ProtectedPaths.includes(currentPath)) {
       navigate(Paths.Login);
+    }
+    if (accessToken && ProtectedWithLoginPaths.includes(currentPath)) {
+      navigate(Paths.Landing);
     }
   }, [accessToken, location.pathname, navigate, currentPath]);
 
