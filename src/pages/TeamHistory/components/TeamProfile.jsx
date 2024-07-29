@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image } from '@chakra-ui/react';
+import { Box, Flex, Image } from '@chakra-ui/react';
 
 import ManagerChangeModal from '../../TeamManage/components/ManagerChangeModal';
 import { getTeamInfo } from '../../../api/taskhistory';
@@ -6,13 +6,10 @@ import tomato from '../../../assets/tomato.png';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import useTeamStore from '../../../stores/useTeamStore';
 
 const TeamProfile = () => {
   const [data, setData] = useState();
   const { id } = useParams();
-
-  const { openTeamSelectModal } = useTeamStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,9 +47,6 @@ const TeamProfile = () => {
           <Box>{data?.startAt}</Box>
         </Flex>
       </Flex>
-      <Button background='#475569' color='white' onClick={openTeamSelectModal}>
-        프로젝트 팀 변경하기
-      </Button>
       <ManagerChangeModal />
     </Flex>
   );

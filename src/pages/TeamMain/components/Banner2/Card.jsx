@@ -53,13 +53,13 @@ const Card = ({
           position='absolute'
           paddingY='11.86px'
           paddingX='11.87px'
-          gap='10px'
+          gap='5.93px'
         >
           <Box
             backgroundColor={color}
             textColor='white'
-            paddingY='6px'
-            paddingX='9px'
+            paddingY='1.86px'
+            paddingX='8.9px'
             borderRadius='5.932px'
             sx={{
               fontFamily: 'Pretendard',

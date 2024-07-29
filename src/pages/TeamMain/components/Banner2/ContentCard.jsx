@@ -49,14 +49,7 @@ const ContentCard = () => {
   }
 
   return (
-    <Flex
-      padding='24px 57px 74px 24px'
-      borderRadius='8.899px'
-      gap='20px'
-      direction='column'
-      width='292px'
-      height='260px'
-    >
+    <Flex borderRadius='8.899px' gap='20px' direction='column' width='292px' height='260px'>
       <Box className='Head-lg' textColor='#065F46'>
         {`${year}.${month}.${date}`}
       </Box>
@@ -71,7 +64,7 @@ const ContentCard = () => {
       {teamStatus && teamStatus.latestWork && (
         <Flex direction='column' gap='14px'>
           <Box className='SubHead-lg'>{userName}님의 마지막 업무에요.</Box>
-          <Box>
+          <Box background='#F0F2F4' width='292px' borderRadius='4px' padding='8px'>
             {teamStatus.latestWork.length <= 15
               ? teamStatus.latestWork
               : teamStatus.latestWork.substring(0, 15) + '...'}
