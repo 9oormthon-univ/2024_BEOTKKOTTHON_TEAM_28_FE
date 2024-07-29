@@ -21,7 +21,9 @@ const QuestionBox = () => {
       setData(response);
     };
 
-    fetchData();
+    if (id) {
+      fetchData();
+    }
   }, [id]);
 
   return (

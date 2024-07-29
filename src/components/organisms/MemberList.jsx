@@ -29,7 +29,9 @@ const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
       setData(response?.memberList ?? []);
     };
 
-    fetchData();
+    if (id) {
+      fetchData();
+    }
   }, [id]);
 
   useEffect(() => {
@@ -39,7 +41,9 @@ const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
       setLeader(response.filter((el) => el.isLeader === true));
     };
 
-    fetchData();
+    if (id) {
+      fetchData();
+    }
   }, [id]);
 
   return (
