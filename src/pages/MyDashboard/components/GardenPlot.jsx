@@ -22,7 +22,10 @@ const GardenPlot = ({ name, id }) => {
   useEffect(() => {
     const fetchData = async () => {
       if (!id) return;
-      const response = await getGardenData(id, currentPath === Paths.MyDashboard);
+      const response = await getGardenData(
+        id,
+        currentPath === Paths.MyDashboard || currentPath.split('/')[1] === 'user',
+      );
       setData(response);
     };
 
