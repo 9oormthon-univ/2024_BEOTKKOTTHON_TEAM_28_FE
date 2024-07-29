@@ -15,6 +15,7 @@ import { getMemberScrum, getPeerReviewResult, getTeamInfo } from '../../../api/t
 import PropTypes from 'prop-types';
 import TaskItem from '../../TeamHistory/components/TaskItem';
 import no_team_profile from '../../../assets/images/no_team_profile.png';
+import patchProjectPublic from '../../../api/dashboard/patchProjectPublic';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -28,6 +29,11 @@ const ContributionModal = ({ id }) => {
   const [scrums, setScrums] = useState();
 
   const { userId } = useUserStore();
+
+  const togglePublicClick = async () => {
+    await patchProjectPublic(userId);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await getPeerReviewResult(id);
@@ -82,7 +88,12 @@ const ContributionModal = ({ id }) => {
                       {teamData?.startAt} - {teamData?.endAt}
                     </Box>
                     {userId === id && (
-                      <Button variant='grayWhite' width='200px' bg='#475569' onClick={onClose}>
+                      <Button
+                        variant='grayWhite'
+                        width='200px'
+                        bg='#475569'
+                        onClick={togglePublicClick}
+                      >
                         비공개 전환
                       </Button>
                     )}

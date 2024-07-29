@@ -1,14 +1,19 @@
 import { Box, Flex } from '@chakra-ui/react';
 
 import CommitBox from '../../../components/molecules/CommitBox';
+import Paths from '../../../constants/Paths';
 import PropTypes from 'prop-types';
 import clock from '../../../assets/clock.png';
 import { getGardenData } from '../../../api/common';
 import loader from '../../../assets/loader.png';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 const GardenPlot = ({ name, id }) => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const [data, setData] = useState([]);
 
   const startDate = new Date();
@@ -17,12 +22,12 @@ const GardenPlot = ({ name, id }) => {
   useEffect(() => {
     const fetchData = async () => {
       if (!id) return;
-      const response = await getGardenData(id);
+      const response = await getGardenData(id, currentPath === Paths.MyDashboard);
       setData(response);
     };
 
     fetchData();
-  }, [id]);
+  }, [id, currentPath]);
 
   return (
     <Flex
