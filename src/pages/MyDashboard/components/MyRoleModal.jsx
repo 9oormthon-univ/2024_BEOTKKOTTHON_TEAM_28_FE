@@ -14,6 +14,7 @@ import { getPeerReviewResult, getTeamInfo } from '../../../api/taskhistory';
 
 import PropTypes from 'prop-types';
 import no_team_profile from '../../../assets/images/no_team_profile.png';
+import postMyRole from '../../../api/team/postMyRole';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -21,6 +22,9 @@ import useUserStore from '../../../stores/userStore';
 
 const MyRoleModal = ({ teamId }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [myRoleContent, setMyRoleContent] = useState('');
+
   const [data, setData] = useState();
   const [teamData, setTeamData] = useState();
 
@@ -47,6 +51,10 @@ const MyRoleModal = ({ teamId }) => {
   }, [teamId]);
 
   if (id !== undefined && id !== userId) return;
+
+  const handleSubmit = async () => {
+    await postMyRole(teamId, myRoleContent);
+  };
 
   return (
     <>
@@ -140,9 +148,15 @@ const MyRoleModal = ({ teamId }) => {
                   width='full'
                   background='#F0F2F4'
                   border='1px solid #059669'
+                  value={myRoleContent}
+                  onChange={(e) => {
+                    setMyRoleContent(e.target.value);
+                  }}
                 />
               </Flex>
-              <Button variant='greenWhite'>수정 내용 저장</Button>
+              <Button variant='greenWhite' onClick={handleSubmit}>
+                수정 내용 저장
+              </Button>
             </Flex>
           </ModalBody>
         </ModalContent>

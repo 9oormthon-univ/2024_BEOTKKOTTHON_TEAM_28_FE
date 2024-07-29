@@ -72,7 +72,7 @@ const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, stat
                 }
               }}
             />
-            <MyRoleModal teamId={teamId} />
+            {status === 'IN_PROGRESS' && <MyRoleModal teamId={teamId} />}
           </Flex>
         </Flex>
       </Flex>
