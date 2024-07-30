@@ -175,7 +175,6 @@ const ContributionModal = ({ id }) => {
                       content={el.content}
                       startAt={el.startAt}
                       endAt={el.endAt}
-                      workList={el.workList}
                     />
                   ))}
                 </Flex>

@@ -20,10 +20,10 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../../../stores/userStore';
 
-const MyRoleModal = ({ teamId }) => {
+const MyRoleModal = ({ teamId, summaryContent, handleSummary }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [myRoleContent, setMyRoleContent] = useState('');
+  const [myRoleContent, setMyRoleContent] = useState(summaryContent ?? '');
 
   const [data, setData] = useState();
   const [teamData, setTeamData] = useState();
@@ -53,7 +53,13 @@ const MyRoleModal = ({ teamId }) => {
   if (id !== undefined && id !== userId) return;
 
   const handleSubmit = async () => {
-    await postMyRole(teamId, myRoleContent);
+    try {
+      await postMyRole(teamId, myRoleContent);
+      handleSummary(myRoleContent);
+      setIsOpen(false);
+    } catch (e) {
+      return;
+    }
   };
 
   return (
@@ -154,7 +160,7 @@ const MyRoleModal = ({ teamId }) => {
                   }}
                 />
               </Flex>
-              <Button variant='greenWhite' onClick={handleSubmit}>
+              <Button width='full' variant='greenWhite' onClick={handleSubmit}>
                 수정 내용 저장
               </Button>
             </Flex>
@@ -167,5 +173,7 @@ const MyRoleModal = ({ teamId }) => {
 
 MyRoleModal.propTypes = {
   teamId: PropTypes.number,
+  summaryContent: PropTypes.string,
+  handleSummary: PropTypes.func,
 };
 export default MyRoleModal;
