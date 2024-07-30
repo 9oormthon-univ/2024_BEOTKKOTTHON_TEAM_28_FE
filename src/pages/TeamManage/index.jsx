@@ -14,6 +14,7 @@ const pageWidth = { base: '680px', md: '885px', lg: '950px', xl: '1250px' };
 
 const ManagePage = () => {
   const [currentUser, setCurrentUser] = useState();
+  const [currentToggledWork, setCurrentToggledWork] = useState();
   const [data, setData] = useState([]);
 
   const { id } = useParams();
@@ -83,6 +84,8 @@ const ManagePage = () => {
           <Flex direction='column' gap='26px'>
             {data?.map((el) => (
               <TaskItem
+                handleCurrentToggledWork={setCurrentToggledWork}
+                currentToggledWork={currentToggledWork}
                 updateTaskItems={updateTaskItems}
                 key={el.id}
                 id={el.id}
