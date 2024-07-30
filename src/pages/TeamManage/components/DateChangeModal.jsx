@@ -166,7 +166,7 @@ const DateChangeModal = ({ content, updateTaskItems, currentUser, id, startAt, e
                         alignItems='center'
                         borderRight='1px solid #CCD6E3'
                         onClick={() => {
-                          setChangeTime((prev) => ({ ...prev, minutes: prev.minutes - 1 }));
+                          setChangeTime((prev) => ({ ...prev, minutes: prev.minutes - 10 }));
                         }}
                       >
                         -
@@ -194,7 +194,7 @@ const DateChangeModal = ({ content, updateTaskItems, currentUser, id, startAt, e
                         alignItems='center'
                         borderLeft='1px solid #CCD6E3'
                         onClick={() => {
-                          setChangeTime((prev) => ({ ...prev, minutes: prev.minutes + 1 }));
+                          setChangeTime((prev) => ({ ...prev, minutes: prev.minutes + 10 }));
                         }}
                       >
                         +
