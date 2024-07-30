@@ -2,13 +2,19 @@ import { Box, Flex } from '@chakra-ui/react';
 
 import DateChangeModal from './DateChangeModal';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 const itemContainerWidth = { base: '320px', md: '666px', lg: '708px', xl: '924px' };
 
-const TaskItem = ({ updateTaskItems, currentUser, id, content, startAt, endAt }) => {
-  const [isToggled, setIsToggled] = useState(false);
-
+const TaskItem = ({
+  handleCurrentToggledWork,
+  currentToggledWork,
+  updateTaskItems,
+  currentUser,
+  id,
+  content,
+  startAt,
+  endAt,
+}) => {
   const start = new Date(startAt ?? '');
   const end = new Date(endAt ?? '');
 
@@ -28,7 +34,7 @@ const TaskItem = ({ updateTaskItems, currentUser, id, content, startAt, endAt })
       borderRadius='8px'
       width={itemContainerWidth}
       onClick={() => {
-        setIsToggled((prev) => !prev);
+        handleCurrentToggledWork(currentToggledWork === id ? '0' : id);
       }}
     >
       <Flex width='100%' justifyContent='space-between' alignItems='center'>
@@ -40,7 +46,7 @@ const TaskItem = ({ updateTaskItems, currentUser, id, content, startAt, endAt })
           {hours}시간 {minutes}분
         </Box>
       </Flex>
-      {isToggled && (
+      {currentToggledWork === id && (
         <Flex direction='column' alignItems='flex-end'>
           <Box width='full'>{content}</Box>
           <DateChangeModal
@@ -64,6 +70,8 @@ TaskItem.propTypes = {
   content: PropTypes.string,
   startAt: PropTypes.string,
   endAt: PropTypes.string,
+  handleCurrentToggledWork: PropTypes.func,
+  currentToggledWork: PropTypes.number,
 };
 
 export default TaskItem;

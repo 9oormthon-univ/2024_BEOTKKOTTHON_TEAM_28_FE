@@ -21,6 +21,7 @@ const getCardType = (type) => {
 
 const Card = ({
   card,
+  isAvg,
   cardType,
   content,
   profile,
@@ -31,9 +32,10 @@ const Card = ({
 }) => {
   const { color, label } = getCardType(cardType);
   return (
-    <Flex direction='column' position='relative'>
+    <Flex direction='column' position='relative' borderRadius='8.9px'>
       <Flex
         zIndex={10}
+        borderRadius='8.9px'
         width='224px'
         transition='transform 0.3s ease-in-out'
         _hover={{
@@ -41,12 +43,12 @@ const Card = ({
         }}
       >
         <Box
+          borderRadius='8.9px'
           as='div'
           backgroundImage={`url(/banner_imgs.png)`}
           backgroundPosition={card}
           width='224px'
           height='260px'
-          borderRadius={8.9}
         />
         <Flex
           direction='column'
@@ -82,6 +84,19 @@ const Card = ({
               letterSpacing: '0.148px',
             }}
           >
+            {isAvg && (
+              <span
+                style={{
+                  fontSize: '20px',
+                  fontStyle: 'normal',
+                  fontWeight: '600',
+                  lineHeight: '26.696px' /* 133.478% */,
+                  letterSpacing: '0.148px',
+                }}
+              >
+                평균{' '}
+              </span>
+            )}
             {content}
           </Box>
           <Flex gap='6px'>
@@ -148,6 +163,7 @@ Card.propTypes = {
   nextUsername: PropTypes.string,
   nextUserProfile: PropTypes.string,
   nextContent: PropTypes.string,
+  isAvg: PropTypes.bool,
 };
 
 export default Card;

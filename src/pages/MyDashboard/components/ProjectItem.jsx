@@ -11,10 +11,16 @@ import { useState } from 'react';
 const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, status }) => {
   const [isRnRModalOpen, setIsRnRModalOpen] = useState(false);
   const [isBackLogOpen, setIsBackLogOpen] = useState(false);
+  const [summaryContent, setSummaryContent] = useState(summary);
 
   const closeRnRModalOpen = () => {
     setIsRnRModalOpen(false);
   };
+
+  const handleSummary = (content) => {
+    setSummaryContent(content);
+  };
+
   return (
     <>
       {isBackLogOpen && (
@@ -60,7 +66,7 @@ const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, stat
           />
           <Flex flex='1' direction='column' gap='18px'>
             <Text className='Headline-lg'>{name}</Text>
-            <div>{summary ?? '아직 요약이 없어요!'}</div>
+            <div>{summaryContent ?? '아직 요약이 없어요!'}</div>
           </Flex>
           <Flex direction='column' alignItems='center' gap='6px'>
             <StatusTag
@@ -72,7 +78,13 @@ const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, stat
                 }
               }}
             />
-            {status === 'IN_PROGRESS' && <MyRoleModal teamId={teamId} />}
+            {status === 'IN_PROGRESS' && (
+              <MyRoleModal
+                teamId={teamId}
+                summaryContent={summaryContent}
+                handleSummary={handleSummary}
+              />
+            )}
           </Flex>
         </Flex>
       </Flex>

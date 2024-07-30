@@ -8,19 +8,19 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../../../stores/userStore';
 
-const GardenList = ({ sort }) => {
+const GardenList = ({ sort, memberId }) => {
   const [data, setData] = useState([]);
   const { id } = useParams();
 
   const { userId } = useUserStore();
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getProjectList(id ?? userId, sort);
+      const response = await getProjectList(memberId ?? id ?? userId, sort);
       setData(response);
     };
 
     fetchData();
-  }, [id, userId, sort]);
+  }, [id, userId, memberId, sort]);
 
   return (
     <Flex direction='column' gap='40px'>
@@ -48,6 +48,7 @@ const GardenList = ({ sort }) => {
 
 GardenList.propTypes = {
   sort: PropTypes.string,
+  memberId: PropTypes.number,
 };
 
 export default GardenList;

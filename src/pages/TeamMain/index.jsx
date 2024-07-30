@@ -4,17 +4,19 @@ import { MemberList, TabBar } from '../../components/organisms';
 import Banner2 from './components/Banner2';
 import { MemberItem } from '../../components/molecules';
 import NonData from '../../components/molecules/NonData';
+import { Note } from '../../components/molecules';
 import { QuestionBox } from './components';
 import WorkItem from './components/WorkItem';
 import getFullDate from '../../lips/getFullDate';
 import { getMemberTasks } from '../../api/teamhistory';
 import getTeamInfo from '../../api/team/getTeamInfo';
+import getTeamMemberStatus from '../../api/team/getTeamMemberStatus';
+import postWorkInfo from '../../api/team/postWorkInfo';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useTeamStore from '../../stores/useTeamStore';
-
-// import { Note } from '../../components/molecules';
+import useUserStore from '../../stores/userStore';
 
 const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드'];
 
@@ -29,8 +31,12 @@ const HomePage = () => {
   const [sort, setSort] = useState('all');
 
   const [projectName, setProjectName] = useState('');
+  const [teamStatus, setTeamStatus] = useState({ currentWorkerList: [] });
 
   const { handleTeamId } = useTeamStore();
+  const { userName } = useUserStore();
+
+  const isWorkingNow = teamStatus.currentWorkerList.some((worker) => worker.nickname === userName);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,6 +57,21 @@ const HomePage = () => {
     setCurrentTap(string);
     setSort(TabString[Tabs.indexOf(string)]);
     setPart(Parts[Tabs.indexOf(string)]);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getTeamMemberStatus(id);
+      setTeamStatus(res);
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+
+  const handleWorkSubmit = async (content) => {
+    await postWorkInfo(content);
   };
 
   return (
@@ -83,7 +104,12 @@ const HomePage = () => {
             )}
           </Flex>
           <Flex direction='column' marginLeft='48px' w='922px' gap='36px'>
-            {/* <Note placeholder={`${projectName}에서 오늘은 어떤 작업을 진행하셨나요?`} /> */}
+            {id && isWorkingNow && (
+              <Note
+                onSubmit={handleWorkSubmit}
+                placeholder={`${projectName}에서 오늘은 어떤 작업을 진행하셨나요?`}
+              />
+            )}
             <Box>
               <TabBar tabs={Tabs} currentTap={currentTap} handleCurrentTap={handleCurrentTap} />
               <Box className='Display-sm' marginY='24px'>

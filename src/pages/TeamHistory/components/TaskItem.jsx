@@ -41,22 +41,24 @@ const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
         <Flex direction='column' gap='24px' className='Body-lg'>
           <Box>{content}</Box>
           <Divider />
-          <Flex direction='column' gap='12px'>
-            {workList?.map((el) => (
-              <Flex
-                key={el.id}
-                direction='column'
-                background='white'
-                paddingX='24px'
-                paddingY='16px'
-                gap='10px'
-                borderRadius='4px'
-                border='1px solid #E0E7EE'
-              >
-                <Box className='Body-lg'>{el.content}</Box>
-              </Flex>
-            ))}
-          </Flex>
+          {workList && (
+            <Flex direction='column' gap='12px'>
+              {workList?.map((el) => (
+                <Flex
+                  key={el.id}
+                  direction='column'
+                  background='white'
+                  paddingX='24px'
+                  paddingY='16px'
+                  gap='10px'
+                  borderRadius='4px'
+                  border='1px solid #E0E7EE'
+                >
+                  <Box className='Body-lg'>{el.content}</Box>
+                </Flex>
+              ))}
+            </Flex>
+          )}
         </Flex>
       </Flex>
     </Flex>

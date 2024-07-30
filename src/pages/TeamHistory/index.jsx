@@ -109,7 +109,7 @@ const TaskHistoryPage = () => {
                       handleCurrentSort={handleCurrentSort}
                     />
                   </Box>
-                  <GardenList sort={currentSort.value} />
+                  <GardenList sort={currentSort.value} memberId={currentUser.memberId} />
                 </>
               )}
             </Flex>
