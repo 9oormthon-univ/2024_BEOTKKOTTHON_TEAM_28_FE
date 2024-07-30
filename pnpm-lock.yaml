@@ -39,8 +39,8 @@ dependencies:
     specifier: ^7.1.0
     version: 7.1.0(react@18.2.0)
   react-custom-calendar-heatmap:
-    specifier: ^1.0.3
-    version: 1.0.3(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^1.0.7
+    version: 1.0.7(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -7909,8 +7909,8 @@ packages:
       universal-cookie: 7.1.0
     dev: false
 
-  /react-custom-calendar-heatmap@1.0.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-BbNMOJqO+tqKh/P9Aj8S5evZNRciu0IALcj1nkXxKr5/MAgiVHlR1pBsHhf0DC/de8hF7H/Inja3X2ICa4SuFQ==}
+  /react-custom-calendar-heatmap@1.0.7(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-tKSKWuMvdKfIrw4Om8cczVYaZN2cTKI8mwlyv+w8iPDIurgnEczzL10DhIBihfP5nei5sdWyeYUxPb8jVMbXnA==}
     peerDependencies:
       react: ^18.3.1
       react-dom: ^18.3.1
