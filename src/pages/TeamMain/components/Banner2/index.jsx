@@ -3,18 +3,34 @@ import { Box, Flex, Image } from '@chakra-ui/react';
 import Card from './Card';
 import ContentCard from './ContentCard';
 import PropTypes from 'prop-types';
+import arrowNext from '../../../../assets/next.png';
 import getMemberRanking from '../../../../api/team/getTeamRanking';
 import no_team_select from '../../../../assets/images/no_connected.png';
 import { returnProfileImg } from '../../../../lips/returnProfile';
 import { useEffect } from 'react';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 const CARD_TYPES = ['LONGEST_WORK', 'MOST_WORK', 'MOST_QUESTION', 'FASTEST_ANSWER', 'MOST_DETAIL'];
 
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
 const Banner2 = ({ isTeamId = false }) => {
   const { id } = useParams();
+
   const [rankingInfo, setRankingInfo] = useState();
+  const [firstCardIndex, setFirstCardIndex] = useState(0);
+
+  const handleNextCardIndex = () => {
+    setFirstCardIndex((prev) => prev + 1);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +42,81 @@ const Banner2 = ({ isTeamId = false }) => {
       fetchData();
     }
   }, [isTeamId, id]);
+
+  const cardsData = useMemo(
+    () => [
+      {
+        cardType: CARD_TYPES[0],
+        content: (rankingInfo) => `${rankingInfo.workedDate[0].number}일`,
+        profile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.workedDate[0].memberInfo.profileImage),
+        card: (rankingInfo) =>
+          `-10px ${getProfilePositionX(rankingInfo.workedDate[0].memberInfo.profileImage)}`,
+        username: (rankingInfo) => rankingInfo.workedDate[0].memberInfo.nickname,
+        nextContent: (rankingInfo) => `${rankingInfo.workedDate[1]?.number}일`,
+        nextUsername: (rankingInfo) => rankingInfo.workedDate[1]?.memberInfo.nickname,
+        nextUserProfile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.workedDate[1]?.memberInfo.profileImage),
+      },
+      {
+        cardType: CARD_TYPES[1],
+        content: (rankingInfo) => `${Math.floor(rankingInfo.workedTime[0].number / 60)}시간`,
+        card: (rankingInfo) =>
+          `-250px ${getProfilePositionX(rankingInfo.workedTime[0].memberInfo.profileImage)}`,
+        profile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.workedTime[0].memberInfo.profileImage),
+        username: (rankingInfo) => rankingInfo.workedTime[0].memberInfo.nickname,
+        nextContent: (rankingInfo) => `${Math.floor(rankingInfo.workedTime[1]?.number / 60)}시간`,
+        nextUsername: (rankingInfo) => rankingInfo.workedTime[1]?.memberInfo.nickname,
+        nextUserProfile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.workedTime[1]?.memberInfo.profileImage),
+      },
+      {
+        cardType: CARD_TYPES[2],
+        content: (rankingInfo) => `${rankingInfo.questionTimes[0].number}회`,
+        card: (rankingInfo) =>
+          `-490px ${getProfilePositionX(rankingInfo.questionTimes[0].memberInfo.profileImage)}`,
+        profile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.questionTimes[0].memberInfo.profileImage),
+        username: (rankingInfo) => rankingInfo.questionTimes[0].memberInfo.nickname,
+        nextContent: (rankingInfo) => `${rankingInfo.questionTimes[1]?.number}회`,
+        nextUsername: (rankingInfo) => rankingInfo.questionTimes[1]?.memberInfo.nickname,
+        nextUserProfile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.questionTimes[1]?.memberInfo.profileImage),
+      },
+      {
+        cardType: CARD_TYPES[3],
+        isAvg: true,
+        content: (rankingInfo) => `${rankingInfo.fastAnswered[0].number}분`,
+        card: (rankingInfo) =>
+          `-730px ${getProfilePositionX(rankingInfo.fastAnswered[0].memberInfo.profileImage)}`,
+        profile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.fastAnswered[0].memberInfo.profileImage),
+        username: (rankingInfo) => rankingInfo.fastAnswered[0].memberInfo.nickname,
+        nextContent: (rankingInfo) => `${rankingInfo.fastAnswered[1]?.number}분`,
+        nextUsername: (rankingInfo) => rankingInfo.fastAnswered[1]?.memberInfo.nickname,
+        nextUserProfile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.fastAnswered[1]?.memberInfo.profileImage),
+      },
+      {
+        cardType: CARD_TYPES[4],
+        isAvg: true,
+        content: (rankingInfo) => `${rankingInfo.detailedBacklog[0].number}byte`,
+        card: (rankingInfo) =>
+          `-970px ${getProfilePositionX(rankingInfo.detailedBacklog[0].memberInfo.profileImage)}`,
+        profile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.detailedBacklog[0].memberInfo.profileImage),
+        username: (rankingInfo) => rankingInfo.detailedBacklog[0].memberInfo.nickname,
+        nextContent: (rankingInfo) => `${rankingInfo.detailedBacklog[1]?.number}byte`,
+        nextUsername: (rankingInfo) => rankingInfo.detailedBacklog[1]?.memberInfo.nickname,
+        nextUserProfile: (rankingInfo) =>
+          returnProfileImg(rankingInfo.detailedBacklog[1]?.memberInfo.profileImage),
+      },
+    ],
+    [],
+  );
+
+  const shuffledCards = useMemo(() => shuffleArray([...cardsData]), [cardsData]);
 
   return (
     <Flex gap='24px' margin={'65px auto auto auto'}>
@@ -49,49 +140,40 @@ const Banner2 = ({ isTeamId = false }) => {
           </Flex>
         </Box>
       ) : (
-        <Flex gap='16px'>
-          <Card
-            cardType={CARD_TYPES[0]}
-            content={`${rankingInfo.workedDate[0].number}일`}
-            profile={returnProfileImg(rankingInfo.workedDate[0].memberInfo.profileImage)}
-            card={`-10px ${getProfilePositionX(rankingInfo.workedDate[0].memberInfo.profileImage)}`}
-            username={rankingInfo.workedDate[0].memberInfo.nickname}
-            nextContent={`${rankingInfo.workedDate[1]?.number}일`}
-            nextUsername={rankingInfo.workedDate[1]?.memberInfo.nickname}
-            nextUserProfile={returnProfileImg(rankingInfo.workedDate[1]?.memberInfo.profileImage)}
+        <Flex gap='16px' position='relative'>
+          <img
+            onClick={handleNextCardIndex}
+            src={arrowNext}
+            alt='Next'
+            style={{
+              position: 'absolute',
+              zIndex: '999',
+              top: '40%',
+              right: '-30px',
+              width: '68px',
+              height: '68px',
+              cursor: 'pointer',
+            }}
           />
-          <Card
-            cardType={CARD_TYPES[1]}
-            content={`${Math.floor(rankingInfo.workedTime[0].number / 60)}시간`}
-            card={`-250px ${getProfilePositionX(rankingInfo.workedTime[0].memberInfo.profileImage)}`}
-            profile={returnProfileImg(rankingInfo.workedTime[0].memberInfo.profileImage)}
-            username={rankingInfo.workedTime[0].memberInfo.nickname}
-            nextContent={`${Math.floor(rankingInfo.workedTime[1]?.number / 60)}시간`}
-            nextUsername={rankingInfo.workedTime[1]?.memberInfo.nickname}
-            nextUserProfile={returnProfileImg(rankingInfo.workedTime[1]?.memberInfo.profileImage)}
-          />
-          <Card
-            cardType={CARD_TYPES[2]}
-            content={`${rankingInfo.questionTimes[0].number}회`}
-            card={`-490px ${getProfilePositionX(rankingInfo.questionTimes[0].memberInfo.profileImage)}`}
-            profile={returnProfileImg(rankingInfo.questionTimes[0].memberInfo.profileImage)}
-            username={rankingInfo.questionTimes[0].memberInfo.nickname}
-            nextContent={`${rankingInfo.questionTimes[1]?.number}회`}
-            nextUsername={rankingInfo.questionTimes[1]?.memberInfo.nickname}
-            nextUserProfile={returnProfileImg(
-              rankingInfo.questionTimes[1]?.memberInfo.profileImage,
-            )}
-          />
-          <Card
-            cardType={CARD_TYPES[3]}
-            content={`평균 ${rankingInfo.fastAnswered[0].number}회`}
-            card={`-730px ${getProfilePositionX(rankingInfo.fastAnswered[0].memberInfo.profileImage)}`}
-            profile={returnProfileImg(rankingInfo.fastAnswered[0].memberInfo.profileImage)}
-            username={rankingInfo.fastAnswered[0].memberInfo.nickname}
-            nextContent={`${rankingInfo.fastAnswered[1]?.number}회`}
-            nextUsername={rankingInfo.fastAnswered[1]?.memberInfo.nickname}
-            nextUserProfile={returnProfileImg(rankingInfo.fastAnswered[1]?.memberInfo.profileImage)}
-          />
+          {[
+            shuffledCards[firstCardIndex % 5],
+            shuffledCards[(firstCardIndex + 1) % 5],
+            shuffledCards[(firstCardIndex + 2) % 5],
+            shuffledCards[(firstCardIndex + 3) % 5],
+          ].map((card, index) => (
+            <Card
+              key={index}
+              cardType={card.cardType}
+              content={card.content(rankingInfo)}
+              profile={card.profile(rankingInfo)}
+              card={card.card(rankingInfo)}
+              username={card.username(rankingInfo)}
+              nextContent={card.nextContent(rankingInfo)}
+              nextUsername={card.nextUsername(rankingInfo)}
+              nextUserProfile={card.nextUserProfile(rankingInfo)}
+              isAvg={card.isAvg}
+            />
+          ))}
         </Flex>
       )}
     </Flex>
