@@ -114,7 +114,13 @@ const DateChangeModal = ({ content, updateTaskItems, currentUser, id, startAt, e
                         textAlign='center'
                         value={changeTime.hours}
                         onChange={(e) => {
-                          setChangeTime((prev) => ({ ...prev, hours: e.target.value }));
+                          const value = e.target.value;
+                          if (/^-?\d*$/.test(value)) {
+                            setChangeTime((prev) => ({
+                              ...prev,
+                              hours: value === '-' ? value : Number(value),
+                            }));
+                          }
                         }}
                       />
                       <Flex
@@ -124,7 +130,7 @@ const DateChangeModal = ({ content, updateTaskItems, currentUser, id, startAt, e
                         alignItems='center'
                         borderLeft='1px solid #CCD6E3'
                         onClick={() => {
-                          setChangeTime((prev) => ({ ...prev, hours: prev.hours - 1 }));
+                          setChangeTime((prev) => ({ ...prev, hours: prev.hours + 1 }));
                         }}
                       >
                         +
@@ -132,13 +138,15 @@ const DateChangeModal = ({ content, updateTaskItems, currentUser, id, startAt, e
                     </Flex>
                     <Box
                       className='Display-sm'
-                      textColor='#DC2626'
-                      cursor='pointer'
-                      onClick={() => {
-                        setChangeTime((prev) => ({ ...prev, hours: prev.hours + 1 }));
-                      }}
+                      textColor={
+                        changeTime.hours > 0
+                          ? '#2563EB'
+                          : changeTime.hours === 0
+                            ? 'black'
+                            : '#DC2626'
+                      }
                     >
-                      - 1시간
+                      {changeTime.hours}시간
                     </Box>
                   </Flex>
                 </Flex>
@@ -170,7 +178,13 @@ const DateChangeModal = ({ content, updateTaskItems, currentUser, id, startAt, e
                         textAlign='center'
                         value={changeTime.minutes}
                         onChange={(e) => {
-                          setChangeTime((prev) => ({ ...prev, minutes: e.target.value }));
+                          const value = e.target.value;
+                          if (/^-?\d*$/.test(value)) {
+                            setChangeTime((prev) => ({
+                              ...prev,
+                              minutes: value === '-' ? value : Number(value),
+                            }));
+                          }
                         }}
                       />
                       <Flex
@@ -188,18 +202,67 @@ const DateChangeModal = ({ content, updateTaskItems, currentUser, id, startAt, e
                     </Flex>
                     <Box
                       className='Display-sm'
-                      textColor='#2563EB'
-                      cursor='pointer'
-                      onClick={() => {
-                        setChangeTime((prev) => ({ ...prev, minutes: prev.minutes + 10 }));
-                      }}
+                      textColor={
+                        changeTime.minutes > 0
+                          ? '#2563EB'
+                          : changeTime.minutes === 0
+                            ? 'black'
+                            : '#DC2626'
+                      }
                     >
-                      + 10분
+                      {changeTime.minutes}분
                     </Box>
                   </Flex>
                 </Flex>
               </Flex>
-              <Button onClick={handleSubmit} variant='greenWhite' className='SubHead-xl'>
+              <Box w='full' height='1px' background='#CCD6E3' />
+              <Flex alignItems='center' justifyContent='space-between'>
+                <Box className='SubHead-xl'>수정된 시간</Box>
+                {changeTime.hours !== '-' && changeTime.minutes !== '-' ? (
+                  <Box
+                    className='Display-sm'
+                    textColor={
+                      hours * 60 + changeTime.hours * 60 + (minutes + changeTime.minutes) < 0
+                        ? '#DC2626'
+                        : 'black'
+                    }
+                  >
+                    {Math.floor(
+                      (hours * 60 + changeTime.hours * 60 + (minutes + changeTime.minutes)) / 60,
+                    )}
+                    시간
+                    {(hours * 60 + changeTime.hours * 60 + (minutes + changeTime.minutes)) % 60}분
+                  </Box>
+                ) : (
+                  <Box className='Display-sm'> 시간 분</Box>
+                )}
+              </Flex>
+              <Button
+                onClick={handleSubmit}
+                variant='greenWhite'
+                className='SubHead-xl'
+                background={
+                  hours * 60 + changeTime.hours * 60 + (minutes + changeTime.minutes) >= 0
+                    ? '#059669'
+                    : '#E2E8F0'
+                }
+                color={
+                  hours * 60 + changeTime.hours * 60 + (minutes + changeTime.minutes) >= 0
+                    ? 'white'
+                    : '#A0AEC0'
+                }
+                _hover={{
+                  background:
+                    hours * 60 + changeTime.hours * 60 + (minutes + changeTime.minutes) >= 0
+                      ? '#059669'
+                      : '#E2E8F0',
+                  color:
+                    hours * 60 + changeTime.hours * 60 + (minutes + changeTime.minutes) >= 0
+                      ? 'white'
+                      : '#A0AEC0',
+                }}
+                isDisabled={hours * 60 + changeTime.hours * 60 + (minutes + changeTime.minutes) < 0}
+              >
                 수정 완료
               </Button>
             </Flex>
