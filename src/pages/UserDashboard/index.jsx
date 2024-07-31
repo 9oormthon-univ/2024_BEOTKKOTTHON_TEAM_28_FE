@@ -38,7 +38,7 @@ const UserPage = () => {
                   handleCurrentSort={handleCurrentSort}
                 />
               </Box>
-              <GardenList sort={currentSort.value} />
+              <GardenList sort={currentSort.value} memberId={id} />
             </Box>
           </Flex>
         </Flex>

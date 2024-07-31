@@ -19,7 +19,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import useUserStore from '../../stores/userStore';
 
-const BackLogModal = ({ teamId, id, isOpen, onClose }) => {
+const BackLogModal = ({ memberId, teamId, id, isOpen, onClose }) => {
   const [data, setData] = useState();
 
   const [teamData, setTeamData] = useState();
@@ -33,13 +33,13 @@ const BackLogModal = ({ teamId, id, isOpen, onClose }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getPeerReviewResult(userId);
+      const response = await getPeerReviewResult(memberId ?? userId);
 
       setData(response);
     };
 
     fetchData();
-  }, [userId]);
+  }, [memberId, userId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,13 +53,13 @@ const BackLogModal = ({ teamId, id, isOpen, onClose }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getMemberScrum(teamId, userId);
+      const response = await getMemberScrum(teamId, memberId ?? userId);
 
       setScrums(response);
     };
 
     fetchData();
-  }, [userId, teamId]);
+  }, [userId, teamId, memberId]);
 
   return (
     <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
@@ -168,7 +168,6 @@ const BackLogModal = ({ teamId, id, isOpen, onClose }) => {
                     content={el.content}
                     startAt={el.startAt}
                     endAt={el.endAt}
-                    workList={el.workList}
                   />
                 ))}
               </Flex>
@@ -183,6 +182,7 @@ const BackLogModal = ({ teamId, id, isOpen, onClose }) => {
 BackLogModal.propTypes = {
   id: PropTypes.number,
   teamId: PropTypes.number,
+  memberId: PropTypes.number,
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
 };

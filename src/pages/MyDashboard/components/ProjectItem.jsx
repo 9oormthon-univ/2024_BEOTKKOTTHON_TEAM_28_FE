@@ -8,7 +8,7 @@ import StatusTag from '../../../components/atoms/StatusTag';
 import no_team_profile from '../../../assets/images/no_team_profile.png';
 import { useState } from 'react';
 
-const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, status }) => {
+const ProjectItem = ({ memberId, teamId, name, summary, profileImage, startAt, endAt, status }) => {
   const [isRnRModalOpen, setIsRnRModalOpen] = useState(false);
   const [isBackLogOpen, setIsBackLogOpen] = useState(false);
   const [summaryContent, setSummaryContent] = useState(summary);
@@ -25,6 +25,7 @@ const ProjectItem = ({ teamId, name, summary, profileImage, startAt, endAt, stat
     <>
       {isBackLogOpen && (
         <BackLogModal
+          memberId={memberId}
           teamId={teamId}
           id={teamId}
           isOpen={isBackLogOpen}
@@ -100,6 +101,7 @@ ProjectItem.propTypes = {
   endAt: PropTypes.string,
   status: PropTypes.string,
   teamId: PropTypes.number,
+  memberId: PropTypes.number,
 };
 
 export default ProjectItem;

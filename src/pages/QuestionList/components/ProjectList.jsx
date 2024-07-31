@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
-  const [isToggledInProgressList, setIsToggledInProgressList] = useState(false);
+  const [isToggledInProgressList, setIsToggledInProgressList] = useState(true);
   const [isToggledCompletedList, setIsToggledCompletedList] = useState(false);
   const [data, setData] = useState();
 

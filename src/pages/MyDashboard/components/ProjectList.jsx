@@ -13,13 +13,16 @@ const GardenList = ({ sort, memberId }) => {
   const { id } = useParams();
 
   const { userId } = useUserStore();
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProjectList(memberId ?? id ?? userId, sort);
       setData(response);
     };
 
-    fetchData();
+    if (id || userId) {
+      fetchData();
+    }
   }, [id, userId, memberId, sort]);
 
   return (
@@ -27,6 +30,7 @@ const GardenList = ({ sort, memberId }) => {
       {data?.map((el) => (
         <ProjectItem
           key={el.id}
+          memberId={memberId}
           teamId={el.id}
           name={el.name}
           summary={el.summary}
