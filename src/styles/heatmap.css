@@ -39,6 +39,11 @@ Heatmap
   display: flex;
 }
 
+.heatmap-hover-element > div {
+  left: -25px !important;
+  top: -60px !important;
+}
+
 .heatmap-element-depth-empty {
 }
 

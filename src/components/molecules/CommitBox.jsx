@@ -29,6 +29,7 @@ const CommitBox = ({ values }) => {
         colorSet={['#E0E7EE', '#FDDDB8', '#FFC07F', '#FFA55C', '#FF7A35']}
         values={combinedValues}
         SvgComponent={HeatmapElement}
+        HoverComponent={<div></div>}
       />
     </div>
   );
