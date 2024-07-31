@@ -35,21 +35,23 @@ const Card = ({
     <Flex direction='column' position='relative' borderRadius='8.9px'>
       <Flex
         zIndex={10}
-        borderRadius='8.9px'
         width='224px'
         transition='transform 0.3s ease-in-out'
         _hover={{
           transform: 'translateY(-56px)',
         }}
       >
-        <Box
-          borderRadius='8.9px'
-          as='div'
-          backgroundImage={`url(/banner_imgs.png)`}
-          backgroundPosition={card}
-          width='224px'
-          height='260px'
-        />
+        <Box Box overflow='hidden'>
+          <Box
+            as='div'
+            backgroundImage={`url(/banner_images.png)`}
+            backgroundPosition={card}
+            width='220px'
+            height='255px'
+            borderRadius='8px' // 원하는 borderRadius 값
+            overflow='hidden' // borderRadius가 제대로 적용되도록 overflow hidden
+          />
+        </Box>
         <Flex
           direction='column'
           position='absolute'
@@ -108,13 +110,13 @@ const Card = ({
       <Box
         position='absolute'
         borderRadius={10}
-        bottom='4px'
+        bottom='6px'
         left='0'
         right='4px'
         border='1px #E0E7EE solid'
         padding='11px'
       >
-        <Flex justifyContent='space-between' alignItems='center' paddingTop='20px'>
+        <Flex justifyContent='space-between' alignItems='center' paddingTop='18px'>
           <Flex gap='4px' alignItems='center'>
             <Image src={nextUserProfile} width='32px' borderRadius={50} />
             <Flex direction='column'>
