@@ -13,12 +13,13 @@ import getTeamInfo from '../../api/team/getTeamInfo';
 import getTeamMemberStatus from '../../api/team/getTeamMemberStatus';
 import postWorkInfo from '../../api/team/postWorkInfo';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useTeamStore from '../../stores/useTeamStore';
 import useUserStore from '../../stores/userStore';
 
-const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드'];
+const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드', '스크럼'];
 
 const TabString = ['all', 'pm', 'design', 'front', 'back'];
 const Parts = ['all', 'PM', 'DESIGN', 'FRONTEND', 'BACKEND'];
@@ -29,6 +30,8 @@ const HomePage = () => {
   const [currentTap, setCurrentTap] = useState('전체');
   const [part, setPart] = useState('all');
   const [sort, setSort] = useState('all');
+
+  const navigate = useNavigate();
 
   const [projectName, setProjectName] = useState('');
   const [teamStatus, setTeamStatus] = useState({ currentWorkerList: [] });
@@ -73,6 +76,12 @@ const HomePage = () => {
   const handleWorkSubmit = async (content) => {
     await postWorkInfo(content);
   };
+
+  useEffect(() => {
+    if (currentTap === Tabs[Tabs.length - 1]) {
+      navigate(`/${id}/task-history`);
+    }
+  }, [navigate, currentTap, id]);
 
   return (
     <main style={{ paddingBottom: '150px' }}>
