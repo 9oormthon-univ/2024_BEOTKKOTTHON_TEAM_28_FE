@@ -10,31 +10,51 @@
 
 ![244376](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_28_FE/assets/75254185/f1c46c80-636c-4b09-b565-fa768eb5b727)
 
-### 🩷 회원가입 및 역할, 프로필 선택
+### 💜 1년동안의 작업 척도 시각화
+
+현재 진행 중인 프로젝트, 지난 프로젝트에서 본인의 작업 척도를 기록하여 비트맵을 통해 시각화합니다.
+
+![image](https://github.com/user-attachments/assets/954f022a-335b-4c2d-94af-5e0b7dfe3c6a)
+
+
+### 🩷 디스코드봇을 통한 척도 기록
 
 디스코드봇을 방에 초대하고, 팀원 개개인이 각자의 역할과 프로필을 선택하여 계정을 생성한 후 디스코드봇을 통해 자신의 척도를 기록합니다.
 
 ![image](https://github.com/user-attachments/assets/e1d54f95-8222-4a66-9ca9-069720d8c016)
+
+### 💙 질문 답변 히스토리 확인
+
+프로젝트를 진행하면서 디스코드로 문의했던 사항들을 한번에 확인합니다.
+
+![image](https://github.com/user-attachments/assets/50323fee-43a3-46bd-b436-85eb22ebb671)
+
 
 ### 💚 팀 내 작업 척도 순위 확인
 
 일일 팀원 내 작업 척도의 순위를 확인하며 서로의 적극적인 참여를 권장합니다.
 
 ![image](https://github.com/user-attachments/assets/b43b08ac-68c9-45ae-8b0e-8442160ff06f)
+![image](https://github.com/user-attachments/assets/ad6018c9-4585-43cd-91cb-5770318d9aad)
+
 
 ### 💛 작업 진행 공유
 
 실제로 각자 어떤 작업을 진행했는지 확인하며 팀 프로젝트의 진행상황을 확인합니다.
 
-![image](https://github.com/user-attachments/assets/d85de736-c24f-41a7-a068-7fbc30effdd6)
+![image](https://github.com/user-attachments/assets/adfba191-df93-4d36-84fc-f4e300248ec6)
 
+### 🧡 다른 팀원의 백로그 확인
 
-### 💜 1년동안의 작업 척도 시각화
+다른 팀원이 참여한 프로젝트의 백로그를 확인합니다.
 
-현재 진행 중인 프로젝트, 지난 프로젝트에서 본인의 작업 척도를 기록하여 비트맵을 통해 시각화합니다.
+![image](https://github.com/user-attachments/assets/b72cdcfd-f513-4a78-a625-1a5da8eb38d8)
 
-![image](https://github.com/user-attachments/assets/76965146-63cd-4aac-a169-95f81b58a327)
+### 🩵 동료 평가 및 나의 역할 작성
 
+프로젝트 종료 후 동료 평가를 진행하고 AI를 통해 필터링된 평가 결과를 확인합니다.
+
+![image](https://github.com/user-attachments/assets/cffa5c4b-0f34-4a53-a2c4-16045add275a)
 
 ## Wiki
 
@@ -70,9 +90,9 @@
 ### 📢 Branch
 
 - github 전략
-- feature/\*: 새로운 기능 추가, 마크업
-- style/\*: 컴포넌트 스타일 작업
-- hotfix/\*: 긴급 에러 수정
+- Feature/\*: 새로운 기능 추가, 마크업
+- Style/\*: 컴포넌트 스타일 작업
+- Hotfix/\*: 긴급 에러 수정
 
 ### 🌸 Merge
 
@@ -81,14 +101,14 @@
 
 ### 🌈 Commit
 
-- ✨ feat: 새로운 기능 추가, 마크업
-- ⚡️ improve: 기존 기능 업그레이드
-- 🐛 fix: 에러 수정
-- 💄 style: 코드 스타일 수정
-- 🚀 deploy: 배포 작업
-- 📝 docs: 문서 작성 및 편집
-- 🔨 refactor: 코드 리팩토링
-- 📦 chore: 기타 작업
+- ✨ Feat: 새로운 기능 추가, 마크업
+- ⚡️ Improve: 기존 기능 업그레이드
+- 🐛 Fix: 에러 수정
+- 💄 Style: 코드 스타일 수정
+- 🚀 Deploy: 배포 작업
+- 📝 Docs: 문서 작성 및 편집
+- 🔨 Refactor: 코드 리팩토링
+- 📦 Chore: 기타 작업
 
 ## Developers
 
@@ -102,9 +122,11 @@
 - 컨벤션 통일, 프로젝트 구조 세팅 등 프로젝트 리드
 - 팀 작업 기록, 질문 목록, 작업기록, 나의 대시보드 페이지 마크업
 - 랜딩 페이지 반응형 작업
-- Storybook을 통한 UI 테스트 및 Playwright를 활용한 기능 명시
+- 깃허브 이슈를 통한 API 등 백엔드와의 소통
+- Storybook와 Chromatic을 통한 UI 테스트 및 Playwright를 활용한 기능 명시
 - REST API 응답에서 받은 쿠키에 저장된 토큰을 추출하여 요청 헤더에 삽입 및 로그인 상태 관리
-- 스타일과 로 컴포넌트 분리 및 API 연결 진행
+- 스타일과 로직을 기반으로 컴포넌트 분리 및 API 연결 진행
+- 작업 척도 커밋 박스용 react-custom-calendar-heatmap 라이브러리 제작
 
 ### 박소현
 
