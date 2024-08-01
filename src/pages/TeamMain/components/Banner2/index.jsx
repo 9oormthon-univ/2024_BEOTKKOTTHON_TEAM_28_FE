@@ -141,6 +141,7 @@ const Banner2 = ({ isTeamId = false }) => {
           {/* 3일 경우 렌더링 , 4 */}
           {firstCardIndex === shuffledCards.length - 1 && (
             <ArrowIcon
+              id='ga-btn-right-card-interest'
               isActive={true}
               direction='right'
               onClick={() => {
@@ -179,6 +180,7 @@ const Banner2 = ({ isTeamId = false }) => {
           ))}
           {firstCardIndex === shuffledCards.length && (
             <ArrowIcon
+              id='ga-btn-left-card-interest'
               isActive={true}
               direction='left'
               onClick={() => {
