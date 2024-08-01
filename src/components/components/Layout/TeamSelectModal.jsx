@@ -3,7 +3,6 @@ import {
   Flex,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalOverlay,
   Img,
@@ -43,6 +42,10 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
     fetchProjectList();
   }, []);
 
+  const handleProjectClick = (projectId, projectName) => {
+    setSelectedTeam({ teamId: projectId, teamName: projectName });
+  };
+
   return (
     <Modal
       zIndex='997'
@@ -53,7 +56,6 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
     >
       <ModalOverlay />
       <ModalContent padding='40px' borderRadius='16px' minWidth='780px' marginTop='250px'>
-        <ModalCloseButton />
         <ModalBody position='relative'>
           <Flex direction='column' gap='32px'>
             <Box className='Display-sm'>프로젝트를 변경해요</Box>
@@ -68,22 +70,13 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
                   border={
                     selectedTeam.teamId === project.id ? '2px solid #059669' : '2px solid white'
                   }
+                  background={selectedTeam.teamId === project.id ? '#ECFDF5' : 'white'}
+                  color={selectedTeam.teamId === project.id ? '#065F46' : 'black'}
                   key={project.name}
-                  onMouseEnter={() => {
-                    setSelectedTeam({ teamId: project.id, teamName: project.name });
-                  }}
-                  onMouseLeave={() => {
-                    setSelectedTeam({ teamId: 0, teamName: '' });
-                  }}
-                  onClick={() => {
-                    handleTeamId(project.id, project.name);
-                    closeTeamSelectModal();
-                    if (!isGoTaskHistory || splittedPathname[2] === 'team-task-history') {
-                      navigate(`/team-task-history/${project.id}`);
-                    }
-                    if (isGoTaskHistory || splittedPathname[2] === 'task-history') {
-                      navigate(`/${project.id}/task-history`);
-                    }
+                  onClick={() => handleProjectClick(project.id, project.name)}
+                  cursor='pointer'
+                  _hover={{
+                    background: selectedTeam.teamId === project.id ? '#ECFDF5' : '#CCD6E3',
                   }}
                 >
                   <img
@@ -97,6 +90,31 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
                   </Box>
                 </Flex>
               ))}
+              {projects?.length > 0 && (
+                <Button
+                  mt='24px'
+                  bg='#059669'
+                  color='white'
+                  w='100%'
+                  h='50px'
+                  _hover={{
+                    background: 'brand',
+                    color: 'white',
+                  }}
+                  onClick={() => {
+                    handleTeamId(selectedTeam.teamId, selectedTeam.teamName);
+                    closeTeamSelectModal();
+                    if (!isGoTaskHistory || splittedPathname[2] === 'team-task-history') {
+                      navigate(`/team-task-history/${selectedTeam.teamId}`);
+                    }
+                    if (isGoTaskHistory || splittedPathname[2] === 'task-history') {
+                      navigate(`/${selectedTeam.teamId}/task-history`);
+                    }
+                  }}
+                >
+                  선택 완료
+                </Button>
+              )}
             </Flex>
             {(!projects || projects?.length === 0) && (
               <Flex
@@ -117,7 +135,7 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
                   mt='24px'
                   bg='#059669'
                   color='white'
-                  w='252px'
+                  w='100%'
                   h='50px'
                   _hover={{
                     background: 'brand',
