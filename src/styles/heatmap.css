@@ -40,8 +40,8 @@ Heatmap
 }
 
 .heatmap-hover-element > div {
-  left: -25px !important;
-  top: -60px !important;
+  left: -21px !important;
+  top: -63px !important;
 }
 
 .heatmap-element-depth-empty {
