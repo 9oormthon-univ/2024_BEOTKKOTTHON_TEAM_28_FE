@@ -27,6 +27,7 @@ const TabBar = ({ tabs, currentTap, handleCurrentTap }) => {
           <Tab
             className='Headline-md'
             key={tab}
+            color='#94A3B8'
             _selected={{ color: 'successBold', borderColor: 'successBold' }}
           >
             {tab}
