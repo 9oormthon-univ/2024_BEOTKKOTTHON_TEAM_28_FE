@@ -113,7 +113,8 @@ const Banner2 = ({ isTeamId = false }) => {
 
   const shuffledCards = useMemo(() => shuffleArray([...cardsData]), [cardsData]);
 
-  const [firstCardIndex, setFirstCardIndex] = useState(shuffledCards.length ?? 0);
+  const [firstCardIndex, setFirstCardIndex] = useState(shuffledCards.length - 1);
+
   return (
     <Flex gap='24px' margin={'65px auto auto auto'}>
       <ContentCard isConnected={false} />
@@ -137,12 +138,13 @@ const Banner2 = ({ isTeamId = false }) => {
         </Box>
       ) : (
         <Flex gap='16px' position='relative'>
-          {firstCardIndex === shuffleArray.length - 1 && (
+          {/* 3일 경우 렌더링 , 4 */}
+          {firstCardIndex === shuffledCards.length - 1 && (
             <ArrowIcon
               isActive={true}
               direction='right'
               onClick={() => {
-                setFirstCardIndex(shuffleArray.length);
+                setFirstCardIndex(shuffledCards.length);
               }}
               alt='Next'
               style={{
@@ -175,12 +177,12 @@ const Banner2 = ({ isTeamId = false }) => {
               isAvg={card.isAvg}
             />
           ))}
-          {firstCardIndex === shuffleArray.length && (
+          {firstCardIndex === shuffledCards.length && (
             <ArrowIcon
               isActive={true}
               direction='left'
               onClick={() => {
-                setFirstCardIndex(shuffleArray.length - 1);
+                setFirstCardIndex(shuffledCards.length - 1);
               }}
               className='swiper-button-next'
               alt='Next'
