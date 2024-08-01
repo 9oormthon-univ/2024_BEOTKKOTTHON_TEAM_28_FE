@@ -1,11 +1,9 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getGardenData = async (membersId, isMyDashboard) => {
+const getMemberRanking = async (teamsId) => {
   try {
-    const response = await axiosInstance.get(
-      `/members/${membersId}/works/measure-${isMyDashboard ? 'all' : 'one'}`,
-    );
+    const response = await axiosInstance.get(`/teams/${teamsId}/works/ranking`);
 
     return response.data.data;
   } catch (err) {
@@ -16,4 +14,4 @@ const getGardenData = async (membersId, isMyDashboard) => {
   }
 };
 
-export default getGardenData;
+export default getMemberRanking;

@@ -4,18 +4,22 @@ import { MemberList, TabBar } from '../../components/organisms';
 import Banner2 from './components/Banner2';
 import { MemberItem } from '../../components/molecules';
 import NonData from '../../components/molecules/NonData';
+import { Note } from '../../components/molecules';
 import { QuestionBox } from './components';
 import WorkItem from './components/WorkItem';
 import getFullDate from '../../lips/getFullDate';
-import { getMemberRanking } from '../../api/teamhistory';
 import { getMemberTasks } from '../../api/teamhistory';
+import getTeamInfo from '../../api/team/getTeamInfo';
+import getTeamMemberStatus from '../../api/team/getTeamMemberStatus';
+import postWorkInfo from '../../api/team/postWorkInfo';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import useTeamStore from '../../stores/useTeamStore';
+import useUserStore from '../../stores/userStore';
 
-// import { Note } from '../components/molecules';
-
-const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드'];
+const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드', '스크럼'];
 
 const TabString = ['all', 'pm', 'design', 'front', 'back'];
 const Parts = ['all', 'PM', 'DESIGN', 'FRONTEND', 'BACKEND'];
@@ -27,27 +31,57 @@ const HomePage = () => {
   const [part, setPart] = useState('all');
   const [sort, setSort] = useState('all');
 
+  const navigate = useNavigate();
+
   const [projectName, setProjectName] = useState('');
+  const [teamStatus, setTeamStatus] = useState({ currentWorkerList: [] });
+
+  const { handleTeamId } = useTeamStore();
+  const { userName } = useUserStore();
+
+  const isWorkingNow = teamStatus.currentWorkerList.some((worker) => worker.nickname === userName);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getMemberTasks(id, sort);
       setData(response);
 
-      const rankingResponse = await getMemberRanking(id);
-      setProjectName(rankingResponse?.projectName ?? '');
+      const res = await getTeamInfo(id);
+      setProjectName(res.name ?? '');
+      handleTeamId(id, res.name);
     };
 
     if (id) {
       fetchData();
     }
-  }, [id, sort, currentTap]);
+  }, [id, sort, currentTap, handleTeamId]);
 
   const handleCurrentTap = (string) => {
     setCurrentTap(string);
     setSort(TabString[Tabs.indexOf(string)]);
     setPart(Parts[Tabs.indexOf(string)]);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getTeamMemberStatus(id);
+      setTeamStatus(res);
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+
+  const handleWorkSubmit = async (content) => {
+    await postWorkInfo(content);
+  };
+
+  useEffect(() => {
+    if (currentTap === Tabs[Tabs.length - 1]) {
+      navigate(`/${id}/task-history`);
+    }
+  }, [navigate, currentTap, id]);
 
   return (
     <main style={{ paddingBottom: '150px' }}>
@@ -57,7 +91,7 @@ const HomePage = () => {
           <Flex direction='column' gap='64px'>
             <QuestionBox />
             {id ? (
-              <MemberList isWhite projectName={projectName} />
+              <MemberList isWhite />
             ) : (
               <Flex direction='column' gap='12px'>
                 <Flex direction='column'>
@@ -79,7 +113,12 @@ const HomePage = () => {
             )}
           </Flex>
           <Flex direction='column' marginLeft='48px' w='922px' gap='36px'>
-            {/* <Note /> */}
+            {id && isWorkingNow && (
+              <Note
+                onSubmit={handleWorkSubmit}
+                placeholder={`${projectName}에서 오늘은 어떤 작업을 진행하셨나요?`}
+              />
+            )}
             <Box>
               <TabBar tabs={Tabs} currentTap={currentTap} handleCurrentTap={handleCurrentTap} />
               <Box className='Display-sm' marginY='24px'>

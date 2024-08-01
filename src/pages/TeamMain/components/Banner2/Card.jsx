@@ -19,10 +19,20 @@ const getCardType = (type) => {
   }
 };
 
-const Card = ({ card, cardType, content, profile, username, nextUsername, nextUserProfile }) => {
+const Card = ({
+  card,
+  isAvg,
+  cardType,
+  content,
+  profile,
+  username,
+  nextUsername,
+  nextUserProfile,
+  nextContent,
+}) => {
   const { color, label } = getCardType(cardType);
   return (
-    <Flex direction='column' position='relative'>
+    <Flex direction='column' position='relative' borderRadius='8.9px'>
       <Flex
         zIndex={10}
         width='224px'
@@ -31,26 +41,29 @@ const Card = ({ card, cardType, content, profile, username, nextUsername, nextUs
           transform: 'translateY(-56px)',
         }}
       >
-        <Box
-          as='div'
-          backgroundImage={`url(/banner_imgs.png)`}
-          backgroundPosition={card}
-          width='224px'
-          height='260px'
-          borderRadius={8.9}
-        />
+        <Box Box overflow='hidden'>
+          <Box
+            as='div'
+            backgroundImage={`url(/banner_images.png)`}
+            backgroundPosition={card}
+            width='220px'
+            height='255px'
+            borderRadius='8px' // 원하는 borderRadius 값
+            overflow='hidden' // borderRadius가 제대로 적용되도록 overflow hidden
+          />
+        </Box>
         <Flex
           direction='column'
           position='absolute'
           paddingY='11.86px'
           paddingX='11.87px'
-          gap='10px'
+          gap='5.93px'
         >
           <Box
             backgroundColor={color}
             textColor='white'
-            paddingY='6px'
-            paddingX='9px'
+            paddingY='1.86px'
+            paddingX='8.9px'
             borderRadius='5.932px'
             sx={{
               fontFamily: 'Pretendard',
@@ -73,6 +86,19 @@ const Card = ({ card, cardType, content, profile, username, nextUsername, nextUs
               letterSpacing: '0.148px',
             }}
           >
+            {isAvg && (
+              <span
+                style={{
+                  fontSize: '20px',
+                  fontStyle: 'normal',
+                  fontWeight: '600',
+                  lineHeight: '26.696px' /* 133.478% */,
+                  letterSpacing: '0.148px',
+                }}
+              >
+                평균{' '}
+              </span>
+            )}
             {content}
           </Box>
           <Flex gap='6px'>
@@ -84,13 +110,13 @@ const Card = ({ card, cardType, content, profile, username, nextUsername, nextUs
       <Box
         position='absolute'
         borderRadius={10}
-        bottom='-5px'
+        bottom='6px'
         left='0'
         right='4px'
         border='1px #E0E7EE solid'
         padding='11px'
       >
-        <Flex justifyContent='space-between' alignItems='center' paddingTop='20px'>
+        <Flex justifyContent='space-between' alignItems='center' paddingTop='18px'>
           <Flex gap='4px' alignItems='center'>
             <Image src={nextUserProfile} width='32px' borderRadius={50} />
             <Flex direction='column'>
@@ -122,7 +148,7 @@ const Card = ({ card, cardType, content, profile, username, nextUsername, nextUs
             </Flex>
           </Flex>
           <Box className='SubHead-lg' color={color}>
-            12일
+            {nextContent}
           </Box>
         </Flex>
       </Box>
@@ -138,6 +164,8 @@ Card.propTypes = {
   card: PropTypes.string,
   nextUsername: PropTypes.string,
   nextUserProfile: PropTypes.string,
+  nextContent: PropTypes.string,
+  isAvg: PropTypes.bool,
 };
 
 export default Card;

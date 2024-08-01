@@ -1,38 +1,23 @@
-import { Box, Divider, Flex, Image } from '@chakra-ui/react';
+import { Box, Divider, Flex } from '@chakra-ui/react';
 
+import CommentItem from './CommentItem';
 import PropTypes from 'prop-types';
 import { TitleProfile } from '../../../components/molecules';
-import { returnProfileImg } from '../../../lips/returnProfile';
 
 const WorkItem = ({ name, profileImage, part, content, createdAt, receiver }) => {
   return (
     <Flex direction='column' gap='20px' paddingY='24px'>
       <TitleProfile part={part} createdAt={createdAt} profileImage={profileImage} nickname={name} />
-      <Box paddingX='24px' paddingY='16px' background='#F0F2F4' borderRadius='4px'>
+      <Box
+        paddingX='24px'
+        paddingY='16px'
+        background='#F0F2F4'
+        borderRadius='4px'
+        border='1px solid #CCD6E3'
+      >
         {content}
       </Box>
-      {receiver && (
-        <Flex direction='column'>
-          <Flex alignItems='center'>
-            <Image
-              borderRadius='50%'
-              src={returnProfileImg(receiver?.profileImage)}
-              alt='프로필'
-              width='32px'
-            />
-            <Box paddingX='24px' paddingY='16px' borderRadius='4px'>
-              {`${receiver?.name} `}
-              {receiver?.content}
-            </Box>
-          </Flex>
-          {/* <Flex gap='12px'>
-            <Input placeholder='답변을 남겨주세요' />
-            <Button background='#059669' color='white'>
-              전송
-            </Button>
-          </Flex> */}
-        </Flex>
-      )}
+      {receiver && <CommentItem receiver={receiver} />}
       <Divider />
     </Flex>
   );

@@ -21,12 +21,16 @@ const QuestionBox = () => {
       setData(response);
     };
 
-    fetchData();
+    if (id) {
+      fetchData();
+    }
   }, [id]);
 
   return (
     <Flex direction='column' gap='16px'>
-      <Box className='SubHead-xl'>답변을 기다리는 요청</Box>
+      <Box className='SubHead-xl'>
+        답변을 기다리는 요청 <span style={{ color: '#065F46' }}>{data?.length}</span>
+      </Box>
       <Flex
         direction='column'
         gap='12px'
@@ -42,7 +46,6 @@ const QuestionBox = () => {
         {data?.map((el) => {
           return (
             <QuestionItem
-              isBlank
               key={el.sender.id}
               id={el.sender.id}
               profileImage={returnProfileImg(el.sender.profileImage) ?? tomato}

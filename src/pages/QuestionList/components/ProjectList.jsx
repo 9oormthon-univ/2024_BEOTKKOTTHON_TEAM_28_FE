@@ -2,17 +2,15 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 import ToggleIcon from '../../../components/atoms/ToggleIcon';
-import cucumber from '../../../assets/cucumber.png';
 import getProjectList from '../../../api/common/getProjectList';
+import no_team_profile from '../../../assets/images/no_team_profile.png';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const ProjectList = ({ handleCurrentTeam }) => {
-  const [isToggledInProgressList, setIsToggledInProgressList] = useState(false);
+const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
+  const [isToggledInProgressList, setIsToggledInProgressList] = useState(true);
   const [isToggledCompletedList, setIsToggledCompletedList] = useState(false);
   const [data, setData] = useState();
-
-  const [selectedTeamId, setSelectedTeamId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +23,6 @@ const ProjectList = ({ handleCurrentTeam }) => {
 
   const handleTeamClick = (team) => {
     handleCurrentTeam(team);
-    setSelectedTeamId(team.teamId);
   };
 
   return (
@@ -73,14 +70,14 @@ const ProjectList = ({ handleCurrentTeam }) => {
                   handleTeamClick({ teamName: el.name, teamId: el.id });
                 }}
                 border={
-                  selectedTeamId === el.id ? '1.2px solid #059669' : '1.2px solid transparent'
+                  currentTeam.teamId === el.id ? '1.2px solid #059669' : '1.2px solid transparent'
                 }
                 padding='4px'
                 borderRadius='4px'
                 cursor='pointer'
                 color='#065F46'
               >
-                <Image src={cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+                <Image src={el.image ?? no_team_profile} alt='팀 프로필' width='48px' />
                 <Box>{el.name}</Box>
               </Flex>
             ))}
@@ -104,7 +101,7 @@ const ProjectList = ({ handleCurrentTeam }) => {
           <Flex direction='column' gap='12px'>
             {data?.endProjectList?.map((el) => (
               <Flex key={el.id} gap='8px' alignItems='center'>
-                <Image src={el.image ?? cucumber} alt='팀 프로필' width='48px' borderRadius='50%' />
+                <Image src={el.image ?? no_team_profile} alt='팀 프로필' width='48px' />
                 <Box>{el.name}</Box>
               </Flex>
             ))}
@@ -117,6 +114,7 @@ const ProjectList = ({ handleCurrentTeam }) => {
 
 ProjectList.propTypes = {
   handleCurrentTeam: PropTypes.func,
+  currentTeam: PropTypes.any,
 };
 
 export default ProjectList;

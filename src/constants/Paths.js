@@ -20,3 +20,5 @@ export const ProtectedPaths = [
   Paths.TeamHistory,
   Paths.TeamManage,
 ];
+
+export const ProtectedWithLoginPaths = [Paths.Login, Paths.Register];

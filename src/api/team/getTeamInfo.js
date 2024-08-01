@@ -1,12 +1,9 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getGardenData = async (membersId, isMyDashboard) => {
+const getTeamInfo = async (id) => {
   try {
-    const response = await axiosInstance.get(
-      `/members/${membersId}/works/measure-${isMyDashboard ? 'all' : 'one'}`,
-    );
-
+    const response = await axiosInstance.get(`/teams/${id}`);
     return response.data.data;
   } catch (err) {
     if (err === AxiosError) {
@@ -16,4 +13,4 @@ const getGardenData = async (membersId, isMyDashboard) => {
   }
 };
 
-export default getGardenData;
+export default getTeamInfo;

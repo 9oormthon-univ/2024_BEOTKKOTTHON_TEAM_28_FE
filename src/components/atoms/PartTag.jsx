@@ -8,7 +8,7 @@ const PartTag = ({ part, active = false }) => {
       className='SubHead-sm'
       color={active ? '#059669' : 'tertiary'}
       background={active ? 'transparent' : '#F0F2F4'}
-      border={`1px solid ${active ? '#059669' : '#64748B'}`}
+      border={`1px solid ${active ? '#059669' : '#CCD6E3'}`}
       borderRadius='14px'
       paddingY='4px'
       paddingX='8px'
