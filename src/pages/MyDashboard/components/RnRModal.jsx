@@ -77,10 +77,14 @@ const RnRModal = ({ teamId, teamName, isOpen, onClose }) => {
   const allDone = Object.values(isDoneStatus).every((status) => status);
 
   const handleSubmitRnR = async () => {
-    for (const { memberId, content } of memberRnRData) {
-      await postMemberRnR(teamId, memberId, content);
+    try {
+      for (const { memberId, content } of memberRnRData) {
+        await postMemberRnR(teamId, memberId, content);
+      }
+      onClose();
+    } catch (e) {
+      console.log(e);
     }
-    onClose();
   };
 
   return (
