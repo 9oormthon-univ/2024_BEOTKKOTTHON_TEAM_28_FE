@@ -2,7 +2,11 @@ import { Button, Flex } from '@chakra-ui/react';
 
 import not_found from '../../assets/images/not_found.png';
 
+import { useNavigate } from 'react-router-dom';
+
 const NotFound = () => {
+  const navigate = useNavigate();
+
   return (
     <Flex
       marginTop='207px'
@@ -29,6 +33,9 @@ const NotFound = () => {
           backgroundColor='#065F46'
           _hover={{ backgroundColor: '#065F46', color: 'white' }}
           color='white'
+          onClick={() => {
+            navigate('/');
+          }}
         >
           스타트업밸리 메인 페이지로
         </Button>

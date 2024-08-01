@@ -51,7 +51,7 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
       <ModalContent padding='40px' borderRadius='16px' minWidth='780px' marginTop='250px'>
         <ModalCloseButton />
         <ModalBody position='relative'>
-          <Flex direction='column' width={500} gap='32px'>
+          <Flex direction='column' gap='32px'>
             <Box className='Display-sm'>프로젝트를 변경해요</Box>
             <Flex direction='column' gap='8px' width='100%'>
               {projects?.map((project) => (

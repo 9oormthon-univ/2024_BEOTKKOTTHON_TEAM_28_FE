@@ -34,7 +34,7 @@ const ProfileEditModalUserItem = ({ memberId, nickname, profileImage, isLeader }
       </Flex>
       {isLeader ? (
         <Button className='SubHead-lg' paddingX='16px' background='gray.200'>
-          리더 입니다
+          현재 리더 입니다
         </Button>
       ) : (
         <Button className='SubHead-lg' paddingX='16px' variant='grayWhite' onClick={handleClick}>
