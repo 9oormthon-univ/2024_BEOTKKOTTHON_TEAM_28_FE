@@ -80,7 +80,9 @@ const RnRModal = ({ teamId, teamName, isOpen, onClose }) => {
     for (const { memberId, content } of memberRnRData) {
       await postMemberRnR(teamId, memberId, content);
     }
+    onClose();
   };
+
   return (
     <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />

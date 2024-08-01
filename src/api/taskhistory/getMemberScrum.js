@@ -3,9 +3,7 @@ import axiosInstance from '..';
 
 const getMemberScrum = async (id, memberId) => {
   try {
-    const response = await axiosInstance.get(
-      `/teams/${id}/scrums${memberId ? `?target=${memberId}` : ''}`,
-    );
+    const response = await axiosInstance.get(`/members/${memberId}/teams/${id}/scrums`);
     return response.data.data.scrumList;
   } catch (err) {
     if (err === AxiosError) {

@@ -30,7 +30,7 @@ const GardenList = ({ sort, memberId }) => {
       {data?.map((el) => (
         <ProjectItem
           key={el.id}
-          memberId={memberId}
+          memberId={el.memberId}
           teamId={el.id}
           name={el.name}
           summary={el.summary}
