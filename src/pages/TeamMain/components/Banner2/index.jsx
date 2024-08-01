@@ -1,9 +1,9 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
 
+import ArrowIcon from '../../../../components/atoms/ArrowIcon';
 import Card from './Card';
 import ContentCard from './ContentCard';
 import PropTypes from 'prop-types';
-import arrowNext from '../../../../assets/next.png';
 import getMemberRanking from '../../../../api/team/getTeamRanking';
 import no_team_select from '../../../../assets/images/no_connected.png';
 import { returnProfileImg } from '../../../../lips/returnProfile';
@@ -26,11 +26,6 @@ const Banner2 = ({ isTeamId = false }) => {
   const { id } = useParams();
 
   const [rankingInfo, setRankingInfo] = useState();
-  const [firstCardIndex, setFirstCardIndex] = useState(0);
-
-  const handleNextCardIndex = () => {
-    setFirstCardIndex((prev) => prev + 1);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -118,6 +113,7 @@ const Banner2 = ({ isTeamId = false }) => {
 
   const shuffledCards = useMemo(() => shuffleArray([...cardsData]), [cardsData]);
 
+  const [firstCardIndex, setFirstCardIndex] = useState(shuffledCards.length ?? 0);
   return (
     <Flex gap='24px' margin={'65px auto auto auto'}>
       <ContentCard isConnected={false} />
@@ -141,20 +137,25 @@ const Banner2 = ({ isTeamId = false }) => {
         </Box>
       ) : (
         <Flex gap='16px' position='relative'>
-          <img
-            onClick={handleNextCardIndex}
-            src={arrowNext}
-            alt='Next'
-            style={{
-              position: 'absolute',
-              zIndex: '999',
-              top: '40%',
-              right: '-30px',
-              width: '68px',
-              height: '68px',
-              cursor: 'pointer',
-            }}
-          />
+          {firstCardIndex === shuffleArray.length - 1 && (
+            <ArrowIcon
+              isActive={true}
+              direction='right'
+              onClick={() => {
+                setFirstCardIndex(shuffleArray.length);
+              }}
+              alt='Next'
+              style={{
+                position: 'absolute',
+                zIndex: '99',
+                top: '40%',
+                right: '-30px',
+                width: '68px',
+                height: '68px',
+                cursor: 'pointer',
+              }}
+            />
+          )}
           {[
             shuffledCards[firstCardIndex % 5],
             shuffledCards[(firstCardIndex + 1) % 5],
@@ -174,6 +175,26 @@ const Banner2 = ({ isTeamId = false }) => {
               isAvg={card.isAvg}
             />
           ))}
+          {firstCardIndex === shuffleArray.length && (
+            <ArrowIcon
+              isActive={true}
+              direction='left'
+              onClick={() => {
+                setFirstCardIndex(shuffleArray.length - 1);
+              }}
+              className='swiper-button-next'
+              alt='Next'
+              style={{
+                position: 'absolute',
+                top: '40%',
+                zIndex: '99',
+                left: '-35px',
+                width: '68px',
+                height: '68px',
+                cursor: 'pointer',
+              }}
+            />
+          )}
         </Flex>
       )}
     </Flex>

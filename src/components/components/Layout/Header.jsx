@@ -131,6 +131,7 @@ const Header = ({ isLogin }) => {
             >
               나의 대시보드
             </HeaderMenuItem>
+
             {isLogin && (
               <Image
                 borderRadius='50%'

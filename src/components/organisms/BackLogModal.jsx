@@ -13,6 +13,7 @@ import { getMemberScrum, getPeerReviewResult, getTeamInfo } from '../../api/task
 
 import PropTypes from 'prop-types';
 import TaskItem from '../../pages/TeamHistory/components/TaskItem';
+import { getPartName } from '../../lips/getPartName';
 import no_team_profile from '../../assets/images/no_team_profile.png';
 import patchProjectPublic from '../../api/dashboard/patchProjectPublic';
 import { useEffect } from 'react';
@@ -132,7 +133,7 @@ const BackLogModal = ({ memberId, teamId, id, isOpen, onClose }) => {
                     >
                       직무
                     </Box>
-                    <Box className='Display-sm'>{data?.part}</Box>
+                    <Box className='Display-sm'>{getPartName(data?.part)}</Box>
                   </Flex>
                 </Flex>
               </Flex>

@@ -1,9 +1,15 @@
 import { Button } from '@chakra-ui/react';
+import Paths from '../../../constants/Paths';
 import PropTypes from 'prop-types';
 
 const HeaderMenuItem = ({ children, ...props }) => {
+  const currentPath = window.location.pathname;
+
   return (
     <Button
+      visibility={
+        currentPath === Paths.Login || currentPath === Paths.Register ? 'hidden' : 'visible'
+      }
       className='Body-xl smNone'
       background='transparent'
       sx={{
