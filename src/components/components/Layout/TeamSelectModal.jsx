@@ -6,6 +6,8 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
+  Img,
+  Button,
 } from '@chakra-ui/react';
 
 import { getProjectList } from '../../../api/common';
@@ -16,6 +18,8 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import useTeamStore from '../../../stores/useTeamStore';
+import nonexistence from '../../../assets/nonexistence.svg';
+import { discordBotUrl } from '../../../constants';
 
 const TeamSelectModal = ({ isGoTaskHistory }) => {
   const navigate = useNavigate();
@@ -95,7 +99,37 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
               ))}
             </Flex>
             {(!projects || projects?.length === 0) && (
-              <Box className='Body-md'>연결된 프로젝트가 없어요!</Box>
+              <Flex
+                display='flex'
+                flexDirection='column'
+                justifyContent='center'
+                alignItems='center'
+              >
+                <Img src={nonexistence} alt='Icon' width='144.476px' />
+                <Box className='Headline-lg' mt='36px'>
+                  서버가 존재하지 않아요
+                </Box>
+                <Box className='Body-md' textAlign='center'>
+                  서버에 디스코드 봇을 추가하여 <br />
+                  팀원들과 소통해보세요!
+                </Box>
+                <Button
+                  mt='24px'
+                  bg='#059669'
+                  color='white'
+                  w='252px'
+                  h='50px'
+                  _hover={{
+                    background: 'brand',
+                    color: 'white',
+                  }}
+                  onClick={() => {
+                    window.open(discordBotUrl, '_blank');
+                  }}
+                >
+                  봇 연결하기
+                </Button>
+              </Flex>
             )}
           </Flex>
         </ModalBody>
