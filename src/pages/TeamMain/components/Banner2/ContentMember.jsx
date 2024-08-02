@@ -2,6 +2,7 @@ import { Box, Flex, Image } from '@chakra-ui/react';
 
 import BalloonSVG from '../../../../components/atoms/BalloonSVG';
 import PropTypes from 'prop-types';
+import { getPartName } from '../../../../lips/getPartName';
 
 const ContentMember = ({ profile, username, part }) => {
   return (
@@ -22,7 +23,7 @@ const ContentMember = ({ profile, username, part }) => {
           {username}
         </Box>
         <Box className='SubHead-sm' textColor='#64748B'>
-          {part}
+          {getPartName(part)}
         </Box>
       </Flex>
       <Box position='absolute' display='none' _groupHover={{ display: 'block' }}>

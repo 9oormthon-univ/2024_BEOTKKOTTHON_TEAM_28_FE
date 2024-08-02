@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import useTeamStore from '../../stores/useTeamStore';
+import useToastStore from '../../stores/toastStore';
 import useUserStore from '../../stores/userStore';
 
 const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드', '스크럼'];
@@ -38,8 +39,11 @@ const HomePage = () => {
 
   const { handleTeamId } = useTeamStore();
   const { userName } = useUserStore();
+  const { handleShowToastMessage } = useToastStore();
 
-  const isWorkingNow = teamStatus.currentWorkerList.some((worker) => worker.nickname === userName);
+  const myStatus = teamStatus.currentWorkerList.filter((worker) => worker.nickname === userName);
+
+  const isWorkingNow = !!myStatus;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,7 +78,12 @@ const HomePage = () => {
   }, [id]);
 
   const handleWorkSubmit = async (content) => {
-    await postWorkInfo(content);
+    await postWorkInfo(myStatus.memberId, content);
+    handleShowToastMessage('오늘의 업무 등록 완료');
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   useEffect(() => {

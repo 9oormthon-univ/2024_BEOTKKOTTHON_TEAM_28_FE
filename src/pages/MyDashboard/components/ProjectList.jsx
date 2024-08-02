@@ -38,6 +38,7 @@ const GardenList = ({ sort, memberId }) => {
           startAt={el.startAt}
           endAt={el.endAt}
           status={el.status}
+          isPublic={el.isPublic}
         />
       ))}
       {(!data || data?.length === 0) &&

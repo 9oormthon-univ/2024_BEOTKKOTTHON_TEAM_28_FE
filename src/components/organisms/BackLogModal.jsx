@@ -11,16 +11,22 @@ import {
 } from '@chakra-ui/react';
 import { getMemberScrum, getPeerReviewResult, getTeamInfo } from '../../api/taskhistory';
 
+import Paths from '../../constants/Paths';
 import PropTypes from 'prop-types';
 import TaskItem from '../../pages/TeamHistory/components/TaskItem';
 import { getPartName } from '../../lips/getPartName';
 import no_team_profile from '../../assets/images/no_team_profile.png';
 import patchProjectPublic from '../../api/dashboard/patchProjectPublic';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../../stores/userStore';
 
-const BackLogModal = ({ memberId, teamId, id, isOpen, onClose }) => {
+const BackLogModal = ({ memberId, teamId, isPublic, isOpen, onClose }) => {
+  const location = useLocation();
+  const currentPathName = location.pathname;
+
+  const [isPublicc, setIsPublicc] = useState(isPublic);
   const [data, setData] = useState();
 
   const [teamData, setTeamData] = useState();
@@ -29,7 +35,8 @@ const BackLogModal = ({ memberId, teamId, id, isOpen, onClose }) => {
   const { userId } = useUserStore();
 
   const togglePublicClick = async () => {
-    await patchProjectPublic(userId);
+    await patchProjectPublic(memberId);
+    setIsPublicc(!isPublicc);
   };
 
   useEffect(() => {
@@ -67,7 +74,7 @@ const BackLogModal = ({ memberId, teamId, id, isOpen, onClose }) => {
       <ModalOverlay />
       <ModalContent borderRadius='16px' minWidth='fit-content'>
         <ModalCloseButton />
-        <ModalBody padding='64px'>
+        <ModalBody width='1100px' padding='64px'>
           <Flex direction='column' alignItems='flex-start' gap='40px'>
             <Flex alignItems='center' justifyContent='space-between' width='full'>
               <Flex gap='16px' alignItems='center'>
@@ -81,14 +88,14 @@ const BackLogModal = ({ memberId, teamId, id, isOpen, onClose }) => {
                   <Box className='Body-xl'>
                     {teamData?.startAt} - {teamData?.endAt}
                   </Box>
-                  {userId === id && (
+                  {currentPathName === Paths.MyDashboard && (
                     <Button
                       variant='grayWhite'
                       width='200px'
                       bg='#475569'
                       onClick={togglePublicClick}
                     >
-                      비공개 전환
+                      {isPublicc ? '비공개 전환' : '전체공개 전환'}
                     </Button>
                   )}
                 </Flex>
@@ -163,6 +170,16 @@ const BackLogModal = ({ memberId, teamId, id, isOpen, onClose }) => {
                 백로그 <span style={{ color: '#065F46' }}>{scrums?.length}</span>
               </Box>
               <Flex direction='column' gap='20px' width='full'>
+                {scrums?.length === 0 && (
+                  <Box
+                    border='1px solid #CCD6E3'
+                    background='#F0F2F4'
+                    borderRadius='12px'
+                    padding='24px 32px'
+                  >
+                    등록된 백로그가 없어요
+                  </Box>
+                )}
                 {scrums?.map((el) => (
                   <TaskItem
                     key={el.id}
@@ -185,6 +202,7 @@ BackLogModal.propTypes = {
   teamId: PropTypes.number,
   memberId: PropTypes.number,
   isOpen: PropTypes.bool,
+  isPublic: PropTypes.bool,
   onClose: PropTypes.func,
 };
 export default BackLogModal;

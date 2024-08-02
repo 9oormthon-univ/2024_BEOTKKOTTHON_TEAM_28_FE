@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const postWorkInfo = async (content) => {
+const postWorkInfo = async (membersId, content) => {
   try {
-    const response = await axiosInstance.post(`/teams/work`, {
+    const response = await axiosInstance.post(`/members/${membersId}/works`, {
       content,
     });
     return response.data;

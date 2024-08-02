@@ -74,8 +74,9 @@ body {
     letter-spacing: 0.2px;
   }
   .SubHead-xl {
-    font-weight: 500;
     font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
     line-height: 28px;
     letter-spacing: 0.2px;
   }

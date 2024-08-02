@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import tomato from '../../assets/tomato.png';
 import { useState } from 'react';
 
-const Note = ({ handleWorkSubmit, placeholder = '오늘은 어떤 작업을 기록하시나요?' }) => {
+const Note = ({ onSubmit, placeholder = '오늘은 어떤 작업을 기록하시나요?' }) => {
   const [content, setContent] = useState('');
+
+  onSubmit;
   return (
-    <Flex gap='16px'>
+    <Flex gap='16px' alignItems='center'>
       <Image borderRadius='50%' src={tomato} alt='프로필' width='48px' />
       <Input
         paddingY='12px'
@@ -22,13 +24,18 @@ const Note = ({ handleWorkSubmit, placeholder = '오늘은 어떤 작업을 기�
         }}
       />
       <Button
+        variant='greenWhite'
         onClick={() => {
-          handleWorkSubmit(content);
+          onSubmit(content);
         }}
-        className='SubHead-xl'
-        height='full'
-        color='white'
-        background='#059669'
+        sx={{
+          fontFamily: 'Pretendard',
+          fontSize: '18px',
+          fontStyle: 'normal',
+          fontWeight: '500',
+          lineHeight: '28px',
+          letterSpacing: '0.2px',
+        }}
       >
         작성
       </Button>
@@ -39,7 +46,7 @@ const Note = ({ handleWorkSubmit, placeholder = '오늘은 어떤 작업을 기�
 Note.propTypes = {
   placeholder: PropTypes.string,
   mb: PropTypes.string,
-  handleWorkSubmit: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 export default Note;

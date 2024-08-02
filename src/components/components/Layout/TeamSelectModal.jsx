@@ -1,24 +1,24 @@
 import {
   Box,
+  Button,
   Flex,
+  Img,
   Modal,
   ModalBody,
   ModalContent,
   ModalOverlay,
-  Img,
-  Button,
 } from '@chakra-ui/react';
 
+import { discordBotUrl } from '../../../constants';
 import { getProjectList } from '../../../api/common';
 import no_team_profile from '../../../assets/images/no_team_profile.png';
+import nonexistence from '../../../assets/nonexistence.svg';
 import propTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import useTeamStore from '../../../stores/useTeamStore';
-import nonexistence from '../../../assets/nonexistence.svg';
-import { discordBotUrl } from '../../../constants';
 
 const TeamSelectModal = ({ isGoTaskHistory }) => {
   const navigate = useNavigate();
@@ -93,14 +93,9 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
               {projects?.length > 0 && (
                 <Button
                   mt='24px'
-                  bg='#059669'
-                  color='white'
                   w='100%'
                   h='50px'
-                  _hover={{
-                    background: 'brand',
-                    color: 'white',
-                  }}
+                  variant='greenWhite'
                   onClick={() => {
                     handleTeamId(selectedTeam.teamId, selectedTeam.teamName);
                     closeTeamSelectModal();
