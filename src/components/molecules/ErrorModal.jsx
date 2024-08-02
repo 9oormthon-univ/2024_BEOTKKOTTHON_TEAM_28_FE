@@ -15,8 +15,12 @@ const ErrorModal = ({ type }) => {
       message =
         '더 이상 팀과 나의 성장을 확인하지 못해요 😥 <br />그래도 더 사용하지 않으시겠어요?';
       break;
-    case 'RnR':
+    case 'RnRComplete':
       title = '동료 평가를 완료해요';
+      message = '수정 사항이 저장되지 않습니다. <br />그래도 돌아가시겠습니까? ';
+      break;
+    case 'RnRCancel':
+      title = '동료 평가를 취소해요';
       message = '수정 사항이 저장되지 않습니다. <br />그래도 돌아가시겠습니까? ';
       break;
     default:

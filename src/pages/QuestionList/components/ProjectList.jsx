@@ -72,10 +72,13 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
                 border={
                   currentTeam.teamId === el.id ? '1.2px solid #059669' : '1.2px solid transparent'
                 }
+                _hover={{
+                  background: currentTeam.teamId === el.id ? 'transparent' : '#CCD6E3',
+                }}
                 padding='4px'
                 borderRadius='4px'
                 cursor='pointer'
-                color='#065F46'
+                color={currentTeam.teamId === el.id ? '#059669' : '#0A0A0D'}
               >
                 <Image src={el.image ?? no_team_profile} alt='팀 프로필' width='48px' />
                 <Box>{el.name}</Box>
@@ -100,7 +103,25 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
         {isToggledCompletedList && (
           <Flex direction='column' gap='12px'>
             {data?.endProjectList?.map((el) => (
-              <Flex key={el.id} gap='8px' alignItems='center'>
+              <Flex
+                key={el.id}
+                gap='8px'
+                alignItems='center'
+                border={
+                  currentTeam.teamId === el.id ? '1.2px solid #059669' : '1.2px solid transparent'
+                }
+                _hover={{
+                  background: currentTeam.teamId === el.id ? 'transparent' : '#CCD6E3',
+                }}
+                color={currentTeam.teamId === el.id ? '#059669' : '#0A0A0D'}
+                padding='4px'
+                borderRadius='4px'
+                cursor='pointer'
+                onClick={() => {
+                  handleCurrentTeam({ teamName: el.name, teamId: el.id });
+                  handleTeamClick({ teamName: el.name, teamId: el.id });
+                }}
+              >
                 <Image src={el.image ?? no_team_profile} alt='팀 프로필' width='48px' />
                 <Box>{el.name}</Box>
               </Flex>

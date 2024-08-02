@@ -21,8 +21,9 @@ const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
         gap='24px'
         paddingX='32px'
         paddingY='24px'
-        background='gray.100'
+        background='#E0E7EE'
         borderRadius='12px'
+        border='1px solid #CCD6E3'
       >
         <Flex gap='16px' alignItems='center'>
           <Box className='Headline-md' color='brandBold'>
@@ -32,7 +33,7 @@ const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
             background='#ECFDF5'
             color='successBold'
             paddingX='8px'
-            paddingY='4px'
+            paddingY='4px '
             borderRadius='14px'
           >
             NN 시간
