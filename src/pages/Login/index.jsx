@@ -36,7 +36,7 @@ const LoginPage = () => {
     ) && window.innerWidth <= 768;
 
   return (
-    <main>
+    <main style={{ background: '#F6F6F8' }}>
       <Flex justify='center' align='center' h='calc(100vh - 172px)'>
         <AuthBox>
           {isMobile ? (
