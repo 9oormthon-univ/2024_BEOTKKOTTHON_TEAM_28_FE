@@ -23,6 +23,7 @@ import useUserStore from '../../../stores/userStore';
 const ProfileEditModal = ({ data }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [body, setBody] = useState(data);
+  const [error, setError] = useState('');
 
   const { userId, handleProfile } = useUserStore();
 
@@ -33,6 +34,11 @@ const ProfileEditModal = ({ data }) => {
   const handleClick = async () => {
     try {
       const { profileImage, nickname } = body;
+
+      if (!nickname) {
+        setError('닉네임을 입력해주세요.');
+        return;
+      }
 
       const userData = {
         profileImage: profileImage ? returnVegi(profileImage) : null,
@@ -58,6 +64,17 @@ const ProfileEditModal = ({ data }) => {
 
   const handleImage = (string) => {
     setBody((prev) => ({ ...prev, profileImage: returnProfileImg(string) }));
+  };
+
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    setBody((prev) => ({ ...prev, nickname: value }));
+
+    if (value === '') {
+      setError('변경할 닉네임을 작성해주세요.');
+    } else {
+      setError('');
+    }
   };
 
   return (
@@ -99,19 +116,24 @@ const ProfileEditModal = ({ data }) => {
               </Flex>
               <Divider />
               <Box>
-                <Flex direction='column' gap='20px'>
+                <Flex direction='column'>
                   <label className='Headline-lg'>이름 수정</label>
                   <Input
                     width='342px'
+                    mt='8px'
                     value={body?.nickname ?? ''}
-                    onChange={(e) => {
-                      setBody((prev) => ({ ...prev, nickname: e.target.value }));
-                    }}
+                    onChange={handleInputChange}
+                    maxLength={8}
+                    isInvalid={!!error}
                   />
+                  {error && (
+                    <Box color='red.500' mt='8px'>
+                      {error}
+                    </Box>
+                  )}
                 </Flex>
               </Box>
               <Divider />
-
               <Button width='200px' background='#475569' color='white' mr={3} onClick={onClose}>
                 서비스 탈퇴
               </Button>
