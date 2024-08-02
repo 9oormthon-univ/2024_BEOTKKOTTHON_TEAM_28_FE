@@ -12,18 +12,21 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import ProfileImageSelect from './ProfileImageSelect';
-import PropTypes from 'prop-types';
 import postUserInfo from '../../../api/dashboard/patchUserInfo';
 import { returnProfileImg } from '../../../lips/returnProfile';
 import { returnVegi } from '../../../lips/returnVegi';
 import useUserStore from '../../../stores/userStore';
+import ErrorModal from '../../../components/molecules/ErrorModal';
 
 const ProfileEditModal = ({ data }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isErrorOpen, onOpen: onErrorOpen, onClose: onErrorClose } = useDisclosure();
   const [body, setBody] = useState(data);
   const [error, setError] = useState('');
+  const [errorType, setErrorType] = useState('');
 
   const { userId, handleProfile } = useUserStore();
 
@@ -59,6 +62,8 @@ const ProfileEditModal = ({ data }) => {
       window.location.reload();
     } catch (error) {
       console.error(error);
+      setErrorType('default');
+      onErrorOpen();
     }
   };
 
@@ -77,12 +82,21 @@ const ProfileEditModal = ({ data }) => {
     }
   };
 
+  const handleClose = () => {
+    if (body.nickname !== data.nickname || body.profileImage !== data.profileImage) {
+      setErrorType('cancel');
+      onErrorOpen();
+    } else {
+      onClose();
+    }
+  };
+
   return (
     <>
       <Button variant='greenGreen' w='100%' onClick={onOpen}>
         프로필 수정하기
       </Button>
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={handleClose}>
         <ModalOverlay />
         <ModalContent borderRadius='16px' minWidth='fit-content' position='absolute' top='60px'>
           <ModalCloseButton position='absolute' right='8px' top='-50px' w='32px' color='white' />
@@ -134,13 +148,14 @@ const ProfileEditModal = ({ data }) => {
                 </Flex>
               </Box>
               <Divider />
-              <Button width='200px' background='#475569' color='white' mr={3} onClick={onClose}>
+              <Button width='200px' background='#475569' color='white' mr={3} onClick={handleClose}>
                 서비스 탈퇴
               </Button>
             </Flex>
           </ModalBody>
         </ModalContent>
       </Modal>
+      <ErrorModal type={errorType} isOpen={isErrorOpen} onClose={onErrorClose} />
     </>
   );
 };

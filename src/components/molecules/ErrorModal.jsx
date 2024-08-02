@@ -1,7 +1,16 @@
-import { Flex, Box, Button } from '@chakra-ui/react';
+import {
+  Flex,
+  Box,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalBody,
+} from '@chakra-ui/react';
 import propTypes from 'prop-types';
 
-const ErrorModal = ({ type }) => {
+const ErrorModal = ({ type, isOpen, onClose }) => {
   let title = '';
   let message = '';
 
@@ -29,43 +38,48 @@ const ErrorModal = ({ type }) => {
   }
 
   return (
-    <Flex
-      p='32px'
-      display='flex'
-      flexDirection='column'
-      w='532px'
-      gap='36px'
-      border='1px solid #059669'
-      borderRadius='8px'
-      background='#FFF'
-      justifyContent='center'
-      alignItems='center'
-    >
-      <Flex display='flex' flexDirection='column'>
-        <Box className='Display-sm' color='brandBold' textAlign='center'>
-          {title}
-        </Box>
-        <Box
-          mt='12px'
-          textAlign='center'
-          color='tertiary'
-          dangerouslySetInnerHTML={{ __html: message }}
-        ></Box>
-      </Flex>
-      <Flex gap='12px'>
-        <Button w='228px' h='50px' background='#8C98A9' color='white'>
-          아니오
-        </Button>
-        <Button w='228px' h='50px' background='brand' color='white'>
-          네
-        </Button>
-      </Flex>
-    </Flex>
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent
+        borderRadius='8px'
+        p='32px'
+        display='flex'
+        flexDirection='column'
+        w='532px'
+        gap='36px'
+        border='1px solid #059669'
+      >
+        <ModalCloseButton />
+        <ModalBody>
+          <Flex display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
+            <Box className='Display-sm' color='brandBold' textAlign='center'>
+              {title}
+            </Box>
+            <Box
+              mt='12px'
+              textAlign='center'
+              color='tertiary'
+              dangerouslySetInnerHTML={{ __html: message }}
+            ></Box>
+          </Flex>
+          <Flex gap='12px' justifyContent='center' mt='24px'>
+            <Button w='228px' h='50px' background='#8C98A9' color='white' onClick={onClose}>
+              아니오
+            </Button>
+            <Button w='228px' h='50px' background='brand' color='white'>
+              네
+            </Button>
+          </Flex>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };
 
 ErrorModal.propTypes = {
   type: propTypes.string.isRequired,
+  isOpen: propTypes.bool.isRequired,
+  onClose: propTypes.func.isRequired,
 };
 
 export default ErrorModal;
