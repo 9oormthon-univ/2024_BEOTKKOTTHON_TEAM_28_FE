@@ -50,8 +50,7 @@ const MemberList = ({ currentUser, isWhite, handleCurrentUser }) => {
     <Flex direction='column' gap='12px'>
       {isWhite ? (
         <Flex direction='column'>
-          <Box>{teamName}팀</Box>
-          <Box>멤버들의 백로그를 확인해보세요!</Box>
+          <Box>{teamName}팀 멤버</Box>
         </Flex>
       ) : (
         <Box className='SubHead-xl'>스타트업 밸리의 멤버</Box>
