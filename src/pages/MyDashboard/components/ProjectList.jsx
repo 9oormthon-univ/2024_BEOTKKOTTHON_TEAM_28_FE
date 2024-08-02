@@ -25,11 +25,19 @@ const GardenList = ({ sort, memberId }) => {
     }
   }, [id, userId, memberId, sort]);
 
+  /*
+  const updateProjects = (index, newIsPublic) => {
+    setData((prevData) =>
+      prevData.map((el, i) => (i === index ? { ...el, isPublic: !newIsPublic } : el)),
+    );
+  };
+*/
+
   return (
     <Flex direction='column' gap='40px'>
-      {data?.map((el) => (
+      {data?.map((el, index) => (
         <ProjectItem
-          key={el.id}
+          key={index}
           memberId={el.memberId}
           teamId={el.id}
           name={el.name}

@@ -150,7 +150,7 @@ const Header = ({ isLogin }) => {
                   navigate(`/${teamId}/task-history`);
                   return;
                 }
-                navigate(`/team-task-history`);
+                navigate(`/task-history`);
               }}
               color={currentPath.includes('/task-history') ? '#047857' : 'black'}
             >

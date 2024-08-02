@@ -41,7 +41,7 @@ const GardenPlot = ({ name, id }) => {
       padding='30px'
     >
       <Flex className='Display-sm'>
-        <Box color='brandBold'>{name ?? data?.userNickName}</Box>님의 작업 척도
+        <Box color='brandBold'>{name ?? data?.userNickName ?? '사용자'}</Box>님의 작업 척도
       </Flex>
       <Box>
         <CommitBox
@@ -63,13 +63,15 @@ const GardenPlot = ({ name, id }) => {
             <img src={clock} alt='프로젝트 참여일' width='16px' />
             <div className='Body-md'>총 참여 시간</div>
           </Flex>
-          <Box className='SubHead-xl'> {Math.floor(data?.totalTime / 60) ?? '00'}시간</Box>
+          <Box className='SubHead-xl'>
+            {data?.totalTime ? Math.floor(data?.totalTime / 60) : '00'}시간
+          </Box>
         </Box>
       </Flex>
     </Flex>
   );
 };
 
-GardenPlot.propTypes = { id: PropTypes.string, name: PropTypes.string };
+GardenPlot.propTypes = { id: PropTypes.number, name: PropTypes.string };
 
 export default GardenPlot;

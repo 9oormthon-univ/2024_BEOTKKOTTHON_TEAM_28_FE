@@ -22,7 +22,7 @@ const QuestionListPage = () => {
   const [searchParams] = useSearchParams();
   const teamId = searchParams.get('teamId');
 
-  const { teamId: storeTeamId } = useTeamStore();
+  const { teamId: storeTeamId, teamName } = useTeamStore();
 
   const [currentTeam, setCurrentTeam] = useState({ teamName: '', teamId: 0 });
   const [data, setData] = useState([]);
@@ -59,7 +59,7 @@ const QuestionListPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProjectList();
-      if (teamId !== undefined) {
+      if (!teamId && !storeTeamId) {
         const matchedTeam = response.progressingProjectList.find((team) => team.id === +teamId);
         if (matchedTeam) {
           setCurrentTeam({
@@ -73,18 +73,10 @@ const QuestionListPage = () => {
           });
         }
       } else if (!teamId && storeTeamId) {
-        const matchedTeam = response.progressingProjectList.find((team) => team.id === storeTeamId);
-        if (matchedTeam) {
-          setCurrentTeam({
-            teamName: matchedTeam.name,
-            teamId: matchedTeam.id,
-          });
-        } else {
-          setCurrentTeam({
-            teamName: response.progressingProjectList[0].name,
-            teamId: response.progressingProjectList[0].id,
-          });
-        }
+        setCurrentTeam({
+          teamName: teamName,
+          teamId: storeTeamId,
+        });
       } else {
         setCurrentTeam({
           teamName: response.progressingProjectList[0].name,
@@ -94,7 +86,7 @@ const QuestionListPage = () => {
     };
 
     fetchData();
-  }, [teamId, storeTeamId]);
+  }, [teamId, teamName, storeTeamId]);
 
   const handleReceivedTabClick = (newSort) => {
     setSort(ReceivedTab[SortType.indexOf(newSort)]);

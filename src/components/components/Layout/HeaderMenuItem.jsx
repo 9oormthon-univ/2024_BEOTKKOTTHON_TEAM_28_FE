@@ -41,7 +41,7 @@ const HeaderMenuItem = ({ children, ...props }) => {
 };
 
 HeaderMenuItem.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.string,
 };
 
 export default HeaderMenuItem;

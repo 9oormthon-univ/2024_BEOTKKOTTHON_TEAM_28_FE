@@ -25,6 +25,7 @@ const RoutesList = [
   { path: '/:id/team-task-history', element: <TeamMain />, isMobileVisible: false },
   { path: Paths.QuestionList, element: <QuestionList />, isMobileVisible: false },
   { path: Paths.TeamHistory, element: <TeamHistory />, isMobileVisible: false },
+  { path: '/task-history', element: <TeamHistory />, isMobileVisible: false },
   { path: Paths.TeamManage, element: <TeamManage />, isMobileVisible: false },
   { path: '*', element: <NotFound />, isMobileVisible: false },
 ];

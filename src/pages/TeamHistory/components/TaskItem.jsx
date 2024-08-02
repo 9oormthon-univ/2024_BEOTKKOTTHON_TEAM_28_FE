@@ -4,7 +4,7 @@ import ContributionModal from '../../QuestionList/components/ContributionModal';
 import PropTypes from 'prop-types';
 import { TitleProfile } from '../../../components/molecules';
 
-const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
+const TaskItem = ({ totalTime, currentUser, content, startAt, endAt, workList }) => {
   return (
     <Flex direction='column' gap='20px' width='full'>
       {currentUser && (
@@ -29,15 +29,16 @@ const TaskItem = ({ currentUser, content, startAt, endAt, workList }) => {
           <Box className='Headline-md' color='brandBold'>
             {startAt} - {endAt}
           </Box>
-          {/* <Box
+          <Box
+            className='SubHead-sm'
             background='#ECFDF5'
             color='successBold'
             paddingX='8px'
             paddingY='4px '
             borderRadius='14px'
           >
-            NN 시간
-          </Box> */}
+            {Math.floor(totalTime / 60)} 시간
+          </Box>
         </Flex>
         <Flex direction='column' gap='24px' className='Body-lg'>
           <Box>{content}</Box>
@@ -72,6 +73,7 @@ TaskItem.propTypes = {
   endAt: PropTypes.string,
   workList: PropTypes.array,
   currentUser: PropTypes.object,
+  totalTime: PropTypes.number,
 };
 
 export default TaskItem;

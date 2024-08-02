@@ -27,6 +27,7 @@ const ProjectItem = ({
 
   const [isRnRModalOpen, setIsRnRModalOpen] = useState(false);
   const [isBackLogOpen, setIsBackLogOpen] = useState(false);
+
   const [summaryContent, setSummaryContent] = useState(summary);
 
   const closeRnRModalOpen = () => {
@@ -102,13 +103,11 @@ const ProjectItem = ({
                 }
               }}
             />
-            {status === 'IN_PROGRESS' && (
-              <MyRoleModal
-                teamId={teamId}
-                summaryContent={summaryContent}
-                handleSummary={handleSummary}
-              />
-            )}
+            <MyRoleModal
+              teamId={teamId}
+              summaryContent={summaryContent}
+              handleSummary={handleSummary}
+            />
           </Flex>
         </Flex>
       </Flex>
@@ -117,6 +116,7 @@ const ProjectItem = ({
 };
 
 ProjectItem.propTypes = {
+  updateProjects: PropTypes.func,
   name: PropTypes.string,
   summary: PropTypes.string,
   profileImage: PropTypes.string,

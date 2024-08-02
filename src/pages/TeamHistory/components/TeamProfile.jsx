@@ -21,6 +21,12 @@ const TeamProfile = () => {
     fetchData();
   }, [id]);
 
+  const today = new Date();
+
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+
   return (
     <Flex gap='4px' direction='column' w='292px' top='50px'>
       <Image src={data?.profileImage ?? tomato} alt='프로필' width='120px' />
@@ -31,7 +37,7 @@ const TeamProfile = () => {
         marginBottom='12px'
         gap='10px'
       >
-        <Box>{data?.name}</Box>
+        <Box>{data?.name ?? '팀 이름'}</Box>
         <Flex gap='8px' alignItems='center'>
           <Box
             className='SubHead-sm'
@@ -44,7 +50,7 @@ const TeamProfile = () => {
           >
             팀 개설일
           </Box>
-          <Box>{data?.startAt}</Box>
+          <Box>{data?.startAt ?? `${year}.${month}.${day}`}</Box>
         </Flex>
       </Flex>
       <ManagerChangeModal />

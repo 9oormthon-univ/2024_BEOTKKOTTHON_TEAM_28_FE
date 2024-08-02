@@ -6,7 +6,7 @@ const useTeamStore = create((set) => ({
   closeTeamSelectModal: () => set({ isOpenTeamSelectModal: false }),
   teamId: 0,
   teamName: '',
-  handleTeamId: (newTeamId, newTeamName) => set({ teamId: newTeamId, teamName: newTeamName }),
+  handleTeamId: (newTeamId, newTeamName) => set({ teamId: +newTeamId, teamName: newTeamName }),
 }));
 
 export default useTeamStore;

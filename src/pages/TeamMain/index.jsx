@@ -37,7 +37,7 @@ const HomePage = () => {
   const [projectName, setProjectName] = useState('');
   const [teamStatus, setTeamStatus] = useState({ currentWorkerList: [] });
 
-  const { handleTeamId } = useTeamStore();
+  const { teamId, handleTeamId, openTeamSelectModal } = useTeamStore();
   const { userName } = useUserStore();
   const { handleShowToastMessage } = useToastStore();
 
@@ -91,6 +91,12 @@ const HomePage = () => {
       navigate(`/${id}/task-history`);
     }
   }, [navigate, currentTap, id]);
+
+  useEffect(() => {
+    if (userName && !teamId) {
+      openTeamSelectModal();
+    }
+  }, [userName, openTeamSelectModal, teamId]);
 
   return (
     <main style={{ paddingBottom: '150px' }}>

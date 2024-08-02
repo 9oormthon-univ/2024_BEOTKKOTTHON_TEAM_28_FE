@@ -58,7 +58,7 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
             <Flex direction='column' gap='8px' width='100%'>
               {projects?.map((project) => (
                 <Flex
-                  key={project.name}
+                  key={project.id}
                   width='100%'
                   borderRadius='4px'
                   padding='12px'

@@ -10,6 +10,8 @@ import { SortTooltipList } from '../../components/molecules';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import useTeamStore from '../../stores/useTeamStore';
+import useUserStore from '../../stores/userStore';
 
 const Tabs = ['백로그 타임라인', '참여 프로젝트'];
 
@@ -24,6 +26,9 @@ const TaskHistoryPage = () => {
   const [data, setData] = useState([]);
 
   const { id } = useParams();
+
+  const { userId } = useUserStore();
+  const { openTeamSelectModal } = useTeamStore();
 
   const [currentSort, setCurrentSort] = useState(Sorts[0]);
 
@@ -60,6 +65,12 @@ const TaskHistoryPage = () => {
 
     fetchData();
   }, [id]);
+
+  useEffect(() => {
+    if (userId && !id) {
+      openTeamSelectModal();
+    }
+  }, [userId, openTeamSelectModal, id]);
 
   return (
     <main style={{ paddingBottom: '150px' }}>

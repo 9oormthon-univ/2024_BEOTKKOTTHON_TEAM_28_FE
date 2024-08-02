@@ -18,12 +18,13 @@ import { getPartName } from '../../lips/getPartName';
 import getTeamsWithMemberId from '../../api/team/getMemberId';
 import no_team_profile from '../../assets/images/no_team_profile.png';
 import patchProjectPublic from '../../api/dashboard/patchProjectPublic';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import useUserStore from '../../stores/userStore';
 
-const BackLogModal = ({ memberId, teamId, isPublic, isOpen, onClose }) => {
+const BackLogModal = ({ isPublic, memberId, teamId, isOpen, onClose }) => {
   const location = useLocation();
   const currentPathName = location.pathname;
 
@@ -37,7 +38,7 @@ const BackLogModal = ({ memberId, teamId, isPublic, isOpen, onClose }) => {
 
   const togglePublicClick = async () => {
     await patchProjectPublic(memberId);
-    setIsPublicc(!isPublicc);
+    setIsPublicc((prev) => !prev);
   };
 
   useEffect(() => {
@@ -69,6 +70,10 @@ const BackLogModal = ({ memberId, teamId, isPublic, isOpen, onClose }) => {
 
     fetchData();
   }, [userId, teamId, memberId]);
+
+  useCallback(() => {
+    onClose(isPublicc);
+  }, [isPublicc, onClose]);
 
   return (
     <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
@@ -184,6 +189,7 @@ const BackLogModal = ({ memberId, teamId, isPublic, isOpen, onClose }) => {
                 {scrums?.map((el) => (
                   <TaskItem
                     key={el.id}
+                    totalTime={el.totalTime}
                     content={el.content}
                     startAt={el.startAt}
                     endAt={el.endAt}
@@ -205,5 +211,6 @@ BackLogModal.propTypes = {
   isOpen: PropTypes.bool,
   isPublic: PropTypes.bool,
   onClose: PropTypes.func,
+  toggleIsClickedChangedPublic: PropTypes.func,
 };
 export default BackLogModal;
