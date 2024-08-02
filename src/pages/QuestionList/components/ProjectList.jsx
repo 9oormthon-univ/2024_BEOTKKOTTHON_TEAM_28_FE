@@ -54,12 +54,18 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
           <Box>
             진행중{' '}
             <Text as='span' color='successBold'>
-              {data?.progressingProjectCount}
+              {data?.progressingProjectCount ?? 0}
             </Text>
           </Box>
         </Flex>
         {isToggledInProgressList && (
           <Flex direction='column' gap='12px'>
+            {data?.progressingProjectList.length === 0 && (
+              <Flex gap='8px' alignItems='center' padding='4px' borderRadius='4px'>
+                <Image src={no_team_profile} alt='팀 프로필' width='48px' />
+                <Box>프로젝트가 없어요</Box>
+              </Flex>
+            )}
             {data?.progressingProjectList?.map((el) => (
               <Flex
                 key={el.id}
@@ -96,12 +102,18 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
           <Box>
             완료{' '}
             <Text as='span' color='successBold'>
-              {data?.endProjectCount}
+              {data?.endProjectCount ?? 0}
             </Text>
           </Box>
         </Flex>
         {isToggledCompletedList && (
           <Flex direction='column' gap='12px'>
+            {data?.endProjectList.length === 0 && (
+              <Flex gap='8px' alignItems='center' padding='4px' borderRadius='4px'>
+                <Image src={no_team_profile} alt='팀 프로필' width='48px' />
+                <Box>프로젝트가 없어요</Box>
+              </Flex>
+            )}
             {data?.endProjectList?.map((el) => (
               <Flex
                 key={el.id}

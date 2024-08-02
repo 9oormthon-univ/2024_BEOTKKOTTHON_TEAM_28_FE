@@ -20,10 +20,10 @@ import useTeamStore from '../../stores/useTeamStore';
 import useToastStore from '../../stores/toastStore';
 import useUserStore from '../../stores/userStore';
 
-const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드', '스크럼'];
+const Tabs = ['전체', '기획', '디자인', '프론트', '백엔드', '풀스택', '스크럼'];
 
-const TabString = ['all', 'pm', 'design', 'front', 'back'];
-const Parts = ['all', 'PM', 'DESIGN', 'FRONTEND', 'BACKEND'];
+const TabString = ['all', 'pm', 'design', 'front', 'back', 'fullstack'];
+const Parts = ['all', 'PM', 'DESIGN', 'FRONTEND', 'BACKEND', 'FULLSTACK'];
 
 const HomePage = () => {
   const { id } = useParams();

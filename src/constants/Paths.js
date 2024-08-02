@@ -15,7 +15,6 @@ export default Paths;
 export const ProtectedPaths = [
   Paths.MyDashboard,
   Paths.UserDashboard,
-  Paths.QuestionList,
   Paths.TeamMain,
   Paths.TeamHistory,
   Paths.TeamManage,

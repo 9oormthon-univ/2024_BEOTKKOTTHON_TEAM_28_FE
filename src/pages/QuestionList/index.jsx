@@ -101,7 +101,7 @@ const QuestionListPage = () => {
           <Flex direction='column' marginLeft='40.33px' w='922px' gap='32px'>
             {/* <FormBox /> */}
             <Box className='Display-md'>
-              {currentTeam.teamName ?? 'TeamName'} | {userName ?? 'User'}님의 작업요청
+              {currentTeam.teamName ?? '팀 이름'} | {userName ?? '사용자'}님의 작업요청
             </Box>
             <Flex direction='column' gap='24px'>
               <TabBar tabs={Tabs} currentTap={currentTap} handleCurrentTap={handleSort} />
