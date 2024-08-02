@@ -12,10 +12,8 @@ import {
 import { getProjectList } from '../../../api/common';
 import no_team_profile from '../../../assets/images/no_team_profile.png';
 import propTypes from 'prop-types';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useTeamStore from '../../../stores/useTeamStore';
 import nonexistence from '../../../assets/nonexistence.svg';
 import { discordBotUrl } from '../../../constants';
@@ -26,12 +24,10 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
 
   const splittedPathname = pathname.split('/');
 
-  const { teamId, teamName, handleTeamId, isOpenTeamSelectModal, closeTeamSelectModal } =
-    useTeamStore();
+  const { handleTeamId, isOpenTeamSelectModal, closeTeamSelectModal } = useTeamStore();
 
   const [projects, setProjects] = useState([]);
-
-  const [selectedTeam, setSelectedTeam] = useState({ teamId, teamName });
+  const [selectedTeam, setSelectedTeam] = useState({ teamId: null, teamName: '' });
 
   useEffect(() => {
     const fetchProjectList = async () => {
@@ -62,6 +58,7 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
             <Flex direction='column' gap='8px' width='100%'>
               {projects?.map((project) => (
                 <Flex
+                  key={project.name}
                   width='100%'
                   borderRadius='4px'
                   padding='12px'
@@ -72,7 +69,6 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
                   }
                   background={selectedTeam.teamId === project.id ? '#ECFDF5' : 'white'}
                   color={selectedTeam.teamId === project.id ? '#065F46' : 'black'}
-                  key={project.name}
                   onClick={() => handleProjectClick(project.id, project.name)}
                   cursor='pointer'
                   _hover={{
@@ -101,6 +97,7 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
                     background: 'brand',
                     color: 'white',
                   }}
+                  isDisabled={!selectedTeam.teamId}
                   onClick={() => {
                     handleTeamId(selectedTeam.teamId, selectedTeam.teamName);
                     closeTeamSelectModal();
