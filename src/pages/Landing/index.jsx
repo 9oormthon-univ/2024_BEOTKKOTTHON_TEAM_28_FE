@@ -1,5 +1,6 @@
 import { Button, Flex, Image, Img, Text, useBreakpointValue } from '@chakra-ui/react';
 
+import FloatBox from './components/FloatBox';
 import MobileWarnModal from './components/MobileWarnModal';
 import { discordBotUrl } from '../../constants';
 import landing1 from '../../assets/landing1.png';
@@ -36,6 +37,7 @@ const Landing = () => {
   return (
     <>
       <main style={{ paddingBottom: '150px' }}>
+        {!isOpenMobileWarnModal && <FloatBox />}
         {isOpenMobileWarnModal && (
           <MobileWarnModal
             isOpen={isOpenMobileWarnModal}

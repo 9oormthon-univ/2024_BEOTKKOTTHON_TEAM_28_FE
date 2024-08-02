@@ -10,7 +10,7 @@ const HeaderMenuItem = ({ children, ...props }) => {
       navigator.userAgent,
     ) && window.innerWidth <= 768;
 
-  if (isMobile) return;
+  if (isMobile) return null;
 
   return (
     <Button
