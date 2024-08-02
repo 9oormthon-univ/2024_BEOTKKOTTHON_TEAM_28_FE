@@ -1,12 +1,12 @@
 import {
-  Flex,
   Box,
   Button,
+  Flex,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalCloseButton,
   ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
 } from '@chakra-ui/react';
 import propTypes from 'prop-types';
 
@@ -40,35 +40,22 @@ const ErrorModal = ({ type, isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent
-        borderRadius='8px'
-        p='32px'
-        display='flex'
-        flexDirection='column'
-        w='532px'
-        gap='36px'
-        border='1px solid #059669'
-      >
+      <ModalContent p='32px' w='532px' borderRadius='8px' background='#FFF' textAlign='center'>
         <ModalCloseButton />
         <ModalBody>
-          <Flex display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
-            <Box className='Display-sm' color='brandBold' textAlign='center'>
+          <Flex direction='column' gap='36px'>
+            <Box className='Display-sm' color='brandBold'>
               {title}
             </Box>
-            <Box
-              mt='12px'
-              textAlign='center'
-              color='tertiary'
-              dangerouslySetInnerHTML={{ __html: message }}
-            ></Box>
-          </Flex>
-          <Flex gap='12px' justifyContent='center' mt='24px'>
-            <Button w='228px' h='50px' background='#8C98A9' color='white' onClick={onClose}>
-              아니오
-            </Button>
-            <Button w='228px' h='50px' background='brand' color='white'>
-              네
-            </Button>
+            <Box mt='12px' color='tertiary' dangerouslySetInnerHTML={{ __html: message }}></Box>
+            <Flex gap='12px'>
+              <Button w='228px' h='50px' background='#8C98A9' color='white' onClick={onClose}>
+                아니오
+              </Button>
+              <Button w='228px' h='50px' background='brand' color='white'>
+                네
+              </Button>
+            </Flex>
           </Flex>
         </ModalBody>
       </ModalContent>

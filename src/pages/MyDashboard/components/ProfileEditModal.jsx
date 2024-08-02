@@ -91,15 +91,29 @@ const ProfileEditModal = ({ data }) => {
     }
   };
 
+  // 에러 모달을 닫기 위해 사용될 함수
+  const handleModalClose = () => {
+    // 에러 모달을 열기 위해 설정한 상태를 변경
+    setErrorType('cancel');
+    onErrorOpen();
+  };
+
   return (
     <>
       <Button variant='greenGreen' w='100%' onClick={onOpen}>
         프로필 수정하기
       </Button>
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={handleClose}>
-        <ModalOverlay />
+      <Modal blockScrollOnMount={false} isOpen={isOpen}>
+        <ModalOverlay onClick={handleModalClose} />
         <ModalContent borderRadius='16px' minWidth='fit-content' position='absolute' top='60px'>
-          <ModalCloseButton position='absolute' right='8px' top='-50px' w='32px' color='white' />
+          <ModalCloseButton
+            position='absolute'
+            right='8px'
+            top='-50px'
+            w='32px'
+            color='white'
+            onClick={handleModalClose}
+          />
           <ModalBody position='relative'>
             <Flex
               top='0'
