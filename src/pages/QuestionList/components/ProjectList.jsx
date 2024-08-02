@@ -40,7 +40,7 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
       <Box>
         전체 프로젝트{' '}
         <Text as='span' color='successBold'>
-          {data && data.progressingProjectCount + data.endProjectCount}
+          {(data && data.progressingProjectCount + data.endProjectCount) ?? 0}
         </Text>
       </Box>
       <Flex direction='column' gap='12px'>
@@ -60,9 +60,9 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
         </Flex>
         {isToggledInProgressList && (
           <Flex direction='column' gap='12px'>
-            {data?.progressingProjectList.length === 0 && (
+            {(!data || data?.progressingProjectList.length === 0) && (
               <Flex gap='8px' alignItems='center' padding='4px' borderRadius='4px'>
-                <Image src={no_team_profile} alt='팀 프로필' width='48px' />
+                <Image src={no_team_profile} alt='팀 프로필' width='32px' />
                 <Box>프로젝트가 없어요</Box>
               </Flex>
             )}
@@ -86,7 +86,7 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
                 cursor='pointer'
                 color={currentTeam.teamId === el.id ? '#059669' : '#0A0A0D'}
               >
-                <Image src={el.image ?? no_team_profile} alt='팀 프로필' width='48px' />
+                <Image src={el.image ?? no_team_profile} alt='팀 프로필' width='32px' />
                 <Box>{el.name}</Box>
               </Flex>
             ))}
@@ -108,9 +108,9 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
         </Flex>
         {isToggledCompletedList && (
           <Flex direction='column' gap='12px'>
-            {data?.endProjectList.length === 0 && (
+            {(!data || data?.endProjectList.length === 0) && (
               <Flex gap='8px' alignItems='center' padding='4px' borderRadius='4px'>
-                <Image src={no_team_profile} alt='팀 프로필' width='48px' />
+                <Image src={no_team_profile} alt='팀 프로필' width='32px' />
                 <Box>프로젝트가 없어요</Box>
               </Flex>
             )}
@@ -134,7 +134,7 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
                   handleTeamClick({ teamName: el.name, teamId: el.id });
                 }}
               >
-                <Image src={el.image ?? no_team_profile} alt='팀 프로필' width='48px' />
+                <Image src={el.image ?? no_team_profile} alt='팀 프로필' width='32px' />
                 <Box>{el.name}</Box>
               </Flex>
             ))}

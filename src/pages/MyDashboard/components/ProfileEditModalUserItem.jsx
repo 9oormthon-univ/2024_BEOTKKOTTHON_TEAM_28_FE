@@ -47,7 +47,7 @@ const ProfileEditModalUserItem = ({ memberId, nickname, profileImage, isLeader }
 
 ProfileEditModalUserItem.propTypes = {
   onClick: PropTypes.func,
-  memberId: PropTypes.string,
+  memberId: PropTypes.number,
   nickname: PropTypes.string,
   profileImage: PropTypes.string,
   isLeader: PropTypes.bool,

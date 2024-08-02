@@ -24,7 +24,7 @@ const QuestionListPage = () => {
 
   const { teamId: storeTeamId, teamName } = useTeamStore();
 
-  const [currentTeam, setCurrentTeam] = useState({ teamName: '', teamId: 0 });
+  const [currentTeam, setCurrentTeam] = useState({ teamName: '', teamId: teamId ? teamId : 0 });
   const [data, setData] = useState([]);
   const [currentTap, setCurrentTap] = useState('받은 요청');
   const [sort, setSort] = useState('all');
@@ -45,7 +45,9 @@ const QuestionListPage = () => {
       setData(response);
     };
 
-    fetchData();
+    if (currentTeam) {
+      fetchData();
+    }
   }, [currentTeam, sort, currentTap]);
 
   const handleCurrentTeam = ({ teamName, teamId }) => {
@@ -59,6 +61,13 @@ const QuestionListPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProjectList();
+      if (teamId) {
+        setCurrentTeam({
+          teamName: teamName,
+          teamId: +teamId,
+        });
+        return;
+      }
       if (!teamId && !storeTeamId) {
         const matchedTeam = response.progressingProjectList.find((team) => team.id === +teamId);
         if (matchedTeam) {
@@ -101,7 +110,8 @@ const QuestionListPage = () => {
           <Flex direction='column' marginLeft='40.33px' w='922px' gap='32px'>
             {/* <FormBox /> */}
             <Box className='Display-md'>
-              {currentTeam.teamName ?? '팀 이름'} | {userName ?? '사용자'}님의 작업요청
+              {currentTeam.teamName ? currentTeam.teamName : '팀 이름'} |{' '}
+              {userName ? userName : '사용자'}님의 작업요청
             </Box>
             <Flex direction='column' gap='24px'>
               <TabBar tabs={Tabs} currentTap={currentTap} handleCurrentTap={handleSort} />

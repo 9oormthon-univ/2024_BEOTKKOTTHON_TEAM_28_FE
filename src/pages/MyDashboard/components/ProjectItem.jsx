@@ -49,6 +49,7 @@ const ProjectItem = ({
           isOpen={isBackLogOpen}
           onClose={() => {
             setIsBackLogOpen(false);
+            window.location.reload();
           }}
         />
       )}
@@ -98,7 +99,7 @@ const ProjectItem = ({
               status={status}
               onClick={(e) => {
                 e.stopPropagation();
-                if (status === 'PEER_REVIEW') {
+                if (currentPath === Paths.MyDashboard && status === 'PEER_REVIEW') {
                   setIsRnRModalOpen(true);
                 }
               }}

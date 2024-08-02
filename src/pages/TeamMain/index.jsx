@@ -9,6 +9,7 @@ import { QuestionBox } from './components';
 import WorkItem from './components/WorkItem';
 import getFullDate from '../../lips/getFullDate';
 import { getMemberTasks } from '../../api/teamhistory';
+import getMyMemberId from '../../api/team/getMyMemberId';
 import getTeamInfo from '../../api/team/getTeamInfo';
 import getTeamMemberStatus from '../../api/team/getTeamMemberStatus';
 import postWorkInfo from '../../api/team/postWorkInfo';
@@ -43,7 +44,7 @@ const HomePage = () => {
 
   const myStatus = teamStatus.currentWorkerList.filter((worker) => worker.nickname === userName);
 
-  const isWorkingNow = !!myStatus;
+  const [isWorkingNow, setIsWorkingNow] = useState(!!myStatus);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,16 +71,22 @@ const HomePage = () => {
     const fetchData = async () => {
       const res = await getTeamMemberStatus(id);
       setTeamStatus(res);
+      setIsWorkingNow(res.currentWorkerList.some((worker) => worker.nickname === userName));
     };
 
     if (id) {
       fetchData();
     }
-  }, [id]);
+  }, [id, userName]);
 
   const handleWorkSubmit = async (content) => {
-    await postWorkInfo(myStatus.memberId, content);
-    handleShowToastMessage('오늘의 업무 등록 완료');
+    try {
+      const myMemberId = await getMyMemberId(id);
+      await postWorkInfo(myMemberId, content);
+      handleShowToastMessage('오늘의 업무 등록 완료');
+    } catch (e) {
+      console.log(e);
+    }
 
     setTimeout(() => {
       window.location.reload();
@@ -93,10 +100,10 @@ const HomePage = () => {
   }, [navigate, currentTap, id]);
 
   useEffect(() => {
-    if (userName && !teamId) {
+    if (userName && !teamId && !id) {
       openTeamSelectModal();
     }
-  }, [userName, openTeamSelectModal, teamId]);
+  }, [userName, openTeamSelectModal, id, teamId]);
 
   return (
     <main style={{ paddingBottom: '150px' }}>

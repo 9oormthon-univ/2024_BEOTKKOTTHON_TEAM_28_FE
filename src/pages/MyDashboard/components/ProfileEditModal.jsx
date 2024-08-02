@@ -12,14 +12,14 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 
+import ErrorModal from '../../../components/molecules/ErrorModal';
 import ProfileImageSelect from './ProfileImageSelect';
+import PropTypes from 'prop-types';
 import postUserInfo from '../../../api/dashboard/patchUserInfo';
 import { returnProfileImg } from '../../../lips/returnProfile';
 import { returnVegi } from '../../../lips/returnVegi';
 import useUserStore from '../../../stores/userStore';
-import ErrorModal from '../../../components/molecules/ErrorModal';
 
 const ProfileEditModal = ({ data }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -103,7 +103,7 @@ const ProfileEditModal = ({ data }) => {
       <Button variant='greenGreen' w='100%' onClick={onOpen}>
         프로필 수정하기
       </Button>
-      <Modal blockScrollOnMount={false} isOpen={isOpen}>
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay onClick={handleModalClose} />
         <ModalContent borderRadius='16px' minWidth='fit-content' position='absolute' top='60px'>
           <ModalCloseButton
