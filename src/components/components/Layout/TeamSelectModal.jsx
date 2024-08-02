@@ -72,7 +72,7 @@ const TeamSelectModal = ({ isGoTaskHistory }) => {
                   onClick={() => handleProjectClick(project.id, project.name)}
                   cursor='pointer'
                   _hover={{
-                    background: selectedTeam.teamId === project.id ? '#ECFDF5' : '#CCD6E3',
+                    background: selectedTeam.teamId === project.id ? '#ECFDF5' : '#F0F2F4',
                   }}
                 >
                   <img

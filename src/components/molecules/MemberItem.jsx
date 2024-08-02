@@ -37,7 +37,7 @@ const MemberItem = ({
       padding='5px'
       borderRadius='5px'
       _hover={{
-        background: currentUser?.name === nickname ? '#ECFDF5' : '#CCD6E3',
+        background: currentUser?.name === nickname ? '#ECFDF5' : '#F0F2F4',
       }}
     >
       <Image
