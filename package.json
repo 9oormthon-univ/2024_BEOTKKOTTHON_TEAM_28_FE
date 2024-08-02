@@ -77,5 +77,5 @@
       "!/.storybook/**"
     ]
   },
-  "proxy": "https://k748496d18754a.user-app.krampoline.com/"
+  "proxy": "https://api.startupvalley.site/"
 }
