@@ -1,6 +1,29 @@
 import { Flex, Box, Button } from '@chakra-ui/react';
+import propTypes from 'prop-types';
 
-const ErrorModal = () => {
+const ErrorModal = ({ type }) => {
+  let title = '';
+  let message = '';
+
+  switch (type) {
+    case 'cancel':
+      title = '변경사항을 저장하지 않으시나요?';
+      message = '현재까지의 변경사항을 저장하지 않고 <br />나의 대시보드로 돌아가시나요?';
+      break;
+    case 'withdrawl':
+      title = '정말 서비스를 탈퇴하시나요?';
+      message =
+        '더 이상 팀과 나의 성장을 확인하지 못해요 😥 <br />그래도 더 사용하지 않으시겠어요?';
+      break;
+    case 'RnR':
+      title = '동료 평가를 완료해요';
+      message = '수정 사항이 저장되지 않습니다. <br />그래도 돌아가시겠습니까? ';
+      break;
+    default:
+      title = '알림';
+      message = '이 작업을 계속 진행하시겠습니까?';
+  }
+
   return (
     <Flex
       p='32px'
@@ -15,13 +38,15 @@ const ErrorModal = () => {
       alignItems='center'
     >
       <Flex display='flex' flexDirection='column'>
-        <Box className='Display-sm' color='brandBold'>
-          변경사항을 저장하지 않으시나요?
+        <Box className='Display-sm' color='brandBold' textAlign='center'>
+          {title}
         </Box>
-        <Box mt='12px' textAlign='center' color='tertiary'>
-          현재까지의 변경사항을 저장하지 않고 <br />
-          나의 대시보드로 돌아가시나요?
-        </Box>
+        <Box
+          mt='12px'
+          textAlign='center'
+          color='tertiary'
+          dangerouslySetInnerHTML={{ __html: message }}
+        ></Box>
       </Flex>
       <Flex gap='12px'>
         <Button w='228px' h='50px' background='#8C98A9' color='white'>
@@ -33,6 +58,10 @@ const ErrorModal = () => {
       </Flex>
     </Flex>
   );
+};
+
+ErrorModal.propTypes = {
+  type: propTypes.string.isRequired,
 };
 
 export default ErrorModal;
