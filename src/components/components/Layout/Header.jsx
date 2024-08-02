@@ -51,6 +51,11 @@ const Header = ({ isLogin }) => {
     }
   };
 
+  const isMobile =
+    /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/.test(
+      navigator.userAgent,
+    ) && window.innerWidth <= 768;
+
   return (
     <>
       {isOpenTeamSelectModal && <TeamSelectModal isGoTaskHistory={isGoTaskHistory} />}
@@ -78,16 +83,44 @@ const Header = ({ isLogin }) => {
             <Image src='/favicon.ico' width='40px' height='40px' />
             <Image src={text_logo} width='131px' height='21px' alt='스타트업밸리 로고' />
           </Flex>
-          <Box
-            className='sm'
-            position='fixed'
-            right='20px'
-            onClick={() => {
-              setMenuToggled((prev) => !prev);
-            }}
-          >
-            <MenuIcon />
-          </Box>
+          {!isLogin && isMobile && (
+            <Button
+              background='brand'
+              color='white'
+              position='fixed'
+              right='20px'
+              width='100px'
+              sx={{
+                fontFamily: 'Pretendard',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                lineHeight: '28px',
+                letterSpacing: '0.2px',
+              }}
+              _hover={{
+                background: 'brand',
+                color: 'white',
+              }}
+              onClick={() => {
+                navigate('/login');
+              }}
+            >
+              로그인
+            </Button>
+          )}
+          {!isMobile && (
+            <Box
+              className='sm'
+              position='fixed'
+              right='20px'
+              onClick={() => {
+                setMenuToggled((prev) => !prev);
+              }}
+            >
+              <MenuIcon />
+            </Box>
+          )}
           <Flex className='smNone' gap='20px' align='center' minWidth='500px'>
             <HeaderMenuItem
               onClick={() => {

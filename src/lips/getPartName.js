@@ -9,6 +9,6 @@ export const getPartName = (part) => {
     case 'BACKEND':
       return '백엔드';
     default:
-      return '기획';
+      return '미지정';
   }
 };

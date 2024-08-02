@@ -7,8 +7,7 @@ export const changePartToKr = (part) => {
     case 'FRONTEND':
       return '프론트엔드';
     case 'BACKEND':
-      return '백엔드';
     default:
-      return '기타';
+      return '미지정';
   }
 };

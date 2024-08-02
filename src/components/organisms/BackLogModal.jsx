@@ -9,12 +9,13 @@ import {
   ModalContent,
   ModalOverlay,
 } from '@chakra-ui/react';
-import { getMemberScrum, getPeerReviewResult, getTeamInfo } from '../../api/taskhistory';
+import { getMemberScrum, getPeerReviewResult } from '../../api/taskhistory';
 
 import Paths from '../../constants/Paths';
 import PropTypes from 'prop-types';
 import TaskItem from '../../pages/TeamHistory/components/TaskItem';
 import { getPartName } from '../../lips/getPartName';
+import getTeamsWithMemberId from '../../api/team/getMemberId';
 import no_team_profile from '../../assets/images/no_team_profile.png';
 import patchProjectPublic from '../../api/dashboard/patchProjectPublic';
 import { useEffect } from 'react';
@@ -51,13 +52,13 @@ const BackLogModal = ({ memberId, teamId, isPublic, isOpen, onClose }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getTeamInfo(teamId);
+      const response = await getTeamsWithMemberId(memberId, teamId);
 
       setTeamData(response);
     };
 
     fetchData();
-  }, [teamId]);
+  }, [teamId, memberId]);
 
   useEffect(() => {
     const fetchData = async () => {
