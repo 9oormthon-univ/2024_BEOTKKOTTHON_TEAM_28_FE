@@ -38,8 +38,11 @@ const MyRoleModal = ({ teamId, summaryContent, handleSummary }) => {
       setData(response);
     };
 
-    fetchData();
+    if (userId) {
+      fetchData();
+    }
   }, [userId]);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await getTeamInfo(teamId);
@@ -47,7 +50,9 @@ const MyRoleModal = ({ teamId, summaryContent, handleSummary }) => {
       setTeamData(response);
     };
 
-    fetchData();
+    if (teamId) {
+      fetchData();
+    }
   }, [teamId]);
 
   if (id !== undefined && id !== userId) return;

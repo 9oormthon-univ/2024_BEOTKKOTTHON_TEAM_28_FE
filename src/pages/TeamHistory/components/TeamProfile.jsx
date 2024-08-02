@@ -18,7 +18,9 @@ const TeamProfile = () => {
       setData(response);
     };
 
-    fetchData();
+    if (id) {
+      fetchData();
+    }
   }, [id]);
 
   const today = new Date();

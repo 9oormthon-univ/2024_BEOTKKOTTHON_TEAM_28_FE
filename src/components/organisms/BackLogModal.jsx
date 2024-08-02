@@ -48,7 +48,9 @@ const BackLogModal = ({ isPublic, memberId, teamId, isOpen, onClose }) => {
       setData(response);
     };
 
-    fetchData();
+    if (memberId || userId) {
+      fetchData();
+    }
   }, [memberId, userId]);
 
   useEffect(() => {
@@ -57,8 +59,9 @@ const BackLogModal = ({ isPublic, memberId, teamId, isOpen, onClose }) => {
 
       setTeamData(response);
     };
-
-    fetchData();
+    if (memberId || teamId) {
+      fetchData();
+    }
   }, [teamId, memberId]);
 
   useEffect(() => {
@@ -68,7 +71,9 @@ const BackLogModal = ({ isPublic, memberId, teamId, isOpen, onClose }) => {
       setScrums(response);
     };
 
-    fetchData();
+    if (teamId && (memberId || userId)) {
+      fetchData();
+    }
   }, [userId, teamId, memberId]);
 
   useCallback(() => {
