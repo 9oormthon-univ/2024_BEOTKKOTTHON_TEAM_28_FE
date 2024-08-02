@@ -82,20 +82,19 @@ const ProfileEditModal = ({ data }) => {
     }
   };
 
-  const handleClose = () => {
-    if (body.nickname !== data.nickname || body.profileImage !== data.profileImage) {
-      setErrorType('cancel');
-      onErrorOpen();
-    } else {
-      onClose();
-    }
+  const handleWithdrawl = () => {
+    setErrorType('withdrawl');
+    onErrorOpen();
   };
 
-  // 에러 모달을 닫기 위해 사용될 함수
   const handleModalClose = () => {
-    // 에러 모달을 열기 위해 설정한 상태를 변경
     setErrorType('cancel');
     onErrorOpen();
+  };
+
+  const handleCloseBoth = () => {
+    onClose(); // 프로필 모달 닫기
+    onErrorClose(); // 에러 모달 닫기
   };
 
   return (
@@ -162,14 +161,25 @@ const ProfileEditModal = ({ data }) => {
                 </Flex>
               </Box>
               <Divider />
-              <Button width='200px' background='#475569' color='white' mr={3} onClick={handleClose}>
+              <Button
+                width='200px'
+                background='#475569'
+                color='white'
+                mr={3}
+                onClick={handleWithdrawl}
+              >
                 서비스 탈퇴
               </Button>
             </Flex>
           </ModalBody>
         </ModalContent>
       </Modal>
-      <ErrorModal type={errorType} isOpen={isErrorOpen} onClose={onErrorClose} />
+      <ErrorModal
+        type={errorType}
+        isOpen={isErrorOpen}
+        onClose={onErrorClose}
+        onCloseBoth={handleCloseBoth}
+      />
     </>
   );
 };
