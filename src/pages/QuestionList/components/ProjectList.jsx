@@ -79,7 +79,7 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
                   currentTeam.teamId === el.id ? '1.2px solid #059669' : '1.2px solid transparent'
                 }
                 _hover={{
-                  background: currentTeam.teamId === el.id ? 'transparent' : '#CCD6E3',
+                  background: currentTeam.teamId === el.id ? 'transparent' : '#F0F2F4',
                 }}
                 padding='4px'
                 borderRadius='4px'
@@ -123,7 +123,7 @@ const ProjectList = ({ handleCurrentTeam, currentTeam }) => {
                   currentTeam.teamId === el.id ? '1.2px solid #059669' : '1.2px solid transparent'
                 }
                 _hover={{
-                  background: currentTeam.teamId === el.id ? 'transparent' : '#CCD6E3',
+                  background: currentTeam.teamId === el.id ? 'transparent' : '#F0F2F4',
                 }}
                 color={currentTeam.teamId === el.id ? '#059669' : '#0A0A0D'}
                 padding='4px'

@@ -18,4 +18,4 @@ PeerReview.args = {
 };
 
 export const Complete = Template.bind({});
-Complete.args = {};
+Complete.args = { status: 'FINISH' };
