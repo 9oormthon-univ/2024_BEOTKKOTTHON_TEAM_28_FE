@@ -8,6 +8,8 @@ export const getPartName = (part) => {
       return '프론트엔드';
     case 'BACKEND':
       return '백엔드';
+    case 'FULLSTACK':
+      return '풀스택';
     default:
       return '미지정';
   }

@@ -8,9 +8,10 @@ import {
   ModalContent,
   ModalOverlay,
 } from '@chakra-ui/react';
+
 import propTypes from 'prop-types';
 
-const ErrorModal = ({ type, isOpen, onClose }) => {
+const ErrorModal = ({ type, isOpen, onClose, onSubmit }) => {
   let title = '';
   let message = '';
 
@@ -52,7 +53,7 @@ const ErrorModal = ({ type, isOpen, onClose }) => {
               <Button w='228px' h='50px' background='#8C98A9' color='white' onClick={onClose}>
                 아니오
               </Button>
-              <Button w='228px' h='50px' background='brand' color='white'>
+              <Button w='228px' h='50px' background='brand' color='white' onClick={onSubmit}>
                 네
               </Button>
             </Flex>
@@ -67,6 +68,7 @@ ErrorModal.propTypes = {
   type: propTypes.string.isRequired,
   isOpen: propTypes.bool.isRequired,
   onClose: propTypes.func.isRequired,
+  onSubmit: propTypes.func.isRequired,
 };
 
 export default ErrorModal;

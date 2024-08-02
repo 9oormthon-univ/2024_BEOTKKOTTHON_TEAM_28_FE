@@ -103,8 +103,15 @@ const ProfileEditModal = ({ data }) => {
       <Button variant='greenGreen' w='100%' onClick={onOpen}>
         프로필 수정하기
       </Button>
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay onClick={handleModalClose} />
+      <Modal
+        blockScrollOnMount={false}
+        isOpen={isOpen}
+        onClose={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+      >
+        <ModalOverlay />
         <ModalContent borderRadius='16px' minWidth='fit-content' position='absolute' top='60px'>
           <ModalCloseButton
             position='absolute'
@@ -169,7 +176,15 @@ const ProfileEditModal = ({ data }) => {
           </ModalBody>
         </ModalContent>
       </Modal>
-      <ErrorModal type={errorType} isOpen={isErrorOpen} onClose={onErrorClose} />
+      <ErrorModal
+        type={errorType}
+        isOpen={isErrorOpen}
+        onClose={onErrorClose}
+        onSubmit={() => {
+          onErrorClose();
+          onClose();
+        }}
+      />
     </>
   );
 };
