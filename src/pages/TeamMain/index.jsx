@@ -42,7 +42,7 @@ const HomePage = () => {
   const { userName } = useUserStore();
   const { handleShowToastMessage } = useToastStore();
 
-  const myStatus = teamStatus.currentWorkerList.filter((worker) => worker.nickname === userName);
+  const myStatus = teamStatus.currentWorkerList?.filter((worker) => worker.nickname === userName);
 
   const [isWorkingNow, setIsWorkingNow] = useState(!!myStatus);
 
@@ -71,7 +71,7 @@ const HomePage = () => {
     const fetchData = async () => {
       const res = await getTeamMemberStatus(id);
       setTeamStatus(res);
-      setIsWorkingNow(res.currentWorkerList.some((worker) => worker.nickname === userName));
+      setIsWorkingNow(res.currentWorkerList?.some((worker) => worker.nickname === userName));
     };
 
     if (id) {

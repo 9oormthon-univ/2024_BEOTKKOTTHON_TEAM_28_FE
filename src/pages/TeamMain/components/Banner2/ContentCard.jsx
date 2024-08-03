@@ -58,7 +58,7 @@ const ContentCard = () => {
         <br />
         업무 상태에요.
       </Box>
-      {teamStatus && teamStatus.currentWorkerList.length !== 0 && (
+      {teamStatus && teamStatus?.currentWorkerList?.length !== 0 && (
         <ContentMembers members={teamStatus.currentWorkerList} />
       )}
       {teamStatus && teamStatus.latestWork && (
