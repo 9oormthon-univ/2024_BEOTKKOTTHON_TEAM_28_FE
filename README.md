@@ -14,6 +14,8 @@
 
 현재 진행 중인 프로젝트, 지난 프로젝트에서 본인의 작업 척도를 기록하여 비트맵을 통해 시각화합니다.
 
+직접 [react-custom-calendar-heatmap](https://github.com/a-honey/react-custom-calendar-heatmap) 라이브러리를 배포하여 UI를 개선하고 오픈소스화하였습니다.
+
 ![image](https://github.com/user-attachments/assets/954f022a-335b-4c2d-94af-5e0b7dfe3c6a)
 
 ### 🩷 디스코드봇을 통한 척도 기록
@@ -53,13 +55,19 @@
 
 ![image](https://github.com/user-attachments/assets/cffa5c4b-0f34-4a53-a2c4-16045add275a)
 
+### 🤎 랜딩 페이지 및 로그인 모바일 반응형
+
+모바일로 접속 했을 경우 디스코드 로그인을 진행할 수 있으며, 기타 업무는 PC를 통한 진행을 안내합니다.
+
+![image](https://github.com/user-attachments/assets/64e74d7f-88f6-485a-9023-95e3af8dfc2b)
+
 ## Wiki
 
 - [wiki](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_28_FE/wiki)
 
 ## Period
 
-- 2024.03.13 ~ 2024.03.24
+- 2024.03.13 ~ 
 
 🌸 9oormthonUNIV 2기 Team 28 스타트업 밸리 우수상(구름 대표상) 수상
 
@@ -81,6 +89,27 @@
 ![react-custom-calendar-heatmap](https://img.shields.io/badge/react--custom--calendar--heatmap-FF5733?style=for-the-badge&logo=react&logoColor=ffffff)
 ![PropTypes](https://img.shields.io/badge/PropTypes-61DAFB?style=for-the-badge&logo=react&logoColor=ffffff)
 ![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=ffffff)
+
+## 실행 방법
+### 개발 서버 실행
+개발 서버를 실행하려면 다음 명령어를 사용하세요:
+```
+pnpm run dev
+```
+
+### Storybook 실행
+스토리북을 실행하려면 다음 명령어를 사용하세요:
+```
+pnpm run storybook
+```
+
+### 프록시 서버 설정
+프로젝트를 실행하기 전에, 프록시 서버를 설정해야 합니다. package.json 파일에서 proxy 항목을 수정해주세요.
+```
+{
+  "proxy": "http://your-proxy-server.com"
+}
+```
 
 ## Convention
 
@@ -128,6 +157,9 @@
 ### 박소현
 
 - 로그인, 회원가입, 랜딩 페이지 마크업 진행
-- 디자인 QA 및 스타일 수정 진행
+- 디자인 QA 진행 및 스타일 수정 진행
+- 컴포넌트 분리 및 API 연결
+- storybook을 활용하여 UI 테스트
+- 기능 명세서를 기반으로 기능 QA 진행 및 누락된 기능 추가
 
 환경변수 테스트
