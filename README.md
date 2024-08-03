@@ -13,6 +13,7 @@
 ### 💜 1년동안의 작업 척도 시각화
 
 현재 진행 중인 프로젝트, 지난 프로젝트에서 본인의 작업 척도를 기록하여 비트맵을 통해 시각화합니다.
+
 직접 [react-custom-calendar-heatmap](https://github.com/a-honey/react-custom-calendar-heatmap) 라이브러리를 배포하여 UI를 개선하고 오픈소스화하였습니다.
 
 ![image](https://github.com/user-attachments/assets/954f022a-335b-4c2d-94af-5e0b7dfe3c6a)
@@ -156,6 +157,9 @@ pnpm run storybook
 ### 박소현
 
 - 로그인, 회원가입, 랜딩 페이지 마크업 진행
-- 디자인 QA 및 스타일 수정 진행
+- 디자인 QA 진행 및 스타일 수정 진행
+- 컴포넌트 분리 및 API 연결
+- storybook을 활용하여 UI 테스트
+- 기능 명세서를 기반으로 기능 QA 진행 및 누락된 기능 추가
 
 환경변수 테스트
