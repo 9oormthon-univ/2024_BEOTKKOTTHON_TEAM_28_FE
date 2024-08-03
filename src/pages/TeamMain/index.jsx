@@ -153,7 +153,7 @@ const HomePage = () => {
                       el.createdAt.split('T')[0] !== data[index - 1]?.createdAt.split('T')[0];
 
                     const date = getFullDate(el.createdAt);
-                    console.log(el.content);
+
                     return (
                       <>
                         {el.content && showDate && <div className='Headline-md'>{date}</div>}

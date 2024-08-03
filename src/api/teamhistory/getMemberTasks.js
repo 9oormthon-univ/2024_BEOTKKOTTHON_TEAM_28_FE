@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import axiosInstance from '..';
 
-const getMemberTasks = async (teamId, sort) => {
+const getMemberTasks = async (teamId, sort = 'all') => {
   try {
     const response = await axiosInstance.get(`/teams/${teamId}/works?sort=${sort}`);
     return response.data.data.workList;
