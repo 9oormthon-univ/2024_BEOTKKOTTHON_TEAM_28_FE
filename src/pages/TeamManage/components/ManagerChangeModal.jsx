@@ -32,7 +32,9 @@ const ManagerChangeModal = () => {
       setLeader(response.filter((el) => el.isLeader === true));
     };
 
-    fetchData();
+    if (id) {
+      fetchData();
+    }
   }, [id]);
 
   if (!leader || leader[0]?.nickname !== userName) return null;

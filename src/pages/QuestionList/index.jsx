@@ -145,9 +145,9 @@ const QuestionListPage = () => {
                   <NonData />
                 ))}
 
-              {data?.map((el) => (
+              {data?.map((el, index) => (
                 <WorkItem
-                  key={el.id}
+                  key={index}
                   name={el.sender.name}
                   profileImage={el.sender.profileImage}
                   part={el.sender.part}

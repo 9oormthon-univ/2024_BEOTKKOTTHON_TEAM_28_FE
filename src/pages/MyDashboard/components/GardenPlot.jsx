@@ -72,6 +72,9 @@ const GardenPlot = ({ name, id }) => {
   );
 };
 
-GardenPlot.propTypes = { id: PropTypes.number, name: PropTypes.string };
+GardenPlot.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  name: PropTypes.string,
+};
 
 export default GardenPlot;

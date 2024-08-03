@@ -38,12 +38,14 @@ const TaskHistoryPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getMemberScrum(id, currentUser?.memberId);
+      const response = await getMemberScrum(id, currentUser.memberId);
 
       setData(response ?? []);
     };
 
-    fetchData();
+    if (id && currentUser?.memberId) {
+      fetchData();
+    }
   }, [currentUser, id]);
 
   const handleCurrentUser = ({ name, profile, part, memberId }) => {
@@ -63,7 +65,9 @@ const TaskHistoryPage = () => {
       });
     };
 
-    fetchData();
+    if (id) {
+      fetchData();
+    }
   }, [id]);
 
   useEffect(() => {
@@ -106,6 +110,7 @@ const TaskHistoryPage = () => {
                         content={el.content}
                         startAt={el.startAt}
                         endAt={el.endAt}
+                        totalTime={el.totalTime}
                         workList={el.workList}
                       />
                     ))

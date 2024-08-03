@@ -7,7 +7,6 @@ const getTeamInfo = async (id) => {
     return response.data.data;
   } catch (err) {
     if (err === AxiosError) {
-      console.error(err);
       return err.response;
     }
   }

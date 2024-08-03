@@ -19,7 +19,7 @@ const SortTooltipList = ({ sorts, handleCurrentSort, currentSort }) => {
 
 SortTooltipList.propTypes = {
   sorts: PropTypes.array,
-  currentSort: PropTypes.string,
+  currentSort: PropTypes.object,
   handleCurrentSort: PropTypes.func,
 };
 export default SortTooltipList;

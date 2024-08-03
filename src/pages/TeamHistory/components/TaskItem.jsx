@@ -29,16 +29,18 @@ const TaskItem = ({ totalTime, currentUser, content, startAt, endAt, workList })
           <Box className='Headline-md' color='brandBold'>
             {startAt} - {endAt}
           </Box>
-          <Box
-            className='SubHead-sm'
-            background='#ECFDF5'
-            color='successBold'
-            paddingX='8px'
-            paddingY='4px '
-            borderRadius='14px'
-          >
-            {Math.floor(totalTime / 60)} 시간
-          </Box>
+          {totalTime && (
+            <Box
+              className='SubHead-sm'
+              background='#ECFDF5'
+              color='successBold'
+              paddingX='8px'
+              paddingY='4px '
+              borderRadius='14px'
+            >
+              {Math.floor(totalTime / 60)} 시간
+            </Box>
+          )}
         </Flex>
         <Flex direction='column' gap='24px' className='Body-lg'>
           <Box>{content}</Box>
