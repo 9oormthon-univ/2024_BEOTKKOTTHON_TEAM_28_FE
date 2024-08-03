@@ -1,17 +1,11 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-} from '@chakra-ui/react';
+import { Box, Button, Flex, Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react';
 
 import propTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
-const ErrorModal = ({ type, isOpen, onClose, onSubmit }) => {
+const ErrorModal = ({ type, isOpen, onClose, onCloseBoth }) => {
+  const navigate = useNavigate();
+
   let title = '';
   let message = '';
 
@@ -38,11 +32,29 @@ const ErrorModal = ({ type, isOpen, onClose, onSubmit }) => {
       message = '이 작업을 계속 진행하시겠습니까?';
   }
 
+  const handleClick = () => {
+    switch (type) {
+      case 'cancel':
+        onCloseBoth();
+        break;
+      case 'withdrawl':
+        navigate('/');
+        break;
+      case 'RnRComplete':
+        // Implement RnRComplete logic here
+        break;
+      case 'RnRCancel':
+        // Implement RnRCancel logic here
+        break;
+      default:
+      // Implement default case here
+    }
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent p='32px' w='532px' borderRadius='8px' background='#FFF' textAlign='center'>
-        <ModalCloseButton />
         <ModalBody>
           <Flex direction='column' gap='36px'>
             <Box className='Display-sm' color='brandBold'>
@@ -53,7 +65,7 @@ const ErrorModal = ({ type, isOpen, onClose, onSubmit }) => {
               <Button w='228px' h='50px' background='#8C98A9' color='white' onClick={onClose}>
                 아니오
               </Button>
-              <Button w='228px' h='50px' background='brand' color='white' onClick={onSubmit}>
+              <Button w='228px' h='50px' background='brand' color='white' onClick={handleClick}>
                 네
               </Button>
             </Flex>
@@ -68,7 +80,7 @@ ErrorModal.propTypes = {
   type: propTypes.string.isRequired,
   isOpen: propTypes.bool.isRequired,
   onClose: propTypes.func.isRequired,
-  onSubmit: propTypes.func.isRequired,
+  onCloseBoth: propTypes.func.isRequired,
 };
 
 export default ErrorModal;
