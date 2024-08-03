@@ -53,13 +53,19 @@
 
 ![image](https://github.com/user-attachments/assets/cffa5c4b-0f34-4a53-a2c4-16045add275a)
 
+### 🤎 랜딩 페이지 및 로그인 모바일 반응형
+
+모바일로 접속 했을 경우 디스코드 로그인을 진행할 수 있으며, 기타 업무는 PC를 통한 진행을 안내합니다.
+
+![image](https://github.com/user-attachments/assets/64e74d7f-88f6-485a-9023-95e3af8dfc2b)
+
 ## Wiki
 
 - [wiki](https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_28_FE/wiki)
 
 ## Period
 
-- 2024.03.13 ~ 2024.03.24
+- 2024.03.13 ~ 
 
 🌸 9oormthonUNIV 2기 Team 28 스타트업 밸리 우수상(구름 대표상) 수상
 
