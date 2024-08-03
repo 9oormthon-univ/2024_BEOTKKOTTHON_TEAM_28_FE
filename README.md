@@ -13,6 +13,7 @@
 ### 💜 1년동안의 작업 척도 시각화
 
 현재 진행 중인 프로젝트, 지난 프로젝트에서 본인의 작업 척도를 기록하여 비트맵을 통해 시각화합니다.
+직접 [react-custom-calendar-heatmap](https://github.com/a-honey/react-custom-calendar-heatmap) 라이브러리를 배포하여 UI를 개선하고 오픈소스화하였습니다.
 
 ![image](https://github.com/user-attachments/assets/954f022a-335b-4c2d-94af-5e0b7dfe3c6a)
 
@@ -87,6 +88,27 @@
 ![react-custom-calendar-heatmap](https://img.shields.io/badge/react--custom--calendar--heatmap-FF5733?style=for-the-badge&logo=react&logoColor=ffffff)
 ![PropTypes](https://img.shields.io/badge/PropTypes-61DAFB?style=for-the-badge&logo=react&logoColor=ffffff)
 ![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=ffffff)
+
+## 실행 방법
+### 개발 서버 실행
+개발 서버를 실행하려면 다음 명령어를 사용하세요:
+```
+pnpm run dev
+```
+
+### Storybook 실행
+스토리북을 실행하려면 다음 명령어를 사용하세요:
+```
+pnpm run storybook
+```
+
+### 프록시 서버 설정
+프로젝트를 실행하기 전에, 프록시 서버를 설정해야 합니다. package.json 파일에서 proxy 항목을 수정해주세요.
+```
+{
+  "proxy": "http://your-proxy-server.com"
+}
+```
 
 ## Convention
 
