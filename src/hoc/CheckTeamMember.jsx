@@ -1,38 +1,44 @@
+import { useEffect, useState } from 'react';
+
 import Paths from '../constants/Paths';
-import { getMemberList } from '../api/taskhistory';
-import { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import getMyMemberId from '../api/team/getMyMemberId';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 const CheckTeamMember = ({ children }) => {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
+  const [isValidMember, setIsValidMember] = useState(null); // State to manage validation
 
   useEffect(() => {
-    const fetchMembersData = async () => {
-      const response = await getMemberList(id);
-
-      return response?.memberList;
-    };
-
     const fetchMyMemberId = async () => {
-      const response = await getMemberList(id);
+      try {
+        const myMemberId = await getMyMemberId(id);
 
-      return response?.memberList;
+        if (myMemberId) {
+          setIsValidMember(true);
+        } else {
+          navigate(Paths.Landing);
+        }
+      } catch (error) {
+        navigate(Paths.Landing);
+      }
     };
 
     if (id) {
-      const members = fetchMembersData();
-      const myMemberId = fetchMyMemberId();
-
-      if (members.every((member) => member.memberId !== myMemberId)) {
-        navigator(Paths.Landing);
-        return null;
-      }
+      fetchMyMemberId();
     }
-  }, [id, navigator]);
+  }, [id, navigate]);
 
-  return children;
+  if (isValidMember === null) {
+    return null; // or some loading indicator
+  }
+
+  return isValidMember ? children : null;
+};
+CheckTeamMember.propTypes = {
+  children: PropTypes.node,
 };
 
 export default CheckTeamMember;

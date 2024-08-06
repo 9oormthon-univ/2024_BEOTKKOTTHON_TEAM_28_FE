@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import CheckTeamMember from '../hoc/CheckTeamMember';
 import Landing from '../pages/Landing';
 import Layout from '../components/components/Layout';
 import Login from '../pages/Login';
@@ -20,7 +21,15 @@ const RoutesList = [
   { path: Paths.Register, element: <Register />, isMobileVisible: true, isFooter: true },
   { path: Paths.MyDashboard, element: <MyDashboard />, isMobileVisible: false },
   { path: Paths.UserDashboard, element: <UserDashboard />, isMobileVisible: false },
-  { path: Paths.TeamMain, element: <TeamMain />, isMobileVisible: false },
+  {
+    path: Paths.TeamMain,
+    element: (
+      <CheckTeamMember>
+        <TeamMain />
+      </CheckTeamMember>
+    ),
+    isMobileVisible: false,
+  },
   { path: '/team-task-history', element: <TeamMain />, isMobileVisible: false },
   { path: '/:id/team-task-history', element: <TeamMain />, isMobileVisible: false },
   { path: Paths.QuestionList, element: <QuestionList />, isMobileVisible: false },
